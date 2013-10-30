@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sql-group>
+	<doc>
+		<author>liyudong</author> 
+		<date>2011-07-20</date> 
+		<description>KPI报表</description> 		
+	</doc>	
+	<sqlquery name="netck01" dbpoolname="">		
+		<select>
+		<![CDATA[ 			
+             select
+to_char(a.sdate,'yyyy-mm-dd') as 日期,nvl(b.NETCK010,0) as PDP激活成功率
+from
+( select 
+  to_date((case when to_number(to_char(sysdate,'ddd'))-6<1 then to_char(to_number(to_char(sysdate,'yyyy'))-1) else to_char(to_number(to_char(sysdate,'yyyy'))) end ) || '-' ||
+  (case when to_number(to_char(sysdate,'ddd'))-6<1 then to_char(to_number(to_char( to_date(concat(to_number(to_char(sysdate,'yyyy')-1),concat('-','12-31')),'yyyy-MM-dd') ,'ww'))+(to_number(to_char(sysdate,'ddd'))-6)) else to_char(to_number(to_char(sysdate,'ddd'))-6) end ),'yyyy-ddd') as sdate   
+  from dual
+  union
+   select 
+  to_date((case when to_number(to_char(sysdate,'ddd'))-5<1 then to_char(to_number(to_char(sysdate,'yyyy'))-1) else to_char(to_number(to_char(sysdate,'yyyy'))) end ) || '-' ||
+  (case when to_number(to_char(sysdate,'ddd'))-5<1 then to_char(to_number(to_char( to_date(concat(to_number(to_char(sysdate,'yyyy')-1),concat('-','12-31')),'yyyy-MM-dd') ,'ww'))+(to_number(to_char(sysdate,'ddd'))-5)) else to_char(to_number(to_char(sysdate,'ddd'))-5) end ),'yyyy-ddd') as sdate   
+  from dual
+  union
+   select 
+  to_date((case when to_number(to_char(sysdate,'ddd'))-4<1 then to_char(to_number(to_char(sysdate,'yyyy'))-1) else to_char(to_number(to_char(sysdate,'yyyy'))) end ) || '-' ||
+  (case when to_number(to_char(sysdate,'ddd'))-4<1 then to_char(to_number(to_char( to_date(concat(to_number(to_char(sysdate,'yyyy')-1),concat('-','12-31')),'yyyy-MM-dd') ,'ww'))+(to_number(to_char(sysdate,'ddd'))-4)) else to_char(to_number(to_char(sysdate,'ddd'))-4) end ),'yyyy-ddd') as sdate   
+  from dual
+  union
+   select 
+  to_date((case when to_number(to_char(sysdate,'ddd'))-3<1 then to_char(to_number(to_char(sysdate,'yyyy'))-1) else to_char(to_number(to_char(sysdate,'yyyy'))) end ) || '-' ||
+  (case when to_number(to_char(sysdate,'ddd'))-3<1 then to_char(to_number(to_char( to_date(concat(to_number(to_char(sysdate,'yyyy')-1),concat('-','12-31')),'yyyy-MM-dd') ,'ww'))+(to_number(to_char(sysdate,'ddd'))-3)) else to_char(to_number(to_char(sysdate,'ddd'))-3) end ),'yyyy-ddd') as sdate   
+  from dual
+  union
+   select 
+  to_date((case when to_number(to_char(sysdate,'ddd'))-2<1 then to_char(to_number(to_char(sysdate,'yyyy'))-1) else to_char(to_number(to_char(sysdate,'yyyy'))) end ) || '-' ||
+  (case when to_number(to_char(sysdate,'ddd'))-2<1 then to_char(to_number(to_char( to_date(concat(to_number(to_char(sysdate,'yyyy')-1),concat('-','12-31')),'yyyy-MM-dd') ,'ww'))+(to_number(to_char(sysdate,'ddd'))-2)) else to_char(to_number(to_char(sysdate,'ddd'))-2) end ),'yyyy-ddd') as sdate   
+  from dual
+   union
+   select 
+  to_date((case when to_number(to_char(sysdate,'ddd'))-1<1 then to_char(to_number(to_char(sysdate,'yyyy'))-1) else to_char(to_number(to_char(sysdate,'yyyy'))) end ) || '-' ||
+  (case when to_number(to_char(sysdate,'ddd'))-1<1 then to_char(to_number(to_char( to_date(concat(to_number(to_char(sysdate,'yyyy')-1),concat('-','12-31')),'yyyy-MM-dd') ,'ww'))+(to_number(to_char(sysdate,'ddd'))-1)) else to_char(to_number(to_char(sysdate,'ddd'))-1) end ),'yyyy-ddd') as sdate   
+  from dual
+   union
+   select 
+  to_date(to_char(sysdate,'yyyy-mm-dd'),'yyyy-mm-dd') as sdate   
+  from dual) a,(select datetime,NETCK010 from KPIINDEX_NETCK where datatype=1 and BelongneType='全区' and BelongneName='全区') b
+  where to_date(substr(b.datetime(+),0,8),'yyyymmdd') = a.sdate
+  order by a.sdate          
+		  ]]> 
+		</select>
+        		
+	</sqlquery>	
+    
+</sql-group>
+
+

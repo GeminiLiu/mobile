@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="GB2312"?>
+<sql-group>
+	<doc>
+		<author>duanximeng</author>
+		<date>2006-03-29</date>
+		<description></description>
+	</doc>
+	
+	<sql name="accidentacceptpage" datasource="Ultranms">
+		<item dbms="All"><![CDATA[
+select distinct(l.c802800004) from {100} l where l.c802800004 is not null 
+		]]></item>
+	</sql>
+	
+		<!--故障地市-->
+		<sql name="accidentacceptpage.group" datasource="Ultranms">
+		<item dbms="All"><![CDATA[
+		select sysgroup.C630000018 as groupname,sysgroup.C1 as groupid from {100} sysgroup where sysgroup.C630000021=2 and sysgroup.C630000020<>0 order by sysgroup.c1 
+		]]></item>
+	</sql>
+</sql-group>
+

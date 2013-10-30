@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ll_friends"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="50dip"
+        android:background="@drawable/titlebg"
+        android:padding="10dip" >
+
+        <ImageView
+            android:id="@+id/iv_friends"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:src="@drawable/menu1" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:src="@drawable/yh_title" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_listview"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_weight="1.0"
+        android:background="#ffffff"
+        android:flipInterval="30"
+        android:persistentDrawingCache="animation" >
+
+      <!--   <ListView
+            android:id="@+id/listview_yh"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:cacheColorHint="#00000000"
+            android:divider="#c3c3c3"
+            android:dividerHeight="0.5dip" > -->
+            <include 
+              layout="@layout/listview"
+                />
+      
+    </LinearLayout>
+  
+    <LinearLayout
+        android:id="@+id/automatic_loaded"
+        android:layout_width="fill_parent"
+        android:layout_height="50dip"
+        android:layout_alignParentBottom="true"
+        android:background="@color/black"
+        android:orientation="horizontal" >
+      <include 
+          android:id="@+id/rl_yh_newyh"
+          layout="@layout/footitem"/>  
+        
+    </LinearLayout>
+
+</LinearLayout>

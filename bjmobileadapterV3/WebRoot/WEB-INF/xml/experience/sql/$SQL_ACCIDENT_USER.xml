@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="GB2312"?>
+<sql-group>
+	<doc>
+		<author>duanximeng</author>
+		<date>2006-03-14</date>
+		<description>经验库考核</description>
+	</doc>
+	
+	<sql name="experience.accidented_user" datasource="Ultranms">
+		<item dbms="All"><![CDATA[
+		select distinct(c630000003), gz.user_id from {100} sysuser, exp_accident gz where  sysuser.c630000029=gz.user_id
+		]]></item>
+	</sql>
+</sql-group>
+

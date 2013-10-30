@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sql-group>
+	<doc>
+		<author>作者</author> 
+		<date>时间</date> 
+		<description>对流程类别的查询</description> 		
+	</doc>
+	<sqlquery name="configquery.BaseCategoryClass.SelectAll">
+		<select>
+		<![CDATA[ 
+			select
+   			  /*COUNT*/  
+			*
+   			  /*COUNT*/  
+			from
+			(
+   			  select  
+   			  	c1 			as BaseCategoryClassid,
+				C650000001	as BaseCategoryClassName,
+				C650000002	as BaseCategoryClassCode,
+				C650000003	as BaseCategoryClassDesc
+              from {WF:Config_BaseCategoryClass} base 
+              )
+			   $orderby$
+		  ]]> 
+		</select>
+		<customwhere>
+			<parameterMap prepend="EXTEND" name="orderby">
+					<mapingFiled  prepend="EXTEND" fieldName="orderby"  fieldType="4">
+						<mapsql value="isnotnull">
+							<![CDATA[
+								 order by  #orderby#
+							 ]]>  			
+						</mapsql>
+					</mapingFiled>
+			</parameterMap>				
+ 		</customwhere>
+	</sqlquery>
+	<sqlquery name="configquery.BaseCatgory.SelectAll">
+		<select>
+		<![CDATA[ 
+   			select
+   			  /*COUNT*/  
+			*
+   			  /*COUNT*/  
+			from
+			(
+   			  SELECT  
+				C1 as BaseCategoryID,
+				C650000008	as	BaseCategoryBtnAllIDS,
+				C650000015	as	BaseCategoryBtnFixIDS,
+				C650000014	as	BaseCategoryBtnFreeIDS,
+				C650000010	as	BaseCategoryClassCode,
+				C650000009	as	BaseCategoryClassName,
+				C650000003	as	BaseCategoryCode,
+				C650000006	as	BaseCategoryDayLastNo,
+				C650000012	as	BaseCategoryDefaultFixTplBase,
+				C650000007	as	BaseCategoryDesc,
+				C650000011	as	BaseCategoryIsDefaultFix,
+				C650000004	as	BaseCategoryIsFlow,
+				C650000001	as	BaseCategoryName,
+				C650000016	as	BaseCategoryPageHIDS,
+				C650000013	as	BaseCategoryPageIDS,
+				C650000002	as	BaseCategorySchama,
+				C650000005	as	BaseCategoryState
+			FROM {WF:Config_BaseCategory} base 
+				where 1=1 $checkflow$
+			)
+			   $orderby$
+		  ]]> 
+		</select>
+		<customwhere>
+			<parameterMap prepend="AND" name="checkflow">
+				<mapingFiled  prepend="" fieldName="isflow"  fieldType="4">
+					<mapsql value="isnotnull">
+						<![CDATA[
+							  C650000004 = #isflow#
+						 ]]>  			
+					</mapsql>
+				</mapingFiled>
+				<mapingFiled  prepend="AND" fieldName="clsasname"  fieldType="4">
+					<mapsql value="isnotnull">
+						<![CDATA[
+							  C650000010 = '#clsasname#'
+						 ]]>  			
+					</mapsql>
+				</mapingFiled>
+			</parameterMap>
+			<parameterMap prepend="EXTEND" name="orderby">
+					<mapingFiled  prepend="EXTEND" fieldName="orderby"  fieldType="4">
+						<mapsql value="isnotnull">
+							<![CDATA[
+								 order by  #orderby#
+							 ]]>  			
+						</mapsql>
+					</mapingFiled>
+			</parameterMap>				
+ 		</customwhere>
+	</sqlquery>
+	<sqlquery name="configquery.BaseCatgory.BaseOn_BaseSchamaSelectOne">
+		<select>
+		<![CDATA[ 
+   			select
+   			  /*COUNT*/  
+			*
+   			  /*COUNT*/  
+			from
+			(
+   			  SELECT  
+				C1 as BaseCategoryID,
+				C650000008	as	BaseCategoryBtnAllIDS,
+				C650000015	as	BaseCategoryBtnFixIDS,
+				C650000014	as	BaseCategoryBtnFreeIDS,
+				C650000010	as	BaseCategoryClassCode,
+				C650000009	as	BaseCategoryClassName,
+				C650000003	as	BaseCategoryCode,
+				C650000006	as	BaseCategoryDayLastNo,
+				C650000012	as	BaseCategoryDefaultFixTplBase,
+				C650000007	as	BaseCategoryDesc,
+				C650000011	as	BaseCategoryIsDefaultFix,
+				C650000004	as	BaseCategoryIsFlow,
+				C650000001	as	BaseCategoryName,
+				C650000016	as	BaseCategoryPageHIDS,
+				C650000013	as	BaseCategoryPageIDS,
+				C650000002	as	BaseCategorySchama,
+				C650000005	as	BaseCategoryState
+			FROM {WF:Config_BaseCategory} base 
+				where $BaseOn_SchamaSelectOne$
+			)
+		  ]]> 
+		</select>
+		<customwhere>
+			<parameterMap prepend="" name="BaseOn_SchamaSelectOne">
+				<mapingFiled  prepend="" fieldName="baseschama"  fieldType="4">
+					<mapsql value="isnotnull">
+						<![CDATA[
+							  C650000002 = '#baseschama#'
+						 ]]>  			
+					</mapsql>
+				</mapingFiled>
+			</parameterMap>		
+ 		</customwhere>
+	</sqlquery>
+</sql-group>

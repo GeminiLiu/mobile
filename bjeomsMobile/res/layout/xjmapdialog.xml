@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    android:orientation="vertical"
+    android:layout_gravity="center"
+    >
+<LinearLayout 
+        android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" 
+    android:background="#ffffff"
+  android:paddingLeft="10dip"
+  android:paddingRight="10dip"
+    >
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="当前速度：30公里/小时"
+        android:textColor="#535353"
+        android:textSize="15dip"
+        android:layout_marginBottom="5dip"
+ 
+     />
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="当前位置：109.909；80.902"
+        android:textColor="#535353"
+        android:textSize="15dip" 
+         android:layout_marginBottom="5dip"
+ 
+        />
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="0.5dip"
+        android:layout_marginTop="5dip"
+        android:background="@drawable/gd_line" 
+     
+        />
+</LinearLayout>
+
+
+  <LinearLayout 
+      android:id="@+id/ll_button"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" 
+    android:background="#ffffff"
+  android:paddingLeft="10dip"
+  android:paddingRight="10dip"
+    >
+    <LinearLayout 
+          android:layout_width="fill_parent"
+  		  android:layout_height="wrap_content"
+  		  android:layout_gravity="center_horizontal"
+  		  android:gravity="center"
+  		  android:layout_marginTop="5dip"
+  		
+
+        >
+        <TextView 
+            android:id="@+id/tv_switch"
+              android:layout_width="180dip"
+  		      android:layout_height="wrap_content"
+  		      android:text="当前资源：井702"
+  		      android:textColor="#535353"
+  		      android:textSize="15dip"
+  		      android:layout_centerVertical="true"
+  		      android:gravity="center_vertical|left"
+  		      android:layout_weight="1"
+            />
+         <ImageView
+            android:id="@+id/position"
+             android:layout_width="30dip"
+  		      android:layout_height="30dip"
+  		      android:layout_gravity="center_vertical|right"
+  		      android:paddingRight="10dip"
+  		      android:src="@drawable/position"
+             />
+        <ImageButton
+            android:id="@+id/xj_button_on"
+             android:layout_width="wrap_content"
+  		      android:layout_height="wrap_content"
+  		      android:src="@drawable/switch_normal"
+  		      android:background="@null"
+  		      android:layout_gravity="center_vertical|right"
+  		      android:layout_weight="2"
+             />
+    </LinearLayout>
+    <ImageView 
+          android:layout_width="wrap_content"
+  		      android:layout_height="wrap_content"
+  		      android:src="@drawable/line_xu"
+  		      android:layout_marginTop="5dip"
+  		      android:layout_marginBottom="5dip"
+        />
+    <LinearLayout
+          android:layout_width="fill_parent"
+   		  android:layout_height="wrap_content"
+    	  android:orientation="vertical" >
+        
+             <TextView 
+            android:id="@+id/tv_switch1"
+              android:layout_width="fill_parent"
+  		      android:layout_height="wrap_content"
+  		      android:text="点坐标：109.909；80.902"
+  		      android:textColor="#c3c3c3"
+  		      android:layout_centerVertical="true"
+            />
+                <TextView 
+            android:id="@+id/tv_switch1"
+              android:layout_width="fill_parent"
+  		      android:layout_height="wrap_content"
+  		      android:text="是否关键点：否"
+  		      android:textColor="#c3c3c3"
+  		      android:layout_centerVertical="true"
+            />
+    </LinearLayout>
+    
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="0.5dip"
+        android:background="@drawable/gd_line" 
+        android:layout_marginTop="5dip"
+        />
+
+</LinearLayout>
+
+</LinearLayout>

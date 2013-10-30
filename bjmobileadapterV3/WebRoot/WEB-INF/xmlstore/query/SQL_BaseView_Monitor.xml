@@ -1,0 +1,814 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<sql-group>
+
+	<doc>
+
+		<author>lihaoyuan</author> 
+
+		<date>2008年10月23日</date> 
+
+		<description>工单查询</description> 		
+
+	</doc>
+
+	<sqlquery name="query.BaseView.Monitor.TTM.TTH">
+
+		<select>
+
+		<![CDATA[ 
+
+		select 
+
+			/*COUNT*/
+
+			*
+
+			/*COUNT*/
+
+			 from(
+
+			select  
+
+				base.C1 as baseid,
+
+				C700000001      as baseschema,
+
+				C700000003      as basesn,
+
+				C700000006      as BaseCreateDate,
+
+				C700000018      as BaseDealOutTime,
+
+				C700000011      as BaseSummary,
+
+				C700000014      as BaseItems,
+
+				C800020013      as ResponseLevel,
+
+				dp.C1           as processid,
+
+				C700020020      as FlagActive,
+
+				C700020005      as Assginee,
+
+				C700020101      as AssigneeCorp,
+
+				C700020103      as AssigneeDep,
+
+				C700020009      as Dealer,
+
+				C700020111      as DealerCorp,
+
+				C700020113      as DealerDep,
+
+				C700020007      as groupname,
+
+				C700020013      as ProcessAcceptOutTime,
+
+				C700020014      as ProcessDealOutTime
+
+			from {WF:EL_TTM_TTH} base,{WF:App_DealProcess} dp 
+
+			where
+
+				base.C1 = dp.C700020001
+
+				and base.C700000001 = dp.C700020002
+
+				and dp.C700020020 = '1'
+
+				$searchpara$
+
+		) result 
+
+		$extend$
+
+		  ]]> 
+
+		</select>
+
+		<customwhere>
+
+			<parameterMap prepend="AND" name="searchpara">
+
+            	<mapingFiled  prepend="AND" fieldName="IsImportantIncident"  fieldType="2">
+
+					<mapsql value="isnotnull">
+
+						<![CDATA[
+
+							 C800030110 = #IsImportantIncident#
+
+						 ]]>  			
+
+					</mapsql>
+
+				</mapingFiled>
+
+				<mapingFiled  prepend="AND" fieldName="IsEffectOP"  fieldType="4">
+
+					<mapsql value="isnotnull">
+
+						<![CDATA[
+
+							 C800020023 = #IsEffectOP#
+
+						 ]]>  			
+
+					</mapsql>
+
+				</mapingFiled>
+
+				<mapingFiled  prepend="AND" fieldName="ResponseLevel"  fieldType="4">
+
+					<mapsql value="isnotnull">
+
+						<![CDATA[
+
+							 C800020013 = '#ResponseLevel#'
+
+						 ]]>  			
+
+					</mapsql>
+
+				</mapingFiled>
+
+				<mapingFiled  prepend="AND" fieldName="BaseItems"  fieldType="4">
+
+					<mapsql value="isnotnull" logic="or">
+
+						<![CDATA[
+
+							 C700000014 like '#BaseItems#'||'.%'
+
+						 ]]>  			
+
+					</mapsql>
+
+				</mapingFiled>
+
+				<mapingFiled  prepend="AND" fieldName="IsOutTime"  fieldType="2">
+
+					<mapsql value="isnotnull" logic="or">
+
+						<![CDATA[
+
+							 C700020014 <= #IsOutTime#
+
+						 ]]>  			
+
+					</mapsql>
+
+				</mapingFiled>
+
+				<mapingFiled  prepend="AND" fieldName="CurrentTime"  fieldType="2">
+
+					<mapsql value="isnotnull" logic="or">
+
+						<![CDATA[
+
+							 C700020014 >= #CurrentTime#
+
+						 ]]>  			
+
+					</mapsql>
+
+				</mapingFiled>
+
+			</parameterMap>
+
+			<parameterMap prepend="EXTEND" name="extend">
+
+					<mapingFiled  prepend="EXTEND" fieldName="orderby"  fieldType="4">
+
+						<mapsql value="isnotnull">
+
+							<![CDATA[
+
+								   order by #orderby#
+
+							 ]]>
+
+						</mapsql>
+
+					</mapingFiled>
+
+			</parameterMap>
+
+		</customwhere>
+
+		<sqlother>
+
+			<sqlpagination isavailability="true">
+
+				<sqlpageSize>50</sqlpageSize>
+
+			</sqlpagination>
+
+			<sqldistinct isavailability="false">排重的列1,排重的列2</sqldistinct>
+
+			<sqlSortFields isavailability="false">排序的列1,排序的列2</sqlSortFields>
+
+		</sqlother>
+
+		<PageQueryField>
+
+			<field name="IsImportantIncident">
+
+				<fieldID>800045129</fieldID>
+
+				<fieldEnglishname>IsImportantIncident</fieldEnglishname>
+
+				<fieldChinesename>是否重大故障</fieldChinesename>
+
+				<fieldType>4</fieldType>
+
+				<fieldDisplaytype>6</fieldDisplaytype>
+
+				<fieldDisplaytypeValue>0:否;1:是;</fieldDisplaytypeValue>
+
+				<fieldDefaultValue></fieldDefaultValue>
+
+			</field>
+
+			<field name="IsEffectOP">
+
+				<fieldID>800020023</fieldID>
+
+				<fieldEnglishname>IsEffectOP</fieldEnglishname>
+
+				<fieldChinesename>是否影响业务</fieldChinesename>
+
+				<fieldType>4</fieldType>
+
+				<fieldDisplaytype>6</fieldDisplaytype>
+
+				<fieldDisplaytypeValue>0:否;1:是;</fieldDisplaytypeValue>
+
+				<fieldDefaultValue></fieldDefaultValue>
+
+			</field>
+
+			<field name="ResponseLevel">
+
+				<fieldID>800020013</fieldID>
+
+				<fieldEnglishname>ResponseLevel</fieldEnglishname>
+
+				<fieldChinesename>故障响应级别</fieldChinesename>
+
+				<fieldType>4</fieldType>
+
+				<fieldDisplaytype>6</fieldDisplaytype>
+
+				<fieldDisplaytypeValue>一级响应:一级响应;二级响应:二级响应;三级响应:三级响应;</fieldDisplaytypeValue>
+
+				<fieldDefaultValue></fieldDefaultValue>
+
+			</field>
+
+			<field name="NetType">
+
+				<fieldID>700000014</fieldID>
+
+				<fieldEnglishname>BaseItems</fieldEnglishname>
+
+				<fieldChinesename>一级网络分类</fieldChinesename>
+
+				<fieldType>4</fieldType>
+
+				<fieldDisplaytype>47</fieldDisplaytype>
+
+				<fieldDataValueField>650000001</fieldDataValueField>
+
+				<fieldDataDisplayField>650000001</fieldDataDisplayField>
+
+				<fieldDateForm>WF:Config_EL_00_NetType</fieldDateForm>
+
+			</field>
+
+			<field name="IsOutTime">
+
+				<fieldID>700020014</fieldID>
+
+				<fieldEnglishname>IsOutTime</fieldEnglishname>
+
+				<fieldChinesename>濒临超时(单位:分钟)</fieldChinesename>
+
+				<fieldType>2</fieldType>
+
+				<fieldDisplaytype>2</fieldDisplaytype>
+
+				<fieldDisplaytypeValue></fieldDisplaytypeValue>
+
+				<fieldDefaultValue></fieldDefaultValue>
+
+			</field>
+
+		</PageQueryField>
+
+	</sqlquery>
+
+	<sqlquery name="query.BaseView.Monitor.TTM.CCH">
+
+		<select>
+
+		<![CDATA[ 
+
+		select 
+
+			/*COUNT*/
+
+			*
+
+			/*COUNT*/
+
+			 from(
+
+			select  
+
+				base.C1 as baseid,
+
+				C700000001      as baseschema,
+
+				C700000003      as basesn,
+
+				C700000006      as BaseCreateDate,
+
+				C700000018      as BaseDealOutTime,
+
+				C700000011      as BaseSummary,
+
+				C800020001      as ComplainType,
+
+				C700000015      as BasePriority,
+
+				dp.C1           as processid,
+
+				C700020020      as FlagActive,
+
+				C700020005      as Assginee,
+
+				C700020101      as AssigneeCorp,
+
+				C700020103      as AssigneeDep,
+
+				C700020009      as Dealer,
+
+				C700020111      as DealerCorp,
+
+				C700020113      as DealerDep,
+
+				C700020007      as groupname,
+
+				C700020013      as ProcessAcceptOutTime,
+
+				C700020014      as ProcessDealOutTime
+
+			from {WF:EL_TTM_CCH} base,{WF:App_DealProcess} dp 
+
+			where
+
+				base.C1 = dp.C700020001
+
+				and base.C700000001 = dp.C700020002
+
+				and dp.C700020020 = '1'
+
+				$searchpara$
+
+		) result 
+
+		$extend$
+
+		  ]]> 
+
+		</select>
+
+		<customwhere>
+
+			<parameterMap prepend="AND" name="searchpara">
+
+            	<mapingFiled  prepend="AND" fieldName="IsLargeNumbersComplain"  fieldType="2">
+
+					<mapsql value="isnotnull">
+
+						<![CDATA[
+
+							 C800020009 = #IsLargeNumbersComplain#
+
+						 ]]>  			
+
+					</mapsql>
+
+				</mapingFiled>
+
+				<mapingFiled  prepend="AND" fieldName="BasePriority" fieldType="4">
+
+					<mapsql value="isnotnull">
+
+						<![CDATA[
+
+							 C700000015 = '#BasePriority#'
+
+						 ]]>  			
+
+					</mapsql>
+
+				</mapingFiled>
+
+				<mapingFiled  prepend="AND" fieldName="ComplainType"  fieldType="4">
+
+					<mapsql value="isnotnull" logic="or">
+
+						<![CDATA[
+
+							 C800020001 like '#ComplainType#'||'.%'
+
+						 ]]>  			
+
+					</mapsql>
+
+				</mapingFiled>
+
+				<mapingFiled  prepend="AND" fieldName="IsOutTime"  fieldType="2">
+
+					<mapsql value="isnotnull" logic="or">
+
+						<![CDATA[
+
+							 C700020014 <= #IsOutTime#
+
+						 ]]>  			
+
+					</mapsql>
+
+				</mapingFiled>
+
+				<mapingFiled  prepend="AND" fieldName="CurrentTime"  fieldType="2">
+
+					<mapsql value="isnotnull" logic="or">
+
+						<![CDATA[
+
+							 C700020014 >= #CurrentTime#
+
+						 ]]>  			
+
+					</mapsql>
+
+				</mapingFiled>
+
+			</parameterMap>
+
+			<parameterMap prepend="EXTEND" name="extend">
+
+					<mapingFiled  prepend="EXTEND" fieldName="orderby"  fieldType="4">
+
+						<mapsql value="isnotnull">
+
+							<![CDATA[
+
+								   order by #orderby#
+
+							 ]]>
+
+						</mapsql>
+
+					</mapingFiled>
+
+			</parameterMap>
+
+		</customwhere>
+
+		<sqlother>
+
+			<sqlpagination isavailability="true">
+
+				<sqlpageSize>50</sqlpageSize>
+
+			</sqlpagination>
+
+			<sqldistinct isavailability="false">排重的列1,排重的列2</sqldistinct>
+
+			<sqlSortFields isavailability="false">排序的列1,排序的列2</sqlSortFields>
+
+		</sqlother>
+
+		<PageQueryField>
+
+			<field name="IsLargeNumbersComplain">
+
+				<fieldID>800020009</fieldID>
+
+				<fieldEnglishname>IsLargeNumbersComplain</fieldEnglishname>
+
+				<fieldChinesename>是否大面积投诉</fieldChinesename>
+
+				<fieldType>4</fieldType>
+
+				<fieldDisplaytype>6</fieldDisplaytype>
+
+				<fieldDisplaytypeValue>0:否;1:是;</fieldDisplaytypeValue>
+
+				<fieldDefaultValue></fieldDefaultValue>
+
+			</field>
+
+			<field name="BasePriority">
+
+				<fieldID>700000015</fieldID>
+
+				<fieldEnglishname>BasePriority</fieldEnglishname>
+
+				<fieldChinesename>紧急程度</fieldChinesename>
+
+				<fieldType>4</fieldType>
+
+				<fieldDisplaytype>6</fieldDisplaytype>
+
+				<fieldDisplaytypeValue>重要:重要;紧急:紧急;一般:一般;次要:次要;</fieldDisplaytypeValue>
+
+				<fieldDefaultValue></fieldDefaultValue>
+
+			</field>
+
+			<field name="ComplainType">
+
+				<fieldID>800020001</fieldID>
+
+				<fieldEnglishname>ComplainType</fieldEnglishname>
+
+				<fieldChinesename>一级投诉分类</fieldChinesename>
+
+				<fieldType>4</fieldType>
+
+				<fieldDisplaytype>47</fieldDisplaytype>
+
+				<fieldDataValueField>650000001</fieldDataValueField>
+
+				<fieldDataDisplayField>650000001</fieldDataDisplayField>
+
+				<fieldDateForm>WF:Config_EL_TTM_CCH_ComplaintType</fieldDateForm>
+
+			</field>
+
+			<field name="IsOutTime">
+
+				<fieldID>700020014</fieldID>
+
+				<fieldEnglishname>IsOutTime</fieldEnglishname>
+
+				<fieldChinesename>濒临超时(单位:分钟)</fieldChinesename>
+
+				<fieldType>2</fieldType>
+
+				<fieldDisplaytype>2</fieldDisplaytype>
+
+				<fieldDisplaytypeValue></fieldDisplaytypeValue>
+
+				<fieldDefaultValue></fieldDefaultValue>
+
+			</field>
+
+		</PageQueryField>
+
+	</sqlquery>
+	
+	<sqlquery name="query.BaseView.Monitor.UVS.TSK">
+
+		<select>
+
+		<![CDATA[ 
+
+		select 
+
+			/*COUNT*/
+
+			*
+
+			/*COUNT*/
+
+			 from(
+
+			select  
+
+				base.C1 as baseid,
+
+				C700000001      as baseschema,
+
+				C700000003      as basesn,
+
+				C700000006      as BaseCreateDate,
+
+				C700000018      as BaseDealOutTime,
+
+				C700000011      as BaseSummary,
+				
+				C700000014      as BaseItems,
+
+				C700000015      as BasePriority,
+
+				dp.C1           as processid,
+
+				C700020020      as FlagActive,
+
+				C700020005      as Assginee,
+
+				C700020101      as AssigneeCorp,
+
+				C700020103      as AssigneeDep,
+
+				C700020009      as Dealer,
+
+				C700020111      as DealerCorp,
+
+				C700020113      as DealerDep,
+
+				C700020007      as groupname,
+
+				C700020013      as ProcessAcceptOutTime,
+
+				C700020014      as ProcessDealOutTime
+
+			from {WF:EL_UVS_TSK} base,{WF:App_DealProcess} dp 
+
+			where
+
+				base.C1 = dp.C700020001
+
+				and base.C700000001 = dp.C700020002
+
+				and dp.C700020020 = '1'
+
+				$searchpara$
+
+		) result 
+
+		$extend$
+
+		  ]]> 
+
+		</select>
+
+		<customwhere>
+
+			<parameterMap prepend="AND" name="searchpara">
+
+				<mapingFiled  prepend="AND" fieldName="BasePriority" fieldType="4">
+
+					<mapsql value="isnotnull">
+
+						<![CDATA[
+
+							 C700000015 = '#BasePriority#'
+
+						 ]]>  			
+
+					</mapsql>
+
+				</mapingFiled>
+				
+				<mapingFiled  prepend="AND" fieldName="BaseItems"  fieldType="4">
+
+					<mapsql value="isnotnull" logic="or">
+
+						<![CDATA[
+
+							 C700000014 like '#BaseItems#'||'.%'
+
+						 ]]>  			
+
+					</mapsql>
+
+				</mapingFiled>				
+				
+				<mapingFiled  prepend="AND" fieldName="IsOutTime"  fieldType="2">
+
+					<mapsql value="isnotnull" logic="or">
+
+						<![CDATA[
+
+							 C700020014 <= #IsOutTime#
+
+						 ]]>  			
+
+					</mapsql>
+
+				</mapingFiled>
+
+				<mapingFiled  prepend="AND" fieldName="CurrentTime"  fieldType="2">
+
+					<mapsql value="isnotnull" logic="or">
+
+						<![CDATA[
+
+							 C700020014 >= #CurrentTime#
+
+						 ]]>  			
+
+					</mapsql>
+
+				</mapingFiled>
+
+			</parameterMap>
+
+			<parameterMap prepend="EXTEND" name="extend">
+
+					<mapingFiled  prepend="EXTEND" fieldName="orderby"  fieldType="4">
+
+						<mapsql value="isnotnull">
+
+							<![CDATA[
+
+								   order by #orderby#
+
+							 ]]>
+
+						</mapsql>
+
+					</mapingFiled>
+
+			</parameterMap>
+
+		</customwhere>
+
+		<sqlother>
+
+			<sqlpagination isavailability="true">
+
+				<sqlpageSize>50</sqlpageSize>
+
+			</sqlpagination>
+
+			<sqldistinct isavailability="false">排重的列1,排重的列2</sqldistinct>
+
+			<sqlSortFields isavailability="false">排序的列1,排序的列2</sqlSortFields>
+
+		</sqlother>
+
+		<PageQueryField>
+
+			<field name="BasePriority">
+
+				<fieldID>700000015</fieldID>
+
+				<fieldEnglishname>BasePriority</fieldEnglishname>
+
+				<fieldChinesename>紧急程度</fieldChinesename>
+
+				<fieldType>4</fieldType>
+
+				<fieldDisplaytype>6</fieldDisplaytype>
+
+				<fieldDisplaytypeValue>重要:重要;紧急:紧急;一般:一般;次要:次要;</fieldDisplaytypeValue>
+
+				<fieldDefaultValue></fieldDefaultValue>
+
+			</field>
+			
+			<field name="NetType">
+
+				<fieldID>700000014</fieldID>
+
+				<fieldEnglishname>BaseItems</fieldEnglishname>
+
+				<fieldChinesename>一级网络分类</fieldChinesename>
+
+				<fieldType>4</fieldType>
+
+				<fieldDisplaytype>47</fieldDisplaytype>
+
+				<fieldDataValueField>650000001</fieldDataValueField>
+
+				<fieldDataDisplayField>650000001</fieldDataDisplayField>
+
+				<fieldDateForm>WF:Config_EL_00_NetType</fieldDateForm>
+
+			</field>
+
+			<field name="IsOutTime">
+
+				<fieldID>700020014</fieldID>
+
+				<fieldEnglishname>IsOutTime</fieldEnglishname>
+
+				<fieldChinesename>濒临超时(单位:分钟)</fieldChinesename>
+
+				<fieldType>2</fieldType>
+
+				<fieldDisplaytype>2</fieldDisplaytype>
+
+				<fieldDisplaytypeValue></fieldDisplaytypeValue>
+
+				<fieldDefaultValue></fieldDefaultValue>
+
+			</field>
+
+		</PageQueryField>
+
+	</sqlquery>
+
+</sql-group>
+

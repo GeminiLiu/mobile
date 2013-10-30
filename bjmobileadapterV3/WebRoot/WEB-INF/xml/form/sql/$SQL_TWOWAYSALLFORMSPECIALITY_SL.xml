@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="GB2312"?>
+<sql-group>
+	<doc>
+		<author>duanximeng</author>
+		<date>2006-05-21</date>
+		<description>
+		</description>
+	</doc>
+	<!-- 派发人到受理人-->
+	<sql name="hbeoms.twowaysallformspecialitypfrolenametorolename_sl" datasource="Ultranms">
+		<item dbms="All"><![CDATA[
+		select 
+t.C700000004 || '-->' || pro.C700020009 as 人员派给人员,
+item.c802800001 as 专业,
+count(distinct(t.C1)) as 工单总数
+from {1000} t,(select * from {800} union all select * from {900}) pro,{600} item,{300} u,{300} uu
+where
+t.c700000004=u.c630000003
+and t.c700000001=pro.c700020002
+{1}{2}{3}{4}
+and pro.C700020009=uu.c630000003
+and item.c802800001=t.c700000014
+and t.C1=pro.C700020001 
+and pro.c700020011 in ('已完成','待受理','已派发','提交审批')
+group by t.C700000004,pro.C700020009,item.c802800001
+
+		]]></item>
+	</sql>
+		<!-- 派发人到受理人-->
+	<sql name="hbeoms.twowaysallformspecialitypfrolenametorolename_yrow_sl" datasource="Ultranms">
+		<item dbms="All"><![CDATA[
+		select
+(a.派单人||'-->'||
+b.受理人) as 人派给人
+from
+(select distinct(u.c630000003) as 派单人 from {300} u where 1=1 {2}) a,
+(select distinct(u.c630000003) as 受理人 from {300} u where 1=1 {4}) b
+order by a.派单人
+		]]></item>
+	</sql>
+	<!-- 派发人到受理部门
+	t.c700000004=uu.c630000003
+and uu.c1='000000000001942'
+	 -->
+		<sql name="hbeoms.twowaysallformspecialitysendpfrolenametosendscopename_sl" datasource="Ultranms">
+		<item dbms="All"><![CDATA[
+select 
+t.C700000004 || '-->' ||g.C630000018 as 人员派给部门,
+item.c802800001 as 专业,
+count(distinct(t.C1)) as 工单总数
+from {1000} t,(select * from {800} union all select * from {900}) pro,{300} u,{400} g,{500} gu,{600} item,{300} uu
+where
+t.c700000004=uu.c630000003
+and t.c700000001=pro.c700020002
+{1}{2}{3}{4}
+and t.C1=pro.C700020001 
+and g.C1=gu.C620000027
+and gu.C620000028=u.C1
+and item.c802800001=t.c700000014
+and u.C630000003=pro.C700020009
+and pro.c700020011 in ('已完成','待受理','已派发','提交审批')
+group by t.C700000004,g.C630000018,item.c802800001
+		]]></item>
+	</sql>
+	<!-- 派发人到受理部门yrow -->
+		<sql name="hbeoms.twowaysallformspecialitysendpfrolenametosendscopename_yrow_sl" datasource="Ultranms">
+		<item dbms="All"><![CDATA[
+select
+(a.派单人||'-->'||
+b.受理组) as 人派给部门
+from
+(select distinct(uu.c630000003) as 派单人 from {300} uu where 1=1 {2}) a,
+(select g.C630000018 as 受理组 from {400} g where 1=1 {4}) b
+		]]></item>
+	</sql>
+	<!-- 派发组到受理人-->
+		<sql name="hbeoms.twowaysallformspecialitypfsendscopenametorolename_sl" datasource="Ultranms">
+		<item dbms="All"><![CDATA[
+select 
+g.C630000018 || '-->' || pro.C700020009 as 部门派给人员,
+t.C700000014 as 专业,
+count(distinct(t.C1)) as 工单总数
+from {1000} t,(select * from {800} union all select * from {900}) pro,{300} u,{400} g,{500} gu,{300} uu
+where
+
+t.c700000004=u.C630000003
+and t.c700000001=pro.c700020002
+{1}{2}{3}{4}
+and t.C1=pro.C700020001 
+and g.C1=gu.C620000027
+and gu.C620000028=u.C1
+and pro.C700020009=uu.c630000003
+and pro.c700020011 in ('已完成','待受理','已派发','提交审批')
+group by g.C630000018,pro.C700020009,t.C700000014
+		]]></item>
+	</sql>
+	<!-- 派发组到受理人yrow-->
+		<sql name="hbeoms.twowaysallformspecialitypfsendscopenametorolename_yrow_sl" datasource="Ultranms">
+		<item dbms="All"><![CDATA[
+select
+(a.派单组||'-->'||
+b.受理人) as 组派给人
+from
+(select g.C630000018 as 派单组 from {400} g where 1=1 {5}) a,
+(select distinct(u.c630000003) as 受理人 from {300} u where 1=1 {6}) b
+order by a.派单组
+		]]></item>
+	</sql>
+	<!-- 派发组到受理组-->
+		<sql name="hbeoms.twowaysallformspecialitysendpfscopenametoscopename_sl" datasource="Ultranms">
+		<item dbms="All"><![CDATA[
+
+select 
+g.C630000018 || '-->' ||gg.C630000018 as 部门派给部门,
+t.C700000014 as 专业,
+count(distinct(t.C1)) as 工单总数
+from {1000} t,(select * from {800} union all select * from {900}) pro,{300} u,{400} g,{500} gu,{300} uu,{400} gg,{500} gugu
+where
+t.c700000004=u.C630000003
+and t.c700000001=pro.c700020002
+{1}{2}{3}{4}
+and t.C1=pro.C700020001 
+and g.C1=gu.C620000027
+and gu.C620000028=u.C1
+and gg.C1=gugu.C620000027
+and gugu.C620000028=uu.C1
+and uu.C630000003=pro.C700020009
+and pro.c700020011 in ('已完成','待受理','已派发','提交审批')
+group by g.C630000018,gg.C630000018,t.C700000014
+		]]></item>
+	</sql>
+		<!-- 派发组到受理部门yrow-->
+		<sql name="hbeoms.twowaysallformspecialitysendpfscopenametoscopename_yrow_sl" datasource="Ultranms">
+		<item dbms="All"><![CDATA[
+select
+a.派单组||'-->'||b.受理组 as 部门派发部门
+from
+(select g.C630000018 as 派单组 from {400} g where 1=1 {5}) a,
+(select gg.C630000018 as 受理组 from {400} gg where 1=1 {6}) b
+		]]></item>
+	</sql>
+		<sql name="hbeoms.titlename_sl" datasource="Ultranms">
+		<item dbms="All"><![CDATA[
+  
+select 't'||t.schemaid,BaseCategory.C650000001 as basechname, BaseCategory.C650000002 as basename from {500} BaseCategory,arschema t
+where  t.name=BaseCategory.C650000002 and t.schemaid={5}
+		]]></item>
+	</sql>
+	<sql name="hbeoms.twowaysallformspecialitysql_sl" datasource="Ultranms">
+		<item dbms="All"><![CDATA[
+  
+        select u.c802800001 as 专业 from {400} u 
+
+		]]></item>
+	</sql>
+</sql-group>
+

@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="GB2312"?>
+<sql-group>
+	<doc>
+		<author>duanximeng</author>
+		<date>2007</date>
+		<description></description>
+	</doc>
+	
+	<sql name="Form_whole_overtime_list" datasource="Ultranms">
+		<item dbms="All"><![CDATA[
+select ff.流水号,ff.业务类型,ff.受理号码,ff.建单人,ff.受理地市,max(ff.超时时长) as 超时时长 ,ff.工单当前状态,ff.优先级
+from(
+      select
+distinct t.c1,
+t.C700000003 as 流水号,
+t.C801000003 as 业务类型,
+t.C801000006 as 受理号码,
+t.c700000004 as 建单人,
+t.c801000018 as 受理地市,
+(t.C801800015 * 1800)-(probak.C700020017 - t.C700000006) as 超时时长,
+t.C700000010 as 工单当前状态,
+t.C700000015 as 优先级
+
+from {100} t,{500} u,{400} g,(select *from t94  union all select * from t95) propre,(select *from t94  union all select * from t95) probak
+where
+t.c700000010<>'已作废'
+and ((propre.C700020011 = '已完成' or propre.C700020011 = '已关闭') and propre.c700020019 = 20)
+and probak.C700020020 = 0
+and probak.C700020011 = '已完成'
+and probak.C700020004 = propre.C700020003
+and ((probak.C700020017 - t.C700000006) - t.C801800015 * 1800) > 0
+and t.c1 = propre.C700020001
+and t.c1 = probak.C700020001
+and probak.c801000103 = 0
+and t.C700000005=u.C630000001
+and u.c630000013=g.c1
+and g.C630000021='2'
+and g.c630000018<>'administrator'
+and g.C630000018 <>'神州泰岳'
+and g.C630000018 <>'河北移动通讯股份有限公司'
+{3}
+{4}
+{5}
+
+union
+
+select
+distinct t.c1,
+t.C700000003 as 流水号,
+t.C801000003 as 业务类型,
+t.C801000006 as 受理号码,
+t.c700000004 as 建单人,
+t.c801000018 as 受理地市,
+(t.C801800015 * 1800-(propre.C700020017 - t.C700000006) ) as 超时时长,
+t.C700000010 as 工单当前状态,
+t.C700000015 as 优先级
+from {100} t,{500} u,{400} g,(select *from t94  union all select * from t95) propre,(select *from t94  union all select * from t95) probak
+ 
+ where ((propre.C700020011 = '已完成' or propre.C700020011 = '已关闭') and
+       propre.c700020019 = 20)
+   and probak.C700020020 = 0
+   and (probak.C700020011 = '已驳回' or probak.C700020011 = '已追回')
+   and probak.C700020004 = propre.C700020003
+   and ((propre.C700020017 - t.C700000006) - t.C801800015 * 1800) > 0
+   and t.c1 = propre.C700020001
+   and t.c1 = probak.C700020001
+and probak.c801000103 = 0
+and t.C700000005=u.C630000001
+and u.c630000013=g.c1
+and g.C630000021='2'
+and g.c630000018<>'administrator'
+and g.C630000018 <>'神州泰岳'
+and g.C630000018 <>'河北移动通讯股份有限公司'
+{3}
+{4}
+{5}
+
+union
+
+select
+distinct t.c1,
+t.C700000003 as 流水号,
+t.C801000003 as 业务类型,
+t.C801000006 as 受理号码,
+t.c700000004 as 建单人,
+t.c801000018 as 受理地市,
+(t.C801800015 * 1800-(pro.C700020017 - t.C700000006)) as 超时时长,
+t.C700000010 as 工单当前状态,
+t.C700000015 as 优先级
+from {100} t,{500} u,{400} g,(select *from t94  union all select * from t95) pro
+ where (pro.C700020011 = '已关闭')
+   and (pro.C700020019 = 0 or pro.C700020019 = 20)
+   and pro.c801000101 = 7
+   and t.c1 = pro.C700020001
+   and ((pro.C700020017-t.C700000006) - t.C801800015 * 1800) > 0
+and t.C700000005=u.C630000001
+and u.c630000013=g.c1
+and g.C630000021='2'
+and g.c630000018<>'administrator'
+and g.C630000018 <>'神州泰岳'
+and g.C630000018 <>'河北移动通讯股份有限公司'
+{3}
+{4}
+{5}
+
+union
+select
+distinct t.c1,
+t.C700000003 as 流水号,
+t.C801000003 as 业务类型,
+t.C801000006 as 受理号码,
+t.c700000004 as 建单人,
+t.c801000018 as 受理地市,
+((t.C801800015 * 1800-(((to_date(to_char(sysdate, 'yyyy-mm-dd hh24:mi:ss'),
+                   'yyyy-mm-dd hh24:mi:ss') -
+       to_date('1970-01-01 00:00:00', 'yyyy-mm-dd hh24:mi:ss')) * 3600 * 24) -
+       t.C700000006)))+12*3600 as 超时时长,
+t.C700000010 as 工单当前状态,
+t.C700000015 as 优先级             
+from {100} t,{500} u,{400} g,(select *from t94  union all select * from t95) propre
+ where (propre.c700020011='处理中' or propre.c700020011='待处理')
+   and t.c1 = propre.C700020001
+   and (propre.c700020020= 1 or propre.c700020020= 2)
+ and propre.c801000103 = 0
+   and (((((to_date(to_char(sysdate, 'yyyy-mm-dd hh24:mi:ss'),
+                   'yyyy-mm-dd hh24:mi:ss') -
+       to_date('1970-01-01 00:00:00', 'yyyy-mm-dd hh24:mi:ss')) * 3600 * 24) -
+       t.C700000006) - t.C801800015 * 1800))+12*3600 > 0
+ and t.C700000005=u.C630000001
+and u.c630000013=g.c1
+and g.C630000021='2'
+and g.c630000018<>'administrator'
+and g.C630000018 <>'神州泰岳'
+and g.C630000018 <>'河北移动通讯股份有限公司'
+       
+{3}
+{4}
+{5}
+
+) ff group by ff.流水号,ff.业务类型,ff.受理号码,ff.建单人,ff.受理地市,ff.工单当前状态,ff.优先级
+ 
+      
+
+
+		]]></item>
+	</sql>
+
+</sql-group>
+

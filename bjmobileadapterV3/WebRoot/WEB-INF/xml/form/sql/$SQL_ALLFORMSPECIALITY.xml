@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="GB2312"?>
+<sql-group>
+	<doc>
+		<author>duanximeng</author>
+		<date>2006-03-26</date>
+		<description>河北EOMS工单统计</description>
+	</doc>
+	<!-- 受理用户-->
+	<sql name="hbeoms.allformspecialityrolename" datasource="Ultranms">
+		<item dbms="All"><![CDATA[
+         select
+               log.c700020403 as 受理人,
+               item.c802800001 as 专业,
+               count(distinct(t.C1)) as 工单数
+               from {1000} t,{100} log,{400} item
+          where
+               log.C700020402 in ('受理','完成','派发','阶段处理')
+               and t.C1=log.c700020407
+               and item.c802800001=t.c700000014
+               and log.c700020408=t.c700000001
+               {1}
+               {3}
+               group by log.c700020403,item.c802800001
+               union all
+          select
+               log.c700020403 as 受理人,
+               item.c802800001 as 专业,
+               count(distinct(t.C1)) as 工单数
+               from {1000} t,{200} log,{400} item
+          where
+               log.C700020402 in ('受理','完成','派发','阶段处理')
+               and t.C1=log.c700020407
+               and item.c802800001=t.c700000014
+               and log.c700020408=t.c700000001
+               {1}
+               {3}
+               group by log.c700020403,item.c802800001
+
+		]]></item>
+	</sql>
+	<!-- 受理部门-->
+		<sql name="hbeoms.allformspecialitysendscopename" datasource="Ultranms">
+		<item dbms="All"><![CDATA[
+              select
+                    g.c630000018 as 受理部门,
+                    item.c802800001 as 专业,
+                    count(distinct(t.C1)) as 工单数
+                    from {1000} t,{200} log,{600} item,{300} u,{400} g,{500} gu
+               where
+                    log.C700020402 in ('受理','完成','派发','阶段处理')
+                    and t.C1=log.c700020407
+                    and item.c802800001=t.c700000014
+                    and log.c700020404=u.c630000001
+                    and u.C1=gu.c620000028
+                    and gu.c620000027=g.C1
+                    and log.c700020408=t.c700000001
+                    {1}
+                    {2}
+                    {3}
+                    group by g.c630000018,item.c802800001
+                    union all
+              select
+                    g.c630000018 as 受理部门,
+                    item.c802800001 as 专业,
+                    count(distinct(t.C1)) as 工单数
+                    from {1000} t,{100} log,{600} item,{300} u,{400} g,{500} gu
+               where
+                    log.C700020402 in ('受理','完成','派发','阶段处理')
+                    and t.C1=log.c700020407
+                    and item.c802800001=t.c700000014
+                    and log.c700020404=u.c630000001
+                    and u.C1=gu.c620000028
+                    and gu.c620000027=g.C1
+                    and log.c700020408=t.c700000001
+                    {1}
+                    {2}
+                    {3}
+                    group by g.c630000018,item.c802800001
+
+		]]></item>
+	</sql>
+	<!-- 派单人-->
+		<sql name="hbeoms.allformspecialitysendpfrolename" datasource="Ultranms">
+		<item dbms="All"><![CDATA[
+        select 
+              distinct(t.c700000004) as 派单人,
+              item.c802800001 as 专业,
+              count(distinct(t.C1)) as 工单数
+              from {1000} t,{600} item
+         where
+              item.c802800001=t.c700000014
+              {1}
+              {3}
+              group by t.c700000004,item.c802800001
+
+
+		]]></item>
+	</sql>
+	<!-- 派发部门-->
+		<sql name="hbeoms.allformspecialitysendspfcopename" datasource="Ultranms">
+		<item dbms="All"><![CDATA[
+         select 
+               distinct(g.c630000018) as 部门,
+               item.c802800001 as 专业,
+               count(distinct(t.C1)) as 工单数
+               from {1000} t,{600} item,{300} u,{400} g,{500} gu
+          where
+               item.c802800001=t.c700000014
+               and t.c700000005=u.c630000001
+               and u.C1=gu.c620000028
+               and gu.c620000027=g.C1
+               {1}
+               {3}
+               group by g.c630000018,item.c802800001
+		]]></item>
+	</sql>
+		<sql name="hbeoms.titlename" datasource="Ultranms">
+		<item dbms="All"><![CDATA[
+  
+select 't'||t.schemaid,BaseCategory.C650000001 as basechname, BaseCategory.C650000002 as basename from {500} BaseCategory,arschema t
+where  t.name=BaseCategory.C650000002 and t.schemaid={5}
+		]]></item>
+	</sql>
+	
+		<sql name="hbeoms.allformpeoplepfsql" datasource="Ultranms">
+		<item dbms="All"><![CDATA[
+  
+        select u.C630000003 as 受理人 from {200} u where 1=1 {2}
+
+		]]></item>
+	</sql>
+	
+	   <sql name="hbeoms.allformpeoplesql" datasource="Ultranms">
+		<item dbms="All"><![CDATA[
+  
+        select u.C630000003 as 派单人 from {200} u where 1=1 {2}
+
+		]]></item>
+	</sql>
+		<sql name="hbeoms.allformspecialitysql" datasource="Ultranms">
+		<item dbms="All"><![CDATA[
+  
+        select u.c802800001 as 专业 from {400} u 
+
+		]]></item>
+	</sql>
+	
+	<sql name="hbeoms.allformgroupsql" datasource="Ultranms">
+		<item dbms="All"><![CDATA[
+  
+       select g.C630000018 as 部门 from {200} g where 1=1 {2}
+
+		]]></item>
+	</sql>
+</sql-group>
+

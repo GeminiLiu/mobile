@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="GB2312"?>
+<sql-group>
+	<doc>
+		<author>lihongbo</author>
+		<date>2007-04-02</date>
+		<description>按接口类型统计工单信息</description>
+	</doc>
+	
+	<sql name="hbeoms.interfacetype" datasource="Ultranms">
+		<item dbms="All"><![CDATA[
+        
+        {2}
+        
+		]]></item>
+	</sql>
+	
+	<sql name="hbeoms.formtypettable" datasource="Ultranms">
+		<item dbms="All"><![CDATA[
+   
+       select 't'||ars.SCHEMAID 
+       from ARSCHEMA ars,{400} t
+       where ars.name=t.C650000002
+        
+		]]></item>
+	</sql>
+</sql-group>
+

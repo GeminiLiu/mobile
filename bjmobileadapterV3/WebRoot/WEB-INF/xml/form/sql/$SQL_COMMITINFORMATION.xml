@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="GB2312"?>
+<sql-group>
+	<doc>
+		<author>duanximeng</author>
+		<date>2008-07-04</date>
+		<description>人工上报信息</description>
+	</doc>
+	<sql name="commitinformationpage.group" datasource="Ultranms">
+		<item dbms="All"><![CDATA[
+
+			select t.groupname from (
+			select g.c630000018 groupname  from {100} g where g.c630000021='2' and g.c630000020='000000000600001' and g.c630000027='1'
+			union all 
+			select trim('网管中心') groupname from dual
+			) t 
+		]]></item>
+	</sql>
+	<sql name="commitinformationpage.link" datasource="Ultranms">
+		<item dbms="All"><![CDATA[
+
+				select t.c1         baseid,
+				       t.c802000102 baseschema,
+				       t.c802000001 as 填写人,
+				       t.c802000002 as 所属单位,
+				       t.c802000103 as 上报填写类型,
+				       t.c802000003 上报日期,
+				       t.c802000028 as 备注
+				  from {100} t
+				  where 1=1
+				  {5}
+				  {1}
+		]]></item>
+	</sql>
+	
+		<sql name="commitinformationpage.Ttable" datasource="Ultranms">
+		<item dbms="All"><![CDATA[
+			select 'T'||ar.schemaid from arschema ar where 
+			1=1
+			{6}
+		]]></item>
+	</sql>
+</sql-group>
+

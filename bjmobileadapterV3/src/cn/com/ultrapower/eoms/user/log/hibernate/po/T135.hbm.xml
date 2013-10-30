@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding='UTF-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+                            "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                            "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<!-- DO NOT EDIT: This is a generated file that is synchronized -->
+<!-- by MyEclipse Hibernate tool integration.                   -->
+<!-- Created Fri Oct 27 19:56:55 CST 2006                         -->
+<hibernate-mapping package="cn.com.ultrapower.eoms.user.log.hibernate.po">
+
+    <class name="SysLogpo" table="T135" lazy="false">
+		<id name="c1" column="C1" type="string">
+            <generator class="assigned"/>
+        </id>
+        <property name="c2" column="C2" type="string" />
+        <property name="c3" column="C3" type="long"  not-null="true" />
+        <property name="c4" column="C4" type="string" />
+        <property name="c5" column="C5" type="string"  not-null="true" />
+        <property name="c6" column="C6" type="long"  not-null="true" />
+        <property name="c7" column="C7" type="long"  not-null="true" />
+        <property name="c8" column="C8" type="string"  not-null="true" />
+        <property name="c630000031" column="C630000031" type="string" />
+        <property name="c630000032" column="C630000032" type="string" />
+        <property name="c630000033" column="C630000033" type="string" />
+        <property name="c630000034" column="C630000034" type="string" />
+        <property name="c630000035" column="C630000035" type="long" />
+    </class>
+    
+</hibernate-mapping>

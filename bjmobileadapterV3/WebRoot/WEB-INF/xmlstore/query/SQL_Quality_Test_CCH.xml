@@ -1,0 +1,141 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<sql-group>
+	<doc>
+		<author>cuiguangqiang</author> 
+		<date>2009年12月9日</date> 
+		<description>工单查询</description> 		
+	</doc>
+	<sqlquery name="Quality_Test_Qhc">
+		<select>
+		<![CDATA[ 
+		select 
+			/*COUNT*/
+			*
+			/*COUNT*/
+			 from(
+		select 
+		    DealProcess.C1   	 	as processid,
+		    DealProcess.C700020043 	as processType,		
+			base.C700000000 	 	as baseid,
+			base.C700000001      	as baseschema,
+			base.C700000002      	as basename,
+			base.C700000003      	as basesn,
+			base.C700000018      	as BaseDealOutTime,
+			base.C700000011      	as BaseSummary,
+			base.C700000004      	as BaseCreatorFullName,
+			base.C700000101      	as BaseCreatorCorp,
+			base.C700000103      	as BaseCreatorDep,
+			base.C700000043		 	as BaseCategoryClassCode,
+			base.C700000042		 	as BaseCategoryClassName,
+			base.C700000006      	as BaseCreateDate,
+			base.C700000009      	as BaseCloseDate,
+			base.C700000010      	as BaseStatus,
+			base.C700000008      	as BaseFinishDate,
+			base.C700000022      	as BaseTplID
+			from {WF:App_DealProcess} DealProcess,{WF:App_Base_Infor} base
+		 where DealProcess.c700020001 = base.C700000000
+		   and DealProcess.c700020002 = base.c700000001
+		   and DealProcess.c700020020 = '201'
+		   and '#groupid#' like '%'||DealProcess.c700020008||';%'
+		   $searchpara$
+		 ) 
+		-- result 
+		 $extend$
+		  ]]> 
+		</select>
+		<customwhere>
+			<parameterMap prepend="AND" name="searchpara">
+            	<mapingFiled  prepend="AND" fieldName="BaseCreatorFullName"  fieldType="4">
+					<mapsql value="isnotnull">
+						<![CDATA[
+							 base.C700000004 like '%#BaseCreatorFullName#%'
+						 ]]>  			
+					</mapsql>
+				</mapingFiled>
+				<mapingFiled  prepend="AND" fieldName="BaseCreateDate_1"  fieldType="7">
+					<mapsql value="isnotnull">
+						<![CDATA[
+							 base.C700000006 > #BaseCreateDate_1#
+						 ]]>  			
+					</mapsql>
+				</mapingFiled>
+					<mapingFiled  prepend="AND" fieldName="BaseCreateDate_2"  fieldType="7">
+					<mapsql value="isnotnull">
+						<![CDATA[
+							 base.C700000006 < #BaseCreateDate_2#
+						 ]]>  			
+					</mapsql>
+				</mapingFiled>
+				<mapingFiled  prepend="AND" fieldName="BaseSummary"  fieldType="4">
+					<mapsql value="isnotnull">
+						<![CDATA[
+							 base.C700000011 like '%#BaseSummary#%'
+						 ]]>  			
+					</mapsql>
+				</mapingFiled>
+
+				<mapingFiled  prepend="AND" fieldName="BaseSN"  fieldType="4">
+					<mapsql value="isnotnull">
+						<![CDATA[
+							 base.C700000003 like '%#BaseSN#%'
+						 ]]>  			
+					</mapsql>
+				</mapingFiled>			
+			</parameterMap>
+			<parameterMap prepend="EXTEND" name="extend">
+					<mapingFiled  prepend="EXTEND" fieldName="orderby"  fieldType="4">
+						<mapsql value="isnotnull">
+							<![CDATA[
+								   order by #orderby#
+							 ]]>
+						</mapsql>
+					</mapingFiled>
+			</parameterMap>
+		</customwhere>
+		<sqlother>
+			<sqlpagination isavailability="true">
+				<sqlpageSize>20</sqlpageSize>
+			</sqlpagination>
+			<sqldistinct isavailability="false">排重的列1,排重的列2</sqldistinct>
+			<sqlSortFields isavailability="false">排序的列1,排序的列2</sqlSortFields>
+		</sqlother>
+		<PageQueryField>
+			<field name="basesn">
+				<fieldID>700000004</fieldID><!--查询字段ID-->
+				<fieldEnglishname>BaseCreatorFullName</fieldEnglishname><!--查询字段英文名，该英文名会做为我们查询条件-->
+				<fieldChinesename>建单人</fieldChinesename><!--查询字段用于在界面显示的名称-->
+				<fieldType>4</fieldType><!--查询字段的数据类型(4：字符等，与Remedy类型保持一致)-->
+				<fieldDisplaytype>21</fieldDisplaytype><!--查询字段用于在界面显示的类型(4：字符/TEXT等，与Remedy类型保持一致)-->
+				<fieldDisplaytypeValue></fieldDisplaytypeValue><!--查询字段用于在界面显示的值的范围(只有当是Select时有值：格式为"值+冒号+显示值+分号，"如：0:是;1:否;';)-->
+				<fieldDefaultValue></fieldDefaultValue><!--查询字段用于在界面显示时的默认值-->
+			</field>
+			<field name="c700000006">
+				<fieldID>700000006</fieldID>
+				<fieldEnglishname>BaseCreateDate</fieldEnglishname>
+				<fieldChinesename>建单时间</fieldChinesename>
+				<fieldType>7</fieldType>
+				<fieldDisplaytype>7</fieldDisplaytype>
+				<fieldDisplaytypeValue></fieldDisplaytypeValue>
+				<fieldDefaultValue></fieldDefaultValue>
+			</field>			
+			<field name="c700000011">
+				<fieldID>700000011</fieldID>
+				<fieldEnglishname>BaseSummary</fieldEnglishname>
+				<fieldChinesename>工单主题</fieldChinesename>
+				<fieldType>4</fieldType>
+				<fieldDisplaytype>4</fieldDisplaytype>
+				<fieldDisplaytypeValue></fieldDisplaytypeValue>
+				<fieldDefaultValue></fieldDefaultValue>
+			</field>
+			<field name="C700000003">
+				<fieldID>700000003</fieldID><!--查询字段ID-->
+				<fieldEnglishname>BaseSN</fieldEnglishname><!--查询字段英文名，该英文名会做为我们查询条件-->
+				<fieldChinesename>流水号</fieldChinesename><!--查询字段用于在界面显示的名称-->
+				<fieldType>4</fieldType><!--查询字段的数据类型(4：字符等，与Remedy类型保持一致)-->
+				<fieldDisplaytype>4</fieldDisplaytype><!--查询字段用于在界面显示的类型(4：字符/TEXT等，与Remedy类型保持一致)-->
+				<fieldDisplaytypeValue></fieldDisplaytypeValue><!--查询字段用于在界面显示的值的范围(只有当是Select时有值：格式为"值+冒号+显示值+分号，"如：0:是;1:否;';)-->
+				<fieldDefaultValue></fieldDefaultValue><!--查询字段用于在界面显示时的默认值-->
+			</field>
+		</PageQueryField>
+	</sqlquery>
+</sql-group>

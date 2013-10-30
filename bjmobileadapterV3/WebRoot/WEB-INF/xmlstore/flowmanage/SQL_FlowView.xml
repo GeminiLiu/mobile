@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sql-group>
+	<doc>
+		<author>lihaoyuan</author> 
+		<date>2008年10月23日</date> 
+		<description>工单查询</description> 		
+	</doc>
+	<sqlquery name="query.FlowView.all">
+		<select>
+		<![CDATA[ 
+		select 
+			/*COUNT*/
+			*
+			/*COUNT*/
+			 from(
+		select C1 as BaseInforID
+			, C700000000 as baseid
+			, C700000001 as BaseSchema
+			, C700000002 as BaseName
+			, C700000022 as BaseTplID
+			, C700000003 as basesn
+			, C700000006 as BaseCreateDate
+			, C700000007 as BaseSendDate
+			, C700000008 as BaseFinishDate
+			, C700000009 as BaseCloseDate
+			, C700000010 as BaseStatus
+			, C700000005 as BaseCreatorLoginName
+			, C700000011 as BaseSummary
+			, C700000017 as BaseAcceptOutTime
+			, C700000018 as BaseDealOutTime
+		from {WF:App_Base_Infor} base
+		where 
+		C700000022 is not null 
+		$basepara$ 
+		) result 
+		$extend$
+		  ]]> 
+		</select>
+		<customwhere>
+			<parameterMap prepend="AND" name="basepara">
+				<mapingFiled  prepend="AND" fieldName="schema"  fieldType="4">
+					<mapsql value="isnotnull">
+						<![CDATA[
+							 C700000001 = '#schema#'
+						 ]]>
+					</mapsql>
+				</mapingFiled>
+				<mapingFiled  prepend="AND" fieldName="createuser"  fieldType="4">
+					<mapsql value="isnotnull">
+						<![CDATA[
+							 C700000005 = '#createuser#'
+						 ]]>
+					</mapsql>
+				</mapingFiled>
+				<mapingFiled  prepend="AND" fieldName="enduser"  fieldType="4">
+					<mapsql value="isnotnull">
+						<![CDATA[
+							 C700000006 = 0
+						 ]]>
+					</mapsql>
+				</mapingFiled>
+			</parameterMap>
+			<parameterMap prepend="EXTEND" name="extend">
+					<mapingFiled  prepend="EXTEND" fieldName="orderby"  fieldType="4">
+						<mapsql value="isnotnull">
+							<![CDATA[
+								   order by #orderby#
+							 ]]>
+						</mapsql>
+					</mapingFiled>
+			</parameterMap>
+		</customwhere>
+		<sqlother>
+			<sqlpagination isavailability="true">
+				<sqlpageSize>20</sqlpageSize>
+			</sqlpagination>
+			<sqldistinct isavailability="false">排重的列1,排重的列2</sqldistinct>
+			<sqlSortFields isavailability="false">排序的列1,排序的列2</sqlSortFields>
+		</sqlother>
+		<PageQueryField>
+			<field name="BaseTplName">
+				<fieldID>650000001</fieldID><!--查询字段ID-->
+				<fieldEnglishname>BaseTplName</fieldEnglishname><!--查询字段英文名，该英文名会做为我们查询条件-->
+				<fieldChinesename>模板名称</fieldChinesename><!--查询字段用于在界面显示的名称-->
+				<fieldType>4</fieldType><!--查询字段的数据类型(4：字符等，与Remedy类型保持一致)-->
+				<fieldDisplaytype>4</fieldDisplaytype><!--查询字段用于在界面显示的类型(4：字符/TEXT等，与Remedy类型保持一致)-->
+				<fieldDisplaytypeValue></fieldDisplaytypeValue><!--查询字段用于在界面显示的值的范围(只有当是Select时有值：格式为"值+冒号+显示值+分号，"如：0:是;1:否;';)-->
+				<fieldDefaultValue></fieldDefaultValue><!--查询字段用于在界面显示时的默认值-->
+			</field>
+		</PageQueryField>
+	</sqlquery>
+</sql-group>

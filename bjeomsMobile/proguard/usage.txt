@@ -1,0 +1,2606 @@
+android.annotation.SuppressLint
+android.annotation.TargetApi
+com.a.a.a:
+    public a()
+com.amap.api.a.a:
+    float b
+    float c
+    float d
+    39:40:public void OnMapSurfaceCreate(javax.microedition.khronos.opengles.GL10,com.autonavi.amap.mapcore.MapCore)
+    46:46:public void OnMapSurfaceRenderer(javax.microedition.khronos.opengles.GL10,com.autonavi.amap.mapcore.MapCore,int)
+    51:51:public void OnMapSufaceChanged(javax.microedition.khronos.opengles.GL10,com.autonavi.amap.mapcore.MapCore,int,int)
+    58:106:public void OnMapProcessEvent(com.autonavi.amap.mapcore.MapCore)
+    115:169:void a(com.autonavi.amap.mapcore.MapCore)
+    174:227:private void b(com.amap.api.a.h)
+    237:393:void a(com.amap.api.a.h)
+    397:398:public void OnMapDestory(javax.microedition.khronos.opengles.GL10,com.autonavi.amap.mapcore.MapCore)
+    405:415:public void OnMapReferencechanged(com.autonavi.amap.mapcore.MapCore,java.lang.String,java.lang.String)
+com.amap.api.a.a$1:
+    98:98:a$1(com.amap.api.a.a)
+com.amap.api.a.aa
+com.amap.api.a.ab:
+    26:27:public synchronized void a(com.amap.api.a.aa)
+    30:35:public com.amap.api.a.aa a()
+    39:39:public int b()
+    47:52:public com.amap.api.a.h c()
+    56:56:public int d()
+com.amap.api.a.ac:
+    81:94:public void d(com.amap.api.a.r)
+com.amap.api.a.ae:
+    private java.lang.Object o
+    125:125:public boolean a()
+    148:149:public void a(java.lang.String)
+    158:159:public void b(java.lang.String)
+    168:169:public void a(boolean)
+    186:190:public void j()
+    194:197:public void k()
+    201:201:public boolean l()
+    206:207:public void b(boolean)
+    485:486:public void a(java.lang.Object)
+    490:490:public java.lang.Object p()
+com.amap.api.a.ag:
+    24:25:private ag()
+com.amap.api.a.ah:
+    36:43:public ah(com.amap.api.a.n)
+    47:48:public void a()
+    61:62:public void a(java.util.List)
+    66:66:public java.util.List i()
+    71:72:public void a(float)
+    81:82:public void a(boolean)
+    100:117:void b(java.util.List)
+    120:131:java.util.List k()
+    204:205:public void b(float)
+    214:215:public void a(int)
+    224:225:public void b(int)
+com.amap.api.a.ai:
+    88:89:public void a()
+    107:107:public java.util.List i()
+    111:122:java.util.List j()
+com.amap.api.a.aj:
+    22:24:public com.amap.api.maps.model.LatLng a(android.graphics.Point)
+    29:32:public android.graphics.Point a(com.amap.api.maps.model.LatLng)
+    37:45:public com.amap.api.maps.model.VisibleRegion a()
+com.amap.api.a.al:
+    42:44:public void d(boolean)
+    70:74:public void i(boolean)
+    78:80:public void a(int)
+    84:84:public boolean a()
+    89:89:public boolean b()
+    94:94:public boolean c()
+    124:124:public int i()
+com.amap.api.a.am:
+    83:85:public void a(boolean)
+    92:93:public void a(int)
+com.amap.api.a.b:
+    315:316:public void a(com.amap.api.maps.AMap$OnMyLocationChangeListener)
+    421:427:public void b(boolean)
+    444:445:void d()
+    908:914:public void m()
+    934:943:public com.amap.api.a.t a(com.amap.api.maps.model.PolygonOptions)
+    988:995:public void n()
+    1013:1013:public int o()
+    1022:1035:public void a(int)
+    1042:1042:public boolean p()
+    1052:1055:public void e(boolean)
+    1122:1122:public com.amap.api.a.v t()
+    1128:1129:public void a(com.amap.api.maps.AMap$OnCameraChangeListener)
+    1133:1137:void a(com.amap.api.maps.model.CameraPosition)
+    1142:1142:public com.amap.api.maps.AMap$OnCameraChangeListener u()
+    1148:1149:public void a(com.amap.api.maps.AMap$OnMapClickListener)
+    1166:1167:public void a(com.amap.api.maps.AMap$OnMarkerDragListener)
+    1172:1173:public void a(com.amap.api.maps.AMap$OnMapLoadedListener)
+    1178:1179:public void a(com.amap.api.maps.AMap$OnInfoWindowClickListener)
+    1184:1185:public void a(com.amap.api.maps.AMap$InfoWindowAdapter)
+    1194:1194:public float a(float)
+    1243:1244:public void b(int,int,com.autonavi.amap.mapcore.DPoint)
+    2217:2219:public void a(com.amap.api.maps.AMap$onMapPrintScreenListener)
+    2232:2239:public void b(int)
+    2243:2251:public float z()
+com.amap.api.a.b.b:
+    46:48:public static void b(boolean,java.lang.Object)
+    57:58:private b()
+com.amap.api.a.b.d:
+    13:13:public d()
+com.amap.api.a.b.e:
+    9:9:public e()
+com.amap.api.a.b.f:
+    7:7:public f()
+com.amap.api.a.b.g:
+    31:31:public g()
+    296:319:public static java.lang.String b(android.content.Context)
+    384:401:public static boolean c(android.content.Context)
+com.amap.api.a.h:
+    99:104:public static com.amap.api.a.h a(float,float)
+    142:142:public static com.amap.api.a.h b(float)
+    223:223:public static com.amap.api.a.h a(com.amap.api.maps.model.LatLng)
+    253:258:public static com.amap.api.a.h a(com.amap.api.maps.model.LatLngBounds,int)
+    263:270:public static com.amap.api.a.h a(com.amap.api.maps.model.LatLngBounds,int,int,int)
+com.amap.api.a.i:
+    42:43:public void a()
+com.amap.api.a.k:
+    9:9:public k()
+com.amap.api.a.l:
+    15:15:l()
+com.amap.api.a.m:
+    156:164:public void d()
+com.amap.api.a.n:
+    public abstract void b(int,int,com.autonavi.amap.mapcore.DPoint)
+    public abstract void a(com.amap.api.a.h,com.amap.api.maps.AMap$CancelableCallback)
+    public abstract void a(com.amap.api.a.h,long,com.amap.api.maps.AMap$CancelableCallback)
+    public abstract void m()
+    public abstract com.amap.api.a.t a(com.amap.api.maps.model.PolygonOptions)
+    public abstract void n()
+    public abstract int o()
+    public abstract void a(int)
+    public abstract boolean p()
+    public abstract void e(boolean)
+    public abstract com.amap.api.a.v t()
+    public abstract void a(com.amap.api.maps.AMap$OnCameraChangeListener)
+    public abstract void a(com.amap.api.maps.AMap$OnMapClickListener)
+    public abstract void a(com.amap.api.maps.AMap$OnMarkerDragListener)
+    public abstract void a(com.amap.api.maps.AMap$OnMapLoadedListener)
+    public abstract void a(com.amap.api.maps.AMap$OnInfoWindowClickListener)
+    public abstract void a(com.amap.api.maps.AMap$InfoWindowAdapter)
+    public abstract void a(com.amap.api.a.r)
+    public abstract void a(int,int,com.autonavi.amap.mapcore.DPoint)
+    public abstract void a(com.amap.api.maps.AMap$OnMyLocationChangeListener)
+    public abstract void b(boolean)
+    public abstract void a(com.amap.api.maps.AMap$onMapPrintScreenListener)
+    public abstract void b(int)
+    public abstract float z()
+com.amap.api.a.p:
+    public abstract com.amap.api.maps.model.LatLng h()
+    public abstract double i()
+    public abstract void b(float)
+    public abstract float j()
+    public abstract void a(int)
+    public abstract int k()
+    public abstract void b(int)
+    public abstract int l()
+com.amap.api.a.q:
+    public abstract void a(android.app.Activity,com.amap.api.maps.AMapOptions,android.os.Bundle)
+    public abstract void a(android.os.Bundle)
+    public abstract void d()
+com.amap.api.a.r:
+    public abstract boolean a()
+    public abstract void a(java.lang.String)
+    public abstract void b(java.lang.String)
+    public abstract void a(boolean)
+    public abstract void j()
+    public abstract void k()
+    public abstract boolean l()
+    public abstract void b(boolean)
+    public abstract void a(java.lang.Object)
+    public abstract java.lang.Object p()
+com.amap.api.a.s:
+    public abstract void a()
+    public abstract void a(float)
+    public abstract void a(boolean)
+    public abstract void f()
+com.amap.api.a.t:
+    public abstract void b(float)
+    public abstract float g()
+    public abstract void a(int)
+    public abstract int h()
+    public abstract void b(int)
+    public abstract void a(java.util.List)
+    public abstract java.util.List i()
+    public abstract int j()
+com.amap.api.a.u:
+    public abstract void b(float)
+    public abstract float g()
+    public abstract void a(int)
+    public abstract int h()
+    public abstract void a(java.util.List)
+    public abstract java.util.List i()
+com.amap.api.a.v:
+    public abstract com.amap.api.maps.model.LatLng a(android.graphics.Point)
+    public abstract android.graphics.Point a(com.amap.api.maps.model.LatLng)
+    public abstract com.amap.api.maps.model.VisibleRegion a()
+com.amap.api.a.x:
+    public abstract void d(boolean)
+    public abstract void i(boolean)
+    public abstract void a(int)
+    public abstract boolean a()
+    public abstract boolean b()
+    public abstract boolean c()
+    public abstract int i()
+com.amap.api.a.z:
+    42:45:public void a(android.app.Activity,com.amap.api.maps.AMapOptions,android.os.Bundle)
+    57:58:public void a(android.os.Bundle)
+    167:167:public void d()
+com.amap.api.location.AMapLocation:
+    23:23:public java.lang.String getProvince()
+    31:31:public java.lang.String getCity()
+    39:39:public java.lang.String getDistrict()
+    47:47:public java.lang.String getCityCode()
+    55:55:public java.lang.String getAdCode()
+com.amap.api.location.LocationManagerProxy:
+    public static final java.lang.String GPS_PROVIDER
+    public static final java.lang.String NETWORK_PROVIDER
+    public static final java.lang.String KEY_LOCATION_CHANGED
+    public static final java.lang.String KEY_PROVIDER_ENABLED
+    public static final java.lang.String KEY_PROXIMITY_ENTERING
+    public static final java.lang.String KEY_STATUS_CHANGED
+    private com.amap.api.location.c f
+    private com.amap.api.location.LocationManagerProxy$b g
+    private com.amap.api.location.LocationManagerProxy$a q
+    52:55:private LocationManagerProxy(android.content.Context)
+    83:86:public static synchronized com.amap.api.location.LocationManagerProxy getInstance(android.content.Context)
+    92:117:public void addProximityAlert(double,double,float,long,android.app.PendingIntent)
+    140:151:public com.amap.api.location.AMapLocation getLastKnownLocation(java.lang.String)
+    190:205:public void requestLocationUpdates(java.lang.String,long,float,android.app.PendingIntent)
+    208:214:public void removeUpdates(android.app.PendingIntent)
+    218:228:public java.util.List getAllProviders()
+    233:240:public java.util.List getProviders(boolean)
+    245:258:public java.util.List getProviders(android.location.Criteria,boolean)
+    263:278:public java.lang.String getBestProvider(android.location.Criteria,boolean)
+    283:286:public boolean isProviderEnabled(java.lang.String)
+    291:302:public com.amap.api.location.LocationProviderProxy getProvider(java.lang.String)
+    307:310:public android.location.GpsStatus getGpsStatus(android.location.GpsStatus)
+    315:318:public void removeGpsStatusListener(android.location.GpsStatus$Listener)
+    322:325:public boolean addGpsStatusListener(android.location.GpsStatus$Listener)
+    334:340:public void addTestProvider(java.lang.String,boolean,boolean,boolean,boolean,boolean,boolean,boolean,int,int)
+    344:347:public void clearTestProviderEnabled(java.lang.String)
+    351:354:public void clearTestProviderLocation(java.lang.String)
+    358:361:public void clearTestProviderStatus(java.lang.String)
+com.amap.api.location.LocationManagerProxy$a:
+    434:434:LocationManagerProxy$a(com.amap.api.location.LocationManagerProxy)
+com.amap.api.location.LocationManagerProxy$b:
+    383:383:LocationManagerProxy$b(com.amap.api.location.LocationManagerProxy)
+com.amap.api.location.LocationProviderProxy
+com.amap.api.location.a:
+    129:132:public com.amap.api.location.AMapLocation b()
+com.amap.api.location.c:
+    10:12:public c(com.amap.api.location.LocationManagerProxy)
+    17:24:public boolean a(com.amap.api.location.AMapLocationListener,long,float,java.lang.String)
+    29:39:public boolean a(com.amap.api.location.AMapLocationListener,long,float)
+com.amap.api.location.core.CoordinateConvert
+com.amap.api.location.core.GeoPoint:
+    80:84:public GeoPoint(int,int)
+    86:90:public GeoPoint(long,long)
+    168:168:public int getLongitudeE6()
+    173:173:public int getLatitudeE6()
+com.amap.api.location.core.b:
+    16:16:public b()
+com.amap.api.location.core.c:
+    8:8:public c()
+com.amap.api.location.core.e:
+    17:17:public e()
+com.amap.api.location.core.f:
+    47:47:public f()
+    275:292:public static boolean b(android.content.Context)
+    301:310:public static com.amap.api.location.AMapLocation c(android.content.Context)
+com.amap.api.location.core.h:
+    18:18:public h()
+com.amap.api.maps.AMap:
+    public static final int MAP_TYPE_NORMAL
+    public static final int MAP_TYPE_SATELLITE
+    private com.amap.api.maps.Projection c
+    223:225:public final com.amap.api.maps.model.CameraPosition getCameraPosition()
+    237:237:public final float getMaxZoomLevel()
+    249:249:public final float getMinZoomLevel()
+    264:269:public final void moveCamera(com.amap.api.maps.CameraUpdate)
+    273:278:public final void animateCamera(com.amap.api.maps.CameraUpdate)
+    283:290:public final void animateCamera(com.amap.api.maps.CameraUpdate,com.amap.api.maps.AMap$CancelableCallback)
+    295:303:public final void animateCamera(com.amap.api.maps.CameraUpdate,long,com.amap.api.maps.AMap$CancelableCallback)
+    307:311:public final void stopAnimation()
+    338:340:public final com.amap.api.maps.model.Circle addCircle(com.amap.api.maps.model.CircleOptions)
+    354:356:public final com.amap.api.maps.model.Polygon addPolygon(com.amap.api.maps.model.PolygonOptions)
+    408:412:public final void clear()
+    422:424:public final int getMapType()
+    438:442:public final void setMapType(int)
+    452:454:public final boolean isTrafficEnabled()
+    467:471:public void setTrafficEnabled(boolean)
+    496:498:public final boolean isMyLocationEnabled()
+    530:532:public final android.location.Location getMyLocation()
+    578:584:public final com.amap.api.maps.Projection getProjection()
+    598:602:public final void setOnCameraChangeListener(com.amap.api.maps.AMap$OnCameraChangeListener)
+    613:617:public final void setOnMapClickListener(com.amap.api.maps.AMap$OnMapClickListener)
+    629:633:public final void setOnMyLocationChangeListener(com.amap.api.maps.AMap$OnMyLocationChangeListener)
+    677:681:public final void setOnMarkerDragListener(com.amap.api.maps.AMap$OnMarkerDragListener)
+    694:698:public final void setOnInfoWindowClickListener(com.amap.api.maps.AMap$OnInfoWindowClickListener)
+    714:718:public final void setInfoWindowAdapter(com.amap.api.maps.AMap$InfoWindowAdapter)
+    727:731:public final void setOnMapLoadedListener(com.amap.api.maps.AMap$OnMapLoadedListener)
+    738:739:public void getMapPrintScreen(com.amap.api.maps.AMap$onMapPrintScreenListener)
+    742:742:public float getScalePerPixel()
+com.amap.api.maps.AMapNativeRenderer:
+    10:10:public AMapNativeRenderer()
+com.amap.api.maps.AMapOptions:
+    public static final int LOGO_POSITION_BOTTOM_LEFT
+    public static final int LOGO_POSITION_BOTTOM_CENTER
+    public static final int LOGO_POSITION_BOTTOM_RIGHT
+    37:38:public com.amap.api.maps.AMapOptions logoPosition(int)
+    163:163:public int getLogoPosition()
+    186:186:public int getMapType()
+com.amap.api.maps.AMapUtils
+com.amap.api.maps.CameraUpdate
+com.amap.api.maps.CameraUpdateFactory
+com.amap.api.maps.MapFragment
+com.amap.api.maps.MapsInitializer:
+    8:8:public MapsInitializer()
+    10:11:public static void initialize(android.content.Context)
+com.amap.api.maps.Projection
+com.amap.api.maps.SupportMapFragment
+com.amap.api.maps.UiSettings:
+    21:25:public void setScaleControlsEnabled(boolean)
+    44:48:public void setCompassEnabled(boolean)
+    59:63:public void setMyLocationButtonEnabled(boolean)
+    75:79:public void setScrollGesturesEnabled(boolean)
+    92:96:public void setZoomGesturesEnabled(boolean)
+    109:113:public void setTiltGesturesEnabled(boolean)
+    126:130:public void setRotateGesturesEnabled(boolean)
+    142:146:public void setAllGesturesEnabled(boolean)
+    150:154:public void setLogoPosition(int)
+    158:160:public boolean isScaleControlsEnabled()
+    172:174:public boolean isZoomControlsEnabled()
+    180:182:public boolean isCompassEnabled()
+    194:196:public boolean isMyLocationButtonEnabled()
+    208:210:public boolean isScrollGesturesEnabled()
+    222:224:public boolean isZoomGesturesEnabled()
+    236:238:public boolean isTiltGesturesEnabled()
+    250:252:public boolean isRotateGesturesEnabled()
+    258:260:public int getLogoPosition()
+com.amap.api.maps.model.BitmapDescriptor:
+    35:40:protected void destory()
+com.amap.api.maps.model.BitmapDescriptorCreator
+com.amap.api.maps.model.BitmapDescriptorFactory:
+    public static final float HUE_RED
+    public static final float HUE_ORANGE
+    public static final float HUE_YELLOW
+    public static final float HUE_GREEN
+    public static final float HUE_CYAN
+    public static final float HUE_AZURE
+    public static final float HUE_BLUE
+    public static final float HUE_VIOLET
+    public static final float HUE_MAGENTA
+    public static final float HUE_ROSE
+    57:60:public static com.amap.api.maps.model.BitmapDescriptor fromPath(java.lang.String)
+    104:113:public static com.amap.api.maps.model.BitmapDescriptor fromFile(java.lang.String)
+    142:172:public static com.amap.api.maps.model.BitmapDescriptor defaultMarker(float)
+com.amap.api.maps.model.CameraPosition:
+    97:97:public static final com.amap.api.maps.model.CameraPosition fromLatLngZoom(com.amap.api.maps.model.LatLng,float)
+    117:117:public static com.amap.api.maps.model.CameraPosition$Builder builder(com.amap.api.maps.model.CameraPosition)
+com.amap.api.maps.model.CameraPosition$Builder:
+    196:202:public CameraPosition$Builder(com.amap.api.maps.model.CameraPosition)
+com.amap.api.maps.model.Circle
+com.amap.api.maps.model.GroundOverlay
+com.amap.api.maps.model.GroundOverlayOptions:
+    public static final float NO_DIMENSION
+    private com.amap.api.maps.model.BitmapDescriptor b
+    private com.amap.api.maps.model.LatLng c
+    private float d
+    private float e
+    private com.amap.api.maps.model.LatLngBounds f
+    private float g
+    private float h
+    48:49:public com.amap.api.maps.model.GroundOverlayOptions image(com.amap.api.maps.model.BitmapDescriptor)
+    53:55:public com.amap.api.maps.model.GroundOverlayOptions anchor(float,float)
+    59:59:public com.amap.api.maps.model.GroundOverlayOptions position(com.amap.api.maps.model.LatLng,float)
+    64:64:public com.amap.api.maps.model.GroundOverlayOptions position(com.amap.api.maps.model.LatLng,float,float)
+    77:77:public com.amap.api.maps.model.GroundOverlayOptions positionFromBounds(com.amap.api.maps.model.LatLngBounds)
+    81:82:public com.amap.api.maps.model.GroundOverlayOptions bearing(float)
+    86:87:public com.amap.api.maps.model.GroundOverlayOptions zIndex(float)
+    91:92:public com.amap.api.maps.model.GroundOverlayOptions visible(boolean)
+    96:97:public com.amap.api.maps.model.GroundOverlayOptions transparency(float)
+    101:101:public com.amap.api.maps.model.BitmapDescriptor getImage()
+    105:105:public com.amap.api.maps.model.LatLng getLocation()
+    109:109:public float getWidth()
+    113:113:public float getHeight()
+    117:117:public com.amap.api.maps.model.LatLngBounds getBounds()
+    121:121:public float getBearing()
+    125:125:public float getZIndex()
+    129:129:public float getTransparency()
+    133:133:public float getAnchorU()
+    137:137:public float getAnchorV()
+    141:141:public boolean isVisible()
+com.amap.api.maps.model.GroundOverlayOptionsCreator:
+    public static final int CONTENT_DESCRIPTION
+com.amap.api.maps.model.LatLngBounds:
+    46:47:public LatLngBounds(com.amap.api.maps.model.LatLng,com.amap.api.maps.model.LatLng)
+    60:60:public static com.amap.api.maps.model.LatLngBounds$Builder builder()
+    72:73:public boolean contains(com.amap.api.maps.model.LatLng)
+    88:101:public com.amap.api.maps.model.LatLngBounds including(com.amap.api.maps.model.LatLng)
+    107:107:private static double c(double,double)
+    112:112:private static double d(double,double)
+    122:122:private boolean a(double)
+    133:136:private boolean b(double)
+    14:14:static synthetic double a(double,double)
+    14:14:static synthetic double b(double,double)
+com.amap.api.maps.model.LatLngBounds$Builder:
+    177:192:public com.amap.api.maps.model.LatLngBounds$Builder include(com.amap.api.maps.model.LatLng)
+    196:198:private boolean a(double)
+    202:204:public com.amap.api.maps.model.LatLngBounds build()
+com.amap.api.maps.model.LatLngBoundsCreator:
+    public static final int CONTENT_DESCRIPTION
+com.amap.api.maps.model.LatLngCreator:
+    public static final int CONTENT_DESCRIPTION
+com.amap.api.maps.model.Marker:
+    33:37:public void remove()
+    44:49:public void destroy()
+    91:92:public void setTitle(java.lang.String)
+    101:101:public java.lang.String getTitle()
+    111:112:public void setSnippet(java.lang.String)
+    119:120:public void setDraggable(boolean)
+    123:123:public boolean isDraggable()
+    132:133:public void showInfoWindow()
+    141:142:public void hideInfoWindow()
+    151:151:public boolean isInfoWindowShown()
+    163:164:public void setVisible(boolean)
+    167:167:public boolean isVisible()
+    190:191:public void setObject(java.lang.Object)
+    194:194:public java.lang.Object getObject()
+com.amap.api.maps.model.MarkerOptions:
+    66:67:public com.amap.api.maps.model.MarkerOptions draggable(boolean)
+com.amap.api.maps.model.Polygon
+com.amap.api.maps.model.PolygonOptions:
+    72:73:public com.amap.api.maps.model.PolygonOptions add(com.amap.api.maps.model.LatLng)
+    94:99:public com.amap.api.maps.model.PolygonOptions addAll(java.lang.Iterable)
+    180:180:public java.util.List getPoints()
+    194:194:public float getStrokeWidth()
+    204:204:public int getStrokeColor()
+    214:214:public int getFillColor()
+    224:224:public float getZIndex()
+    234:234:public boolean isVisible()
+com.amap.api.maps.model.PolygonOptionsCreator:
+    public static final int CONTENT_DESCRIPTION
+com.amap.api.maps.model.Polyline:
+    35:39:public void remove()
+    49:51:public java.lang.String getId()
+    64:68:public void setPoints(java.util.List)
+    79:81:public java.util.List getPoints()
+    94:98:public void setWidth(float)
+    108:110:public float getWidth()
+    122:126:public void setColor(int)
+    136:138:public int getColor()
+    151:155:public void setZIndex(float)
+    165:167:public float getZIndex()
+    180:184:public void setVisible(boolean)
+    194:196:public boolean isVisible()
+com.amap.api.maps.model.PolylineOptions:
+    40:41:public com.amap.api.maps.model.PolylineOptions setUseTexture(boolean)
+    60:61:public com.amap.api.maps.model.PolylineOptions add(com.amap.api.maps.model.LatLng)
+com.amap.api.maps.model.Tile:
+    private final int a
+    public final int width
+    public final int height
+    public final byte[] bM
+    15:20:Tile(int,int,int,byte[])
+    23:24:public Tile(int,int,byte[])
+com.amap.api.maps.model.TileOverlay
+com.amap.api.maps.model.TileOverlayOptions:
+    private com.amap.api.maps.model.TileProvider b
+    private float d
+    42:44:public com.amap.api.maps.model.TileOverlayOptions tileProvider(com.amap.api.maps.model.TileProvider)
+    48:49:public com.amap.api.maps.model.TileOverlayOptions zIndex(float)
+    53:54:public com.amap.api.maps.model.TileOverlayOptions visible(boolean)
+    58:58:public com.amap.api.maps.model.TileProvider getTileProvider()
+    62:62:public float getZIndex()
+    66:66:public boolean isVisible()
+com.amap.api.maps.model.TileOverlayOptionsCreator:
+    public static final int CONTENT_DESCRIPTION
+com.amap.api.maps.model.TileProvider
+com.amap.api.maps.model.UrlTileProvider
+com.amap.api.maps.model.VisibleRegion:
+    29:30:public VisibleRegion(com.amap.api.maps.model.LatLng,com.amap.api.maps.model.LatLng,com.amap.api.maps.model.LatLng,com.amap.api.maps.model.LatLng,com.amap.api.maps.model.LatLngBounds)
+com.amap.api.maps.model.VisibleRegionCreator:
+    public static final int CONTENT_DESCRIPTION
+com.amap.api.offlinemap.City
+com.amap.api.offlinemap.DownCity
+com.amap.api.offlinemap.MOfflineMapStatus
+com.amap.api.offlinemap.OfflineMapManager:
+    private com.amap.api.offlinemap.c b
+    private com.amap.api.offlinemap.OfflineMapManager$OfflineMapDownloadListener c
+    private java.util.ArrayList d
+    private android.content.Context e
+    android.os.Handler a
+    23:30:public OfflineMapManager(android.content.Context,com.amap.api.offlinemap.OfflineMapManager$OfflineMapDownloadListener)
+    33:41:public boolean downloadByCityCode(java.lang.String)
+    45:53:public boolean downloadByCityName(java.lang.String)
+    57:58:public void restart()
+    61:62:public void stop()
+    65:66:public void pause()
+    69:75:public void remove(java.lang.String)
+    78:83:public com.amap.api.offlinemap.DownCity getItemByCityCode(java.lang.String)
+    87:93:public com.amap.api.offlinemap.DownCity getItemByCityName(java.lang.String)
+    97:97:public java.util.ArrayList getOfflineCityList()
+    102:102:public java.util.ArrayList getDownloadingCityList()
+    106:112:private void a(com.amap.api.offlinemap.DownCity)
+    10:10:static synthetic com.amap.api.offlinemap.OfflineMapManager$OfflineMapDownloadListener a(com.amap.api.offlinemap.OfflineMapManager)
+com.amap.api.offlinemap.OfflineMapManager$OfflineMapDownloadListener:
+    public abstract void onDownload(int,int)
+com.amap.api.offlinemap.a
+com.amap.api.offlinemap.b
+com.amap.api.offlinemap.c
+com.amap.api.offlinemap.d
+com.amap.api.offlinemap.e
+com.amap.api.offlinemap.f
+com.amap.api.offlinemap.g
+com.amap.api.offlinemap.h
+com.amap.api.offlinemap.i
+com.amap.api.search.busline.BusLineItem
+com.amap.api.search.busline.BusPagedResult
+com.amap.api.search.busline.BusQuery:
+    private java.lang.String a
+    private com.amap.api.search.busline.BusQuery$SearchType b
+    private java.lang.String c
+    11:12:public BusQuery(java.lang.String,com.amap.api.search.busline.BusQuery$SearchType)
+    14:21:public BusQuery(java.lang.String,com.amap.api.search.busline.BusQuery$SearchType,java.lang.String)
+    24:24:private boolean a()
+    28:28:public java.lang.String getQueryString()
+    32:32:public com.amap.api.search.busline.BusQuery$SearchType getCategory()
+    36:36:public java.lang.String getCity()
+com.amap.api.search.busline.BusSearch
+com.amap.api.search.busline.BusStationItem
+com.amap.api.search.busline.a
+com.amap.api.search.core.AMapException:
+    public static final java.lang.String ERROR_IO
+    public static final java.lang.String ERROR_SOCKET
+    public static final java.lang.String ERROR_SOCKE_TIME_OUT
+    public static final java.lang.String ERROR_INVALID_PARAMETER
+    public static final java.lang.String ERROR_NULL_PARAMETER
+    public static final java.lang.String ERROR_URL
+    public static final java.lang.String ERROR_UNKNOW_HOST
+    public static final java.lang.String ERROR_UNKNOW_SERVICE
+    public static final java.lang.String ERROR_PROTOCOL
+    public static final java.lang.String ERROR_CONNECTION
+    public static final java.lang.String ERROR_UNKNOWN
+    public static final java.lang.String ERROR_FAILURE_AUTH
+com.amap.api.search.core.Inputtips:
+    private com.amap.api.search.core.Inputtips$InputtipsListener c
+    23:27:public Inputtips(android.content.Context,com.amap.api.search.core.Inputtips$InputtipsListener)
+    37:56:public void requestInputtips(java.lang.String,java.lang.String)
+    12:12:static synthetic com.amap.api.search.core.Inputtips$InputtipsListener b(com.amap.api.search.core.Inputtips)
+com.amap.api.search.core.Inputtips$1:
+    37:37:Inputtips$1(com.amap.api.search.core.Inputtips,java.lang.String,java.lang.String)
+com.amap.api.search.core.Inputtips$InputtipsListener:
+    public abstract void onGetInputtips(java.util.List)
+com.amap.api.search.core.LatLonPoint:
+    18:21:public LatLonPoint(double,double)
+    24:24:public double getLongitude()
+    27:28:public void setLongitude(double)
+    31:31:public double getLatitude()
+    35:36:public void setLatitude(double)
+    39:39:public com.amap.api.search.core.LatLonPoint Copy()
+com.amap.api.search.core.a:
+    8:8:public a()
+com.amap.api.search.core.c:
+    13:13:public c()
+com.amap.api.search.core.d:
+    46:46:public d()
+    70:70:public static boolean a(java.lang.String)
+    85:85:public static int a(double)
+    89:89:public static double a(int)
+com.amap.api.search.core.e:
+    18:18:public e()
+com.amap.api.search.core.f
+com.amap.api.search.core.j
+com.amap.api.search.core.m
+com.amap.api.search.geocoder.Geocoder:
+    public static final java.lang.String Street_Road
+    public static final java.lang.String POI
+    public static final java.lang.String Cross
+    29:32:public Geocoder(android.content.Context,java.lang.String)
+    42:42:public java.util.List getFromLocation(double,double,int)
+    48:48:public java.util.List getFromLocation(double,double,int,int)
+    87:92:public java.util.List getFromRawGpsLocation(double,double,int)
+    98:103:public java.util.List getFromRawGpsLocation(double,double,int,int,int,int)
+    110:129:private java.util.List a(double,double,int,int,boolean)
+    137:137:public java.util.List getFromLocationName(java.lang.String,int,double,double,double,double)
+    146:190:public java.util.List getFromLocationName(java.lang.String,java.lang.String,int,double,double,double,double)
+    197:212:private java.util.List a(java.util.List,double,double,double,double,int)
+    217:217:public java.util.List getFromLocationName(java.lang.String,int)
+    226:226:public java.util.List getFromLocationName(java.lang.String,java.lang.String,int)
+com.amap.api.search.geocoder.a
+com.amap.api.search.geocoder.b
+com.amap.api.search.geocoder.c
+com.amap.api.search.poisearch.PoiItem
+com.amap.api.search.poisearch.PoiPagedResult
+com.amap.api.search.poisearch.PoiSearch:
+    private com.amap.api.search.poisearch.PoiSearch$SearchBound a
+    private com.amap.api.search.poisearch.PoiSearch$Query b
+    private android.content.Context c
+    private int d
+    18:22:public PoiSearch(android.content.Context,com.amap.api.search.poisearch.PoiSearch$Query)
+    24:29:public PoiSearch(android.content.Context,java.lang.String,com.amap.api.search.poisearch.PoiSearch$Query)
+    32:37:public com.amap.api.search.poisearch.PoiPagedResult searchPOI()
+    41:42:public void setPageSize(int)
+    49:50:public void setPoiNumber(int)
+    53:54:public void setQuery(com.amap.api.search.poisearch.PoiSearch$Query)
+    57:58:public void setBound(com.amap.api.search.poisearch.PoiSearch$SearchBound)
+    61:61:public com.amap.api.search.poisearch.PoiSearch$Query getQuery()
+    65:65:public com.amap.api.search.poisearch.PoiSearch$SearchBound getBound()
+com.amap.api.search.poisearch.PoiSearch$Query:
+    private java.lang.String a
+    private java.lang.String b
+    private java.lang.String c
+    74:75:public PoiSearch$Query(java.lang.String,java.lang.String)
+    77:84:public PoiSearch$Query(java.lang.String,java.lang.String,java.lang.String)
+    87:87:private boolean b()
+    92:92:public java.lang.String getQueryString()
+    96:100:public java.lang.String getCategory()
+    104:104:java.lang.String a()
+    108:108:public java.lang.String getCity()
+com.amap.api.search.poisearch.PoiSearch$SearchBound:
+    private com.amap.api.search.core.LatLonPoint a
+    private com.amap.api.search.core.LatLonPoint b
+    private int c
+    private com.amap.api.search.core.LatLonPoint d
+    private java.lang.String e
+    public static final java.lang.String BOUND_SHAPE
+    public static final java.lang.String POLYGON_SHAPE
+    public static final java.lang.String RECTANGLE_SHAPE
+    public static final java.lang.String ELLIPSE_SHAPE
+    124:130:public PoiSearch$SearchBound(com.amap.api.search.core.LatLonPoint,int)
+    132:135:public PoiSearch$SearchBound(com.amap.api.search.core.LatLonPoint,com.amap.api.search.core.LatLonPoint)
+    138:148:private void a(com.amap.api.search.core.LatLonPoint,com.amap.api.search.core.LatLonPoint)
+    152:159:private void a(com.amap.api.search.core.LatLonPoint,double,double)
+    162:162:public com.amap.api.search.core.LatLonPoint getLowerLeft()
+    166:166:public com.amap.api.search.core.LatLonPoint getUpperRight()
+    170:170:public com.amap.api.search.core.LatLonPoint getCenter()
+    174:174:public double getLonSpanInMeter()
+    178:178:public double getLatSpanInMeter()
+    182:182:public int getRange()
+    186:186:public java.lang.String getShape()
+com.amap.api.search.poisearch.PoiTypeDef
+com.amap.api.search.poisearch.a
+com.amap.api.search.poisearch.b
+com.amap.api.search.poisearch.c
+com.amap.api.search.route.BusSegment
+com.amap.api.search.route.DriveSegment
+com.amap.api.search.route.DriveWalkSegment
+com.amap.api.search.route.Route:
+    protected java.lang.String mStartPlace
+    protected java.lang.String mTargetPlace
+    protected java.util.List mSegs
+    public com.amap.api.search.route.Route$d mHelper
+    public static final int BusDefault
+    public static final int BusSaveMoney
+    public static final int BusLeaseChange
+    public static final int BusLeaseWalk
+    public static final int BusMostComfortable
+    public static final int DrivingDefault
+    public static final int DrivingSaveMoney
+    public static final int DrivingLeastDistance
+    public static final int DrivingNoFastRoad
+    public static final int WalkDefault
+    private com.amap.api.search.core.LatLonPoint a
+    private com.amap.api.search.core.LatLonPoint b
+    private int c
+    37:37:public int getMode()
+    41:45:public int getLength()
+    49:81:private void b()
+    84:87:public com.amap.api.search.core.LatLonPoint getLowerLeftPoint()
+    91:94:public com.amap.api.search.core.LatLonPoint getUpperRightPoint()
+    99:112:public static java.util.List calculateRoute(android.content.Context,com.amap.api.search.route.Route$FromAndTo,int)
+    117:130:public static java.util.List calculateRoute(android.content.Context,com.amap.api.search.route.Route$FromAndTo,int,java.util.List)
+    134:134:public java.lang.String getStartPlace()
+    138:139:public void setStartPlace(java.lang.String)
+    142:142:public java.lang.String getTargetPlace()
+    146:147:public void setTargetPlace(java.lang.String)
+    150:150:java.util.List a()
+    154:155:void a(java.util.List)
+    158:158:public com.amap.api.search.core.LatLonPoint getStartPos()
+    162:162:public com.amap.api.search.core.LatLonPoint getTargetPos()
+    166:166:public int getStepCount()
+    170:170:public com.amap.api.search.route.Segment getStep(int)
+    174:174:public int getSegmentIndex(com.amap.api.search.route.Segment)
+    178:178:public java.lang.String getStepedDescription(int)
+    182:182:public java.lang.String getOverview()
+    536:547:public Route(int)
+    550:550:public static boolean isDrive(int)
+    554:554:public static boolean isBus(int)
+    560:560:public static boolean isWalk(int)
+    579:602:static java.lang.String a(int)
+com.amap.api.search.route.Route$FromAndTo:
+    public com.amap.api.search.core.LatLonPoint mFrom
+    public com.amap.api.search.core.LatLonPoint mTo
+    189:192:public Route$FromAndTo(com.amap.api.search.core.LatLonPoint,com.amap.api.search.core.LatLonPoint)
+com.amap.api.search.route.Route$a:
+    final synthetic com.amap.api.search.route.Route a
+    247:247:public Route$a(com.amap.api.search.route.Route)
+    251:277:public java.lang.String a()
+    282:290:public java.lang.String a(int)
+    309:322:private java.lang.String b(int)
+    326:338:private java.lang.String c(int)
+com.amap.api.search.route.Route$b:
+    final synthetic com.amap.api.search.route.Route a
+    508:508:Route$b(com.amap.api.search.route.Route)
+com.amap.api.search.route.Route$c:
+    final synthetic com.amap.api.search.route.Route a
+    483:483:Route$c(com.amap.api.search.route.Route)
+com.amap.api.search.route.Route$d:
+    final synthetic com.amap.api.search.route.Route b
+    195:195:public Route$d(com.amap.api.search.route.Route)
+    198:198:public java.lang.String a(int)
+    202:208:private java.lang.String b(int)
+    public abstract java.lang.String a()
+com.amap.api.search.route.Route$e:
+    final synthetic com.amap.api.search.route.Route c
+    420:420:Route$e(com.amap.api.search.route.Route)
+    424:453:public java.lang.String a()
+    458:473:public java.lang.String a(int)
+com.amap.api.search.route.Segment
+com.amap.api.search.route.WalkSegment
+com.amap.api.search.route.a
+com.amap.api.search.route.b
+com.amap.api.search.route.c
+com.amap.api.search.route.d
+com.amap.api.search.route.e
+com.amap.api.search.route.f
+com.autonavi.amap.mapcore.BaseMapCallImplement:
+    36:72:public void OnMapDataRequired(com.autonavi.amap.mapcore.MapCore,int,java.lang.String[])
+    136:149:private void proccessRequiredData(com.autonavi.amap.mapcore.MapCore,java.util.ArrayList,int)
+    152:165:private void sendMapDataRequest(com.autonavi.amap.mapcore.MapCore,java.util.ArrayList,int)
+    167:175:public void OnMapSurfaceCreate(com.autonavi.amap.mapcore.MapCore)
+    209:217:public void OnMapLabelsRequired(com.autonavi.amap.mapcore.MapCore,int[],int)
+com.autonavi.amap.mapcore.ConnectionManager:
+    int sleepTime
+    6:7:public ConnectionManager()
+    13:13:public synchronized int getTaskCount()
+    16:17:public synchronized void addConntionTask(com.autonavi.amap.mapcore.MapLoader)
+    20:21:public synchronized void insertConntionTask(com.autonavi.amap.mapcore.MapLoader)
+    75:75:public synchronized boolean isEmptyTask()
+com.autonavi.amap.mapcore.Convert:
+    6:6:public Convert()
+    23:26:public static int getUShort(byte[],int)
+    31:38:public static boolean getBit(byte,int)
+    43:45:public static byte[] copyString(byte[],int,int)
+    49:51:public static byte[] covertBytes(byte)
+    55:60:public static byte[] convertInt(int)
+    63:68:public static int getNum(byte,int,int)
+    72:76:public static int getNum(short,int,int)
+    79:82:public static byte[] convertShort(int)
+    86:88:public static void writeInt(byte[],int,int)
+    91:93:public static void writeShort(byte[],int,short)
+    103:106:public static java.lang.String getString(byte[],int,int)
+    111:113:public static byte[] getSubBytes(byte[],int,int)
+    118:129:public static byte[] get1BString(java.lang.String)
+    136:145:public static byte[] get2BString(java.lang.String)
+    151:156:public static double convertDouble(byte[],int)
+    161:171:public static byte[] getDouble(double)
+    177:185:public static void convert1bString(byte[],int,com.autonavi.amap.mapcore.a)
+    189:197:public static void convert2bString(byte[],int,com.autonavi.amap.mapcore.a)
+    205:213:public static final java.lang.String bytesToHexString(byte[])
+com.autonavi.amap.mapcore.DPoint:
+    9:12:public DPoint(double,double)
+com.autonavi.amap.mapcore.ERROR_CODE
+com.autonavi.amap.mapcore.IMapCallback:
+    public abstract void OnMapSurfaceCreate(javax.microedition.khronos.opengles.GL10,com.autonavi.amap.mapcore.MapCore)
+    public abstract void OnMapSurfaceRenderer(javax.microedition.khronos.opengles.GL10,com.autonavi.amap.mapcore.MapCore,int)
+    public abstract void OnMapSufaceChanged(javax.microedition.khronos.opengles.GL10,com.autonavi.amap.mapcore.MapCore,int,int)
+    public abstract void OnMapProcessEvent(com.autonavi.amap.mapcore.MapCore)
+    public abstract void OnMapDestory(javax.microedition.khronos.opengles.GL10,com.autonavi.amap.mapcore.MapCore)
+    public abstract void OnMapDataRequired(com.autonavi.amap.mapcore.MapCore,int,java.lang.String[])
+    public abstract void OnMapLabelsRequired(com.autonavi.amap.mapcore.MapCore,int[],int)
+    public abstract void OnMapReferencechanged(com.autonavi.amap.mapcore.MapCore,java.lang.String,java.lang.String)
+com.autonavi.amap.mapcore.MapCore:
+    public static final int TEXTURE_ICON
+    public static final int TEXTURE_BACKGROUND
+    public static final int TEXTURE_ROADARROW
+    public static final int TEXTURE_ROADROUND
+    public static final int AM_DATA_BASEMAP
+    public static final int AM_DATA_GEO_BUILDING
+    public static final int AM_DATA_BMP_BASEMAP
+    public static final int AM_DATA_SATELLITE
+    public static final int AM_DATA_VEC_TMC
+    public static final int AM_DATA_SCREEN
+    public static final int AM_DATA_MODEL
+    public static final int MAPRENDER_ENTER
+    public static final int MAPRENDER_BASEMAPBEGIN
+    public static final int MAPRENDER_BUILDINGBEGIN
+    public static final int MAPRENDER_LABELSBEGIN
+    public static final int MAPRENDER_RENDEROVER
+    public static final int MAPRENDER_NOMORENEEDRENDER
+    public android.view.View view
+    83:83:public int getInstanceHandle()
+    92:93:public void setMapstate(com.autonavi.amap.mapcore.MapProjection)
+    113:114:public void putCharbitmap(int,byte[])
+    119:123:private void OnMapSurfaceCreate()
+    126:130:private void OnMapSurfaceRenderer(int)
+    133:137:private void OnMapSufaceChanged(int,int)
+    140:144:private void OnMapProcessEvent()
+    147:150:private void OnMapDestory()
+    158:162:private void OnMapDataRequired(int,java.lang.String[])
+    165:168:private void OnMapLabelsRequired(int[],int)
+    176:179:private void OnMapReferencechanged(java.lang.String,java.lang.String)
+    private static native void nativeSetMapstate(int,int)
+    private static native void nativePutCharbitmap(int,int,byte[])
+com.autonavi.amap.mapcore.MapLoader:
+    int mapLevel
+    39:44:public void destory()
+    78:83:public MapLoader(com.autonavi.amap.mapcore.BaseMapCallImplement,com.autonavi.amap.mapcore.MapCore,int)
+    206:206:public void onConnectionError(com.autonavi.amap.mapcore.MapLoader,int,java.lang.String)
+    219:220:public void addReuqestTiles(com.autonavi.amap.mapcore.MapSourceGridData)
+com.autonavi.amap.mapcore.MapProjection:
+    14:17:public MapProjection(com.autonavi.amap.mapcore.MapCore)
+    30:30:int getInstanceHandle()
+    34:35:public void getBound(com.autonavi.amap.mapcore.IPoint)
+    38:39:public void setGeoCenter(int,int)
+    46:47:public void setMapCenter(float,float)
+    54:55:public void setMapZoomer(float)
+    62:63:public void setMapAngle(float)
+    77:78:public void setCameraHeaderAngle(float)
+    97:97:public float getMapLenWithWinbyY(int,int)
+    109:110:public void setCenterWithMap(float,float)
+    113:114:public void getCenterMap(com.autonavi.amap.mapcore.FPoint)
+    private static native int nativeCreate(int)
+    private static native void nativeGetBound(int,com.autonavi.amap.mapcore.IPoint)
+    private static native void nativeSetGeoCenter(int,int,int)
+    private static native void nativeSetMapCenter(int,float,float)
+    private static native void nativeSetMapZoomer(int,float)
+    private static native void nativeSetMapAngle(int,float)
+    private static native void nativeSetCameraHeaderAngle(int,float)
+    private static native float nativeGetMapLenWithWinbyY(int,int,int)
+    private static native void nativeSetCenterWithMap(int,float,float)
+    private static native void nativeGetCenterMap(int,com.autonavi.amap.mapcore.FPoint)
+com.autonavi.amap.mapcore.MapSourceGridData:
+    5:8:public MapSourceGridData(java.lang.String,int)
+    19:19:public int getSourceType()
+com.autonavi.amap.mapcore.TextTextureGenerator:
+    static final int TEXT_FONTSIZE
+    static final int AN_LABEL_MAXCHARINLINE
+    static final int AN_LABEL_MULITYLINE_SPAN
+    private static final int ALIGNCENTER
+    private static final int ALIGNLEFT
+    private static final int ALIGNRIGHT
+    int textureWidth
+    int textureHeight
+    int nMaxSizePerline
+    int nLabelLinesize
+    29:36:public static int GetNearstSize2N(int)
+    40:43:public TextTextureGenerator()
+    82:97:private float getStringWidth(java.lang.String)
+    102:107:private float getFullWidth(float[])
+    118:133:public byte[] getTextPixelBuffer(int)
+    138:149:private byte[] getPixels(android.graphics.Bitmap)
+    153:180:public static void generaAsccIITexturePng()
+com.autonavi.amap.mapcore.VTMCDataCache:
+    public static final int MAXSIZE
+    public static final int MAX_EXPIREDTIME
+    20:21:public void reset()
+    24:34:public com.autonavi.amap.mapcore.e GetData(java.lang.String)
+com.autonavi.amap.mapcore.a
+com.autonavi.amap.mapcore.b
+com.autonavi.amap.mapcore.c:
+    protected int a
+    89:92:c()
+    95:100:public synchronized void a(java.lang.Object)
+com.autonavi.amap.mapcore.d:
+    int a
+    long b
+    19:19:public boolean b(java.lang.String)
+    23:24:public void c(java.lang.String)
+    29:31:public d()
+    34:35:public void a()
+com.autonavi.aps.api.APSFactory:
+    public APSFactory()
+com.autonavi.aps.api.APSYUNPINGTAI:
+    private static synchronized void h()
+    public java.lang.String getVersion()
+    public void setOpenGps(boolean)
+    public void setOpenSystemNetworkLocation(boolean)
+    static synthetic void a(android.location.Location)
+com.autonavi.aps.api.ApsRequest:
+    public java.lang.String getClienttime()
+    public java.lang.String getGaccuracy()
+com.autonavi.aps.api.CdmaCellBean:
+    public java.lang.String getMnc()
+com.autonavi.aps.api.Constant:
+    public static final boolean enableLog
+    public static final java.lang.String apsServer
+    public static final java.lang.String apsEncryptKey
+    public static final java.lang.String version
+    public static final int requestSystemNetworkLocationTimeout
+    public static final int requestSystemNetworkLocationMinTime
+    public static final int apsNetworkTimeout
+    public static final int defaultCgiSignal
+    public static final int minRequestDuration
+    public static final int gpsScanSpan
+    public static final long minSdcardAvaliableSizeToWrite
+    public static final java.lang.String sdcardLogPath
+    public static final java.lang.String apsPreferencesName
+    public static final java.lang.String imeiSaltPreferencesKey
+    public static final int imeiMaxSalt
+    public static final java.lang.String logTag
+    public Constant()
+com.autonavi.aps.api.IAPS:
+    public abstract void setOpenGps(boolean)
+    public abstract void setOpenSystemNetworkLocation(boolean)
+    public abstract java.lang.String getVersion()
+com.autonavi.aps.api.Location:
+    public double getRawx()
+    public double getRawy()
+    public double getRawd()
+    public java.lang.String getResult()
+    public java.lang.String getRdesc()
+com.autonavi.aps.api.Utils:
+    public Utils()
+com.autonavi.aps.api.a
+com.baidu.location.BDLocation:
+    public static final int TypeNone
+    public static final int TypeGpsLocation
+    public static final int TypeCriteriaException
+    public static final int TypeNetWorkException
+    public static final int TypeOffLineLocation
+    public static final int TypeOffLineLocationFail
+    public static final int TypeOffLineLocationNetworkFail
+    public static final int TypeNetWorkLocation
+    public static final int TypeCacheLocation
+    public static final int TypeServerError
+    public BDLocation(double,double,float)
+    public BDLocation(java.lang.String,double,double,float,java.lang.String,java.lang.String)
+    public java.lang.String toJsonString()
+    public boolean isCellChangeFlag()
+    public java.lang.String getTime()
+    public double getAltitude()
+    public void setAltitude(double)
+    public float getSpeed()
+    public java.lang.String getCoorType()
+    public void setCoorType(java.lang.String)
+    public boolean hasAltitude()
+    public boolean hasSpeed()
+    public boolean hasRadius()
+    public com.baidu.location.BDLocation toNewLocation(java.lang.String)
+    public int getSatelliteNumber()
+    public float getDerect()
+    public boolean hasSateNumber()
+    public boolean hasPoi()
+    public java.lang.String getPoi()
+    public boolean hasAddr()
+    public java.lang.String getAddrStr()
+    public java.lang.String getProvince()
+    public java.lang.String getCity()
+    public java.lang.String getCityCode()
+    public java.lang.String getDistrict()
+    public java.lang.String getStreet()
+    public java.lang.String getStreetNumber()
+com.baidu.location.BDNotifyListener:
+    public void SetNotifyLocation(double,double,float,java.lang.String)
+com.baidu.location.Jni:
+    Jni()
+com.baidu.location.LocationClient:
+    private static final java.lang.String for
+    private static final int try
+    private static final int p
+    private static final int void
+    private static final int B
+    private static final int m
+    private static final int o
+    private static final int h
+    private static final int b
+    private static final int f
+    private static final int if
+    private static final int y
+    private static final int n
+    private static final int goto
+    private static final int s
+    public LocationClient(android.content.Context,com.baidu.location.LocationClientOption)
+    public com.baidu.location.LocationClientOption getLocOption()
+    public void setLocOption(com.baidu.location.LocationClientOption)
+    public boolean updateLocation(android.location.Location)
+    public int requestOfflineLocation()
+    public int requestPoi()
+    public boolean isStarted()
+    public com.baidu.location.BDLocation getLastKnownLocation()
+    public java.lang.String getVersion()
+    public void stop()
+    public void registerNotify(com.baidu.location.BDNotifyListener)
+    public void removeNotifyEvent(com.baidu.location.BDNotifyListener)
+    public void unRegisterLocationListener(com.baidu.location.BDLocationListener)
+    public void setForBaiduMap(boolean)
+com.baidu.location.LocationClientOption:
+    public static final int MIN_SCAN_SPAN
+    public static final int GpsFirst
+    public static final int NetWorkFirst
+    public java.lang.String getCoorType()
+    public void setCoorType(java.lang.String)
+    public java.lang.String getAddrType()
+    public void setAddrType(java.lang.String)
+    public boolean isOpenGps()
+    public void setOpenGps(boolean)
+    public boolean isLocationNotify()
+    public void setLocationNotify(boolean)
+    public int getScanSpan()
+    public void setScanSpan(int)
+    public int getTimeOut()
+    public void setTimeOut(int)
+    public java.lang.String getProdName()
+    public void setProdName(java.lang.String)
+    public int getPriority()
+    public void setPriority(int)
+    public java.lang.String getServiceName()
+    public void setServiceName(java.lang.String)
+    public void setPoiDistance(float)
+    public float getPoiDistance()
+    public void setPoiNumber(int)
+    public int getPoiNumber()
+    public void setPoiExtraInfo(boolean)
+    public boolean getPoiExtranInfo()
+    public void disableCache(boolean)
+com.baidu.location.a:
+    public void if()
+com.baidu.location.a$a:
+    public void a()
+com.baidu.location.b:
+    private static final java.lang.String if
+    private static final int s
+    private static final int z
+    private static final int p
+    private static final int goto
+    private static final double else
+    private static final int l
+    private static final int h
+    private static final int B
+    private static final int v
+    private static final int M
+    private static final int i
+    private static final int G
+    private static final int void
+    public java.lang.String char()
+    public void goto()
+com.baidu.location.b$c:
+    private boolean for()
+    private boolean long()
+    private boolean goto()
+    private boolean new()
+    public int else()
+    public java.lang.String do()
+    private java.lang.String void()
+    private java.lang.String char()
+    private java.util.List int()
+com.baidu.location.b$d:
+    private boolean if()
+com.baidu.location.c:
+    public java.lang.String int()
+    public java.lang.String for()
+com.baidu.location.c$a:
+    public c$a(com.baidu.location.c,int,int,int,int,char)
+com.baidu.location.d
+com.baidu.location.e:
+    private static final int byte
+com.baidu.location.f:
+    public static final java.lang.String v
+    static final float ap
+    static final int l
+    static final int c
+    static final int long
+    static final int ah
+    static final int g
+    static final int aa
+    static final int for
+    static final int s
+    static final int w
+    static final int W
+    static final int I
+    static final int L
+    static final int do
+    static final int int
+    static final int p
+    static final int case
+    static final int ag
+    static final int z
+    static final int G
+    static final int ar
+    static final int U
+    static final int i
+    static final int ak
+    static final int D
+    static final int aq
+    static final int M
+    static final int b
+    static final int K
+    static final int e
+    static final int void
+    static final int V
+    static final int t
+    static final int B
+    static final int ao
+    static final int S
+    static final int x
+    static final int else
+    static final int ai
+    private static final int at
+    private static final int byte
+    private static final int af
+com.baidu.location.f$c:
+    public static final java.lang.String for
+    public void int()
+com.baidu.location.g:
+    private static final int byte
+    private static final int case
+    public static final int n
+    private static final int i
+    g()
+    public static boolean for(android.content.Context)
+com.baidu.location.h:
+    h()
+    public static void a(com.baidu.location.c$a,double,double,float)
+    public static java.lang.String a(int,int,int)
+    public static void if()
+    private static com.baidu.location.h$a if(int,int,int)
+    private static void a()
+    private static void do()
+com.baidu.location.h$a:
+    private int do
+    private int try
+    private int if
+    private int a
+    private double new
+    private double int
+    private float for
+    public h$a(int,int,int,int,double,double,float)
+    public boolean a(int,int,int)
+    static synthetic double a(com.baidu.location.h$a,double)
+    static synthetic double if(com.baidu.location.h$a,double)
+    static synthetic float a(com.baidu.location.h$a,float)
+    static synthetic double if(com.baidu.location.h$a)
+    static synthetic double int(com.baidu.location.h$a)
+    static synthetic float a(com.baidu.location.h$a)
+    static synthetic int for(com.baidu.location.h$a)
+    static synthetic int new(com.baidu.location.h$a)
+    static synthetic int do(com.baidu.location.h$a)
+    static synthetic int try(com.baidu.location.h$a)
+com.baidu.location.i:
+    public static final java.lang.String new
+    public void a(com.baidu.location.BDNotifyListener)
+com.baidu.location.j:
+    public static final boolean case
+    public static final boolean B
+    public static final boolean y
+    private static final int T
+    j()
+    static java.lang.String a()
+    public static void a(java.lang.String)
+    public static void if(java.lang.String)
+com.baidu.location.j$a:
+    private static final boolean a
+com.baidu.location.j$b:
+    private static final java.lang.String if
+    private static final java.lang.String do
+    private static final java.lang.String for
+    private static final java.lang.String a
+com.baidu.location.k:
+    private static final int if
+    private static final int for
+    private static final int s
+    private static final int d
+    private static final int f
+    private static final int goto
+    k()
+    public static void a(java.lang.String,int)
+    public static void a(java.lang.String,int,boolean)
+    public static void a(int,int)
+    public static void a(int,int,boolean)
+    public static void for()
+    public static void new()
+com.rt.BASE64Decoder:
+    65:65:protected int bytesPerAtom()
+    70:70:protected int bytesPerLine()
+    107:158:protected void decodeAtom(java.io.PushbackInputStream,java.io.OutputStream,int)
+com.rt.CEFormatException
+com.rt.CEStreamExhausted
+com.rt.CharacterDecoder:
+    protected abstract int bytesPerAtom()
+    protected abstract int bytesPerLine()
+    94:94:protected void decodeBufferPrefix(java.io.PushbackInputStream,java.io.OutputStream)
+    100:100:protected void decodeBufferSuffix(java.io.PushbackInputStream,java.io.OutputStream)
+    111:111:protected int decodeLinePrefix(java.io.PushbackInputStream,java.io.OutputStream)
+    123:123:protected void decodeLineSuffix(java.io.PushbackInputStream,java.io.OutputStream)
+    134:134:protected void decodeAtom(java.io.PushbackInputStream,java.io.OutputStream,int)
+    144:151:protected int readFully(java.io.InputStream,byte[],int,int)
+    165:197:public void decodeBuffer(java.io.InputStream,java.io.OutputStream)
+    206:214:public byte[] decodeBuffer(java.lang.String)
+    222:224:public byte[] decodeBuffer(java.io.InputStream)
+    233:233:public java.nio.ByteBuffer decodeBufferToByteBuffer(java.lang.String)
+    242:242:public java.nio.ByteBuffer decodeBufferToByteBuffer(java.io.InputStream)
+com.rt.CharacterEncoder:
+    185:187:public void encode(byte[],java.io.OutputStream)
+    228:259:private byte[] getBytes(java.nio.ByteBuffer)
+    272:274:public void encode(java.nio.ByteBuffer,java.io.OutputStream)
+    285:286:public java.lang.String encode(java.nio.ByteBuffer)
+    301:330:public void encodeBuffer(java.io.InputStream,java.io.OutputStream)
+    339:341:public void encodeBuffer(byte[],java.io.OutputStream)
+    349:359:public java.lang.String encodeBuffer(byte[])
+    372:374:public void encodeBuffer(java.nio.ByteBuffer,java.io.OutputStream)
+    385:386:public java.lang.String encodeBuffer(java.nio.ByteBuffer)
+daiwei.mobile.BuildConfig
+daiwei.mobile.R:
+    10:10:public R()
+daiwei.mobile.R$anim:
+    public static final int alpha_in
+    public static final int alpha_out
+    public static final int bottom_select
+    public static final int cycle_7
+    public static final int shake
+    public static final int slide_left_in
+    public static final int slide_left_out
+    public static final int slide_right_in
+    public static final int slide_right_out
+    public static final int tran_next_in
+    public static final int tran_next_out
+    public static final int tran_pre_in
+    public static final int tran_pre_out
+daiwei.mobile.R$color:
+    public static final int CustomedTabWidget
+    public static final int black
+    public static final int blank_color
+    public static final int blue
+    public static final int blue_pressed
+    public static final int button_selected
+    public static final int button_unselected
+    public static final int chat_background
+    public static final int chat_close_bg
+    public static final int chat_close_press
+    public static final int chat_contact
+    public static final int chat_edit_bg
+    public static final int chat_edit_bg_press
+    public static final int chat_edit_bg_solid
+    public static final int chat_emotion_unit_bg_solid
+    public static final int chat_emotion_unit_bg_stroke
+    public static final int chat_emotion_unit_press
+    public static final int chat_extra_item_bg_solid
+    public static final int chat_friend_item_bg_solid
+    public static final int chat_friend_item_bg_stroke
+    public static final int chat_friend_text_bg
+    public static final int chat_history_msg_text
+    public static final int chat_history_time_text
+    public static final int chat_list_header_bg
+    public static final int chat_list_header_bg_press
+    public static final int chat_list_header_text
+    public static final int chat_message_tip_bg
+    public static final int chat_message_tip_num
+    public static final int chat_message_tip_text
+    public static final int chat_self_item_bg_solid
+    public static final int chat_self_item_bg_stroke
+    public static final int chat_self_text_bg
+    public static final int chat_send_bg
+    public static final int chat_send_press
+    public static final int chat_text
+    public static final int chat_time
+    public static final int chat_title_bg
+    public static final int chat_title_name
+    public static final int chat_win_title_bg
+    public static final int color_divider
+    public static final int extrainfo
+    public static final int headerFore
+    public static final int info_panel_bg
+    public static final int login_background
+    public static final int nonchat_contact
+    public static final int p_bg
+    public static final int p_text1
+    public static final int p_text2
+    public static final int qq_normal
+    public static final int sc_black
+    public static final int sc_button_selected
+    public static final int sc_button_unselected
+    public static final int sc_chat_background
+    public static final int sc_chat_contact
+    public static final int sc_chat_text
+    public static final int sc_chat_time
+    public static final int sc_gray
+    public static final int sc_hometab_text
+    public static final int sc_hometab_text_s
+    public static final int sc_homtlist_bg
+    public static final int sc_info_btn_press
+    public static final int sc_loading
+    public static final int sc_login_background
+    public static final int sc_login_title_bg
+    public static final int sc_mainactivity_bg
+    public static final int sc_msg_list_content
+    public static final int sc_msg_list_time
+    public static final int sc_name
+    public static final int sc_nameselect
+    public static final int sc_nonchat_contact
+    public static final int sc_red
+    public static final int sc_transparent
+    public static final int sc_transparent_background
+    public static final int sc_transparent_black
+    public static final int sc_white
+    public static final int sc_window_background
+    public static final int screenshot_normal
+    public static final int screenshot_pressed
+    public static final int scrollbar_tbumb_bg
+    public static final int shape_line
+    public static final int sqqname
+    public static final int text_drag_refresh_big
+    public static final int text_drag_refresh_small
+    public static final int text_net_err
+    public static final int text_net_err_refetch
+    public static final int textfield_unselected
+    public static final int title_bg
+    public static final int traffic_bg
+    public static final int traffic_data
+    public static final int traffic_txt
+    public static final int transparent
+    public static final int video_bg_color
+    public static final int video_button_press
+    public static final int video_button_release
+    public static final int video_dlg_cover_color
+    public static final int video_edge_color
+    public static final int white
+    public static final int window_bg
+daiwei.mobile.R$drawable:
+    public static final int ab_bottom
+    public static final int add
+    public static final int arrow
+    public static final int arrow_close
+    public static final int arrow_down
+    public static final int arrow_left
+    public static final int arrow_open
+    public static final int back
+    public static final int back1
+    public static final int backon
+    public static final int bg_btn_widget_page_blue_x
+    public static final int bottom_all
+    public static final int bottom_allon
+    public static final int bottom_back
+    public static final int bottom_backon
+    public static final int bottom_bg
+    public static final int bottom_bug
+    public static final int bottom_bugon
+    public static final int bottom_deal
+    public static final int bottom_dealon
+    public static final int bottom_fadian
+    public static final int bottom_fadianon
+    public static final int bottom_normal
+    public static final int bottom_normalon
+    public static final int bottom_receive
+    public static final int bottom_receiveon
+    public static final int bottom_response
+    public static final int bottom_responseon
+    public static final int bottom_search
+    public static final int bottom_searchon
+    public static final int bottom_send
+    public static final int bottom_senddown
+    public static final int bottom_senddown1
+    public static final int bottom_sendon
+    public static final int bottom_sendup
+    public static final int bottom_sendup1
+    public static final int bottom_submit
+    public static final int bottom_submiton
+    public static final int bottom_tongyong
+    public static final int bottom_tongyongon
+    public static final int bottom_tousu
+    public static final int bottom_tousuon
+    public static final int bt_folderselect_bg
+    public static final int bt_login_bg
+    public static final int bt_search_bg
+    public static final int bt_yes_bg
+    public static final int btn_auto_upload_close
+    public static final int btn_auto_upload_open
+    public static final int btn_check
+    public static final int btn_check_off
+    public static final int btn_check_on
+    public static final int btn_refresh
+    public static final int bug
+    public static final int button_bg_green
+    public static final int button_bg_green_on
+    public static final int button_bg_selector
+    public static final int camera
+    public static final int camera1
+    public static final int cb_login_bg
+    public static final int checkicon
+    public static final int child
+    public static final int color_blue
+    public static final int customer
+    public static final int customeron
+    public static final int deal
+    public static final int decrease
+    public static final int default_bg
+    public static final int dot1_w
+    public static final int dot2_w
+    public static final int down_load
+    public static final int down_loadon
+    public static final int download
+    public static final int downloadon
+    public static final int edit_normal
+    public static final int edit_pressed
+    public static final int edittext_login_bg
+    public static final int endxj
+    public static final int endxjon
+    public static final int enormal
+    public static final int fadian
+    public static final int folder_arrow
+    public static final int folder_icon
+    public static final int folder_listview_bg
+    public static final int folder_listview_bgon
+    public static final int folder_select
+    public static final int folder_selecton
+    public static final int gd_bg
+    public static final int gd_bg_one
+    public static final int gd_bg_title
+    public static final int gd_icon
+    public static final int gd_line
+    public static final int gd_viewpager_indicator
+    public static final int gdclass_bug
+    public static final int gdclass_complain
+    public static final int gdclass_elec
+    public static final int gdclass_normal
+    public static final int guide11
+    public static final int guide22
+    public static final int guide33
+    public static final int guide_1
+    public static final int guide_2
+    public static final int guide_3
+    public static final int guide_4
+    public static final int guide_5
+    public static final int guide_6
+    public static final int guide_point
+    public static final int guide_point1
+    public static final int history_search
+    public static final int history_searchon
+    public static final int ic_launcher
+    public static final int ic_open
+    public static final int ico_search
+    public static final int icon
+    public static final int icon_arrive
+    public static final int icon_camera
+    public static final int icon_finish
+    public static final int icon_gd
+    public static final int icon_gg
+    public static final int icon_jikejiake
+    public static final int icon_leave
+    public static final int icon_linexj
+    public static final int icon_list
+    public static final int icon_map
+    public static final int icon_search
+    public static final int icon_select
+    public static final int icon_small
+    public static final int icon_terminal
+    public static final int icon_wlan
+    public static final int icon_xja
+    public static final int icon_xja1
+    public static final int icon_yh
+    public static final int jz
+    public static final int jzon
+    public static final int leba_bg_bottom_selected
+    public static final int leba_bg_bottom_selector
+    public static final int leba_bg_bottom_unselected
+    public static final int leba_bg_mid_selected
+    public static final int leba_bg_mid_selector
+    public static final int leba_bg_mid_unselected
+    public static final int leba_bg_single_selected
+    public static final int leba_bg_single_selector
+    public static final int leba_bg_single_unselected
+    public static final int leba_bg_top_selected
+    public static final int leba_bg_top_selector
+    public static final int leba_bg_top_unselected
+    public static final int leba_shape_bg
+    public static final int leba_shape_line
+    public static final int line
+    public static final int line_blue
+    public static final int line_edit
+    public static final int line_s
+    public static final int line_shu
+    public static final int line_xu
+    public static final int list_folderselect_bg
+    public static final int listbg
+    public static final int listview_item_background
+    public static final int listview_item_bg
+    public static final int listview_item_bg_on
+    public static final int listview_item_bg_select
+    public static final int login
+    public static final int login_bgdown
+    public static final int login_bgup
+    public static final int login_ckdown
+    public static final int login_ckup
+    public static final int login_del
+    public static final int login_textgf
+    public static final int login_textlf
+    public static final int loginbar_bg
+    public static final int loginon
+    public static final int logo
+    public static final int logo1
+    public static final int logo_eoms
+    public static final int logo_eomstext
+    public static final int logo_main
+    public static final int logo_nxeomstext
+    public static final int logo_text
+    public static final int logo_text_eoms
+    public static final int logobg
+    public static final int logobg1
+    public static final int main_icon_gda
+    public static final int main_icon_noticea
+    public static final int main_icon_searcha
+    public static final int main_icon_terminala
+    public static final int main_icon_xja
+    public static final int main_icon_yha
+    public static final int map
+    public static final int map3
+    public static final int menu
+    public static final int menu1
+    public static final int message_title
+    public static final int mic
+    public static final int mic1
+    public static final int music
+    public static final int myprogressdialog
+    public static final int nofindbg
+    public static final int normal
+    public static final int normal_all
+    public static final int notice_bg
+    public static final int notice_icon
+    public static final int notice_icon1
+    public static final int notice_title
+    public static final int paifa
+    public static final int point
+    public static final int point_blue
+    public static final int point_green
+    public static final int point_red
+    public static final int pop_btn_bg
+    public static final int popup_bg
+    public static final int popup_item_bg_x
+    public static final int popwin_item_pressed
+    public static final int position
+    public static final int quan
+    public static final int reach
+    public static final int reachon
+    public static final int receive
+    public static final int recorder_image
+    public static final int refresh
+    public static final int resource
+    public static final int resource_mess
+    public static final int resource_message
+    public static final int resource_messon
+    public static final int resource_scan
+    public static final int response
+    public static final int scanningicon
+    public static final int scrollbar_handle_vertical
+    public static final int search
+    public static final int searchon
+    public static final int selector_edittext_bg
+    public static final int setting_arrow
+    public static final int setting_check_off
+    public static final int setting_checkbox_on
+    public static final int site
+    public static final int siteon
+    public static final int sousuo
+    public static final int sousuo1
+    public static final int sousuo1on
+    public static final int sousuo_on
+    public static final int splash
+    public static final int splash_bg
+    public static final int splash_logo
+    public static final int startxj
+    public static final int startxjon
+    public static final int stopxj
+    public static final int stopxjon
+    public static final int switch_enormal
+    public static final int switch_normal
+    public static final int sym_action_call
+    public static final int tabbg
+    public static final int terminal_title
+    public static final int timeicon
+    public static final int tip
+    public static final int tipbutton
+    public static final int tipline
+    public static final int title_eomsgd
+    public static final int title_gd
+    public static final int titlebg
+    public static final int tousu
+    public static final int transline
+    public static final int translineon
+    public static final int tree_person
+    public static final int tree_team
+    public static final int widget_bg_portrait
+    public static final int widget_bg_portrait_child
+    public static final int widget_bg_portrait_child_divider
+    public static final int widget_down
+    public static final int widget_edit
+    public static final int widget_gd
+    public static final int widget_gd1
+    public static final int widget_icon
+    public static final int widget_line
+    public static final int widget_line2
+    public static final int widget_page_down
+    public static final int widget_page_up
+    public static final int widget_set
+    public static final int widget_set1
+    public static final int widget_top
+    public static final int widget_xj
+    public static final int widget_xj1
+    public static final int widget_yh
+    public static final int widget_yh1
+    public static final int wlan
+    public static final int wlanon
+    public static final int xj_detail_camera
+    public static final int xj_detail_cameraon
+    public static final int xj_detail_one
+    public static final int xj_detail_oneon
+    public static final int xj_detail_record
+    public static final int xj_detail_recordon
+    public static final int xj_detail_three
+    public static final int xj_detail_threeon
+    public static final int xj_detail_two
+    public static final int xj_detail_twoon
+    public static final int xj_detail_yh
+    public static final int xj_detail_yhon
+    public static final int xj_listview_item_background
+    public static final int xj_main_item_bg
+    public static final int xj_main_item_bgon
+    public static final int xj_main_listview_item_background
+    public static final int xj_pause
+    public static final int xj_start
+    public static final int xj_threepoint
+    public static final int xj_title
+    public static final int xj_title_jz
+    public static final int xj_two_item_bg
+    public static final int xj_two_item_bgon
+    public static final int xj_two_itembgon
+    public static final int yes
+    public static final int yeson
+    public static final int yh_title
+daiwei.mobile.R$id:
+    public static final int Spinner01
+    public static final int Spinner02
+    public static final int Spinner03
+    public static final int Spinner04
+    public static final int add1
+    public static final int add2
+    public static final int add3
+    public static final int add4
+    public static final int alter_list
+    public static final int alter_radio
+    public static final int alter_text
+    public static final int arrive_img
+    public static final int automatic_loaded
+    public static final int back_img
+    public static final int bottom_tv
+    public static final int bt_deleteAll
+    public static final int btnFinishGd
+    public static final int btnFinishXj
+    public static final int btnWaitGd
+    public static final int btnWaitXj
+    public static final int btn_ab_bottom
+    public static final int btn_cancel
+    public static final int btn_clear
+    public static final int btn_del
+    public static final int btn_delall
+    public static final int btn_dismiss
+    public static final int btn_ip_cancle
+    public static final int btn_ip_save
+    public static final int btn_ok
+    public static final int btn_preview
+    public static final int button_reason
+    public static final int button_start
+    public static final int button_stop
+    public static final int camera
+    public static final int cb_delete
+    public static final int complete_img
+    public static final int complete_lyt
+    public static final int container
+    public static final int content
+    public static final int contentPager
+    public static final int cur_dot
+    public static final int datepicker
+    public static final int deal_content
+    public static final int deal_tv1
+    public static final int desktop_list
+    public static final int desktop_list_img
+    public static final int desktop_list_point
+    public static final int desktop_list_text
+    public static final int detail_tv2
+    public static final int detail_tv3
+    public static final int dia_time
+    public static final int down_load_img
+    public static final int edit_layout
+    public static final int editext_content
+    public static final int et_editText
+    public static final int et_editText1
+    public static final int et_editText2
+    public static final int et_finish
+    public static final int et_ip_adrress
+    public static final int et_ip_name
+    public static final int et_no
+    public static final int et_problem
+    public static final int et_program
+    public static final int et_reason
+    public static final int et_recoverTime
+    public static final int foot11
+    public static final int footsearch2
+    public static final int frame_null
+    public static final int framelayout
+    public static final int friends_list
+    public static final int gallery
+    public static final int gd_bottom
+    public static final int gd_frame_lv
+    public static final int gd_frame_lv1
+    public static final int gd_item_image
+    public static final int gd_layout1
+    public static final int gd_layout3
+    public static final int head
+    public static final int hidden_img
+    public static final int hidden_lyt
+    public static final int ib_auto_upload
+    public static final int ib_bar_back
+    public static final int ib_widget_set
+    public static final int imageButton
+    public static final int imageButton1
+    public static final int imageButton2
+    public static final int imageButton3
+    public static final int imageButton4
+    public static final int imageButton5
+    public static final int image_notification_notice
+    public static final int image_shock
+    public static final int image_voice_notify
+    public static final int imgIndicator
+    public static final int img_arrow
+    public static final int img_file
+    public static final int imgview_map_icon
+    public static final int imgview_recordbutton_bg
+    public static final int iv
+    public static final int iv_app_icon
+    public static final int iv_content_page_down
+    public static final int iv_content_page_text
+    public static final int iv_content_page_up
+    public static final int iv_del
+    public static final int iv_friends
+    public static final int iv_ip_arrow
+    public static final int iv_ip_set
+    public static final int iv_line
+    public static final int iv_noticetitle
+    public static final int iv_point
+    public static final int iv_title
+    public static final int iv_widget_refresh
+    public static final int iv_xjtitle
+    public static final int iv_yes
+    public static final int leave_img
+    public static final int line
+    public static final int line_completion_name
+    public static final int line_completion_text
+    public static final int line_data_name
+    public static final int line_data_text
+    public static final int line_id_name
+    public static final int line_id_text
+    public static final int listview_xj_two
+    public static final int ll_StatuName
+    public static final int ll_ab_bottom
+    public static final int ll_about
+    public static final int ll_bug
+    public static final int ll_bug1
+    public static final int ll_button
+    public static final int ll_camera
+    public static final int ll_check_upgrade
+    public static final int ll_clear_cache
+    public static final int ll_content
+    public static final int ll_content2
+    public static final int ll_content2_title
+    public static final int ll_content_left
+    public static final int ll_content_main
+    public static final int ll_content_page
+    public static final int ll_dealMessage
+    public static final int ll_dealMessage1
+    public static final int ll_down
+    public static final int ll_friends
+    public static final int ll_gd_detail_textview
+    public static final int ll_image
+    public static final int ll_ip_name
+    public static final int ll_limitMessage
+    public static final int ll_limitMessage1
+    public static final int ll_listview
+    public static final int ll_logout
+    public static final int ll_map
+    public static final int ll_mic
+    public static final int ll_mic_activity_filename
+    public static final int ll_mic_activity_mictime
+    public static final int ll_mic_activity_title
+    public static final int ll_netName
+    public static final int ll_normalMessage
+    public static final int ll_normalMessage1
+    public static final int ll_notice
+    public static final int ll_shock
+    public static final int ll_sv
+    public static final int ll_sv1
+    public static final int ll_timeName
+    public static final int ll_title
+    public static final int ll_voice_notify
+    public static final int ll_widget_content
+    public static final int ll_widget_loading
+    public static final int ll_widget_loading_text
+    public static final int ll_xj
+    public static final int loading
+    public static final int login_bt
+    public static final int logo_content2_login
+    public static final int logo_login
+    public static final int lv_folder
+    public static final int lv_ip_history
+    public static final int map
+    public static final int menu
+    public static final int mic
+    public static final int msg_num_tv
+    public static final int msg_type
+    public static final int mylistview
+    public static final int notify_imageLog
+    public static final int notify_msg
+    public static final int notify_name
+    public static final int notify_time
+    public static final int open
+    public static final int password
+    public static final int pb_dowanload
+    public static final int pb_launch
+    public static final int photo
+    public static final int photo_img
+    public static final int position
+    public static final int process_count
+    public static final int process_memory
+    public static final int progress
+    public static final int progressbar
+    public static final int recode_img
+    public static final int rl_content1
+    public static final int rl_del
+    public static final int rl_editText
+    public static final int rl_listview
+    public static final int rl_splash
+    public static final int rl_title
+    public static final int rl_top
+    public static final int rl_widget_content_main
+    public static final int rl_yh_newyh
+    public static final int scrollview_gd
+    public static final int spinner
+    public static final int spinner_content
+    public static final int spinner_reason
+    public static final int start_img
+    public static final int start_lyt
+    public static final int start_tv
+    public static final int submit
+    public static final int takephoto
+    public static final int template_btn
+    public static final int textview_mic_activity_time
+    public static final int textview_recordbutton_recordname
+    public static final int timepicker
+    public static final int titleBar
+    public static final int title_content2_login
+    public static final int title_login
+    public static final int tv
+    public static final int tv_StatuName
+    public static final int tv_app_name
+    public static final int tv_app_version
+    public static final int tv_attribute
+    public static final int tv_content1
+    public static final int tv_content2
+    public static final int tv_dealTime
+    public static final int tv_dir
+    public static final int tv_editText
+    public static final int tv_fileNum
+    public static final int tv_filename
+    public static final int tv_gd_type
+    public static final int tv_happentime
+    public static final int tv_limit
+    public static final int tv_mic_activity_fileName
+    public static final int tv_mic_activity_state
+    public static final int tv_name
+    public static final int tv_netClassify
+    public static final int tv_netName
+    public static final int tv_no
+    public static final int tv_no1
+    public static final int tv_normal_person
+    public static final int tv_normal_person_company
+    public static final int tv_normal_person_department
+    public static final int tv_normal_tel
+    public static final int tv_normal_time
+    public static final int tv_number
+    public static final int tv_one
+    public static final int tv_path
+    public static final int tv_person
+    public static final int tv_popwin_offline
+    public static final int tv_popwin_online
+    public static final int tv_position
+    public static final int tv_respondClass
+    public static final int tv_sign
+    public static final int tv_spinner
+    public static final int tv_status
+    public static final int tv_switch
+    public static final int tv_switch1
+    public static final int tv_theme_content
+    public static final int tv_three
+    public static final int tv_time
+    public static final int tv_timeName
+    public static final int tv_title
+    public static final int tv_tl
+    public static final int tv_two
+    public static final int tv_type
+    public static final int tv_version
+    public static final int tv_vl
+    public static final int tv_way
+    public static final int tv_widget_msg
+    public static final int txt_loading
+    public static final int user
+    public static final int user_name
+    public static final int username
+    public static final int viewPager
+    public static final int voicegallery
+    public static final int xj_bottom
+    public static final int xj_button_on
+    public static final int xj_footer
+    public static final int xj_list_text
+daiwei.mobile.R$layout:
+    public static final int about
+    public static final int alert_listview
+    public static final int alter_item
+    public static final int appwidget_provider
+    public static final int appwidget_provider_item
+    public static final int appwidget_provider_layout
+    public static final int attach
+    public static final int common_datetime
+    public static final int customprogress
+    public static final int desktop
+    public static final int desktop_list_item
+    public static final int edittext
+    public static final int edittext_float
+    public static final int exit_dialog
+    public static final int finishdialog
+    public static final int folderdialog
+    public static final int foot
+    public static final int foot1
+    public static final int foot_resource
+    public static final int footbg
+    public static final int footgdanswer
+    public static final int footgdsubmit
+    public static final int footitem
+    public static final int footpoint
+    public static final int footsearch
+    public static final int footsearch2
+    public static final int footxjline
+    public static final int friends
+    public static final int friends_list_item
+    public static final int gd_detail
+    public static final int gd_detail_bg
+    public static final int gd_detail_bg1
+    public static final int gd_detail_foot
+    public static final int gd_detail_item_frame
+    public static final int gd_detail_item_lv
+    public static final int gd_detail_item_text
+    public static final int gd_detail_text
+    public static final int gd_detail_textview
+    public static final int gd_layout1
+    public static final int gd_layout2
+    public static final int gd_layout3
+    public static final int gd_modle
+    public static final int gdback
+    public static final int gdfoot5
+    public static final int gdfoot5fd
+    public static final int gdfoot5gz
+    public static final int gdfoot5ts
+    public static final int gdlist_activity
+    public static final int gdpf
+    public static final int guide
+    public static final int historysearch_detail_bg
+    public static final int item
+    public static final int jssearch
+    public static final int jssearch_detail_bg
+    public static final int jssearch_list_item
+    public static final int linearfocous
+    public static final int listview
+    public static final int listview_folder
+    public static final int listview_folderitem
+    public static final int login
+    public static final int login_ip_history
+    public static final int login_ip_history_item
+    public static final int map
+    public static final int mapview
+    public static final int mic_activity
+    public static final int mydialog
+    public static final int myspinner
+    public static final int notice
+    public static final int notice_item
+    public static final int notify_view
+    public static final int popup_gdlist_title
+    public static final int popup_tip
+    public static final int popup_xj
+    public static final int popupwindow
+    public static final int process_widget
+    public static final int progressbar_download
+    public static final int recode
+    public static final int recordbutton
+    public static final int search
+    public static final int spinner
+    public static final int spinnerbutton
+    public static final int splash
+    public static final int switchon
+    public static final int terminal
+    public static final int verson_dialog
+    public static final int xj
+    public static final int xj_detail_bg
+    public static final int xj_detail_foot
+    public static final int xj_detail_line_bg
+    public static final int xj_detail_resource_bg
+    public static final int xj_detail_resource_foot
+    public static final int xj_foot
+    public static final int xj_line
+    public static final int xj_line_footer
+    public static final int xj_line_item
+    public static final int xj_main_item
+    public static final int xj_two
+    public static final int xj_two_item
+    public static final int xjmapdialog
+    public static final int xjmessage
+    public static final int yh
+    public static final int yh_detail_bg
+daiwei.mobile.R$string:
+    public static final int SD_isNO
+    public static final int app_name
+    public static final int arrive
+    public static final int arrive_sure
+    public static final int cancle
+    public static final int complete
+    public static final int dialog_name
+    public static final int dialog_tude
+    public static final int dialog_upload_name
+    public static final int dialog_upload_tude_name
+    public static final int gettude_failed
+    public static final int gps_message
+    public static final int gps_ope_failed
+    public static final int hello
+    public static final int hidden
+    public static final int hidden_report
+    public static final int information_proofread
+    public static final int leave
+    public static final int msg_error_http_timeout
+    public static final int msg_error_network_unavailable
+    public static final int photo
+    public static final int photo_category
+    public static final int photo_nostart
+    public static final int photo_sucess
+    public static final int recode_end
+    public static final int recode_nostart
+    public static final int recode_start
+    public static final int recode_sucess
+    public static final int record
+    public static final int sim_no
+    public static final int sure
+    public static final int template_btn_text
+    public static final int text_max_length
+    public static final int upload_failed
+    public static final int upload_success
+    public static final int upload_tude_failed
+    public static final int upload_tude_success
+    public static final int user_name
+    public static final int xj_begin
+    public static final int xj_complete
+    public static final int xj_continue
+    public static final int xj_list_completion
+    public static final int xj_list_data
+    public static final int xj_list_id
+    public static final int xj_stop
+daiwei.mobile.R$style:
+    public static final int AppTheme
+    public static final int Theme_dialog
+    public static final int activityAnimation
+    public static final int leba_bg_base_layout
+    public static final int leba_bg_bottom_layout
+    public static final int leba_bg_layout
+    public static final int leba_bg_mid_layout
+    public static final int leba_bg_single_layout
+    public static final int leba_bg_top_layout
+    public static final int my_edittext_style
+daiwei.mobile.R$xml:
+    public static final int widget_info
+daiwei.mobile.Tools.GPS:
+    17:17:public GPS()
+daiwei.mobile.Tools.GetTude
+daiwei.mobile.Tools.IsNetwork:
+    7:7:public IsNetwork()
+    23:24:public static void showToast(android.content.Context,java.lang.String)
+daiwei.mobile.Tools.NetWork:
+    19:19:public NetWork()
+    26:35:public static boolean checkWife(android.content.Context)
+    44:55:public static boolean checkGPRS(android.content.Context)
+daiwei.mobile.activity.AboutActivity:
+    private static final java.lang.String TAG
+daiwei.mobile.activity.BaseActivity:
+    private daiwei.mobile.view.MyViewGroup mg
+daiwei.mobile.activity.BaseApplication:
+    59:59:public java.lang.String getCustomIpName()
+    84:85:public void setLoginModel(daiwei.mobile.animal.LoginModel)
+daiwei.mobile.activity.BaseHandleActivity:
+    private daiwei.mobile.common.XMLUtil$FieldVO filedVO
+    private java.util.Map requiredFieldMap
+    public static final int SUBMIT_ERROR
+    public static final int SUBMIT_SUCCESS
+    public static final int OFF_LINE_SUCCESS
+    private static final int BUFFER
+    private android.os.Handler fieldHandler
+    330:349:public void getFieldData()
+    384:412:public void initField()
+daiwei.mobile.activity.BaseHandleActivity$7:
+    1:332:BaseHandleActivity$7(daiwei.mobile.activity.BaseHandleActivity)
+daiwei.mobile.activity.BaseTmpActivity:
+    public static final int SUBMIT_ERROR
+    public static final int SUBMIT_SUCCESS
+    public static final int DOWNLOAD_SUCCESS
+    public static final int DOWNLOAD_ERROR
+    352:361:private void setTextOld()
+    488:547:private void addfieldGroupAttach(android.widget.LinearLayout)
+daiwei.mobile.activity.BaseTmpActivity$10:
+    1:506:BaseTmpActivity$10(daiwei.mobile.activity.BaseTmpActivity,android.widget.LinearLayout,android.widget.ImageView)
+daiwei.mobile.activity.BaseTmpActivity$ImageAdapter:
+    641:643:private void setData(java.util.ArrayList)
+daiwei.mobile.activity.BaseTmpActivity$ViewHolder:
+    android.widget.RadioButton rbtn
+daiwei.mobile.activity.BaseTmpActivity$VoiceAdapter:
+    719:721:public void setData(java.util.ArrayList)
+daiwei.mobile.activity.DialogActivity:
+    private java.util.Map map
+    78:82:private java.util.ArrayList getData(java.lang.String)
+daiwei.mobile.activity.DialogActivity$MyAdapter:
+    daiwei.mobile.activity.DialogActivity act
+    int level
+    147:148:public void setActivity(daiwei.mobile.activity.DialogActivity)
+daiwei.mobile.activity.DialogVersonActivity:
+    public static final int WHAT_DEL
+    public static final int WHAT_CHECK_UPGRADE
+    public static final int WHAT_DOWN_UPDATE
+    public static final int WHAT_DOWN_OVER
+    public android.view.View set
+daiwei.mobile.activity.FieldView:
+    1813:1813:public java.lang.String getType()
+    1821:1821:public java.lang.String getActionCode()
+daiwei.mobile.activity.GdListActivity:
+    private android.widget.Button btnAbBottom
+    public java.lang.String img_text
+    515:693:private void setListenersOld(int)
+    728:746:private void cacheList()
+    910:923:public java.util.ArrayList executeQuery(java.lang.String,java.lang.String[])
+daiwei.mobile.activity.GdListActivity$10:
+    1:598:GdListActivity$10(daiwei.mobile.activity.GdListActivity,int)
+daiwei.mobile.activity.GdListActivity$11:
+    1:659:GdListActivity$11(daiwei.mobile.activity.GdListActivity,int)
+daiwei.mobile.activity.GdListActivity$12:
+    1:685:GdListActivity$12(daiwei.mobile.activity.GdListActivity)
+daiwei.mobile.activity.GdListActivity$14:
+    1:730:GdListActivity$14(daiwei.mobile.activity.GdListActivity,java.util.ArrayList)
+daiwei.mobile.activity.GdListActivity$8:
+    1:518:GdListActivity$8(daiwei.mobile.activity.GdListActivity,int)
+daiwei.mobile.activity.GdListActivity$9:
+    1:580:GdListActivity$9(daiwei.mobile.activity.GdListActivity,int)
+daiwei.mobile.activity.GdListActivity$Adapter:
+    1157:1165:private void setData(int,java.util.List,int)
+daiwei.mobile.activity.GdListActivity$ViewHolder:
+    android.widget.LinearLayout ll_timeName
+    android.widget.TextView tv_timeName
+    android.widget.CheckBox checkBox
+daiwei.mobile.activity.GdReplyfdActivity:
+    119:127:private void hideIM(android.view.View)
+daiwei.mobile.activity.GuideActivity:
+    private static final int TO_THE_END
+    private static final int LEAVE_FROM_END
+daiwei.mobile.activity.JsMessResultActivity$ViewHolder:
+    final synthetic daiwei.mobile.activity.JsMessResultActivity this$0
+    92:92:public JsMessResultActivity$ViewHolder(daiwei.mobile.activity.JsMessResultActivity)
+daiwei.mobile.activity.LoginActivity:
+    public static android.app.Activity Ac
+daiwei.mobile.activity.NoticeTmpActivity:
+    private android.os.Handler handler
+    98:107:private void logic()
+    110:112:private void addField(android.widget.LinearLayout,daiwei.mobile.util.TempletUtil.TMPModel.Field)
+    114:121:private void addLabel(android.widget.LinearLayout,daiwei.mobile.util.TempletUtil.TMPModel.Field)
+    123:155:private void addfieldGroup(android.widget.LinearLayout,daiwei.mobile.util.TempletUtil.TMPModel.FieldGroup)
+    157:165:private void addString(android.widget.LinearLayout,daiwei.mobile.util.TempletUtil.TMPModel.Field)
+daiwei.mobile.activity.NoticeTmpActivity$1:
+    final synthetic daiwei.mobile.activity.NoticeTmpActivity this$0
+    1:136:NoticeTmpActivity$1(daiwei.mobile.activity.NoticeTmpActivity,android.widget.LinearLayout,android.widget.ImageView)
+daiwei.mobile.activity.SplashActivity:
+    private static final java.lang.String TAG
+    private static final int WHAT_FIRST_INSTALL
+    private static final int WHAT_REPLACE_INSTALL
+    private static final int WHAT_AUTO_LOGIN
+    private static final int WHAT_CHECK_UPGRADE
+    private static final int WHAT_OFF_LINE_LOGIN
+    private static final int WHAT_DOWN_UPDATE
+    private static final int WHAT_DOWN_OVER
+    130:132:private void startTudeUpLoadService()
+    135:138:private void startSiteUpLoadService()
+daiwei.mobile.activity.TestActivity:
+    private static final java.lang.String TAG
+    public static final java.lang.String KEY_FROM
+    public static final java.lang.String KEY_LOGINMODEL
+    public static final int CONSTANT_FROM_LAUNCHER
+    public static final int CONSTANT_FROM_WIDGET
+    public static int screenW
+    public static java.lang.String versionName
+    android.content.SharedPreferences isShowIconRef
+daiwei.mobile.activity.XjLineActivity:
+    private static final int WHAT_UP_DATA_FALSE
+    private static final int WHAT_UP_DATA_TRUE
+    724:724:public void changeColor()
+daiwei.mobile.activity.XjLineActivity$FieldView:
+    private java.lang.String actionCode
+    779:779:public java.lang.String getType()
+    787:787:public java.lang.String getActionCode()
+    791:792:public void setActionCode(java.lang.String)
+daiwei.mobile.activity.XjTmpActivity:
+    public static final int WHAT_UP_DATA_FALSE
+    public static final int WHAT_UP_DATA_TRUE
+    public static final int XJ_ARRIVE_TRUE
+    public static final int XJ_ARRIVE_FALSE
+    public static final int XJ_ARRIVE
+    public static final int XJ_LEAVE
+    public static final int XJ_COMPLETE
+    public static final int XJ_HIDDEN
+    private static final int BUFFER
+daiwei.mobile.activity.XjTmpActivity$FieldView:
+    private java.lang.String actionCode
+    2238:2238:public java.lang.String getType()
+    2246:2246:public java.lang.String getActionCode()
+    2250:2251:public void setActionCode(java.lang.String)
+daiwei.mobile.activity.XjZfzActivity:
+    private android.app.AlertDialog$Builder builder
+daiwei.mobile.activity.XjZfzActivity$XJThread:
+    private java.lang.String contentId
+daiwei.mobile.activity.XjZfzLineActivity:
+    private android.widget.LinearLayout ll_button
+    251:256:public void changeColor()
+daiwei.mobile.activity.YhHandleActivity:
+    public static final int SUBMIT_ERROR
+    public static final int SUBMIT_SUCCESS
+    private static final int BUFFER
+    private android.widget.ImageView imageMap
+daiwei.mobile.activity.YhHisResultActivity$MyAdapter:
+    daiwei.mobile.activity.YhHisResultActivity act
+    79:80:public void setActivity(daiwei.mobile.activity.YhHisResultActivity)
+daiwei.mobile.activity.YhTmpActivity:
+    216:252:private void addActionButton(android.widget.LinearLayout,daiwei.mobile.util.TempletUtil.TMPModel.ActionButton,java.lang.String)
+daiwei.mobile.activity.YhTmpActivity$3:
+    final synthetic daiwei.mobile.activity.YhTmpActivity this$0
+    1:229:YhTmpActivity$3(daiwei.mobile.activity.YhTmpActivity,android.view.View)
+daiwei.mobile.animal.ActivityManager
+daiwei.mobile.animal.CommonResult:
+    31:34:public CommonResult(boolean,java.lang.String)
+    42:45:public CommonResult(boolean,java.lang.Object)
+    51:51:public int getArg1()
+    58:59:public void setArg1(int)
+    107:107:public int getErrorCode()
+    114:115:public void setErrorCode(int)
+    121:121:public java.lang.String getErorrMsg()
+    128:129:public void setErorrMsg(java.lang.String)
+daiwei.mobile.animal.HttpResultData
+daiwei.mobile.animal.Rotate3d1
+daiwei.mobile.animal.Site:
+    private java.lang.String taskID
+    private java.lang.String lineNo
+    private java.lang.String localTime
+    11:11:public java.lang.String getTaskID()
+    14:15:public void setTaskID(java.lang.String)
+    29:29:public java.lang.String getLineNo()
+    32:33:public void setLineNo(java.lang.String)
+    35:35:public java.lang.String getLocalTime()
+    38:39:public void setLocalTime(java.lang.String)
+daiwei.mobile.animal.ViewRotate
+daiwei.mobile.animal.XJUpModel
+daiwei.mobile.common.BaseXJ:
+    public java.lang.String[] tl
+    public java.lang.String[] vl
+    public int[] tp
+    public int[] fr
+    public java.lang.String titleText
+    public java.lang.String gdType
+    public java.lang.String gdId
+    public int detailId
+    23:23:public BaseXJ()
+    35:39:public void onCreate(android.view.View)
+    public abstract void getTvtf()
+    public abstract void afterOnCreate()
+    44:224:private void BuildActivity()
+    227:233:protected void spinnerList(android.widget.Spinner,java.lang.String[])
+daiwei.mobile.common.BaseXJ$1:
+    final synthetic daiwei.mobile.common.BaseXJ this$0
+    1:94:BaseXJ$1(daiwei.mobile.common.BaseXJ,android.widget.LinearLayout,android.widget.ImageView)
+daiwei.mobile.common.BaseXJ$2:
+    1:145:BaseXJ$2(daiwei.mobile.common.BaseXJ,android.widget.ImageButton)
+daiwei.mobile.common.BaseXJ$3:
+    1:180:BaseXJ$3(daiwei.mobile.common.BaseXJ,android.widget.ImageButton)
+daiwei.mobile.common.HTTPConnection:
+    private static final java.lang.String TAG
+    public static final int SOCKET_TIMEOUT
+    public static final int CONNECTION_TIMEOUT
+    66:67:public HTTPConnection(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)
+    70:70:public static void addPrams(java.lang.String,java.lang.String)
+    249:309:public static daiwei.mobile.animal.HttpResultData post(android.content.Context,java.util.HashMap)
+    319:357:public boolean unzip(java.lang.String,java.lang.String)
+    392:392:public java.lang.String getInputType()
+    400:400:public java.lang.String getFilePath()
+    408:408:public java.lang.String getFileName()
+    416:416:public boolean isZip()
+daiwei.mobile.common.MyData:
+    13:13:public MyData()
+daiwei.mobile.common.TestXmlCreat:
+    61:67:public varargs void addElement(java.lang.String,java.lang.String,java.lang.String[])
+daiwei.mobile.common.XMLUtil:
+    188:200:public java.util.List getListDu()
+    430:440:public daiwei.mobile.util.TempletUtil.TMPModel.XJField getXJField(org.dom4j.Element)
+    633:633:public void addMap()
+    636:636:public org.dom4j.Element getXmlRow()
+    649:682:public java.util.HashMap analycXML()
+daiwei.mobile.db.DBHelper:
+    private static final java.lang.String DB_NAME
+daiwei.mobile.db.LoginMess
+daiwei.mobile.db.LoginMessDao
+daiwei.mobile.db.TestLoginMessDao
+daiwei.mobile.receiver.BootCompleteReceiver:
+    private static final java.lang.String TAG
+daiwei.mobile.receiver.MyAppWidgetProvider:
+    private static final java.lang.String TAG
+    private static final int WHAT_AUTO_LOGIN
+    private static final int WHAT_LOAD_DATA
+    280:317:private void loadDwgdOld(android.appwidget.AppWidgetManager,int[],android.widget.RemoteViews)
+daiwei.mobile.receiver.MyAppWidgetProvider$4:
+    1:286:MyAppWidgetProvider$4(daiwei.mobile.receiver.MyAppWidgetProvider)
+daiwei.mobile.receiver.SmsReceiver:
+    public static final java.lang.String SMS_RECEIVED_ACTION
+daiwei.mobile.service.AutoUploadManager:
+    private static final java.lang.String TAG
+    private static final int BUFFER
+daiwei.mobile.service.AutoUploadService:
+    private static final java.lang.String TAG
+daiwei.mobile.service.BootService:
+    public static final java.lang.String TAG
+    public static final int MY_NOTIFY_ID
+daiwei.mobile.service.GDCacheService
+daiwei.mobile.service.GDListService:
+    public abstract java.util.List getFinishList(int)
+daiwei.mobile.service.GDListServiceImp:
+    62:101:public daiwei.mobile.animal.ListModel getWaitListOld(android.content.Context,int,int,int,int,java.lang.String)
+    106:117:public java.util.List getFinishList(int)
+daiwei.mobile.service.GetNoticeViewService:
+    public static final int MY_NOTIFY_ID
+    62:63:public static void resetCount()
+daiwei.mobile.service.LaunchService:
+    private static final java.lang.String TAG
+    172:173:public daiwei.mobile.animal.CommonResult autoLogin(android.content.Context)
+daiwei.mobile.service.LoginDownLoad
+daiwei.mobile.service.MessageItem:
+    private static final long serialVersionUID
+    20:20:public int getId()
+    28:28:public int getType()
+    36:36:public int getProtocol()
+    44:44:public java.lang.String getPhone()
+daiwei.mobile.service.SMS:
+    public static final java.lang.String FILTER
+    public static final java.lang.String TYPE
+    public static final java.lang.String THREAD_ID
+    public static final java.lang.String ADDRESS
+    public static final java.lang.String PERSON_ID
+    public static final java.lang.String DATE
+    public static final java.lang.String READ
+    public static final java.lang.String BODY
+    public static final java.lang.String PROTOCOL
+    public static final int MESSAGE_TYPE_ALL
+    public static final int MESSAGE_TYPE_INBOX
+    public static final int MESSAGE_TYPE_SENT
+    public static final int MESSAGE_TYPE_DRAFT
+    public static final int MESSAGE_TYPE_OUTBOX
+    public static final int MESSAGE_TYPE_FAILED
+    public static final int MESSAGE_TYPE_QUEUED
+    public static final int PROTOCOL_SMS
+    public static final int PROTOCOL_MMS
+daiwei.mobile.service.SMSObserver:
+    public static final java.lang.String TAG
+    private static final java.lang.String FLAG
+    private static final java.lang.String PHONENUMBER
+    private static final java.lang.String SELECTION
+    private static final int COLUMN_INDEX_ID
+    private static final int COLUMN_INDEX_TYPE
+    private static final int COLUMN_INDEX_PHONE
+    private static final int COLUMN_INDEX_BODY
+    private static final int COLUMN_INDEX_PROTOCOL
+    private static final int MAX_NUMS
+    43:44:public SMSObserver(android.os.Handler)
+daiwei.mobile.service.SubmitService:
+    public abstract daiwei.mobile.common.XMLUtil submitData(android.content.Context,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.util.Map,java.util.Map)
+daiwei.mobile.service.SubmitServiceImp:
+    76:112:public daiwei.mobile.common.XMLUtil submitData(android.content.Context,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.util.Map,java.util.Map)
+daiwei.mobile.service.TudeService
+daiwei.mobile.service.TudeUpLoadService:
+    private static final int TUDEWHAT
+    private static final int TIMEERWHAT
+daiwei.mobile.service.WidgetManager
+daiwei.mobile.service.XJArriveInterface
+daiwei.mobile.service.XJLineService:
+    public abstract java.util.ArrayList getSiteList(java.lang.String,android.R$integer)
+daiwei.mobile.service.XJLineServiceImp:
+    88:88:public java.util.ArrayList getSiteList(java.lang.String,android.R$integer)
+daiwei.mobile.service.XJListService:
+    public abstract java.util.List getFinishList(int)
+daiwei.mobile.service.XJListServiceImp:
+    45:45:public java.util.List getFinishList(int)
+daiwei.mobile.service.XJUpService
+daiwei.mobile.util.AMapUtil:
+    public static final java.lang.String HtmlBlack
+    public static final java.lang.String HtmlGray
+    15:15:public AMapUtil()
+    28:28:public static android.text.Spanned stringToSpan(java.lang.String)
+    32:36:public static java.lang.String colorFont(java.lang.String,java.lang.String)
+    40:40:public static java.lang.String makeHtmlNewLine()
+    44:49:public static java.lang.String makeHtmlSpace(int)
+    53:76:public static java.lang.String getFriendlyLength(int)
+    80:80:public static boolean IsEmptyOrNullString(java.lang.String)
+    87:87:public static com.amap.api.search.core.LatLonPoint convertToLatLonPoint(com.amap.api.maps.model.LatLng)
+    94:96:public static java.lang.String convertToTime(long)
+daiwei.mobile.util.AppConfigs:
+    public static final int DB_VERSION
+    public static final java.lang.String URL_PATH
+    public static final java.lang.String URL_NEW_APP
+    8:8:public AppConfigs()
+daiwei.mobile.util.AppConstants
+daiwei.mobile.util.AppInfo:
+    private static final java.lang.String TAG
+    20:20:public AppInfo()
+    113:117:public static daiwei.mobile.animal.User getUserFromApplication(android.content.Context)
+    143:145:public static void saveLoginModelToApplication(android.content.Context,daiwei.mobile.animal.LoginModel)
+daiwei.mobile.util.ChString
+daiwei.mobile.util.Constants
+daiwei.mobile.util.CryptUtils:
+    108:123:public synchronized java.lang.String decode(java.lang.String)
+    132:135:public java.lang.String base64Encode(java.lang.String)
+    144:153:public java.lang.String base64Decode(java.lang.String)
+    160:193:public static void main(java.lang.String[])
+daiwei.mobile.util.DensityUtil
+daiwei.mobile.util.FileUtil:
+    private static final java.lang.String TAG
+    26:26:public FileUtil()
+    39:86:public static boolean uploadFile(java.lang.String,java.lang.String)
+    104:165:public static boolean download(java.lang.String,java.lang.String,java.lang.String,java.lang.String)
+    175:183:public static void createDir(java.io.File)
+    225:234:public static java.lang.String getFileName(java.lang.String)
+    308:314:public static boolean deleteFile(java.lang.String)
+daiwei.mobile.util.FolderUtil.Item
+daiwei.mobile.util.ImagUtil
+daiwei.mobile.util.ServiceStatusUtil
+daiwei.mobile.util.StringUtil:
+    private static final java.lang.String TAG
+    10:10:public StringUtil()
+daiwei.mobile.util.TempletUtil.TMPModel.ActionButton:
+    private static final long serialVersionUID
+    82:82:public static long getSerialversionuid()
+daiwei.mobile.util.TempletUtil.TMPModel.ActionField
+daiwei.mobile.util.TempletUtil.TMPModel.BaseField:
+    16:16:public java.lang.String getId()
+daiwei.mobile.util.TempletUtil.TMPModel.Caetgory
+daiwei.mobile.util.TempletUtil.TMPModel.Field:
+    private static final long serialVersionUID
+    56:56:public java.lang.String getAssignType()
+    104:104:public static long getSerialversionuid()
+daiwei.mobile.util.TempletUtil.TMPModel.TemplateRT:
+    11:11:public java.lang.String getParamId()
+    17:17:public java.lang.String getParamCode()
+daiwei.mobile.util.TempletUtil.TMPModel.TempletModel:
+    10:10:public TempletModel()
+daiwei.mobile.util.TempletUtil.TMPModel.XJField
+daiwei.mobile.util.TempletUtil.TMPModel.XJFieldGroup:
+    private java.lang.String id
+    28:28:public java.lang.String getId()
+    31:32:public void setId(java.lang.String)
+daiwei.mobile.util.TempletUtil.TMPModel.XJLineField:
+    private java.lang.String resId
+    21:21:public java.lang.String getResId()
+    24:25:public void setResId(java.lang.String)
+daiwei.mobile.util.TempletUtil.TMPModelXJ.Content:
+    private java.lang.String contentId
+    19:20:public void setDataType(java.lang.String)
+    22:22:public java.lang.String getContentId()
+    25:26:public void setContentId(java.lang.String)
+    31:32:public void setMaintainContent(java.lang.String)
+    37:38:public void setQualityStandard(java.lang.String)
+    43:44:public void setWriteWayid(java.lang.String)
+    49:50:public void setDataItem(java.lang.String)
+    55:56:public void setDefaultValue(java.lang.String)
+daiwei.mobile.util.TempletUtil.TMPModelXJ.RecordInfo:
+    private java.lang.String objectId
+    18:19:public void setDistance(java.lang.String)
+    21:21:public java.lang.String getObjectId()
+    24:25:public void setObjectId(java.lang.String)
+    30:31:public void setPatrolObject(java.lang.String)
+    36:37:public void setContents(java.util.HashMap)
+daiwei.mobile.util.TempletUtil.TMPModelXJ.XjItem:
+    31:31:public java.lang.String getTaskNote()
+daiwei.mobile.util.TempletUtil.TempletService:
+    52:54:public void TempletLoadXJ(java.lang.String,java.lang.String)
+    57:59:public void TempletAnalytic(java.lang.String)
+    63:81:public void CaetgoryLoad()
+daiwei.mobile.util.TestAnalyticXML:
+    23:23:public TestAnalyticXML()
+    59:71:public static void printStr(daiwei.mobile.animal.Item)
+    75:87:public static daiwei.mobile.animal.Item getChild(daiwei.mobile.animal.Item,int)
+daiwei.mobile.util.ToastUtil:
+    9:9:public ToastUtil()
+    16:17:public static void show(android.content.Context,int)
+daiwei.mobile.util.XMLParserFolder
+daiwei.mobile.util.Zipper:
+    public static final java.lang.String encoding
+    10:10:public Zipper()
+    16:41:public static void zip(java.lang.String,java.lang.String)
+daiwei.mobile.view.Desktop:
+    305:305:public void showFriends()
+daiwei.mobile.view.Desktop$Adapter:
+    300:300:public void setListBg()
+daiwei.mobile.view.Friends:
+    public java.lang.String img_text
+    private android.widget.LinearLayout llTitle
+    208:236:private void changeTitleBarShow()
+    495:673:private void setListenersOld(int)
+    708:726:private void cacheList()
+daiwei.mobile.view.Friends$11:
+    1:498:Friends$11(daiwei.mobile.view.Friends,int)
+daiwei.mobile.view.Friends$12:
+    1:560:Friends$12(daiwei.mobile.view.Friends,int)
+daiwei.mobile.view.Friends$13:
+    1:578:Friends$13(daiwei.mobile.view.Friends,int)
+daiwei.mobile.view.Friends$14:
+    1:639:Friends$14(daiwei.mobile.view.Friends,int)
+daiwei.mobile.view.Friends$15:
+    1:665:Friends$15(daiwei.mobile.view.Friends)
+daiwei.mobile.view.Friends$17:
+    1:710:Friends$17(daiwei.mobile.view.Friends,java.util.ArrayList)
+daiwei.mobile.view.Friends$3:
+    1:217:Friends$3(daiwei.mobile.view.Friends)
+daiwei.mobile.view.Friends$4:
+    1:226:Friends$4(daiwei.mobile.view.Friends)
+daiwei.mobile.view.Friends$Adapter:
+    1100:1108:private void setData(int,java.util.List,int)
+daiwei.mobile.view.Friends$ViewHolder:
+    android.widget.LinearLayout ll_timeName
+    android.widget.TextView tv_timeName
+    android.widget.CheckBox checkBox
+daiwei.mobile.view.MDialog:
+    private static final java.lang.String TAG
+    14:14:public MDialog()
+daiwei.mobile.view.MToast:
+    private static final java.lang.String TAG
+    private static final int duration
+    13:13:public MToast()
+    58:67:public static void showWithCustomTime(android.content.Context,int,int)
+    89:97:public static void showWhenHttpTimeout(android.content.Context)
+daiwei.mobile.view.MyViewGroup:
+    private static final int SCREEN_STATE_CLOSE
+    private static final int SCREEN_STATE_OPEN
+    private static final int TOUCH_STATE_RESTART
+    private static final int TOUCH_STATE_SCROLLING
+    private static final int SCROLL_STATE_NO_ALLOW
+    private static final int SCROLL_STATE_ALLOW
+    43:52:public MyViewGroup(android.content.Context)
+daiwei.mobile.view.Setting:
+    public static final int WHAT_DEL
+    public static final int WHAT_CHECK_UPGRADE
+    public static final int WHAT_DOWN_UPDATE
+    public static final int WHAT_DOWN_OVER
+    private android.app.AlertDialog dialog
+daiwei.mobile.view.XjLineMain:
+    public android.view.View xj
+    private android.widget.ListView mDisplay1
+    private android.widget.ListView mDisplay2
+    private int[] mIcon
+    private int MAX_WIDTH
+    private static final int SPEED
+    private android.widget.RelativeLayout$LayoutParams lp
+    private android.widget.ImageView menu
+    private daiwei.mobile.view.XjLineMain$Adapter mAdapter
+    private int bitmapWidth
+    private java.util.List viewList
+    private android.view.View view1
+    private android.view.View view2
+    private android.widget.ImageButton imageButton1
+    private android.widget.ImageButton imageButton2
+    private android.widget.ImageButton imageButton3
+    private android.widget.ImageButton imageButton4
+    private android.widget.ImageButton imageButton5
+    private daiwei.mobile.view.MyViewGroup mg
+    private android.widget.ImageView iv_xjtitle
+    69:98:public XjLineMain(android.content.Context,daiwei.mobile.view.MyViewGroup)
+    103:115:private void initAnimation()
+    119:138:private void initViewPager()
+    141:206:private void setListeners()
+    208:213:public void changeColor()
+    57:57:static synthetic int access$2(daiwei.mobile.view.XjLineMain)
+daiwei.mobile.view.XjLineMain$1:
+    final synthetic daiwei.mobile.view.XjLineMain this$0
+    1:73:XjLineMain$1(daiwei.mobile.view.XjLineMain)
+daiwei.mobile.view.XjLineMain$2:
+    1:146:XjLineMain$2(daiwei.mobile.view.XjLineMain)
+daiwei.mobile.view.XjLineMain$Adapter:
+    final synthetic daiwei.mobile.view.XjLineMain this$0
+    313:315:public XjLineMain$Adapter(daiwei.mobile.view.XjLineMain,android.content.Context)
+daiwei.mobile.view.XjLineMain$MyOnClickListener:
+    221:223:public XjLineMain$MyOnClickListener(daiwei.mobile.view.XjLineMain,int)
+daiwei.mobile.view.XjLineMain$MyOnPageChangeListener:
+    264:265:private XjLineMain$MyOnPageChangeListener(daiwei.mobile.view.XjLineMain)
+    264:264:synthetic XjLineMain$MyOnPageChangeListener(daiwei.mobile.view.XjLineMain,daiwei.mobile.view.XjLineMain$MyOnPageChangeListener)

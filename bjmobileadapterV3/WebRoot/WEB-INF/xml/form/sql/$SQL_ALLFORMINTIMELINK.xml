@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="GB2312"?>
+<sql-group>
+	<doc>
+		<author>duanximeng</author>
+		<date>2006-03-26</date>
+		<description>青海故障工单统计
+
+		</description>
+	</doc>
+	<!-- 受理用户-->
+	<sql name="hbeoms.allformintimerolenamelink" datasource="Ultranms">
+		<item dbms="All"><![CDATA[
+select
+distinct(t.c1) as 编号,t.c700000001 as 工单名称,t.c700000003 as 工单编号,t.c700000006 as 建单时间,t.c700000004 as 建单人,t.c700000011 as 主题,t.c700000015 as 紧急程度,t.c700000014 as 所属专业,t.c700000010 as 工单状态,pro.c1 as 环节号,pro.c700020009 as 环节执行人 
+from {1000} t,{600} pro 
+where
+t.C1=pro.c700020001 
+{1}  {2}  {3} {4}
+ and pro.c700020009 is not null
+and t.C1=pro.C700020001
+and pro.c700020002=t.c700000001
+and pro.c700020011 in ('已完成','待处理','已派发','提交审批')
+and pro.c700020019<>1
+and pro.c700020019<>2
+and pro.C700020016 is not null
+and pro.C700020013 is not null
+union all
+select
+distinct(t.c1) as 编号,t.c700000001 as 工单名称,t.c700000003 工单编号,t.c700000006 as 建单时间,t.c700000004 as 建单人,t.c700000011 as 主题,t.c700000015 as 紧急程度,t.c700000014 as 所属专业,t.c700000010 as 工单状态,pro.c1 as 环节号,pro.c700020009 as 环节执行人 
+from {1000} t,{700} pro 
+where
+t.C1=pro.c700020001 
+ {1}  {2}  {3} {4}
+ and pro.c700020009 is not null
+and t.C1=pro.C700020001
+and pro.c700020002=t.c700000001
+and pro.c700020011 in ('已完成','待处理','已派发','提交审批')
+and pro.c700020019<>1
+and pro.c700020019<>2
+and pro.C700020016 is not null
+and pro.C700020013 is not null 
+		]]></item>
+	</sql>
+	<!-- 受理部门-->
+		<sql name="hbeoms.allformintimesendscopenamelink" datasource="Ultranms">
+		<item dbms="All"><![CDATA[
+    select
+distinct(t.c1) as 编号,t.c700000001 as 工单名称,t.c700000003 as 工单编号,t.c700000006 as 建单时间,t.c700000004 as 建单人,t.c700000011 as 主题,t.c700000015 as 紧急程度,t.c700000014 as 所属专业,t.c700000010 as 工单状态,pro.c1 as 环节号,pro.c700020009 as 环节执行人 
+from {1000} t,(select * from {600} union all select * from {700}) pro,{300} u,{400} g,{500} gu
+where
+t.C1=pro.C700020001
+and pro.c700020002=t.c700000001
+{1}  {2}  {3} {4}
+and g.C1=gu.C620000027 
+and gu.C620000028=u.C1
+and u.C630000003=pro.C700020009
+and pro.c700020011 in ('已完成','待处理','已派发','提交审批','处理中')
+and pro.c700020019<>1
+and pro.c700020019<>2
+and pro.C700020016 is not null
+and pro.C700020013 is not null
+
+		]]></item>
+	</sql>
+	
+	
+	 <!-- 派发用户-->
+	<sql name="hbeoms.allformintimepfrolenamelink" datasource="Ultranms">
+		<item dbms="All"><![CDATA[
+select
+distinct(t.c1) as 编号,t.c700000001 as 工单名称,t.c700000003 as 工单编号,t.c700000006 as 建单时间,
+t.c700000004 as 建单人,t.c700000011 as 主题,t.c700000015 as 紧急程度,
+t.c700000014 as 所属专业,t.c700000010 as 工单状态 
+from {1000} t where 1=1 {1} {2} {3} {4}
+order by t.c700000003
+		]]></item>
+	</sql>
+	
+	
+	
+	
+	<!-- 派发部门-->
+	<sql name="hbeoms.allformintimesendpfscopenamelink" datasource="Ultranms">
+		<item dbms="All"><![CDATA[
+select
+distinct(t.c1) as 编号,t.c700000001 as 工单名称,t.c700000003 as 工单编号,t.c700000006 as 建单时间,
+t.c700000004 as 建单人,t.c700000011 as 主题,t.c700000015 as 紧急程度,
+t.c700000014 as 所属专业,t.c700000010 as 工单状态 
+from {1000} t,{300} u,{400} g,{500} gu
+where
+t.c700000005=u.c630000001
+and u.C1=gu.c620000028
+and gu.c620000027=g.C1
+{1} {2} {3} {4}
+order by t.c700000003
+		]]></item>
+	</sql>
+	
+	
+	
+			<sql name="qheoms.twotypeformsumnewformnamecarful1" datasource="Ultranms">
+		<item dbms="All"><![CDATA[
+  
+select 't'||t.schemaid,BaseCategory.C650000001 as basechname, BaseCategory.C650000002 as basename from {500} BaseCategory,arschema t
+where  t.name=BaseCategory.C650000002 and t.schemaid={5}
+		]]></item>
+	</sql>
+</sql-group>
+

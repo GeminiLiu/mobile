@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding='UTF-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+                            "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                            "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<!-- DO NOT EDIT: This is a generated file that is synchronized -->
+<!-- by MyEclipse Hibernate tool integration.                   -->
+<!-- Created Thu Mar 01 13:40:53 CST 2007                         -->
+<hibernate-mapping package="cn.com.ultrapower.eoms.user.authorization.usercommision.hibernate.po">
+
+    <class name="SysUserCommisionpo" table="T247" lazy="false">
+ 		<id name="c1" column="C1" type="string">
+            <generator class="assigned"/>
+        </id>
+        <property name="c2" column="C2" type="java.lang.String" />
+        <property name="c3" column="C3" type="java.lang.Long"  not-null="true" />
+        <property name="c4" column="C4" type="java.lang.String" />
+        <property name="c5" column="C5" type="java.lang.String"  not-null="true" />
+        <property name="c6" column="C6" type="java.lang.Long"  not-null="true" />
+        <property name="c7" column="C7" type="java.lang.Long"  not-null="true" />
+        <property name="c8" column="C8" type="java.lang.String"  not-null="true" />
+        <property name="c610000020" column="C610000020" type="java.lang.String" />
+        <property name="c610000021" column="C610000021" type="java.lang.String" />
+        <property name="c610000022" column="C610000022" type="java.lang.Long" />
+        <property name="c610000023" column="C610000023" type="java.lang.Long" />
+        <property name="c610000024" column="C610000024" type="java.lang.String" />
+        <property name="c610000025" column="C610000025" type="java.lang.String" />
+        <property name="c610000026" column="C610000026" type="java.lang.String" />
+        <property name="c610000027" column="C610000027" type="java.lang.String" />
+        <property name="c610000028" column="C610000028" type="java.lang.String" />
+        <property name="c610000029" column="C610000029" type="java.lang.String" />
+        <property name="c610000030" column="C610000030" type="java.lang.String" />
+        <property name="c610000031" column="C610000031" type="java.lang.String" />
+        <property name="c610000032" column="C610000032" type="java.lang.String" />
+        <property name="c610000033" column="C610000033" type="java.lang.String" />
+        <property name="c610000034" column="C610000034" type="java.lang.String" />
+        <property name="c610000035" column="C610000035" type="java.lang.String" />
+    </class>
+    
+</hibernate-mapping>

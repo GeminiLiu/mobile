@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding='UTF-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+                            "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                            "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<!-- DO NOT EDIT: This is a generated file that is synchronized -->
+<!-- by MyEclipse Hibernate tool integration.                   -->
+<!-- Created Fri Oct 27 14:07:57 CST 2006                         -->
+<hibernate-mapping package="cn.com.ultrapower.eoms.user.config.source.hibernate.po">
+
+    <class name="Sourceconfig" table="SOURCECONFIG" lazy="false">
+        <id name="sourceId" column="SOURCE_ID" type="long">
+            <generator class="assigned"/>
+        </id>
+ 
+        <property name="sourceParentid" column="SOURCE_PARENTID" type="long"  not-null="true" />
+        <property name="sourceCnname" column="SOURCE_CNNAME" type="string"  not-null="true" />
+        <property name="sourceName" column="SOURCE_NAME" type="string" />
+        <property name="sourceModule" column="SOURCE_MODULE" type="string" />
+        <property name="sourceOrderby" column="SOURCE_ORDERBY" type="long" />
+        <property name="sourceDesc" column="SOURCE_DESC" type="string" />
+        <property name="sourceType" column="SOURCE_TYPE" type="string" />
+		<property name="sourceFieldtype" column="SOURCE_FIELDTYPE" type="string" />
+		<property name="sourceUrl" column="SOURCE_URL" type="string" />
+		<property name="sourceIsleft" column="SOURCE_ISLEFT" type="long" />
+    </class>
+    
+</hibernate-mapping>

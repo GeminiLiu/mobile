@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sql-group>
+	<doc>
+		<author>作者</author> 
+		<date>时间</date> 
+		<description>对流程管理内的查询</description> 		
+	</doc>
+	<sqlquery name="query.ConfigFormQuery.all">
+		<select>
+		<![CDATA[ 
+			select
+   			  /*COUNT*/  
+			*
+   			  /*COUNT*/  
+			from
+			(
+   			  select  
+   			  	#queryfield# 
+              from {#baseschema#}
+              )
+			   $orderby$
+		  ]]> 
+		</select>
+		<customwhere>	
+ 		</customwhere>
+	</sqlquery>
+</sql-group>

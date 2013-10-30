@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ITSysInterfaceConfig>
+    <ITSysInterfaceConfigOne>
+        <ITSysName>代维管理</ITSysName>
+        <ITSysCode>mams</ITSysCode>
+        <ITSysAddress>http://localhost:8010/lnmams/</ITSysAddress>
+    </ITSysInterfaceConfigOne>
+    <ITSysInterfaceConfigOne>
+        <ITSysName>EOMS工单</ITSysName>
+        <ITSysCode>ultrawf</ITSysCode>
+        <ITSysAddress>http://localhost:8888/arsys/</ITSysAddress>
+    </ITSysInterfaceConfigOne>
+    <ITSysInterfaceConfigOne>
+        <ITSysName>登录验证</ITSysName>
+        <ITSysCode>authorize</ITSysCode>
+        <ITSysAddress>http://localhost:8010/lnmams/</ITSysAddress>
+    </ITSysInterfaceConfigOne>
+    <ITSysInterfaceConfigOne>
+        <ITSysName>巡检接口</ITSysName>
+        <ITSysCode>mobilePatrolTask</ITSysCode>
+        <ITSysAddress>http://localhost:8010/lnmams/</ITSysAddress>
+    </ITSysInterfaceConfigOne>
+</ITSysInterfaceConfig>

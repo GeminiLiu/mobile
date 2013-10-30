@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sql-group>
+	<doc>
+		<author>黄维</author> 
+		<date>2008-10-12</date> 
+		<description>对TplBasePerformRole的查询</description> 		
+	</doc>
+
+		<sqlquery name="TplBasePerformRoleUnionBaseCategory.BaseOn_Condition">
+		<select>
+		<![CDATA[ 
+			select 
+			/*COUNT*/
+				
+				BasePerformRole.C700022000	as	RoleOnlyID,
+				BasePerformRole.C1		as	RoleDefineID,
+				BasePerformRole.C700022001	as	RoleName,
+				BasePerformRole.C700022002	as	RoleProcessRoleType,
+				BasePerformRole.C700022003	as	RoleDesc,
+				BasePerformRole.C700022004	as	RoleBaseID,
+				BasePerformRole.C700022005	as	RoleBaseSchema,
+				BasePerformRole.C700022006	as	RoleProcessPhaseNo,
+				BasePerformRole.C700022101	as	Assignee,
+				BasePerformRole.C700022102	as	AssigneeID,
+				BasePerformRole.C700022103	as	ProGroup,
+				BasePerformRole.C700022104	as	GroupID,
+				BasePerformRole.C700022201	as	RoleKey,
+				BasePerformRole.C700022301	as	ContextAssignee_FieldID,
+				BasePerformRole.C700022302	as	ContextAssigneeID_FieldID,
+				BasePerformRole.C700022303	as	ContextGroup_FieldID,
+				BasePerformRole.C700022404	as	ContextGroupID_FieldID,
+				BasePerformRole.C700022501	as	TopRoleMatchConditionsDesc,
+
+				BaseCategory.C1				as   BaseCategoryID,
+				BaseCategory.C650000010		as   BaseCategoryClassCode,
+				BaseCategory.C650000009		as   BaseCategoryClassName,
+				BaseCategory.C650000003		as   BaseCategoryCode,
+				BaseCategory.C650000006		as   BaseCategoryDayLastNo,
+				BaseCategory.C650000012		as   BaseCategoryDefaultFixTplBase,
+				BaseCategory.C650000007		as   BaseCategoryDesc,
+				BaseCategory.C650000011		as   BaseCategoryIsDefaultFix,
+				BaseCategory.C650000004		as   BaseCategoryIsFlow,
+				BaseCategory.C650000001		as   BaseCategoryName,
+				BaseCategory.C650000002		as   BaseCategorySchama,
+				BaseCategory.C650000005		as   BaseCategoryState
+			/*COUNT*/
+	  from {WF:App_TplBase_PerformRole} BasePerformRole,{WF:Config_BaseCategory} BaseCategory
+			  where 
+			  BaseCategory.C650000002 = BasePerformRole.C700022005
+			  --and
+			  --BaseCategory.C650000012 = BasePerformRole.C700022004
+			  and
+			  $BaseOn_Condition$ 
+			  $extend$
+		  ]]> 
+		</select>
+		<customwhere>
+			<parameterMap prepend="" name="BaseOn_Condition">
+				<mapingFiled  prepend="" fieldName="is_notnull"  fieldType="4">
+					<mapsql value="isnotnull">
+						<![CDATA[
+							 1=#is_notnull#
+						 ]]>  			
+					</mapsql>
+				</mapingFiled>
+				<mapingFiled  prepend="and" fieldName="basecategoryclasscode"  fieldType="4">
+					<mapsql value="isnotnull">
+						<![CDATA[
+							 BaseCategory.C650000010='#basecategoryclasscode#'
+						 ]]>  			
+					</mapsql>
+				</mapingFiled>
+				<mapingFiled  prepend="and" fieldName="basecategoryclassname"  fieldType="4">
+					<mapsql value="isnotnull">
+						<![CDATA[
+							 BaseCategory.C650000009='#basecategoryclassname#'
+						 ]]>  			
+					</mapsql>
+				</mapingFiled>
+				<mapingFiled  prepend="and" fieldName="baseschema"  fieldType="4">
+					<mapsql value="isnotnull">
+						<![CDATA[
+							 BaseCategory.C650000002='#baseschema#'
+						 ]]>  			
+					</mapsql>
+				</mapingFiled>
+				<mapingFiled  prepend="and" fieldName="basesid"  fieldType="4">
+					<mapsql value="isnotnull">
+						<![CDATA[
+							 BaseCategory.C650000012='#basesid#'
+						 ]]>  			
+					</mapsql>
+				</mapingFiled>
+			</parameterMap>	
+			<parameterMap prepend="EXTEND" name="extend">
+					<mapingFiled  prepend="EXTEND" fieldName="orderby"  fieldType="4">
+						<mapsql value="isnotnull">
+							<![CDATA[
+								   order by #orderby#
+							 ]]>
+						</mapsql>
+					</mapingFiled>
+			</parameterMap>						
+		</customwhere>
+	</sqlquery>
+</sql-group>

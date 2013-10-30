@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sql-group>
+	<doc>
+		<author>lihongbo</author> 
+		<date>2010-09-13</date> 
+		<description>工程割接情况显示</description> 		
+	</doc>
+	<sqlquery name="SQL_projectCleftGrafting_item" dbpoolname="">
+		<select>
+		<![CDATA[
+			
+		select 
+		    /*COUNT*/
+			c1 as BaseID,
+			c700000011 as BaseSummary,
+			c700000014 as BaseItems,
+			c800020014 as RelatedBaseItems,
+			c800020004 as BaseChief,
+			c800020005 as BaseConnection,
+			c800020006 as BaseProGJRange,
+			to_char(to_date('19700101', 'yyyymmdd') +
+						c700000017 / 86400 + 8 / 24,
+						'yyyy-mm-dd hh24:MI:ss') as BaseAcceptOutTime,
+			to_char(to_date('19700101', 'yyyymmdd') +
+						c800020013 / 86400 + 8 / 24,
+						'yyyy-mm-dd hh24:MI:ss') as PlanToFinishTime,
+			case when c800052001=0 then '是' when c800052001=1 then '否' end as QualityResult,
+			to_char(to_date('19700101', 'yyyymmdd') +
+						c800020007 / 86400 + 8 / 24,
+						'yyyy-mm-dd hh24:MI:ss') as BaseActualStartTime,
+			to_char(to_date('19700101', 'yyyymmdd') +
+						c800020012 / 86400 + 8 / 24,
+						'yyyy-mm-dd hh24:MI:ss') as BaseActualFinishTime,
+			case when c800020011=0 then '否' when c800020011=1 then '是' end as BaseIsSuccess
+			/*COUNT*/
+		from {WF:EL_LCT_Math}
+		where
+		  1=1
+		  and (c700000010<>'草稿' and c700000010<>'已作废')
+		  #con_search#
+		  #createtime#
+		  #tomtime#
+		  #orderby#  
+		  
+		  ]]>
+		</select>
+		
+		<rptatribute>
+			<title>
+				<item>
+				    <titlecol>	
+						<isshow>false</isshow>
+					</titlecol>	
+					<titlecol>
+						<text>主题</text>
+					</titlecol>	
+					<titlecol>
+						<text>割接网元</text>
+					</titlecol>	
+					<titlecol>
+						<text>关联告警网元</text>
+					</titlecol>	
+					<titlecol>
+						<text>割接负责人</text>
+					</titlecol>	
+					<titlecol>
+						<text>联系方式</text>
+					</titlecol>		
+					<titlecol>
+						<text>工程割接影响范围</text>
+					</titlecol>		
+					<titlecol>
+						<text>计划开始时间</text>
+					</titlecol>		
+					<titlecol>
+						<text>计划完成时间</text>
+					</titlecol>		
+					<titlecol>
+						<text>质检是否合格</text>
+					</titlecol>	
+					<titlecol>
+						<text>实际开始时间</text>
+					</titlecol>	
+					<titlecol>
+						<text>实际完成时间</text>
+					</titlecol>			
+					<titlecol>
+						<text>割接是否成功</text>
+					</titlecol>	
+				   						
+				</item>	
+				
+			</title>
+			
+		</rptatribute>
+	</sqlquery>
+	<sqlquery name="SQL_projectCleftGrafting_jituan" dbpoolname="">
+		<select>
+		<![CDATA[
+			
+		select 
+		'' as 省份,
+		'' as 割接类型,
+		c700000011 as 网元名称, 
+		to_char(to_date('19700101', 'yyyymmdd') +
+								c700000017 / 86400 + 8 / 24,
+								'yyyy-mm-dd hh24-MI') as 割接开始时间,
+		to_char(to_date('19700101', 'yyyymmdd') +
+								c800020013 / 86400 + 8 / 24,
+								'yyyy-mm-dd hh24-MI') as 割接结束时间,
+		c800020006 as 影响情况
+		from {WF:EL_LCT_Math}
+		where
+		   1=1
+		   and (c700000010<>'草稿' and c700000010<>'已作废')
+		  #con_search#
+		  #createtime#
+		  #tomtime#
+		  #orderby#  
+		--order by c700000017 desc 	
+			
+		  ]]>
+		</select>
+		
+	</sqlquery>
+	
+	<sqlquery name="SQL_projectCleftGrafting_yuebao" dbpoolname="">
+		<select>
+		<![CDATA[
+			
+		select 
+		   
+			c700000011 as 主题,
+			c700000014 as 割接网元,
+			c800020014 as 关联告警网元,
+			c800020004 as 割接负责人,
+			c800020005 as 联系方式,
+			c800020006 as 工程割接影响范围,
+			to_char(to_date('19700101', 'yyyymmdd') +
+						c700000017 / 86400 + 8 / 24,
+						'yyyy-mm-dd hh24:MI:ss') as 计划开始时间,
+			to_char(to_date('19700101', 'yyyymmdd') +
+						c800020013 / 86400 + 8 / 24,
+						'yyyy-mm-dd hh24:MI:ss') as 计划完成时间,
+			case when c800052001=0 then '是' when c800052001=1 then '否' end as 质检是否合格,
+			to_char(to_date('19700101', 'yyyymmdd') +
+						c800020007 / 86400 + 8 / 24,
+						'yyyy-mm-dd hh24:MI:ss') as 实际开始时间,
+			to_char(to_date('19700101', 'yyyymmdd') +
+						c800020012 / 86400 + 8 / 24,
+						'yyyy-mm-dd hh24:MI:ss') as 实际完成时间,
+			case when c800020011=0 then '否' when c800020011=1 then '是' end as 割接是否成功,
+		    exportbytimedecide(c800020007,c700000007,c700000006) as 工单派发是否及时
+			
+		from {WF:EL_LCT_Math}
+		where
+		  1=1
+		  and (c700000010<>'草稿' and c700000010<>'已作废')
+		  #con_search#
+		  #createtime#
+		  #tomtime#
+		  #orderby#   	
+			
+		  ]]>
+		</select>
+		
+	</sqlquery>
+	
+</sql-group>

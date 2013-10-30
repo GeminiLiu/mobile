@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="GB2312"?>
+<sql-group>
+	<doc>
+		<author>duanximeng</author>
+		<date>2006-03-17</date>
+		<description>超出工单各环节时限情况统计表
+	</description>
+	</doc>
+	
+	<sql name="Tshf_form_sum" datasource="Ultranms">
+		<item dbms="All"><![CDATA[
+		
+ 
+  select   '话费类投诉细分' as 类别, buss.c801800003 as 项目, 
+buss.c801800004 as 项目, buss.c801800005 as 项目,buss.c801800006 from {100} buss
+where buss.c801800001='投诉' and buss.c801800002='话费类'
+order by buss.c801800007 desc
+		]]></item>
+	</sql>
+		<sql name="Tshf_form_sum_number" datasource="Ultranms">
+		<item dbms="All"><![CDATA[
+		
+select distinct comp.c801000003,city.c801800001,count(distinct(comp.c1)) from {100} comp,{200} city,{300} u,{500} g,{600} gu
+ where city.c801800001=comp.c801000018 
+ and comp.c700000010<>'已作废'
+ and comp.C700000005=u.C630000001
+ and u.C1=gu.C620000028
+ and gu.C620000027=g.C1
+ {3}
+ {4}
+ {5}
+ {6}
+ group by comp.c801000003 ,city.c801800001
+		]]></item>
+	</sql>
+	<sql name="Tshf_form_sum_groupnumber" datasource="Ultranms">
+		<item dbms="All"><![CDATA[
+    select g.c630000018 from {100} g where 1=1 {8}
+		]]></item>
+	</sql>
+
+</sql-group>
+

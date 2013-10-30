@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tree>
+	<item text="administrator" nocheckbox="0" id="600000" open="" child="" im0="dwgroup.png" im1="dwgroup.png" im2="dwgroup.png">
+		<userdata name="text">administrator</userdata>
+		<userdata name="type">team</userdata>
+		<userdata name="id">600000</userdata>
+	</item>
+	<item text="宁夏移动公司" nocheckbox="0" id="600505" open="" child="" im0="dwgroup.png" im1="dwgroup.png" im2="dwgroup.png">
+		<userdata name="text">宁夏移动公司</userdata>
+		<userdata name="type">team</userdata>
+		<userdata name="id">600505</userdata>
+	</item>
+	<item text="新媒传信001" nocheckbox="0" id="600859" open="" child="" im0="dwgroup.png" im1="dwgroup.png" im2="dwgroup.png">
+		<userdata name="text">新媒传信001</userdata>
+		<userdata name="type">team</userdata>
+		<userdata name="id">600859</userdata>
+	</item>
+	<item text="新媒传信" nocheckbox="0" id="600857" open="" child="" im0="dwgroup.png" im1="dwgroup.png" im2="dwgroup.png">
+		<userdata name="text">新媒传信</userdata>
+		<userdata name="type">team</userdata>
+		<userdata name="id">600857</userdata>
+	</item>
+	<item text="总部门002" nocheckbox="0" id="600850" open="" child="" im0="dwgroup.png" im1="dwgroup.png" im2="dwgroup.png">
+		<userdata name="text">总部门002</userdata>
+		<userdata name="type">team</userdata>
+		<userdata name="id">600850</userdata>
+	</item>
+	<item text="湖南移动公司001" nocheckbox="0" id="600856" open="" child="" im0="dwgroup.png" im1="dwgroup.png" im2="dwgroup.png">
+		<userdata name="text">湖南移动公司001</userdata>
+		<userdata name="type">team</userdata>
+		<userdata name="id">600856</userdata>
+	</item>
+	<item text="总公司003" nocheckbox="0" id="600849" open="" child="" im0="dwgroup.png" im1="dwgroup.png" im2="dwgroup.png">
+		<userdata name="text">总公司003</userdata>
+		<userdata name="type">team</userdata>
+		<userdata name="id">600849</userdata>
+	</item>
+	<item text="总公司002" nocheckbox="0" id="600848" open="" child="" im0="dwgroup.png" im1="dwgroup.png" im2="dwgroup.png">
+		<userdata name="text">总公司002</userdata>
+		<userdata name="type">team</userdata>
+		<userdata name="id">600848</userdata>
+	</item>
+	<item text="总公司001" nocheckbox="0" id="600847" open="" child="" im0="dwgroup.png" im1="dwgroup.png" im2="dwgroup.png">
+		<userdata name="text">总公司001</userdata>
+		<userdata name="type">team</userdata>
+		<userdata name="id">600847</userdata>
+	</item>
+	<item text="总公司" nocheckbox="0" id="600845" open="" child="" im0="dwgroup.png" im1="dwgroup.png" im2="dwgroup.png">
+		<userdata name="text">总公司</userdata>
+		<userdata name="type">team</userdata>
+		<userdata name="id">600845</userdata>
+	</item>
+	<item text="湖南移动公司" nocheckbox="0" id="600854" open="" child="" im0="dwgroup.png" im1="dwgroup.png" im2="dwgroup.png">
+		<userdata name="text">湖南移动公司</userdata>
+		<userdata name="type">team</userdata>
+		<userdata name="id">600854</userdata>
+	</item>
+</tree>

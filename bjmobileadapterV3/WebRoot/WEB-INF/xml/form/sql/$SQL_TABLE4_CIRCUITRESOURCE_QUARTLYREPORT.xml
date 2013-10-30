@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="GB2312"?>
+<sql-group>
+	<doc>
+		<author>liangwei</author>
+		<date>2008-07-08</date>
+		<description>电路资源季报</description>
+	</doc>
+	<sql name="table4_CircuitResource_QuartlyReportpage.group" datasource="Ultranms">
+		<item dbms="All"><![CDATA[
+
+			select t.groupname from (
+			select g.c630000018 groupname  from {100} g where g.c630000021='2' and g.c630000020='000000000600001' and g.c630000027='1'
+			union all 
+			select trim('网管中心') groupname from dual
+			) t 
+		]]></item>
+	</sql>
+	<sql name="table4_CircuitResource_QuartlyReport.group" datasource="Ultranms">
+		<item dbms="All"><![CDATA[
+
+			select ' ',t.groupname as 省公司 from (
+			select g.c630000018 groupname  from {100} g where g.c630000021='2' and g.c630000020='000000000600001' and g.c630000027='1'
+			union all 
+			select trim('网管中心') groupname from dual
+			) t where 1=1 {1}
+		]]></item>
+	</sql>
+	
+
+		<sql name="table4_CircuitResource_QuartlyReport.coltitle" datasource="Ultranms">
+		<item dbms="All"><![CDATA[
+					select distinct trim('省际一干电路自建')||'-'||trim('155M')
+					  from dual
+					  union all
+					select distinct trim('省际一干电路自建')||'-'||trim('2M')
+					  from dual
+					  union all
+					select distinct trim('省际一干电路租用')||'-'||trim('155M')
+					  from dual
+					  union all
+					select distinct trim('省际一干电路租用')||'-'||trim('2M')
+					  from dual
+					  union all
+					select distinct trim('省际一干电路其他')||'-'||trim('155M')
+					  from dual
+					  union all
+					select distinct trim('省际一干电路其他')||'-'||trim('2M')
+					  from dual
+					  union all
+					select distinct trim('省内二干电路自建')||'-'||trim('155M')
+					  from dual
+					  union all
+					select distinct trim('省内二干电路自建')||'-'||trim('2M')
+					  from dual
+					  union all
+					select distinct trim('省内二干电路租用')||'-'||trim('155M')
+					  from dual
+					  union all
+					select distinct trim('省内二干电路租用')||'-'||trim('2M')
+					  from dual
+					  union all
+					select distinct trim('省内二干电路其他')||'-'||trim('155M')
+					  from dual
+					  union all
+					select distinct trim('省内二干电路其他')||'-'||trim('2M')
+					  from dual
+					  union all
+					select distinct trim('省内城域电路自建')||'-'||trim('155M')
+					  from dual
+					  union all
+					select distinct trim('省内城域电路自建')||'-'||trim('2M')
+					  from dual
+					  union all
+					select distinct trim('省内城域电路租用')||'-'||trim('155M')
+					  from dual
+					  union all
+					select distinct trim('省内城域电路租用')||'-'||trim('2M')
+					  from dual
+					  union all
+					select distinct trim('省内城域电路其他')||'-'||trim('155M')
+					  from dual
+					  union all
+					select distinct trim('省内城域电路其他')||'-'||trim('2M')
+					  from dual
+					  union all
+					select distinct trim('国际电路')||'-'||trim('155M')
+					  from dual
+					  union all
+					select distinct trim('国际电路')||'-'||trim('45M')
+					  from dual
+					  union all
+					select distinct trim('国际电路')||'-'||trim('2M')
+					  from dual
+					  union all
+					select distinct trim('合计')||'-'||trim('合计')
+					  from dual
+					  union all
+					select distinct trim('自建比例')||'-'||trim('自建比例')
+					  from dual
+					
+					  
+		]]></item>
+	</sql>
+		<sql name="table4_CircuitResource_QuartlyReport.centervalue" datasource="Ultranms">
+		<item dbms="All"><![CDATA[
+					
+					select distinct trim('省际一干电路自建')||'-'||trim('155M'),t.c802000002 as 所属城市,nvl(sum(t.c802000013),0) as num from {100} t
+					  where 1=1 {5}
+				  	  group by t.c802000002
+					  union all
+					select distinct trim('省际一干电路自建')||'-'||trim('2M'),t.c802000002 as 所属城市,nvl(sum(t.c802000048),0) as num from {100} t
+					  where 1=1 {5}
+				  	  group by t.c802000002
+					  union all
+					select distinct trim('省际一干电路租用')||'-'||trim('155M'),t.c802000002 as 所属城市,nvl(sum(t.c802000005),0) as num from {100} t
+					  where 1=1 {5}
+				  	  group by t.c802000002
+					  union all
+					select distinct trim('省际一干电路租用')||'-'||trim('2M'),t.c802000002 as 所属城市,nvl(sum(t.c802000054),0) as num from {100} t
+					  where 1=1 {5}
+				  	  group by t.c802000002
+					  union all
+					select distinct trim('省际一干电路其他')||'-'||trim('155M'),t.c802000002 as 所属城市,nvl(sum(t.c802000009),0) as num from {100} t
+					  where 1=1 {5}
+				  	  group by t.c802000002
+					  union all
+					select distinct trim('省际一干电路其他')||'-'||trim('2M'),t.c802000002 as 所属城市,nvl(sum(t.c802000056),0) as num from {100} t
+					  where 1=1 {5}
+				  	  group by t.c802000002
+					  union all
+					select distinct trim('省内二干电路自建')||'-'||trim('155M'),t.c802000002 as 所属城市,nvl(sum(t.c802000007),0) as num from {100} t
+					  where 1=1 {5}
+				  	  group by t.c802000002
+					  union all
+					select distinct trim('省内二干电路自建')||'-'||trim('2M'),t.c802000002 as 所属城市,nvl(sum(t.c802000050),0) as num from {100} t
+					  where 1=1 {5}
+				  	  group by t.c802000002
+					  union all
+					select distinct trim('省内二干电路租用')||'-'||trim('155M'),t.c802000002 as 所属城市,nvl(sum(t.c802000011),0) as num from {100} t
+					  where 1=1 {5}
+				  	  group by t.c802000002
+					  union all
+					select distinct trim('省内二干电路租用')||'-'||trim('2M'),t.c802000002 as 所属城市,nvl(sum(t.c802000063),0) as num from {100} t
+					  where 1=1 {5}
+				  	  group by t.c802000002
+					  union all
+					select distinct trim('省内二干电路其他')||'-'||trim('155M'),t.c802000002 as 所属城市,nvl(sum(t.c802000017),0) as num from {100} t
+					  where 1=1 {5}
+				  	  group by t.c802000002
+					  union all
+					select distinct trim('省内二干电路其他')||'-'||trim('2M'),t.c802000002 as 所属城市,nvl(sum(t.c802000065),0) as num from {100} t
+					  where 1=1 {5}
+				  	  group by t.c802000002
+					  union all
+					select distinct trim('省内城域电路自建')||'-'||trim('155M'),t.c802000002 as 所属城市,nvl(sum(t.c802000019),0) as num from {100} t
+					  where 1=1 {5}
+				  	  group by t.c802000002
+					  union all
+					select distinct trim('省内城域电路自建')||'-'||trim('2M'),t.c802000002 as 所属城市,nvl(sum(t.c802000067),0) as num from {100} t
+					  where 1=1 {5}
+				  	  group by t.c802000002
+					  union all
+					select distinct trim('省内城域电路租用')||'-'||trim('155M'),t.c802000002 as 所属城市,nvl(sum(t.c802000021),0) as num from {100} t
+					  where 1=1 {5}
+				  	  group by t.c802000002
+					  union all
+					select distinct trim('省内城域电路租用')||'-'||trim('2M'),t.c802000002 as 所属城市,nvl(sum(t.c802000069),0) as num from {100} t
+					  where 1=1 {5}
+				  	  group by t.c802000002
+					  union all
+					select distinct trim('省内城域电路其他')||'-'||trim('155M'),t.c802000002 as 所属城市,nvl(sum(t.c802000033),0) as num from {100} t
+					  where 1=1 {5}
+				  	  group by t.c802000002
+					  union all
+					select distinct trim('省内城域电路其他')||'-'||trim('2M'),t.c802000002 as 所属城市,nvl(sum(t.c802000071),0) as num from {100} t
+					  where 1=1 {5}
+				  	  group by t.c802000002
+					  union all
+					select distinct trim('国际电路')||'-'||trim('155M'),t.c802000002 as 所属城市,nvl(sum(t.c802000035),0) as num from {100} t
+					  where 1=1 {5}
+				  	  group by t.c802000002
+					  union all
+					select distinct trim('国际电路')||'-'||trim('45M'),t.c802000002 as 所属城市,nvl(sum(t.c802000038),0) as num from {100} t
+					  where 1=1 {5}
+				  	  group by t.c802000002
+					  union all
+					select distinct trim('国际电路')||'-'||trim('2M'),t.c802000002 as 所属城市,nvl(sum(t.c802000073),0) as num from {100} t
+					  where 1=1 {5}
+				  	  group by t.c802000002
+					
+		]]></item>
+	</sql>
+</sql-group>
+

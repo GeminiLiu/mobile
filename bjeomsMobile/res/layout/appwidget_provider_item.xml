@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:id="@+id/rl_widget_content_main"
+	android:layout_width="fill_parent"
+	android:layout_height="wrap_content"
+	android:layout_marginTop="10dp"
+	android:background="@drawable/bg_btn_widget_page_blue_x" >
+	<TextView
+		android:id="@+id/tv_gd_type"
+		android:layout_width="25dip"
+		android:layout_height="25dip"
+		android:layout_alignParentLeft="true"
+		android:layout_centerVertical="true"
+		android:layout_marginRight="5dp"
+		android:gravity="center"
+		android:text="故障"
+		android:textColor="#ffffff"
+		android:textSize="10sp"
+		android:textStyle="bold"
+		android:background="@drawable/notice_bg" />
+	<TextView
+		android:id="@+id/tv_theme_content"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_toRightOf="@id/tv_gd_type"
+		android:maxLines="1"
+		android:text="铁岭市.昌图.检察院基站故障铁岭市.昌图.检察院基站故障"
+		android:ellipsize="end"
+		android:textColor="#4b8ac0"
+		android:textSize="12sp" />
+	<TextView
+		android:id="@+id/tv_person"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_toRightOf="@id/tv_gd_type"
+		android:layout_below="@id/tv_theme_content"
+		android:maxLines="1"
+		android:text="网元名称：铁岭.昌图.检查院基站"
+		android:ellipsize="end"
+		android:textColor="#333333"
+		android:textSize="12sp" 
+		android:visibility="gone"/>
+	<TextView
+		android:id="@+id/tv_time"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_toRightOf="@id/tv_gd_type"
+		android:layout_below="@id/tv_person"
+		android:text="处理时限：2012-12-11 21:34:41"
+		android:ellipsize="end"
+		android:textColor="#333333"
+		android:textSize="12sp" />
+	<TextView
+		android:id="@+id/tv_status"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_toRightOf="@id/tv_gd_type"
+		android:layout_below="@id/tv_time"
+		android:text="工单状态：未签收"
+		android:ellipsize="end"
+		android:textColor="#333333"
+		android:textSize="12sp" />
+</RelativeLayout>

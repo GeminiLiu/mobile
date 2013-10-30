@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sql-group>
+	<doc>
+		<author>wxdong</author> 
+		<date>2009年4月10日</date> 
+		<description>任务查询</description> 		
+	</doc>
+	<sqlquery name="query.Task.all">
+		<select>
+		<![CDATA[ 
+		select 
+			/*COUNT*/
+			*
+			/*COUNT*/
+			 from(
+		select  
+			base.C700000000 as baseid,
+			C700000001      as baseschema,
+			C700000002      as basename,
+			C700000003      as basesn,
+			C700000018      as BaseDealOutTime,
+			C700000010      as BaseStatus,
+			C700000011      as BaseSummary,
+			dp.C1           as processid,
+			C700020018      as ProDesc,
+			C700020020      as FlagActive,
+			C700020019      as FlagType,
+			C700020043      as ProcessType,
+			C700020005      as Assginee,
+			C700020101      as AssigneeCorp,
+			C700020103      as AssigneeDep,
+			C700020009      as Dealer,
+			C700020111      as DealerCorp,
+			C700020113      as DealerDep,
+			C700020007      as groupname,
+			C700020015      as StDate,
+			C700020011      as ProcessStatus,
+			C700000008      as BaseFinishDate
+		from {WF:App_Base_Infor} base,{WF:App_DealProcess} dp 
+		where
+			base.C700000000 = dp.C700020001
+			and base.C700000001 = dp.C700020002
+			and dp.C700020011 !='已跳过'
+		$basepara$
+		$sch_active$
+		$sch_basepara$
+		
+		union all
+		
+		select 
+			base.C700000000 as baseid,
+			C700000001      as baseschema,
+			C700000002      as basename,
+			C700000003      as basesn,
+			C700000018      as BaseDealOutTime,
+			C700000010      as BaseStatus,
+			C700000011      as BaseSummary,
+			ap.C1           as processid,
+			C700020018      as ProDesc,
+			C700020020      as FlagActive,
+			C700020019      as FlagType,
+			C700020043      as ProcessType,
+			C700020005      as Assginee,
+			C700020101      as AssigneeCorp,
+			C700020103      as AssigneeDep,
+			C700020009      as Dealer,
+			C700020111      as DealerCorp,
+			C700020113      as DealerDep,
+			C700020007      as groupname,
+			C700020015      as StDate,
+			C700020011      as ProcessStatus,
+			C700000008      as BaseFinishDate
+		from {WF:App_Base_Infor} base,{WF:App_AuditingProcess} ap 
+		where
+			base.C700000000 = ap.C700020001
+			and base.C700000001 = ap.C700020002
+			and ap.C700020011 !='已跳过'
+		$basepara$
+		$sch_active$ 
+		$sch_basepara$
+		) result 
+		$extend$
+		  ]]> 
+		</select>
+		<customwhere>
+			<parameterMap prepend="AND" name="basepara">
+				<mapingFiled  prepend="AND" fieldName="loginname"  fieldType="4">
+					<mapsql value="isnotnull">
+						<![CDATA[
+							 C700020010 = '#loginname#'
+						 ]]>  			
+					</mapsql>
+				</mapingFiled>
+				<mapingFiled  prepend="OR" fieldName="groupid"  fieldType="4">
+					<mapsql value="isnotnull">
+						<![CDATA[
+							 ';#groupid#' like '%;' || C700020008 || ';%'
+						 ]]>  			
+					</mapsql>
+				</mapingFiled>
+				<mapingFiled  prepend="OR" fieldName="RoleID"  fieldType="4">
+					<mapsql value="isnotnull">
+						<![CDATA[
+							 ';#RoleID#' like '%;' || C700020008 || ';%'
+						 ]]>  			
+					</mapsql>
+				</mapingFiled>
+			</parameterMap>
+			<parameterMap prepend="AND" name="sch_active">
+				<mapingFiled  prepend="AND" fieldName="active"  fieldType="4">
+					<mapsql value="isnotnull">
+						<![CDATA[
+							 C700020020 = '#active#'
+						 ]]>  			
+					</mapsql>
+				</mapingFiled>
+			</parameterMap>
+			<parameterMap prepend="AND" name="sch_basepara">
+				<mapingFiled  prepend="AND" fieldName="baseschema"  fieldType="4">
+					<mapsql value="isnotnull">
+						<![CDATA[
+							 C700000001 = '#baseschema#'
+						 ]]>  			
+					</mapsql>
+				</mapingFiled>
+				<mapingFiled  prepend="AND" fieldName="baseclass"  fieldType="4">
+					<mapsql value="isnotnull">
+						<![CDATA[
+							 C700000043 = '#baseclass#'
+						 ]]>  			
+					</mapsql>
+				</mapingFiled>
+				<mapingFiled  prepend="AND" fieldName="Assginee"  fieldType="4">
+					<mapsql value="isnotnull">
+						<![CDATA[
+							 C700020005 = '#Assginee#'
+						 ]]>  			
+					</mapsql>
+				</mapingFiled>
+				<mapingFiled  prepend="AND" fieldName="groupname"  fieldType="4">
+					<mapsql value="isnotnull">
+						<![CDATA[
+							 C700020007 = '#groupname#'
+						 ]]>  			
+					</mapsql>
+				</mapingFiled>
+			</parameterMap>
+			<parameterMap prepend="EXTEND" name="extend">
+					<mapingFiled  prepend="EXTEND" fieldName="orderby"  fieldType="4">
+						<mapsql value="isnotnull">
+							<![CDATA[
+								   order by #orderby#
+							 ]]>
+						</mapsql>
+					</mapingFiled>
+			</parameterMap>
+		</customwhere>
+		<sqlother>
+			<sqlpagination isavailability="true">
+				<sqlpageSize>20</sqlpageSize>
+			</sqlpagination>
+			<sqldistinct isavailability="false">排重的列1,排重的列2</sqldistinct>
+			<sqlSortFields isavailability="false">排序的列1,排序的列2</sqlSortFields>
+		</sqlother>
+		<PageQueryField>
+			<field name="basesn">
+				<fieldID>700020005</fieldID><!--查询字段ID-->
+				<fieldEnglishname>Assginee</fieldEnglishname><!--查询字段英文名，该英文名会做为我们查询条件-->
+				<fieldChinesename>处理人</fieldChinesename><!--查询字段用于在界面显示的名称-->
+				<fieldType>4</fieldType><!--查询字段的数据类型(4：字符等，与Remedy类型保持一致)-->
+				<fieldDisplaytype>4</fieldDisplaytype><!--查询字段用于在界面显示的类型(4：字符/TEXT等，与Remedy类型保持一致)-->
+				<fieldDisplaytypeValue></fieldDisplaytypeValue><!--查询字段用于在界面显示的值的范围(只有当是Select时有值：格式为"值+冒号+显示值+分号，"如：0:是;1:否;';)-->
+				<fieldDefaultValue></fieldDefaultValue><!--查询字段用于在界面显示时的默认值-->
+			</field>
+			<field name="BaseSummary">
+				<fieldID>700020007</fieldID><!--查询字段ID-->
+				<fieldEnglishname>groupname</fieldEnglishname><!--查询字段英文名，该英文名会做为我们查询条件-->
+				<fieldChinesename>处理组</fieldChinesename><!--查询字段用于在界面显示的名称-->
+				<fieldType>4</fieldType><!--查询字段的数据类型(4：字符等，与Remedy类型保持一致)-->
+				<fieldDisplaytype>4</fieldDisplaytype><!--查询字段用于在界面显示的类型(4：字符/TEXT等，与Remedy类型保持一致)-->
+				<fieldDisplaytypeValue></fieldDisplaytypeValue><!--查询字段用于在界面显示的值的范围(只有当是Select时有值：格式为"值+冒号+显示值+分号，"如：0:是;1:否;';)-->
+				<fieldDefaultValue></fieldDefaultValue><!--查询字段用于在界面显示时的默认值-->
+			</field>
+		</PageQueryField>
+	</sqlquery>
+</sql-group>
+

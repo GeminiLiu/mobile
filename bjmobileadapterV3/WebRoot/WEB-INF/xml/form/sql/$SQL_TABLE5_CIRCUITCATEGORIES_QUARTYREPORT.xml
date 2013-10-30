@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="GB2312"?>
+<sql-group>
+	<doc>
+		<author>liangwei</author>
+		<date>2008-07-08</date>
+		<description>资源使用季报</description>
+	</doc>
+	<sql name="table5_CircuitCategories_QuartyReportpage.group" datasource="Ultranms">
+		<item dbms="All"><![CDATA[
+
+			select t.groupname from (
+			select g.c630000018 groupname  from {100} g where g.c630000021='2' and g.c630000020='000000000600001' and g.c630000027='1'
+			union all 
+			select trim('网管中心') groupname from dual
+			) t 
+		]]></item>
+	</sql>
+	<sql name="table5_CircuitCategories_QuartyReport.group" datasource="Ultranms">
+		<item dbms="All"><![CDATA[
+
+			select ' ',t.groupname as 省公司 from (
+			select g.c630000018 groupname  from {100} g where g.c630000021='2' and g.c630000020='000000000600001' and g.c630000027='1'
+			union all 
+			select trim('网管中心') groupname from dual
+			) t where 1=1 {1}
+		]]></item>
+	</sql>
+	
+
+		<sql name="table5_CircuitCategories_QuartyReport.coltitle" datasource="Ultranms">
+		<item dbms="All"><![CDATA[
+					select distinct trim('省际一干电路')||'-'||trim('汇接网')
+					  from dual
+					  union all
+					select distinct trim('省际一干电路')||'-'||trim('CMNET')
+					  from dual
+					  union all
+					select distinct trim('省际一干电路')||'-'||trim('信令网')
+					  from dual
+					  union all
+					select distinct trim('省际一干电路')||'-'||trim('软交换')
+					  from dual
+					  union all
+					select distinct trim('省际一干电路')||'-'||trim('其他')
+					  from dual
+					  union all
+					select distinct trim('省内二干电路')||'-'||trim('汇接网')
+					  from dual
+					  union all
+					select distinct trim('省内二干电路')||'-'||trim('CMNET')
+					  from dual
+					  union all
+					select distinct trim('省内二干电路')||'-'||trim('信令网')
+					  from dual
+					  union all
+					select distinct trim('省内二干电路')||'-'||trim('软交换')
+					  from dual
+					  union all
+					select distinct trim('省内二干电路')||'-'||trim('彩铃')
+					  from dual
+					  union all
+					select distinct trim('省内二干电路')||'-'||trim('GPRS')
+					  from dual
+					  union all
+					select distinct trim('省内二干电路')||'-'||trim('DCN')
+					  from dual
+					  union all
+					select distinct trim('省内二干电路')||'-'||trim('其他')
+					  from dual
+					  union all
+					select distinct trim('省内城域电路')||'-'||trim('汇接网')
+					  from dual
+					  union all
+					select distinct trim('省内城域电路')||'-'||trim('CMNET')
+					  from dual
+					  union all
+					select distinct trim('省内城域电路')||'-'||trim('信令网')
+					  from dual
+					  union all
+					select distinct trim('省内城域电路')||'-'||trim('软交换')
+					  from dual
+					  union all
+					select distinct trim('省内城域电路')||'-'||trim('彩铃')
+					  from dual
+					  union all
+					select distinct trim('省内城域电路')||'-'||trim('GPRS')
+					  from dual
+					  union all
+					select distinct trim('省内城域电路')||'-'||trim('DCN')
+					  from dual
+					  union all
+					select distinct trim('省内城域电路')||'-'||trim('基站')
+					  from dual
+					  union all
+					select distinct trim('省内城域电路')||'-'||trim('互联互通')
+					  from dual
+					  union all
+					select distinct trim('省内城域电路')||'-'||trim('集团客户')
+					  from dual
+					  union all
+					select distinct trim('省内城域电路')||'-'||trim('其他')
+					  from dual
+					  union all
+					select distinct trim('合计')||'-'||trim('合计')
+					  from dual
+					  union all
+					select distinct trim('默认')||'-'||trim('汇接网')
+					  from dual
+					  union all
+					select distinct trim('默认')||'-'||trim('CMNET')
+					  from dual
+					  union all
+					select distinct trim('默认')||'-'||trim('信令网')
+					  from dual
+					  union all
+					select distinct trim('默认')||'-'||trim('软交换')
+					  from dual
+					  union all
+					select distinct trim('默认')||'-'||trim('彩铃')
+					  from dual
+					  union all
+					select distinct trim('默认')||'-'||trim('GPRS')
+					  from dual
+					  union all
+					select distinct trim('默认')||'-'||trim('DCN')
+					  from dual
+					  union all
+					select distinct trim('默认')||'-'||trim('基站')
+					  from dual
+					  union all
+					select distinct trim('默认')||'-'||trim('互联互通')
+					  from dual
+					  union all
+					select distinct trim('默认')||'-'||trim('集团客户')
+					  from dual
+					  union all
+					select distinct trim('默认')||'-'||trim('其他')
+					  from dual
+		]]></item>
+	</sql>
+		<sql name="table5_CircuitCategories_QuartyReport.centervalue" datasource="Ultranms">
+		<item dbms="All"><![CDATA[
+					
+					select distinct trim('省际一干电路')||'-'||trim('汇接网'),t.c802000002 as 所属城市,nvl(sum(t.c802000013),0) as num from {100} t
+					  where 1=1 {5}
+				  	  group by t.c802000002
+					  union all
+					select distinct trim('省际一干电路')||'-'||trim('CMNET'),t.c802000002 as 所属城市,nvl(sum(t.c802000005),0) as num from {100} t
+					  where 1=1 {5}
+				  	  group by t.c802000002
+					  union all
+					select distinct trim('省际一干电路')||'-'||trim('信令网'),t.c802000002 as 所属城市,nvl(sum(t.c802000007),0) as num from {100} t
+					  where 1=1 {5}
+				  	  group by t.c802000002
+					  union all
+					select distinct trim('省际一干电路')||'-'||trim('软交换'),t.c802000002 as 所属城市,nvl(sum(t.c802000009),0) as num from {100} t
+					  where 1=1 {5}
+				  	  group by t.c802000002
+					  union all
+					select distinct trim('省际一干电路')||'-'||trim('其他'),t.c802000002 as 所属城市,nvl(sum(t.c802000011),0) as num from {100} t
+					  where 1=1 {5}
+				  	  group by t.c802000002
+					  union all
+					select distinct trim('省内二干电路')||'-'||trim('汇接网'),t.c802000002 as 所属城市,nvl(sum(t.c802000015),0) as num from {100} t
+					  where 1=1 {5}
+				  	  group by t.c802000002
+					  union all
+					select distinct trim('省内二干电路')||'-'||trim('CMNET'),t.c802000002 as 所属城市,nvl(sum(t.c802000017),0) as num from {100} t
+					  where 1=1 {5}
+				  	  group by t.c802000002
+					  union all
+					select distinct trim('省内二干电路')||'-'||trim('信令网'),t.c802000002 as 所属城市,nvl(sum(t.c802000019),0) as num from {100} t
+					  where 1=1 {5}
+				  	  group by t.c802000002
+					  union all
+					select distinct trim('省内二干电路')||'-'||trim('软交换'),t.c802000002 as 所属城市,nvl(sum(t.c802000021),0) as num from {100} t
+					  where 1=1 {5}
+				  	  group by t.c802000002
+					  union all
+					select distinct trim('省内二干电路')||'-'||trim('彩铃'),t.c802000002 as 所属城市,nvl(sum(t.c802000024),0) as num from {100} t
+					  where 1=1 {5}
+				  	  group by t.c802000002
+					  union all
+					select distinct trim('省内二干电路')||'-'||trim('GPRS'),t.c802000002 as 所属城市,nvl(sum(t.c802000026),0) as num from {100} t
+					  where 1=1 {5}
+				  	  group by t.c802000002
+					  union all
+					select distinct trim('省内二干电路')||'-'||trim('DCN'),t.c802000002 as 所属城市,nvl(sum(t.c802000033),0) as num from {100} t
+					  where 1=1 {5}
+				  	  group by t.c802000002
+					  union all
+					select distinct trim('省内二干电路')||'-'||trim('其他'),t.c802000002 as 所属城市,nvl(sum(t.c802000035),0) as num from {100} t
+					  where 1=1 {5}
+				  	  group by t.c802000002
+					  union all
+					select distinct trim('省内城域电路')||'-'||trim('汇接网'),t.c802000002 as 所属城市,nvl(sum(t.c802000038),0) as num from {100} t
+					  where 1=1 {5}
+				  	  group by t.c802000002
+					  union all
+					select distinct trim('省内城域电路')||'-'||trim('CMNET'),t.c802000002 as 所属城市,nvl(sum(t.c802000036),0) as num from {100} t
+					  where 1=1 {5}
+				  	  group by t.c802000002
+					  union all
+					select distinct trim('省内城域电路')||'-'||trim('信令网'),t.c802000002 as 所属城市,nvl(sum(t.c802000040),0) as num from {100} t
+					  where 1=1 {5}
+				  	  group by t.c802000002
+					  union all
+					select distinct trim('省内城域电路')||'-'||trim('软交换'),t.c802000002 as 所属城市,nvl(sum(t.c802000042),0) as num from {100} t
+					  where 1=1 {5}
+				  	  group by t.c802000002
+					  union all
+					select distinct trim('省内城域电路')||'-'||trim('彩铃'),t.c802000002 as 所属城市,nvl(sum(t.c802000044),0) as num from {100} t
+					  where 1=1 {5}
+				  	  group by t.c802000002
+					  union all
+					select distinct trim('省内城域电路')||'-'||trim('GPRS'),t.c802000002 as 所属城市,nvl(sum(t.c802000046),0) as num from {100} t
+					  where 1=1 {5}
+				  	  group by t.c802000002
+					  union all
+					select distinct trim('省内城域电路')||'-'||trim('DCN'),t.c802000002 as 所属城市,nvl(sum(t.c802000048),0) as num from {100} t
+					  where 1=1 {5}
+				  	  group by t.c802000002
+					  union all
+					select distinct trim('省内城域电路')||'-'||trim('基站'),t.c802000002 as 所属城市,nvl(sum(t.c536870933),0) as num from {100} t
+					  where 1=1 {5}
+				  	  group by t.c802000002
+					  union all
+					select distinct trim('省内城域电路')||'-'||trim('互联互通'),t.c802000002 as 所属城市,nvl(sum(t.c802000054),0) as num from {100} t
+					  where 1=1 {5}
+				  	  group by t.c802000002
+					  union all
+					select distinct trim('省内城域电路')||'-'||trim('集团客户'),t.c802000002 as 所属城市,nvl(sum(t.c802000056),0) as num from {100} t
+					  where 1=1 {5}
+				  	  group by t.c802000002
+					  union all
+					select distinct trim('省内城域电路')||'-'||trim('其他'),t.c802000002 as 所属城市,nvl(sum(t.c802000050),0) as num from {100} t
+					  where 1=1 {5}
+				  	  group by t.c802000002
+					
+		]]></item>
+	</sql>
+</sql-group>
+

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:background="#ffffff"
+    android:orientation="vertical"
+    android:padding="15dip" >
+
+    <LinearLayout
+        android:id="@+id/ll_camera"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:visibility="visible" >
+
+        <ImageButton
+            android:id="@+id/camera"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/camera1" />
+
+        <Gallery
+            android:id="@+id/gallery"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:spacing="2sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_mic"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dip"
+        android:orientation="horizontal"
+        android:visibility="visible" >
+
+        <ImageButton
+            android:id="@+id/mic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/mic1" />
+
+        <Gallery
+            android:id="@+id/voicegallery"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:spacing="2sp" />
+    </LinearLayout>
+
+</LinearLayout>

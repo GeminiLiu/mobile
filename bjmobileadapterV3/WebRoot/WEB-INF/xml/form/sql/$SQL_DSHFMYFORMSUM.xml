@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="GB2312"?>
+<sql-group>
+	<doc>
+		<author>duanximeng</author>
+		<date>2007</date>
+		<description></description>
+	</doc>
+<sql name="t1" datasource="Ultranms">
+		<item dbms="All"><![CDATA[
+       select c2 from t1111 where c2='各地市个品牌满意度统计'
+   ]]></item>
+	</sql>
+		<sql name="t1" datasource="Ultranms">
+		<item dbms="All"><![CDATA[
+       select c4 from t1111
+   ]]></item>
+	</sql>	
+	<sql name="Dshfmy_form_sum_number" datasource="Ultranms">
+		<item dbms="All"><![CDATA[
+select 
+t.c801000015 || '：' ||'回访数' as 回访数,
+t.c801000018 as 受理地市,
+count(distinct(t.C1)) || '' as 回访数
+from {100} t,{900} brand,{800} city, (select * from {200} union all select * from {300}) pro,{500} u,{400} g,{600} gu
+,{500} uu,{400} gg,{600} gugu
+where 
+t.c801000015=brand.c801800001
+and t.C1=pro.C700020001
+and t.C700000005=u.C630000001
+and u.C1=gu.C620000028
+and gu.C620000027=g.C1
+--and ( g.C630000037 like '%600001%')
+{7}
+and pro.c700020010=uu.C630000001
+and uu.C1=gugu.C620000028
+and gugu.C620000027=gg.C1
+--and ( gg.C630000037 like '%600001%')
+{6}
+and t.c801000018=city.c801800001
+and t.c700000010<>'已作废'
+{3}{4}{5}
+and t.c801000068 is not null
+--nd t.c801000068<>'未联系到客户'
+--and t.c801000068<>'不需要回访'
+group by t.c801000015,t.c801000018	
+		
+union all
+		
+select 
+t.c801000015 || '：' ||'成功数' as 成功数,
+t.c801000018 as 受理地市,
+count(distinct(t.C1)) || '' as 成功数
+from {100} t,{900} brand,{800} city, (select * from {200} union all select * from {300}) pro,{500} u,{400} g,{600} gu
+,{500} uu,{400} gg,{600} gugu
+where 
+t.c801000015=brand.c801800001
+and t.C1=pro.C700020001
+and t.C700000005=u.C630000001
+and u.C1=gu.C620000028
+and gu.C620000027=g.C1
+--and ( g.C630000037 like '%600001%')
+{7}
+and pro.c700020010=uu.C630000001
+and uu.C1=gugu.C620000028
+and gugu.C620000027=gg.C1
+--and ( gg.C630000037 like '%600001%')
+{6}
+and t.c801000018=city.c801800001
+and t.c700000010<>'已作废'
+{3}{4}{5}
+and t.c801000068 is not null
+and t.c801000068<>'未联系到客户'
+and t.c801000068<>'不需要回访'
+group by t.c801000015,t.c801000018
+
+union all
+
+select 
+t.c801000015 || '：' ||'满意数' as 满意数,
+t.c801000018 as 受理地市,
+count(distinct(t.C1)) || '' as 满意数
+from {100} t,{900} brand,{800} city, (select * from {200} union all select * from {300}) pro,{500} u,{400} g,{600} gu
+,{500} uu,{400} gg,{600} gugu
+where 
+t.c801000015=brand.c801800001
+and t.C1=pro.C700020001
+and t.C700000005=u.C630000001
+and u.C1=gu.C620000028
+and gu.C620000027=g.C1
+--and ( g.C630000037 like '%600001%')
+{7}
+and pro.c700020010=uu.C630000001
+and uu.C1=gugu.C620000028
+and gugu.C620000027=gg.C1
+--and ( gg.C630000037 like '%600001%')
+{6}
+and t.c801000018=city.c801800001
+and t.c700000010<>'已作废'
+{3}{4}{5} 
+and t.c801000068 is not null
+and (t.c801000068='非常满意' or t.c801000068='满意' or t.c801000068='一般')
+ 
+group by t.c801000015,t.c801000018
+
+union all
+
+select
+a.客户品牌 || '：' || '满意率' as 满意率,
+a.受理地市 as 受理地市,
+round(b.数量/(case when a.数量=0 then 1 else a.数量 end),4)*100 || '%' as 满意率
+from
+(select 
+t.c801000015 as 客户品牌,
+t.c801000018 as 受理地市,
+count(distinct(t.C1))  as 数量
+from {100} t,{900} brand,{800} city, (select * from {200} union all select * from {300}) pro,{500} u,{400} g,{600} gu
+,{500} uu,{400} gg,{600} gugu
+where 
+t.c801000015=brand.c801800001
+and t.C1=pro.C700020001
+and t.C700000005=u.C630000001
+and u.C1=gu.C620000028
+and gu.C620000027=g.C1
+--and ( g.C630000037 like '%600001%')
+{7}
+and pro.c700020010=uu.C630000001
+and uu.C1=gugu.C620000028
+and gugu.C620000027=gg.C1
+--and ( gg.C630000037 like '%600001%')
+{6}
+and t.c801000018=city.c801800001
+and t.c700000010<>'已作废'
+{3}{4}{5}
+and t.c801000068 is not null
+and t.c801000068<>'未联系到客户'
+and t.c801000068<>'不需要回访'
+group by t.c801000015,t.c801000018) a,
+(select 
+t.c801000015 as 客户品牌,
+t.c801000018 as 受理地市,
+count(distinct(t.C1)) as 数量
+from {100} t,{900} brand,{800} city, (select * from {200} union all select * from {300}) pro,{500} u,{400} g,{600} gu
+,{500} uu,{400} gg,{600} gugu
+where 
+t.c801000015=brand.c801800001
+and t.C1=pro.C700020001
+and t.C700000005=u.C630000001
+and u.C1=gu.C620000028
+and gu.C620000027=g.C1
+--and ( g.C630000037 like '%600001%')
+{7}
+and pro.c700020010=uu.C630000001
+and uu.C1=gugu.C620000028
+and gugu.C620000027=gg.C1
+--and ( gg.C630000037 like '%600001%')
+{6}
+and t.c801000018=city.c801800001
+and t.c700000010<>'已作废'
+ {3}{4}{5}
+and t.c801000068 is not null
+and (t.c801000068='非常满意' or t.c801000068='满意' or t.c801000068='一般')
+ 
+group by t.c801000015,t.c801000018) b
+where a.受理地市=b.受理地市
+and a.客户品牌=b.客户品牌
+		]]></item>
+	</sql>
+	<sql name="Dshfmy_form_sum_brand" datasource="Ultranms">
+		<item dbms="All"><![CDATA[
+select
+a.客户品牌 as 客户品牌
+from
+(select distinct c801800001 || '：'|| '回访数' as 客户品牌 from {900} where 1=1 {3}
+union all
+select distinct c801800001 || '：'|| '成功数' as 客户品牌 from {900} where 1=1 {3}
+union all
+select distinct c801800001 || '：'|| '满意数' as 客户品牌 from {900} where 1=1 {3}
+union all
+select distinct c801800001 || '：'|| '满意率' as 客户品牌 from {900} where 1=1 {3}) a
+order by a.客户品牌
+		]]></item>
+	</sql>
+		<sql name="Dshfmy_form_sum_city" datasource="Ultranms">
+		<item dbms="All"><![CDATA[
+select distinct c801800001,c801842006 from {800} where 1=1 {3} order by c801842006 desc
+		]]></item>
+	</sql>
+</sql-group>
+

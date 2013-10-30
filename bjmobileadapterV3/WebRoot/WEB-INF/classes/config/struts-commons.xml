@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<package name="commons" extends="struts-default">
+		<global-results>
+			<result name="input">/commons/error.jsp</result>
+			<result name="alert_and_close">
+				/commons/successAndClose.jsp
+			</result>
+			<result name="close">/commons/close.jsp</result>
+		</global-results>
+	</package>
+	<!-- 工单手机模板 -->
+	<package name="mobiletemplate" extends="struts-default" namespace="/mobiletemplate">
+		<action name="*" method="{1}" class="com.ultrapower.eoms.mobile.web.MobileTemplateAction">
+		</action>
+	</package>
+</struts>

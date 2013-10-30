@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<application>
+  <resource> 
+  </resource> 
+  <myworklist> 
+  </myworklist>
+  <plan>
+      <template>
+        <separate rowseparate="#" cellseparate="@" />
+      </template>
+  </plan>
+  <repository> 
+  </repository>
+  <duty> 
+  </duty>
+  <forum> 
+  </forum>
+</application>
+

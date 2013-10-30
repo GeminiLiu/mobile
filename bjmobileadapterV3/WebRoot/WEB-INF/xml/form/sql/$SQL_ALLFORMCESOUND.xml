@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="GB2312"?>
+<sql-group>
+	<doc>
+		<author>duanximeng</author>
+		<date>2006-03-26</date>
+		<description>
+		</description>
+	</doc>
+		<!-- 派发人-->
+		<sql name="hbeoms.allformsecoundpfrolename" datasource="Ultranms">
+		<item dbms="All"><![CDATA[
+
+
+select
+a.派单人,
+a.工单总数,
+b.退回次数,
+round(b.退回次数/(case when a.工单总数=0 then 1 else a.工单总数 end ),4)*100 || '%' as 退回比率
+from
+(select
+b.派单人,
+nvl(a.工单总数,0) as 工单总数 
+from
+(select
+t.c700000004 as 派单人,
+count(distinct(t.C1)) as 工单总数
+from {1000} t,(select * from {100} union all select * from {200}) log
+where
+t.C1=log.c700020407
+and t.c700000001=log.c700020408
+{1}{3}
+ --and (  t.c700000010='待处理' or t.c700000010='处理中' or t.c700000010='已完成' or t.c700000010='待审批' or t.c700000010='已挂起' or t.c700000010='已解除挂起' or t.c700000010='审批通过' or t.c700000010='审批不通过' or t.c700000010='已作废' or t.c700000010='已关闭' or t.c700000010='审批中' or t.c700000010='质检中' or t.c700000010='已质检')  and (t.C700000006>=1146672000 and t.C700000006<1180278000)
+group by t.c700000004) a,
+(select u.C630000003 as 派单人 from {300} u where 1=1 {2}) b
+where a.派单人(+)=b.派单人) a,
+(select
+b.派单人,
+nvl(a.退回次数,0) as 退回次数 
+from
+(select
+t.c700000004 as 派单人,
+count(distinct(t.C1)) as 退回次数
+from {1000} t,(select * from {100} union all select * from {200}) log
+where
+t.C1=log.c700020407
+and t.c700000001=log.c700020408
+and log.C700020402='退回'
+{1}{3}
+ --and (  t.c700000010='待处理' or t.c700000010='处理中' or t.c700000010='已完成' or t.c700000010='待审批' or t.c700000010='已挂起' or t.c700000010='已解除挂起' or t.c700000010='审批通过' or t.c700000010='审批不通过' or t.c700000010='已作废' or t.c700000010='已关闭' or t.c700000010='审批中' or t.c700000010='质检中' or t.c700000010='已质检')  and (t.C700000006>=1146672000 and t.C700000006<1180278000)
+group by t.c700000004) a,
+(select u.C630000003 as 派单人 from {300} u where 1=1 {2}) b
+where a.派单人(+)=b.派单人) b
+where a.派单人=b.派单人
+		]]></item>
+	</sql>
+	<!-- 派发部门-->
+		<sql name="hbeoms.allformsecoundpfscopename" datasource="Ultranms">
+		<item dbms="All"><![CDATA[
+
+select
+a.派单部门,
+a.工单总数,
+b.退回次数,
+round(b.退回次数/(case when a.工单总数=0 then 1 else a.工单总数 end),4)*100 || '%' as 退回比率
+from
+(select 
+b.派单部门,
+nvl(a.工单总数,0) as 工单总数
+from
+(select
+g.c630000018 as 派单部门,
+count(distinct(t.C1)) as 工单总数
+from {1000} t,(select * from {100} union all select * from {200}) log,{300} u,{400} g,{500} gu
+where
+t.C1=log.c700020407
+and t.c700000001=log.c700020408
+and t.c700000005=u.c630000001
+and u.C1=gu.c620000028
+and gu.c620000027=g.C1
+{1} {3}
+ --and (  t.c700000010='草稿' or t.c700000010='待处理' or t.c700000010='处理中' or t.c700000010='已完成' or t.c700000010='待审批' or t.c700000010='已挂起' or t.c700000010='已解除挂起' or t.c700000010='审批通过' or t.c700000010='审批不通过' or t.c700000010='已作废' or t.c700000010='已关闭' or t.c700000010='审批中' or t.c700000010='质检中' or t.c700000010='已质检')  and (t.C700000006>=1115222400 and t.C700000006<1180278000)
+group by g.c630000018) a,
+(select g.C630000018 as 派单部门 from {400} g where 1=1  {2}) b
+where a.派单部门(+)=b.派单部门) a,
+(select 
+b.派单部门,
+nvl(a.退回次数,0) as 退回次数 
+from
+(select
+g.c630000018 as 派单部门,
+count(distinct(t.C1)) as 退回次数
+from {1000} t,(select * from {100} union all select * from {200}) log,{300} u,{400} g,{500} gu
+where
+t.C1=log.c700020407
+and t.c700000001=log.c700020408
+and t.c700000005=u.c630000001
+and u.C1=gu.c620000028
+and gu.c620000027=g.C1
+and log.C700020402='退回'
+{1} {3}
+ --and (  t.c700000010='草稿' or t.c700000010='待处理' or t.c700000010='处理中' or t.c700000010='已完成' or t.c700000010='待审批' or t.c700000010='已挂起' or t.c700000010='已解除挂起' or t.c700000010='审批通过' or t.c700000010='审批不通过' or t.c700000010='已作废' or t.c700000010='已关闭' or t.c700000010='审批中' or t.c700000010='质检中' or t.c700000010='已质检')  and (t.C700000006>=1115222400 and t.C700000006<1180278000)
+group by g.c630000018) a,
+(select g.C630000018 as 派单部门 from {400} g where 1=1  {2}) b
+where a.派单部门(+)=b.派单部门) b
+where a.派单部门=b.派单部门
+		]]></item>
+	</sql>
+		<sql name="hbeoms.titlename" datasource="Ultranms">
+		<item dbms="All"><![CDATA[
+  
+select 't'||t.schemaid,BaseCategory.C650000001 as basechname, BaseCategory.C650000002 as basename from {500} BaseCategory,arschema t
+where  t.name=BaseCategory.C650000002 and t.schemaid={5}
+		]]></item>
+	</sql>
+</sql-group>
+

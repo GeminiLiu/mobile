@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="GB2312"?>
+<sql-group>
+	<doc>
+		<author>duanximeng</author>
+		<date>2006-03-29</date>
+		<description></description>
+	</doc>
+	
+	<sql name="acceptformsumlink" datasource="Ultranms">
+		<item dbms="All"><![CDATA[
+{2}
+		]]></item>
+	</sql>
+</sql-group>
+

@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sql-group>
+	<doc>
+		<author>lihongbo</author> 
+		<date>2010-10-28</date> 
+		<description>首页工单、作业计划、资料管理待办</description> 		
+	</doc>	
+	<sqlquery name="SQL_WaitDealMainImage" dbpoolname="">		
+		<select>
+		<![CDATA[ 			
+           
+           select 
+			 '工单' as title,count(baseid) as waits
+			 from(
+		  select  
+			base.C700000000 as baseid,
+			dp.C1           as processid
+		from {WF:App_Base_Infor} base,{WF:App_DealProcess} dp 
+		where
+			base.C700000000 = dp.C700020001
+			and base.C700000001 = dp.C700020002
+			and dp.C700020020 = '1'
+            and ((C700020016 is null and (C700020006 = '#AssgineeID#' or C700020048 = '#AssgineeID#' 
+            or C700020008 in (#GroupID#) or C700020008 in (#RoleID#) ))
+            or (C700020016 > '0' and (C700020010 = '#AssgineeID#' or (C700020049 = '0' and 
+            C700020008 in (#GroupID#) or C700020008 in (#RoleID#) ))))
+		    and (C700020019 = '0' or C700020019 = '1' or C700020019 = '2'  or C700020019 = '4')
+
+   		   union all
+		
+		  select 
+			base.C700000000 as baseid,
+			ap.C1           as processid
+		from {WF:App_Base_Infor} base,{WF:App_AuditingProcess} ap 
+		where
+			base.C700000000 = ap.C700020001
+			and base.C700000001 = ap.C700020002
+			and ap.C700020020 = '1'
+
+		    and ((C700020016 is null and (C700020006 = '#AssgineeID#' or C700020048 = '#AssgineeID#' 
+            or C700020008 in (#GroupID#) or C700020008 in (#RoleID#) ))
+            or (C700020016 > '0' and (C700020010 = '#AssgineeID#' or (C700020049 = '0' and 
+            C700020008 in (#GroupID#) or C700020008 in (#RoleID#) ))))
+		    and (C700020019 = '3' or C700020019 = '4'or C700020019 = '5')
+		) result 
+		
+		union all
+		
+		select 
+			'作业计划' as title,sum(sums) as waits
+			from (
+			--人：
+			select count(distinct a.plan_id) sums
+			  from Executable_Plan a, Actual_Executor b,{UltraProcess:SysUser} spp
+			 where a.plan_Id = b.plan_Id
+			   and b.executor_Type = 1
+			   and a.nouse_flag = 0
+			   and a.complete_flag<>1
+			   and spp.c630000029 = b.executor_Id
+			   and a.start_Time <= to_char(sysdate, 'yyyy-mm-dd')
+			   and a.end_Time >= to_char(sysdate, 'yyyy-mm-dd')
+			   and spp.c630000001 = '#AssgineeID#'
+			
+			union all
+			--班组：
+			
+			select count(distinct a.plan_id) sums
+			  from Executable_Plan a,
+			       Actual_Executor b,
+			       {UltraProcess:SysUser}    spp,
+			       {UltraProcess:SysGroup}     sg,
+			       {UltraProcess:SysGroupUser} sgu
+			 where a.plan_Id = b.plan_Id
+			   and b.executor_Type = 2
+			   and a.nouse_flag = 0
+			   and a.complete_flag<>1
+			   and sgu.c620000028 = spp.c1
+			   and sgu.c620000027 = sg.c1
+			   and sg.c630000030 = b.executor_Id
+			   and a.start_Time <= to_char(sysdate, 'yyyy-mm-dd')
+			   and a.end_Time >= to_char(sysdate, 'yyyy-mm-dd')
+			   and spp.c630000001 = '#AssgineeID#'
+			
+			   union all
+			
+			--班次：
+			select count(distinct a.plan_id) sums
+			  from Duty_Sub        ds,
+			       Executable_Plan a,
+			       Actual_Executor b,
+			       {UltraProcess:SysUser}    spp,
+			       Duty_Calendar   dc,
+			       Cnt_Calendar    cc
+			 where a.plan_Id = b.plan_Id
+			   and b.executor_Type = 3
+			   and a.nouse_flag = 0
+			   and a.complete_flag<>1
+			   and dc.duty_Sub_Id = ds.duty_Sub_Id
+			   and cc.user_Id = spp.c630000029
+			   and cc.calendar_Id = dc.calendar_Id
+			   and ds.duty_Sub_Id = b.executor_Id
+			   and a.start_Time <= dc.duty_Date
+			   and a.end_Time >= dc.duty_Date
+			   #executors#
+			   #dutydates#
+			   and spp.c630000001 = '#AssgineeID#'
+			   
+			union all
+			   
+			select count(distinct year_plan_id) sums
+			  from Year_Plan year_plan, {UltraProcess:SysUser} u
+			 where 1 = 1
+			   and (year_plan.status = 20 or year_plan.status = 70 )
+			   and year_plan.check_Record_Id = u.c630000029
+			   and u.c630000001 = '#AssgineeID#'
+			      
+			union all
+			      
+			select count(distinct month_plan_id) sums
+			  from Month_Plan    month_plan,
+			       {UltraProcess:SysUser}          u
+			 where 1=1
+			   and (month_plan.status = 20 or month_plan.status = 70)
+			   and month_plan.check_Record_Id = u.c630000029
+			   and u.c630000001='#AssgineeID#'
+			   
+			union all
+			
+			select count(distinct a.check_id) sums
+			  from Plan_Exe_Validate a, {UltraProcess:SysUser} u
+			 where 1=1
+			   and a.check_Record_Id = u.c630000029
+			   and u.c630000001 = '#AssgineeID#'
+			   and a.status = 20
+			)
+          
+          union all
+          select title as title, sum(waits) as waits
+           from 
+           ( select '资料管理' as title,count(r.file_id) as waits
+			  from RESOURCE_FILE r,{UltraProcess:SysUser} u
+			 where r.status = 20
+			   and r.hide_Flag = 0
+			   and r.checker_id = u.c630000029
+			   and u.c630000001 = '#AssgineeID#'
+		  union all
+			select  '资料管理' as title,count(r.id) as waits
+			from RESOURCE_DELETE r ,{UltraProcess:SysUser} u
+		   where r.result =1 and r.delete_checker=u.c630000029
+				 and u.c630000001 = '#AssgineeID#'	
+		)group by title
+		  ]]> 
+		</select>
+        		
+	</sqlquery>	
+	<sqlquery name="SQL_WaitDealMainImage_Sub" dbpoolname="">		
+		<select>
+		<![CDATA[ 			
+           
+            select dc.duty_Sub_Id as subid, dc.duty_Date as dutydate
+			  from duty_calendar dc, cnt_calendar cc, {UltraProcess:SysUser} p
+			 where dc.status = 1
+			   and dc.create_Flag = 1
+			   and dc.calendar_id = cc.calendar_id
+			   and cc.user_id = p.c630000029
+			   and p.c630000001 = '#AssgineeIDs#'
+		
+		
+		  ]]> 
+		</select>
+        		
+	</sqlquery>	
+	<sqlquery name="SQL_WaitDealMainImage_Plan" dbpoolname="">		
+		<select>
+		<![CDATA[ 			
+           
+        
+		select title,sums from (
+			--人：
+			select '派发到人' as title ,count(distinct a.plan_id) sums
+			  from Executable_Plan a, Actual_Executor b,{UltraProcess:SysUser} spp
+			 where a.plan_Id = b.plan_Id
+			   and b.executor_Type = 1
+			   and a.nouse_flag = 0
+			   and a.complete_flag<>1
+			   and spp.c630000029 = b.executor_Id
+			   and a.start_Time <= to_char(sysdate, 'yyyy-mm-dd')
+			   and a.end_Time >= to_char(sysdate, 'yyyy-mm-dd')
+			   and spp.c630000001 = '#AssgineeID#'
+			
+			union all
+			--班组：
+			
+			select '派发到组' as title ,count(distinct a.plan_id) sums
+			  from Executable_Plan a,
+			       Actual_Executor b,
+			       {UltraProcess:SysUser}    spp,
+			       {UltraProcess:SysGroup}     sg,
+			       {UltraProcess:SysGroupUser} sgu
+			 where a.plan_Id = b.plan_Id
+			   and b.executor_Type = 2
+			   and a.nouse_flag = 0
+			   and a.complete_flag<>1
+			   and sgu.c620000028 = spp.c1
+			   and sgu.c620000027 = sg.c1
+			   and sg.c630000030 = b.executor_Id
+			   and a.start_Time <= to_char(sysdate, 'yyyy-mm-dd')
+			   and a.end_Time >= to_char(sysdate, 'yyyy-mm-dd')
+			   and spp.c630000001 = '#AssgineeID#'
+			
+			   union all
+			
+			--班次：
+			select '派发到班次' as title ,count(distinct a.plan_id) sums
+			  from Duty_Sub        ds,
+			       Executable_Plan a,
+			       Actual_Executor b,
+			       {UltraProcess:SysUser}    spp,
+			       Duty_Calendar   dc,
+			       Cnt_Calendar    cc
+			 where a.plan_Id = b.plan_Id
+			   and b.executor_Type = 3
+			   and a.nouse_flag = 0
+			   and a.complete_flag<>1
+			   and dc.duty_Sub_Id = ds.duty_Sub_Id
+			   and cc.user_Id = spp.c630000029
+			   and cc.calendar_Id = dc.calendar_Id
+			   and ds.duty_Sub_Id = b.executor_Id
+			   and a.start_Time <= dc.duty_Date
+			   and a.end_Time >= dc.duty_Date
+			   #executors#
+			   #dutydates#
+			   and spp.c630000001 = '#AssgineeID#'
+			   
+			union all
+			   
+			select '年计划审批' as title ,count(distinct year_plan_id) sums
+			  from Year_Plan year_plan, {UltraProcess:SysUser} u
+			 where 1 = 1
+			   and (year_plan.status = 20 or year_plan.status = 70 )
+			   and year_plan.check_Record_Id = u.c630000029
+			   and u.c630000001 = '#AssgineeID#'
+			      
+			union all
+			      
+			select '月计划审批' as title ,count(distinct month_plan_id) sums
+			  from Month_Plan    month_plan,
+			       {UltraProcess:SysUser}          u
+			 where 1=1
+			   and (month_plan.status = 20 or month_plan.status = 70)
+			   and month_plan.check_Record_Id = u.c630000029
+			   and u.c630000001='#AssgineeID#'
+			   
+			union all
+			
+			select '执行计划审批' as title ,count(distinct a.check_id) sums
+			  from Plan_Exe_Validate a, {UltraProcess:SysUser} u
+			 where 1=1
+			   and a.check_Record_Id = u.c630000029
+			   and u.c630000001 = '#AssgineeID#'
+			   and a.status = 20
+		
+		)
+			
+		  ]]>  
+		</select>
+        		
+	</sqlquery>	
+    
+</sql-group>
+
+

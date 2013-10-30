@@ -1,0 +1,301 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<sql-group>
+	
+	<sqlquery name="SQL_BatchDeal_WaitDeal">
+		<select>
+		<![CDATA[
+		select 
+			/*COUNT*/
+			*
+			/*COUNT*/
+			 from(
+		select  /*调试*/
+			 dp.C700020001		as baseid,  		
+			 dp.C700020002      as baseschema,		
+			tth.C700000002      as basename,		
+			tth.C700000003      as basesn,			
+			tth.C700000018      as BaseDealOutTime,
+			tth.C700000010      as BaseStatus,		
+			tth.C700000011      as BaseSummary,		
+			 dp.C1        		as processid,		
+			 dp.C700020018      as ProDesc,			
+			 dp.C700020020      as FlagActive,		
+			 dp.C700020019     	as FlagType,		
+			 dp.C700020043      as ProcessType,
+			 dp.C700020005      as Assginee,
+			 dp.C700020101      as AssigneeCorp,
+			 dp.C700020103      as AssigneeDep,
+			 dp.C700020009      as Dealer,
+			 dp.C700020111      as DealerCorp,
+			 dp.C700020113      as DealerDep,
+			 dp.C700020007      as groupname,
+			 dp.C700020015      as StDate,
+			 dp.C700020016      as BgDate,
+			 dp.C700020011      as ProcessStatus,
+			 dp.C700020013      as ProcessAcceptOutTime,
+			 dp.C700020014      as ProcessDealOutTime,
+			tth.C700000008     	as BaseFinishDate,
+			tth.C700000022      as BaseTplID,
+			tth.C800020007      as INC_Alarm_ClearTime
+		from {WF:EL_TTM_TTH} tth,{WF:App_DealProcess} dp 
+		where
+			tth.C1 = dp.C700020001
+			and dp.C700020002='WF:EL_TTM_TTH' 
+			and dp.C700020020 = '1'	
+		$status$
+		$waitdealuser$
+		/* and (C700020019 = '0' or C700020019 = '1' or C700020019 = '2'  or C700020019 = '4') */
+		
+		$sch_assginee$
+
+		) result 
+		$extend$ 
+		  ]]> 
+		</select>
+
+ 
+
+		<customwhere>
+			
+			<parameterMap prepend="AND" name="status">
+				<mapingFiled  prepend="AND" fieldName="BaseStatus"  fieldType="4">
+					<mapsql value="isnotnull">
+						<![CDATA[
+							 C700020062 = '#BaseStatus#'
+						 ]]>  			
+					</mapsql>
+				</mapingFiled>
+				
+				<mapingFiled  prepend="AND" fieldName="conStatus"  fieldType="4">
+					<mapsql value="isnotnull">
+						<![CDATA[
+							 C700020021 = '#conStatus#'
+						 ]]>  			
+					</mapsql>
+				</mapingFiled>
+				
+				<mapingFiled  prepend="AND" fieldName="nettype"  fieldType="4">
+					<mapsql value="isnotnull">
+						<![CDATA[
+							 substr(tth.c700000014,1,instr(tth.c700000014,'.',1)-1) = '#nettype#'
+						 ]]>  			
+					</mapsql>
+				</mapingFiled>
+				
+				<mapingFiled  prepend="AND" fieldName="BaseCreateDate_1"  fieldType="7">
+						<mapsql value="isnotnull">
+							<![CDATA[
+								 C700000006 > '#BaseCreateDate_1#' 
+							 ]]>  			
+						</mapsql>
+				</mapingFiled>
+	
+				<mapingFiled  prepend="AND" fieldName="BaseCreateDate_2"  fieldType="7">
+						<mapsql value="isnotnull">
+							<![CDATA[
+								 C700000006 < '#BaseCreateDate_2#' 
+							 ]]>  			
+						</mapsql>
+				</mapingFiled>
+				
+				<mapingFiled  prepend="AND" fieldName="flagType"  fieldType="4">
+						<mapsql value="isnotnull">
+							<![CDATA[
+								 C700020019 = '#flagType#' 
+							 ]]>  			
+						</mapsql>
+				</mapingFiled>
+				
+			</parameterMap>
+		
+		
+			<parameterMap prepend="AND" name="waitdealuser">
+				<parameterMap prepend="" name="waitdealuser">
+				
+				<mapingFiled  prepend="AND" fieldName="type"  fieldType="4">
+						<mapsql value="isnotnull">
+							<![CDATA[
+								 C700020016 is null
+							 ]]>  			
+						</mapsql>
+				</mapingFiled>	
+
+				
+					<parameterMap prepend="AND" name="waitdealuser">
+						<mapingFiled  prepend="OR" fieldName="AssgineeID"  fieldType="4">
+							<mapsql value="isnotnull">
+								<![CDATA[
+									 C700020006 = '#AssgineeID#' or C700020048 = '#AssgineeID#'
+								 ]]>  			
+							</mapsql>
+						</mapingFiled>
+						<mapingFiled  prepend="OR" fieldName="GroupID"  fieldType="4">
+							<mapsql value="isnotnull">
+								<![CDATA[
+									 ';#GroupID#' like '%;' || C700020008 || ';%'
+								 ]]>  			
+							</mapsql>
+						</mapingFiled>
+						<mapingFiled  prepend="OR" fieldName="RoleID"  fieldType="4">
+							<mapsql value="isnotnull">
+								<![CDATA[
+									 ';#RoleID#' like '%;' || C700020008 || ';%'
+								 ]]>  			
+							</mapsql>
+						</mapingFiled>
+					</parameterMap>
+				</parameterMap>
+				<parameterMap prepend="OR" name="waitdealuser_asg">
+					<mapingFiled  prepend="AND" fieldName="type"  fieldType="4">
+						<mapsql value="isnotnull">
+							<![CDATA[
+								 C700020016 > '0'
+							 ]]>  			
+						</mapsql>
+					</mapingFiled>
+			
+
+				<mapingFiled  prepend="AND" fieldName="BaseStatus"  fieldType="4">
+					<mapsql value="isnotnull">
+						<![CDATA[
+							 C700000010 = '#BaseStatus#'
+						 ]]>  			
+					</mapsql>
+				</mapingFiled>
+
+					<parameterMap prepend="AND" name="waitdealuser">
+						<mapingFiled  prepend="OR" fieldName="AssgineeID"  fieldType="4">
+							<mapsql value="isnotnull">
+								<![CDATA[
+									 C700020010 = '#AssgineeID#'
+								 ]]>  			
+							</mapsql>
+						</mapingFiled>
+						<parameterMap prepend="OR" name="waitdealuser">
+							<mapingFiled  prepend="AND" fieldName="GroupID"  fieldType="4">
+								<mapsql value="isnotnull">
+									<![CDATA[
+										 C700020049 = '0'
+									 ]]>  			
+								</mapsql>
+							</mapingFiled>
+							<mapingFiled  prepend="AND" fieldName="GroupID"  fieldType="4">
+								<mapsql value="isnotnull">
+									<![CDATA[
+										 ';#GroupID#' like '%;' || C700020008 || ';%'
+									 ]]>  			
+								</mapsql>
+							</mapingFiled>
+							<mapingFiled  prepend="OR" fieldName="RoleID"  fieldType="4">
+								<mapsql value="isnotnull">
+									<![CDATA[
+										 ';#RoleID#' like '%;' || C700020008 || ';%'
+									 ]]>  			
+								</mapsql>
+							</mapingFiled>
+						</parameterMap>
+					</parameterMap>
+				</parameterMap>
+			</parameterMap>
+			
+			<parameterMap prepend="AND" name="sch_assginee">
+				<mapingFiled  prepend="AND" fieldName="Assginee"  fieldType="4">
+					<mapsql value="isnotnull">
+						<![CDATA[
+							 C700020005 like '%#Assginee#%'
+						 ]]>  			
+					</mapsql>
+				</mapingFiled>
+				<mapingFiled  prepend="AND" fieldName="groupname"  fieldType="4">
+					<mapsql value="isnotnull">
+						<![CDATA[
+							 C700020007 like '%#groupname#%'
+						 ]]>  			
+					</mapsql>
+				</mapingFiled>
+			</parameterMap>
+			
+			<parameterMap prepend="EXTEND" name="extend">
+					<mapingFiled  prepend="EXTEND" fieldName="orderby"  fieldType="4">
+						<mapsql value="isnotnull">
+							<![CDATA[
+								   order by #orderby#
+							 ]]>
+						</mapsql>
+					</mapingFiled>
+			</parameterMap>
+		</customwhere>
+		<sqlother>
+			<sqlpagination isavailability="true">
+				<sqlpageSize>20</sqlpageSize>
+			</sqlpagination>
+			<sqldistinct isavailability="false">排重的列1,排重的列2</sqldistinct>
+			<sqlSortFields isavailability="false">排序的列1,排序的列2</sqlSortFields>
+		</sqlother>
+		<PageQueryField>
+
+		<field name="c1">
+				<fieldID>700000000</fieldID>
+				<fieldEnglishname>baseid</fieldEnglishname>
+				<fieldChinesename>工单号</fieldChinesename>
+				<fieldType>4</fieldType>
+				<fieldDisplaytype>4</fieldDisplaytype>
+				<fieldDisplaytypeValue></fieldDisplaytypeValue>
+				<fieldDefaultValue></fieldDefaultValue>
+			</field>
+			<field name="BaseSN">
+				<fieldID>700000003</fieldID>
+				<fieldEnglishname>BaseSN</fieldEnglishname>
+				<fieldChinesename>工单流水号</fieldChinesename>
+				<fieldType>4</fieldType>
+				<fieldDisplaytype>4</fieldDisplaytype>
+				<fieldDisplaytypeValue></fieldDisplaytypeValue>
+				<fieldDefaultValue></fieldDefaultValue>
+			</field>
+			<field name="BaseCreateDate">
+				<fieldID>700000006</fieldID>
+				<fieldEnglishname>BaseCreateDate</fieldEnglishname>
+				<fieldChinesename>建单时间</fieldChinesename>
+				<fieldType>7</fieldType>
+				<fieldDisplaytype>7</fieldDisplaytype>
+				<fieldDisplaytypeValue></fieldDisplaytypeValue>
+				<fieldDefaultValue></fieldDefaultValue>
+			</field>
+
+			<field name="BaseSummary">
+				<fieldID>700000011</fieldID>
+				<fieldEnglishname>BaseSummary</fieldEnglishname>
+				<fieldChinesename>工单主题</fieldChinesename>
+				<fieldType>4</fieldType>
+				<fieldDisplaytype>4</fieldDisplaytype>
+				<fieldDisplaytypeValue></fieldDisplaytypeValue>
+				<fieldDefaultValue></fieldDefaultValue>
+			</field>
+			
+			<field name="BaseStatus">
+				<fieldID>700000010</fieldID>
+				<fieldEnglishname>BaseStatus</fieldEnglishname>
+				<fieldChinesename>工单状态</fieldChinesename>
+				<fieldType>4</fieldType>
+				<fieldDisplaytype>4</fieldDisplaytype>
+				<fieldDisplaytypeValue></fieldDisplaytypeValue>
+				<fieldDefaultValue></fieldDefaultValue>
+			</field>	
+
+		</PageQueryField>
+	</sqlquery>
+	<sqlquery name="SQL_firstnettype">
+		<select>
+		<![CDATA[
+		    select distinct c650000001 as firnet from {WF:Config_EL_00_NetType}
+		  ]]> 
+		</select>
+	</sqlquery>
+	<sqlquery name="SQL_findcreatorbybaseid">
+		<select>
+		<![CDATA[
+		    select c1 as id,c700000005 as basecreator,c800020007 as INC_Alarm_ClearTime from {WF:EL_TTM_TTH} where 1=1 #con_baseid#
+		  ]]> 
+		</select>
+	</sqlquery>
+</sql-group>

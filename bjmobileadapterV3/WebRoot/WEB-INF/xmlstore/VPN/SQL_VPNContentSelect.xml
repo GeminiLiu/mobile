@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sql-group>
+	<doc>
+		<author>作者</author> 
+		<date>时间</date> 
+		<description>Sql 描述</description> 		
+	</doc>
+	<sqlquery name="query.vpn.select.content">
+		<select>
+		<![CDATA[ 
+			select
+   			  /*COUNT*/
+				c.CONTENTID,
+				c.VPNID,
+				c.PROVINCE,
+				c.ADDRESS
+   			  /*COUNT*/
+			from VPN_CONTENT c
+			where
+				$basequery$ 
+			order by c.CONTENTID asc
+		  ]]> 
+		</select>
+		<customwhere>
+			<parameterMap prepend="" name="basequery">
+				<mapingFiled  prepend="AND" fieldName="id"  fieldType="4">
+					<mapsql value="isnotnull">
+						<![CDATA[
+							 c.CONTENTID = '#id#'
+						 ]]>
+					</mapsql>
+				</mapingFiled>
+			</parameterMap>
+ 		</customwhere>
+	</sqlquery>
+</sql-group>

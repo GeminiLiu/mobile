@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding='UTF-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+                            "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                            "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<!-- DO NOT EDIT: This is a generated file that is synchronized -->
+<!-- by MyEclipse Hibernate tool integration.                   -->
+<!-- Created Mon Jan 22 14:09:45 CST 2007                         -->
+<hibernate-mapping package="cn.com.ultrapower.eoms.user.authorization.sendscope.hibernate.po">
+
+    <class name="GroupIsSnatchpo" table="T256" lazy="false">
+		 <id name="c1" column="C1" type="java.lang.String"> 
+			<generator class="assigned"/> 
+		</id>
+        
+        <property name="c2" column="C2" type="java.lang.String" />
+        <property name="c3" column="C3" type="java.lang.Long"  not-null="true" />
+        <property name="c4" column="C4" type="java.lang.String" />
+        <property name="c5" column="C5" type="java.lang.String"  not-null="true" />
+        <property name="c6" column="C6" type="java.lang.Long"  not-null="true" />
+        <property name="c7" column="C7" type="java.lang.Long"  not-null="true" />
+        <property name="c8" column="C8" type="java.lang.String"  not-null="true" />
+        <property name="c650000001" column="C650000001" type="java.lang.String" />
+        <property name="c650000002" column="C650000002" type="java.lang.String" />
+        <property name="c650000003" column="C650000003" type="java.lang.String" />
+        <property name="c650000004" column="C650000004" type="java.lang.String" />
+        <property name="c650000005" column="C650000005" type="java.lang.Long" />
+    </class>
+    
+</hibernate-mapping>

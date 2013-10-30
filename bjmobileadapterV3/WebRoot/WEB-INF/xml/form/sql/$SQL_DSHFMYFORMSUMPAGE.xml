@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="GB2312"?>
+<sql-group>
+	<doc>
+		<author>duanximeng</author>
+		<date>2007</date>
+		<description></description>
+	</doc>
+	<!-- 地市-->
+	<sql name="dshfmyformsunpage_city" datasource="Ultranms">
+		<item dbms="All"><![CDATA[
+select  c801800001 from {100} order by c801842006
+		]]></item>
+	</sql>
+	<!-- 客户品牌-->
+	<sql name="dshfmyformsunpage_brand" datasource="Ultranms">
+		<item dbms="All"><![CDATA[
+select distinct c801800001  as 客户品牌 from {100}
+		]]></item>
+	</sql>
+	<!-- 受理渠道-->
+	<sql name="dshfmyformsunpage_qudao" datasource="Ultranms">
+		<item dbms="All"><![CDATA[
+				select t.C630000018 as name ,t.C630000030 as id from {100} t where 
+	   	   			      t.C630000021='2' and 
+                          ((t.C630000018 like '%分公司%') 
+	   	   			   	  or (t.C630000018 like '%区客服%')
+						  or (t.C630000018 like '%河北移动%'))
+		]]></item>
+	</sql>
+</sql-group>
+

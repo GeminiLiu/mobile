@@ -1,0 +1,1336 @@
+<?xml version="1.0" encoding="GB2312"?>
+<root >
+	<!--
+		0.000976563  1/1024
+		0.000000954  1/1024/1024
+		0.000000001  1/1024/1024/1024
+	-->
+	    <!-- AS400 主机性能 -->
+<!--		<group name="AS400" title="AS400">-->
+<!--		<element kmName="OS400_SYSTEM" kmTXT="系统" classStr="'OS400_SYSTEM'">-->
+<!--			<parameters txt="系统CPU使用率" name="CPU_Util" unit="%" scale="0.00" />-->
+<!--			<parameters txt="系统响应时间" name="Inter_resp" unit="ms" scale="0" />-->
+<!--			<parameters txt="系统永久地址使用率" name="Perc_Perm_Addr_Used" unit="%" scale="0.00" />-->
+<!--			<parameters txt="系统临时地址使用率" name="Perc_Tmp_Addr_Used" unit="%" scale="0.00" />-->
+<!--			<parameters txt="ASP硬盘空间使用率" name="Tot_ASP_Stg_Used" unit="%" scale="0.00" />-->
+<!--			<parameters txt="系统作业总数" name="Tot_Jobs_in_System" unit="个" scale="0" />-->
+<!--			<parameters txt="系统SPOOL增长率" name="Total_Spf_GrwthRat" unit="%" scale="0.00" />-->
+<!--			<parameters txt="系统SPOOL总数" name="Total_Spool_Files" unit="%" scale="0.00" />-->
+<!--		</element>-->
+<!--		<element kmName="OS400_USER" kmTXT="用户" classStr="'OS400_USER'">-->
+<!--			<parameters txt="当前登录用户数" name="Num_Users_Signed_On" unit="个" scale="0" />-->
+<!--		</element>-->
+<!--		<element kmName="网络" kmTXT="OS400_NETSTAT" classStr="'OS400_NETSTAT'">-->
+<!--			<parameters txt="主机连接总数" name="_Nbr_Connections" unit="个" scale="0" />-->
+<!--		</element>-->
+<!--		<element kmName="OS400_MONIFS" kmTXT="集成文件" classStr="'OS400_MONIFS'">-->
+<!--			<parameters txt="集成文件系统大小" name="IFS_Size" unit="kb" scale="0.00" />-->
+<!--		</element>-->
+<!--		<element kmName="OS400_BATCH" kmTXT="批作业" classStr="'OS400_BATCH'">-->
+<!--			<parameters txt="批作业MSGW数" name="Num_Batch_Msg_Wait" unit="个" scale="0" />-->
+<!--		</element>-->
+<!--		<element kmName="OS400_ACTJOBS" kmTXT="作业" classStr="'OS400_ACTJOBS'">-->
+<!--			<parameters txt="当前活动作业数" name="_Nbr_Act_Jobs" unit="个" scale="0" />-->
+<!--		</element>-->
+	<group name="AS400" title="AS400">
+
+		<!--CPU 性能-->
+		<element kmName="OS400_SYSTEM" kmTXT="主机CPU" classStr="'OS400_SYSTEM'">
+
+			<parameters txt="CPU使用率" name="CPU_Util" unit="%" scale="0.00" />
+
+<!--			<parameters txt="CPU交互使用率" name="Inter_util" unit="%" scale="0.00" />-->
+			
+			<parameters txt="系统SPOOL文件总数" name="Total_Spool_Files" unit="个" scale="0.00" />
+			
+			<parameters txt="系统SPOOL文件数增长率" name="Total_Spf_GrwthRat" unit="%" scale="0.00" />
+			<parameters txt="系统ASP使用率" name="Tot_ASP_Stg_Used" unit="%" scale="0.00" />
+
+			<parameters txt="系统ASP增长率" name="Tot_ASP_GrwthRat" unit="%" scale="0.00" />
+
+<!--			<parameters txt="系统ASP状态" name="ASP_ERR" unit="%" scale="0.00" />-->
+
+		</element>
+
+		<!--主机LIBRARY 性能-->
+		<element kmName="OS400_MONITORLIBS" kmTXT="主机LIBRARY" classStr="'OS400_MONITORLIBS'">
+
+			<parameters txt="LIBRARY大小" name="Size" unit="MB" scale="0.00" paramMultiply="1" />
+
+			<parameters txt="LIBRARY增长率" name="Lib_GrwthRat" unit="%" scale="0.00" paramMultiply="1" />
+
+		</element>
+
+		<!--集成文件系统-->
+		<element kmName="OS400_MONIFS" kmTXT="集成文件系统" classStr="'OS400_MONIFS'">
+
+			<parameters txt="文件系统大小" name="IFS_Size" unit="MB" scale="0.00" />
+			
+			<parameters txt="文件系统目标数" name="IFS_Nbr_Objects" unit="个" scale="0.00" />
+
+		</element>
+		
+		<!--进程性能-->
+		<element kmName="OS400_PROCESS" kmTXT="主机PROCESS" classStr="'OS400_PROCESS'">
+
+			<parameters txt="进程状态" name="Status" unit="状态" scale="0.00" />
+			
+		</element>
+
+
+	</group>
+	<!-- UNIX 主机性能 -->
+	<group name="unix" title="Unix">
+
+		<!--CPU 性能-->
+		<element kmName="CPU" kmTXT="CPU 性能" classStr="'CPU'">
+
+			<parameters txt="CPU利用率" name="CPUCpuUtil" unit="%" scale="0.00" />
+
+			<parameters txt="CPU用户时间利用率" name="CPUUserTime" unit="%" scale="0.00" />
+
+			<parameters txt="CPU系统时间利用率" name="CPUSysTime" unit="%" scale="0.00" />
+
+		</element>
+
+		<!--MEMORY 性能-->
+		<element kmName="MEMORY" kmTXT="内存性能" classStr="'MEMORY'">
+
+			<parameters txt="可用内存量" name="MEMFreeMem" unit="页数" scale="0" />
+
+			<parameters txt="内存页交换进量" name="MEMPageIn" unit="页数" scale="0" />
+
+			<parameters txt="内存页交换出量" name="MEMPageOut" unit="页数" scale="0" />
+
+			<parameters txt="内存利用率" name="MEMUsedPerc" unit="%" scale="0.00" />
+
+		</element>
+
+		<!--SWAP 性能-->
+		<element kmName="SWAP" kmTXT="SWAP 性能" classStr="'SWAP'">
+
+			<parameters txt="交换区总量" name="SWPTotSwapSize" unit="GB" scale="0.00" paramMultiply="0.000000954" />
+
+			<parameters txt="可用交换区量" name="SWPTotSwapFreeSpace" unit="GB" scale="0.00" paramMultiply="0.000000954" />-->
+
+			<parameters txt="交换区空间利用率" name="SWPTotSwapUsedPercent" unit="%" scale="0" />
+
+		</element>
+
+		<!--文件系统性能-->
+		<element kmName="FILESYSTEM" kmTXT="文件系统" classStr="'FILESYSTEM'">
+
+			<parameters txt="可用空间量" name="FSAvailableSpace" unit="GB" scale="0.00" paramMultiply="0.000000954" />
+
+			<parameters txt="已用空间量" name="FSUsedSpace" unit="GB" scale="0.00" paramMultiply="0.000000954" />
+
+			<parameters txt="文件系统利用率" name="FSCapacity" unit="%" scale="0.00" />
+
+			<parameters txt="I-node使用率" name="FSInodeUsedPercent" unit="%" scale="0.00" />
+
+		</element>
+
+		<!--进程性能-->
+		<element kmName="PROCPRES" kmTXT="进程性能" classStr="'PROCPRES'">
+
+			<parameters txt="进程数" name="PROCPPCount" unit="个" scale="0" />
+
+			<parameters txt="进程占用CPU时间的百分比" name="PROCPPCPUPerc" unit="%" scale="0.00" />
+
+			<parameters txt="进程的内存占用量" name="PROCPPMem" paramMultiply="0.001" unit="MB" scale="0" />
+
+		</element>
+
+	</group>
+
+	<group name="windows" title="Windows">
+
+		<!--CPU 性能-->
+		<element kmName="NT_CPU" kmTXT="CPU" classStr="'NT_CPU','NT_HEALTH'">
+
+			<parameters txt="CPU利用率" name="ProcessorUtilization" unit="%" scale="0.00" />
+
+			<parameters txt="CPU用户时间利用率" name="CPUprcrUserTimePercent" unit="%" scale="0.00" />
+
+			<parameters txt="CPU特权时间利用率" name="CPUprcrPrivTimePercent" unit="%" scale="0.00" />
+
+		</element>
+
+		<!--MEMORY 性能-->
+		<element kmName="NT_MEMORY" kmTXT="内存" classStr="'NT_MEMORY','NT_HEALTH'">
+
+			<parameters txt="内存利用率" name="MemoryUsage" unit="%" scale="0.00" />
+
+			<parameters txt="内存交换页换进率" name="MEMmemPagesInputPerSec" unit="%" scale="0.00" />
+
+			<parameters txt="内存交换页换出率" name="MEMmemPagesOutputPerSec" unit="%" scale="0.00" />
+
+			<parameters txt="内存换页率" name="MEMmemPagesPerSec" unit="%" scale="0.00" />
+
+		</element>
+
+		<!--磁盘 性能-->
+		<element kmName="NT_LOGICAL_DISKS" kmTXT="磁盘" classStr="'NT_LOGICAL_DISKS'">
+
+			<parameters txt="逻辑磁盘可用空间" name="LDldFreeMegabytes" unit="GB" scale="0.00" paramMultiply="0.000976563" />
+
+			<parameters txt="逻辑磁盘已用空间" name="LDldDiskSpaceUsed" unit="GB" scale="0.00" paramMultiply="0.000976563" />
+
+			<parameters txt="逻辑磁盘可用率" name="LDldFreeSpacePercent" unit="%" scale="0.00" />
+
+		</element>
+
+		<!--进程性能-->
+		<element kmName="NT_PROCESS" kmTXT="进程" classStr="'NT_PROCESS'">
+
+			<parameters txt="进程占用CPU时间百分比" name="PROCProcessorTimePercent" unit="%" scale="0.00" />
+
+		</element>
+
+	</group>
+
+	<group name="was" title="WAS">
+
+		<!--WAS 集群性能-->
+		<element kmName="PMW_CLUSTER" kmTXT="WAS 集群" classStr="'PMW_CLUSTER'">
+
+			<parameters txt="可用服务数" name="AvailableServers" unit="个" scale="0" />
+
+		</element>
+
+		<!--WAS 数据库池性能-->
+		<element kmName="PMW_DBPOOLS_SUMMARY" kmTXT="WAS 数据库池" classStr="'PMW_DBPOOLS_SUMMARY'">
+
+			<parameters txt="平均等待时长" name="AvgWaitTime" unit="s" scale="0" />
+
+			<parameters txt="平均利用率" name="PercentUsed" unit="%" scale="0.00" />
+
+		</element>
+
+		<!--CACHE 性能-->
+		<element kmName="PMW_CACHE_SUMMARY" kmTXT="CACHE" classStr="'PMW_CACHE_SUMMARY'">
+
+			<parameters txt="当前占用内存数" name="CurrentEntriesInMemory" unit="个" scale="0" />
+
+			<parameters txt="模板和磁盘超时率" name="TemplateTimeoutRate" unit="%" scale="0.00" />
+
+		</element>
+
+		<!--EJB 性能-->
+		<element kmName="PMW_EJB_SUMMARY" kmTXT="EJB" classStr="'PMW_EJB_SUMMARY'">
+
+			<parameters txt="活动Bean数" name="BeansActive" unit="个" scale="0" />
+
+			<parameters txt="Bean方法调用率" name="BeanMethodCallsRate" unit="%" scale="0.00" />
+
+			<parameters txt="Bean执行所用RT时间" name="BeanMethodRT" unit="s" scale="0" />
+
+		</element>
+
+		<!--日志 性能-->
+		<element kmName="PMW_LOG" kmTXT="日志" classStr="'PMW_LOG'">
+
+			<parameters txt="日志文件大小" name="LogFileSize" unit="KB" scale="0" />
+
+			<parameters txt="日志递增大小" name="LogGrowthSize" unit="KB" scale="0" />
+
+		</element>
+
+		<!--服务器资源 性能-->
+		<element kmName="PMW_SERVER_RESOURCES" kmTXT="服务器资源" classStr="'PMW_SERVER_RESOURCES'">
+
+			<parameters txt="剩余内存" name="FreeMemory" unit="KB" scale="0" />
+
+		</element>
+
+		<!--SESSION 性能-->
+		<element kmName="PMW_SESSIONS" kmTXT="SESSION" classStr="'PMW_SESSIONS'">
+
+			<parameters txt="平均客户Session数" name="LiveSessions" unit="个" scale="0" />
+
+		</element>
+
+		<!--进程池 性能-->
+		<element kmName="PMW_THREADPOOL" kmTXT="进程池" classStr="'PMW_THREADPOOL'">
+
+			<parameters txt="活动进程数" name="ActiveThreads" unit="个" scale="0" />
+
+			<parameters txt="进程池容量" name="ThreadPoolSize" unit="个" scale="0" />
+
+		</element>
+
+		<!--Servlet 服务性能-->
+		<element kmName="PMW_SERVLET" kmTXT="Servlet 服务" classStr="'PMW_SERVLET'">
+
+			<parameters txt="Servlet 请求数" name="ServletConcurrentRequests" unit="次" scale="0" />
+
+		</element>
+
+		<!--RAS 消息服务性能-->
+		<element kmName="PMW_RAS_MESSAGE" kmTXT="RAS 消息服务" classStr="'PMW_RAS_MESSAGE'">
+
+			<parameters txt="已查消息数" name="AuditMsgCount" unit="个" scale="0" />
+
+			<parameters txt="错误消息数" name="ErrorMsgCount" unit="个" scale="0" />
+
+			<parameters txt="失败消息数" name="FatalMsgCount" unit="个" scale="0" />
+
+		</element>
+
+	</group>
+
+	<group name="exchange" title="Exchange">
+
+		<!--队列协议 性能-->
+		<element kmName="MSEXCH_Queue_Protocols" kmTXT="队列协议" classStr="'MSEXCH_Queue_Protocols'">
+
+			<parameters txt="全部队列中的消息总数" name="TotalMessagesInAllQueues" unit="个" scale="0" />
+
+		</element>
+
+		<!--队列 性能-->
+		<element kmName="MSEXCH_Queues" kmTXT="队列" classStr="'MSEXCH_Queues'">
+
+			<parameters txt="协议消息队列中的消息数" name="Messages" unit="个" scale="0" />
+
+			<parameters txt="协议消息队列中的消息大小" name="MsgSize" unit="KB" scale="0" />
+
+		</element>
+
+		<!--服务状态 性能-->
+		<element kmName="MSEXCH_Server_Health_Container" kmTXT="服务状态" classStr="'MSEXCH_Server_Health_Container'">
+
+			<parameters txt="服务状态" name="ServerStatus" unit="" scale="0">
+
+				<valueReplace value="0">OK</valueReplace>
+
+				<valueReplace value="1">Service Down</valueReplace>
+
+				<valueReplace value="2">Connect Failed</valueReplace>
+
+			</parameters>
+
+		</element>
+
+		<!--存储组 性能-->
+		<element kmName="MSEXCH_Storage_Group" kmTXT="存储组" classStr="'MSEXCH_Storage_Group'">
+
+			<parameters txt="用于存储组的数据库日志文件数" name="DbLogFiles" unit="个" scale="0" />
+
+			<parameters txt="用于存储组的数据库日志文件大小" name="DbLogSize" unit="KB" scale="0" />
+
+		</element>
+
+		<!--虚拟服务状态 性能-->
+		<element kmName="MSEXCH_Virtual_Server_Health" kmTXT="虚拟服务状态" classStr="'MSEXCH_Virtual_Server_Health'">
+
+			<parameters txt="客户端连接状态" name="ClientConnectState" unit="" scale="0">
+
+				<valueReplace value="0">OK</valueReplace>
+
+				<valueReplace value="1">Client Connect Failed</valueReplace>
+
+			</parameters>
+
+			<parameters txt="集群状态" name="ClusterState" unit="" scale="0">
+
+				<valueReplace value="0">Offline</valueReplace>
+
+				<valueReplace value="1">Pending</valueReplace>
+
+				<valueReplace value="2">Partial Online</valueReplace>
+
+				<valueReplace value="3">Online</valueReplace>
+
+				<valueReplace value="4">Failed</valueReplace>
+
+				<valueReplace value="5">Unknown</valueReplace>
+
+			</parameters>
+
+			<parameters txt="未发送的报告数" name="NonDeliveryRpts" unit="个" scale="0" />
+
+		</element>
+
+		<!--用户监控 性能-->
+		<element kmName="MSEXCH_Watched_Users" kmTXT="用户监控" classStr="'MSEXCH_Watched_Users'">
+
+			<parameters txt="在邮箱关联内容表中的项目数" name="AssocContentCount" unit="个" scale="0" />
+
+			<parameters txt="用户收到的邮件数" name="InetMsgRecvRate" unit="个" scale="0" />
+
+			<parameters txt="用户发送的邮件数" name="InetMsgSendRate" unit="个" scale="0" />
+
+			<parameters txt="用户邮箱中的邮件大小" name="MsgSize" unit="KB" scale="0" />
+
+		</element>
+
+		<!--服务监控 性能-->
+		<element kmName="MSEXCH_MonitoredServers" kmTXT="服务监控" classStr="'MSEXCH_MonitoredServers'">
+
+			<parameters txt="接收通信量的百分比" name="PercentOfTotalRecv" unit="%" scale="0.00" />
+
+			<parameters txt="发送通信量的百分比" name="PercentOfTotalSent" unit="%" scale="0.00" />
+
+			<parameters txt="接收的字节数" name="RecvBytes" unit="Byte" scale="0" />
+
+			<parameters txt="发送的字节数" name="SentBytes" unit="Byte" scale="0" />
+
+		</element>
+
+		<!--集群资源 性能-->
+		<element kmName="MSEXCH_Cluster_Resources" kmTXT="集群资源" classStr="'MSEXCH_Cluster_Resources'">
+
+			<parameters txt="集群资源组状况" name="State" unit="" scale="0">
+
+				<valueReplace value="0">Initializing</valueReplace>
+
+				<valueReplace value="1">Online Pending</valueReplace>
+
+				<valueReplace value="2">Online</valueReplace>
+
+				<valueReplace value="3">Offline Pending</valueReplace>
+
+				<valueReplace value="4">Offline</valueReplace>
+
+				<valueReplace value="5">Failed</valueReplace>
+
+				<valueReplace value="6">Unknown</valueReplace>
+
+			</parameters>
+
+		</element>
+
+		<!--集群容器 性能-->
+		<element kmName="MSEXCH_Cluster_Container" kmTXT="集群容器" classStr="'MSEXCH_Cluster_Container'">
+
+			<parameters txt="总消息数" name="ServerMessages" unit="个" scale="0" />
+
+			<parameters txt="总消息大小" name="ServerMsgSize" unit="KB" scale="0" />
+
+			<parameters txt="消息跟踪日志文件数" name="TrackLogFiles" unit="个" scale="0" />
+
+			<parameters txt="消息跟踪日志文件大小" name="TrackLogSize" unit="KB" scale="0" />
+
+		</element>
+
+	</group>
+
+	<group name="siebel" title="Siebel">
+
+		<!--组件 性能-->
+		<element kmName="SIEBEL_COMP" kmTXT="组件" classStr="'SIEBEL_COMP'">
+
+			<parameters txt="运行任务的数量" name="NumRunTask" unit="个" scale="0" />
+
+			<parameters txt="最大内存使用量" name="MaxMemUsage" unit="KB" scale="0" />
+
+		</element>
+
+		<!--对象管理器 性能-->
+		<element kmName="SIEBEL_PERF_COMP" kmTXT="对象管理器" classStr="'SIEBEL_PERF_COMP'">
+
+			<parameters txt="平均响应时间" name="AvgRespTime" unit="ms" scale="0" />
+
+			<parameters txt="平均会话请求时间" name="AvgReqs" unit="ms" scale="0" />
+
+			<parameters txt="会话失败数" name="Errors" unit="个" scale="0" />
+
+		</element>
+
+		<!--服务 性能-->
+		<element kmName="SIEBEL_PERF_SERVER" kmTXT="服务" classStr="'SIEBEL_PERF_SERVER'">
+
+			<parameters txt="平均会话连接时间" name="AvgConnTime" unit="ms" scale="0" />
+
+			<parameters txt="平均响应时间" name="AvgRespTime" unit="ms" scale="0" />
+
+			<parameters txt="服务器组件的CPU时间" name="CPUTime" unit="ms" scale="0" />
+
+			<parameters txt="会话失败数" name="Errors" unit="个" scale="0" />
+
+			<parameters txt="数据库重新连接数" name="NumDBConnRtrs" unit="个" scale="0" />
+
+			<parameters txt="死锁回滚数" name="NumDLRbkRtrs" unit="个" scale="0" />
+
+		</element>
+
+		<!--操作系统 性能-->
+		<element kmName="SIEBEL_OS" kmTXT="操作系统" classStr="'SIEBEL_OS'">
+
+			<parameters txt="Siebel进程CPU使用率" name="SiebelCpuUtil" unit="%" scale="0.00" />
+
+			<parameters txt="Siebel进程内存使用量" name="SiebelMemUsage" unit="MB" scale="0" />
+
+			<parameters txt="Siebel进程数" name="NumSiebelProc" unit="个" scale="0" />
+
+		</element>
+
+		<!--日志文件剩余磁盘空间 性能-->
+		<element kmName="SIEBEL_LOG_CONT" kmTXT="日志文件剩余磁盘空间" classStr="'SIEBEL_LOG_CONT'">
+
+			<parameters txt="Siebel日志文件剩余磁盘空间" name="LogDiskFreeSpace" unit="MB" scale="0" />
+
+		</element>
+
+		<!--日志文件增长率 性能-->
+		<element kmName="SIEBEL_LOG" kmTXT="日志文件增长率" classStr="'SIEBEL_LOG'">
+
+			<parameters txt="Siebel日志文件增长率" name="LogIncreaseRate" unit="%" scale="0.00" />
+
+		</element>
+
+		<!--数据库表 性能-->
+		<element kmName="SIEBEL_TABLE" kmTXT="数据库表" classStr="'SIEBEL_TABLE'">
+
+			<parameters txt="数据库表记录数" name="NumRows" unit="条" scale="0" />
+
+			<parameters txt="数据库表增长率" name="TableIncreaseRate" unit="%" scale="0.00" />
+
+		</element>
+
+		<!--文件系统剩余空间 性能-->
+		<element kmName="SIEBEL_FILESYS" kmTXT="文件系统剩余空间" classStr="'SIEBEL_FILESYS'">
+
+			<parameters txt="文件系统剩余空间" name="FSFree" unit="MB" scale="0" />
+
+		</element>
+
+		<!--工单 性能-->
+		<element kmName="SIEBEL_WORKFLOW_GRP" kmTXT="工单" classStr="'SIEBEL_WORKFLOW_GRP'">
+
+			<parameters txt="过期未处理请求数" name="ExpireReqNotProcessed" unit="个" scale="0" />
+
+			<parameters txt="用户时间内请求没有动作数" name="ReqNoAction" unit="个" scale="0" />
+
+			<parameters txt="未处理响应数" name="ReqNotProcessed" unit="个" scale="0" />
+
+		</element>
+
+		<!--工单流程 性能-->
+		<element kmName="SIEBEL_WORKFLOW_PROC" kmTXT="工单流程" classStr="'SIEBEL_WORKFLOW_PROC'">
+
+			<parameters txt="在定义的工单流程中出错的步骤数" name="WfStepError" unit="个" scale="0" />
+
+		</element>
+
+	</group>
+
+
+	<!-- Oracle 主机性能 -->
+	<group name="oracle" title="Oracle">
+
+		<!--ORACLE 容量-->
+		<element kmName="ORACLE_CAPACITY" kmTXT="Oracle 容量" classStr="'ORACLE_CAPACITY'">
+
+			<parameters txt="可用会话数" name="SessionsLeft" unit="个" scale="0" />
+
+			<parameters txt="会话使用率" name="SessionsUsed" unit="%" scale="0.00" />
+
+			<parameters txt="可用进程数" name="ProcsLeft" unit="个" scale="0" />
+
+			<parameters txt="进程利用率" name="ProcsUsed" unit="%" scale="0.00" />
+
+			<parameters txt="可用事务数" name="TransLeft" unit="个" scale="0" />
+
+			<parameters txt="事务使用率" name="TransUsed" unit="%" scale="0.00" />
+
+			<parameters txt="可用锁数量" name="LocksFree" unit="个" scale="0" />
+
+			<parameters txt="锁利用率" name="LocksUsed" unit="%" scale="0.00" />
+
+		<!--	<parameters txt="可用游标数" name="CursorsLeft" unit="个" scale="0" />
+
+			<parameters txt="游标使用率" name="CursorsUsed" unit="%" scale="0.00" />	-->
+
+			<parameters txt="Dump空间利用率" name="BGDumpUsedPct" unit="%" scale="0.00" />
+
+		</element>
+
+		<!--ORACLE 性能-->
+		<element kmName="ORACLE_PERFORMANCE" kmTXT="Oracle 性能" classStr="'ORACLE_PERFORMANCE'">
+
+			<parameters txt="事务率" name="TransRate" unit="事务数/小时" scale="0" />
+
+			<parameters txt="磁盘排序数" name="DiskSorts" unit="%" scale="0" />
+
+			<parameters txt="每秒磁盘排序数" name="DiskSortRate" unit="%" scale="0.00" />
+
+			<parameters txt="锁等待时间" name="LockAvgWait" unit="秒" scale="0.00" />
+
+			<parameters txt="锁等待率" name="LockWaitRatio" unit="%" scale="0.00" />
+
+			<parameters txt="CheckPoint数量" name="BGChkpntRate" unit="数量/小时" scale="0" />
+
+			<parameters txt="CheckPoint间隔时间" name="ChkpntRate" unit="分钟" scale="0" />
+
+			<!--<parameters txt="Exec响应时长" name="ResponseExecTime" unit="秒" scale="0.00" />
+
+			<parameters txt="SQL语句响应时长" name="ResponseSqlTime" unit="秒" scale="0.00" />-->
+
+		</element>
+
+		<!--ORACLE_SGA 性能-->
+		<element kmName="ORACLE_SGA" kmTXT="Oracle SGA 性能" classStr="'ORACLE_SGA'">
+
+			<parameters txt="缓冲区命中率" name="BuffHitRatio" unit="%" scale="0.00" />
+
+			<parameters txt="数据字典命中率" name="DictHitRatio" unit="%" scale="0.00" />
+
+			<parameters txt="库高速缓存命中率" name="LibGetHitRatio" unit="%" scale="0.00" />
+
+			<parameters txt="内部锁获取率" name="LatchGetRatio" unit="%" scale="0.00" />
+
+			<parameters txt="缓冲区繁忙比率" name="BuffBusyRate" unit="%" scale="0.00" />
+
+		</element>
+
+		<!--ORACLE_USERS-->
+		<element kmName="ORACLE_USERS" kmTXT="Oracle 用户" classStr="'ORACLE_USERS'">
+
+			<parameters txt="用户会话数" name="Users" unit="个" scale="0" />
+
+		</element>
+
+		<!--ORACLE_TBSP_INSTANCE-->
+		<element kmName="ORACLE_TBSP_INSTANCE" kmTXT="Oracle 表空间利用率" classStr="'ORACLE_TBSP_INSTANCE'">
+
+			<parameters txt="表空间利用率" name="PctUsed" unit="%" scale="0.00" />
+
+			<parameters txt="表空间可用量" name="SpaceLeft" unit="MB" scale="0.00" />
+
+			<!--<parameters txt="每秒逻辑块读次数" name="BlkReads" unit="次数" scale="0" />
+
+			<parameters txt="每秒逻辑块写次数" name="BlkWrites" unit="次数" scale="0" />
+
+			<parameters txt="每秒物理块读次数" name="PhyReads" unit="次数" scale="0" />
+
+			<parameters txt="每秒物理块写次数" name="PhyWrites" unit="次数" scale="0" />-->
+
+		</element>
+
+		<!--ORACLE_AVAILABILITY-->
+		<element kmName="ORACLE_AVAILABILITY" kmTXT="Oracle 可用性" classStr="'ORACLE_AVAILABILITY'">
+
+			<parameters txt="系统表空间可用数" name="SystemTSLeft" unit="MB" scale="0" />
+
+			<parameters txt="临时表空间可用数" name="TempTSLeft" unit="MB" scale="0" />
+
+			<!--<parameters txt="回滚空间可用数" name="RSSpaceLeft" unit="MB" scale="0" />-->
+
+			<parameters txt="可用扩展数" name="ExtentsLeft" unit="个" scale="0" />
+
+		</element>
+
+		<!--ORACLE_JOBS-->
+		<!--<element kmName="ORACLE_JOBS" kmTXT="Oracle 作业" classStr="'ORACLE_JOBS'">
+
+			<parameters txt="失败的作业数" name="FailedJobs" unit="个" scale="0" />
+
+			<parameters txt="中断的作业数" name="BrokenJobs" unit="个" scale="0" />
+
+			<parameters txt="超时的作业数" name="OverdueJobs" unit="个" scale="0" />
+
+		</element>-->
+
+		<!--ORACLE_LOG-->
+		<element kmName="ORACLE_LOG" kmTXT="Oracle 重做日志" classStr="'ORACLE_LOG'">
+
+			<parameters txt="重做日志增长速率" name="RedoRate" unit="KB/秒" scale="0.00" />
+
+		</element>
+
+	</group>
+
+
+	<!--开始SQLServer数据库性能-->
+	<group name="mssql" title="SQL Server">
+
+		<element kmName="MSSQL_SERVER_AVAILABILITY" kmTXT="数据库可用性" classStr="'MSSQL_SERVER_AVAILABILITY'">
+
+			<parameters name="BlockerProcs" txt="阻滞进程" unit="个" scale="0" />
+
+			<parameters name="NumBlockedProcesses" txt="被阻塞的进程数" unit="个" scale="0" />
+
+			<parameters name="SuspectDatabases" txt="状态异常数据库数" unit="个" scale="0" />
+
+			<parameters name="SQLAgentJobFailures" txt="失败的JOB数" unit="个" scale="0" />
+
+			<!--<parameters name="SQLServerStatus" txt="SQLServer状态" unit="">
+				
+				<valueReplace value="0">OK</valueReplace>
+				
+				<valueReplace value="1">Offline</valueReplace>
+				
+				</parameters>-->
+
+		</element>
+
+		<element kmName="MSSQL_SERVER_CAPACITY" kmTXT="数据库资源" classStr="'MSSQL_SERVER_CAPACITY'">
+
+			<parameters txt="保持的连接数" name="ConnectionsRemaining" unit="个" scale="0" />
+
+			<parameters txt="空闲进程数" name="IdleProcs" unit="个" scale="0" />
+
+			<parameters txt="进程数量" name="NumProcesses" unit="个" scale="0" />
+
+			<parameters txt="连接用户数" name="UserConnections" unit="个" scale="0" />
+
+			<parameters txt="错误日志大小" name="ErrorLogSize" unit="KB" scale="0" />
+
+		</element>
+
+		<element kmName="MSSQL_SERVER_PERFORMANCE" kmTXT="数据库性能" classStr="'MSSQL_SERVER_PERFORMANCE'">
+
+			<parameters txt="CPU繁忙时间百分比" name="CpuBusy" unit="%" scale="0.00" />
+
+			<parameters txt="CPU中IO繁忙时间百分比" name="CpuIoBusy" unit="%" scale="0.00" />
+
+			<parameters txt="CPU空闲时间百分比" name="CpuIdle" unit="%" scale="0.00" />
+
+			<parameters txt="缓存命中率" name="CacheHitRatio" unit="%" scale="0.00" />
+
+			<parameters txt="SQL响应时间" name="ResponseSqlTime" unit="ms" scale="0" />
+
+			<parameters txt="执行响应时间" name="ResponseExecTime" unit="ms" scale="0" />
+
+			<parameters txt="每秒执行的事务数" name="TransactionsPerSec" unit="个" scale="0" />
+
+		</element>
+
+		<element kmName="MSSQL_SERVER_CACHE" kmTXT="Cache性能" classStr="'MSSQL_SERVER_CACHE'">
+
+			<parameters txt="FreeBuffer数量" name="NumberOfFreeBuffers" unit="个" scale="0" />
+
+		</element>
+
+		<element classStr="'MSSQL_SERVER_LOCKS'" kmName="MSSQL_SERVER_LOCKS" kmTXT="锁性能">
+
+			<parameters txt="数据库锁请求等待百分比" name="DatabaseLockRequestWaitPercent" unit="%" scale="0.00" />
+
+			<parameters txt="锁请求等待百分比" name="LockRequestWaitPercent" unit="%" scale="0.00" />
+
+			<parameters txt="表锁请求等待百分比" name="TableLockRequestWaitPercent" unit="%" scale="0.00" />
+
+			<parameters txt="数据库锁平均等待时间" name="DatabaseLockAvgWaitTime" unit="ms" scale="0" />
+
+			<parameters txt="每秒数据库锁请求数" name="DatabaseLockRequestsPerSec" unit="个" scale="0" />
+
+			<parameters txt="表锁平均等待时间" name="TableLockAvgWaitTime" unit="ms" scale="0" />
+
+			<parameters txt="每秒表锁请求数" name="TableLockRequestsPerSec" unit="个" scale="0" />
+
+			<parameters txt="每秒锁请求数" name="LockRequestsPerSec" unit="个" scale="0" />
+
+		</element>
+
+		<element classStr="'MSSQL_SERVER_DB'" kmName="MSSQL_SERVER_DB" kmTXT="SQL SERVER 空间">
+
+			<parameters txt="已用数据库空间" name="DatabaseSpaceUsedMB" unit="MB" scale="0" />
+
+			<parameters txt="数据库空间利用率" name="DatabaseSpaceUsedPct" unit="%" scale="0.00" />
+
+			<parameters txt="已用的日志空间" name="LogSpaceUsedMB" unit="MB" scale="0" />
+
+			<parameters txt="日志空间利用率" name="LogSpaceUsedPct" unit="%" scale="0.00" />
+
+			<parameters txt="长运行事务数" name="LongRunningTrans" unit="个" scale="0" />
+
+		</element>
+
+		<element classStr="'MSSQL_SERVER_DISK'" kmName="MSSQL_SERVER_DISK" kmTXT="SQL SERVER 磁盘">
+
+			<parameters txt="磁盘IO错误数" name="DiskIoErrors" unit="MB" scale="0" />
+
+			<parameters txt="磁盘IO读数量" name="DiskIoReads" unit="MB" scale="0" />
+
+			<parameters txt="磁盘IO写数量" name="DiskIoWrites" unit="MB" scale="0" />
+
+		</element>
+
+	</group>
+	<!--结束SQLServer数据库性能-->
+
+	<!--开始DB2数据库性能-->
+	<group name="db2" title="DB2">
+
+		<element classStr="'DB2DB_PERFORMANCE'" kmName="DB2DB_PERFORMANCE" kmTXT="DB2性能">
+
+			<parameters txt="Commit和rollback的总数" name="TotUOW" unit="次" scale="0" />
+
+			<!--<parameters txt="扇区数据写入磁盘所需的平均时间" name="AveDirWriteTime" unit="s" scale="0" />-->
+
+			<parameters txt="Catalog缓存命中率" name="CtlgCacheHitRatio" unit="%" scale="0.00" />
+
+			<parameters txt="成功执行的SQL语句的总数" name="TotThroughput" unit="次" scale="0" />
+
+			<parameters txt="包缓冲命中率" name="PkgCacheHitRatio" unit="%" scale="0.00" />
+
+			<!--<parameters txt="读一扇区数据时间" name="AveDirReadTime" unit="s" scale="0" />-->
+
+		</element>
+
+		<element classStr="'DB2DB_LOCK'" kmName="DB2DB_LOCK" kmTXT="DB2锁">
+
+			<!--<parameters txt="锁请求等待平均时间" name="AveWaitForLock" unit="s" scale="0" />-->
+
+			<parameters txt="请求锁操作的超时的次数" name="NumLockTimeouts" unit="次" scale="0" />
+
+			<parameters txt="发生死锁的次数" name="NumDeadlocks" unit="次" scale="0" />
+
+			<parameters txt="锁表操作的次数" name="NumExclLockEscals" unit="次" scale="0" />
+
+			<parameters txt="锁行操作升级为一般的锁表操作数" name="NumLockEscals" unit="次" scale="0" />
+
+			<parameters txt="为数据库应用所保留的锁操作数目" name="NumLocksRemaining" unit="个" scale="0" />
+
+			<parameters txt="当前在用的Locklist内存占用比" name="PctDBLocklistUsed" unit="%" scale="0.00" />
+
+		</element>
+
+		<element classStr="'DB2DB_CAPACITY'" kmName="DB2DB_CAPACITY" kmTXT="DB2容量">
+
+			<parameters txt="当前连接到数据库的应用数目" name="AppsConnToDB" unit="个" scale="0" />
+
+			<parameters txt="数据库表空间所占用的页面数" name="DatabaseSize" unit="个" scale="0" />
+
+			<parameters txt="连接数据库的应用所占百分比" name="PctAppsConnUsed" unit="%" scale="0.00" />
+
+			<parameters txt="同时连库最大数" name="MaxNumConcDBConns" unit="个" scale="0" />
+
+		</element>
+
+		<!--<element classStr="'DB2UDB_BUFFERPOOL'" kmName="DB2UDB_BUFFERPOOL" kmTXT="DB2缓冲池">
+
+			<parameters txt="缓冲区读数据和索引的命中率" name="BufferPoolHitRatio" unit="%" scale="0.00" />
+
+			<parameters txt="读数据命中率" name="DataPgHitRatio" unit="%" scale="0.00" />
+
+			<parameters txt="磁盘读写操作率" name="BPDataWriteReadRatio" unit="%" scale="0.00" />
+
+			<parameters txt="同步和异步读数据的比率" name="DBPrefetchEffRatio" unit="%" scale="0.00" />
+
+			<parameters txt="索引页面写读缓冲区时间率" name="BPIndxWriteReadRatio" unit="%" scale="0.00" />
+
+		</element>-->
+
+	</group>
+	<!--结束DB2数据库性能-->
+
+	<!--开始DB2数据库性能-->
+	<group name="db2eee" title="分布式DB2">
+
+		<element classStr="'DB2EEEDB_NODE_PERFORMANCE'" kmName="DB2EEEDB_NODE_PERFORMANCE" kmTXT="性能">
+
+			<parameters txt="Commit和rollback的总数" name="TotUOW" unit="次" scale="0" />
+
+			<parameters txt="扇区数据写入磁盘所需的平均时间" name="AveDirWriteTime" unit="s" scale="0" />
+
+			<parameters txt="Catalog缓存命中率" name="CtlgCacheHitRatio" unit="%" scale="0.00" />
+
+			<parameters txt="成功执行的SQL语句的总数" name="TotThroughput" unit="次" scale="0" />
+
+			<parameters txt="包缓冲命中率" name="PkgCacheHitRatio" unit="%" scale="0.00" />
+
+			<parameters txt="读一扇区数据时间" name="AveDirReadTime" unit="s" scale="0" />
+
+		</element>
+
+		<element classStr="'DB2EEEDB_NODE_LOCK'" kmName="DB2EEEDB_NODE_LOCK" kmTXT="锁">
+
+			<parameters txt="锁请求等待平均时间" name="AveWaitForLock" unit="s" scale="0" />
+
+			<parameters txt="请求锁操作的超时的次数" name="NumLockTimeouts" unit="次" scale="0" />
+
+			<parameters txt="发生死锁的次数" name="NumDeadlocks" unit="次" scale="0" />
+
+			<parameters txt="锁表操作的次数" name="NumExclLockEscals" unit="次" scale="0" />
+
+			<parameters txt="锁行操作升级为一般的锁表操作数" name="NumLockEscals" unit="次" scale="0" />
+
+			<parameters txt="为数据库应用所保留的锁操作数目" name="NumLocksRemaining" unit="个" scale="0" />
+
+			<parameters txt="当前在用的Locklist内存占用比" name="PctDBLocklistUsed" unit="%" scale="0.00" />
+
+		</element>
+
+		<element classStr="'DB2EEEDB_NODE_CAPACITY'" kmName="DB2EEEDB_NODE_CAPACITY" kmTXT="容量">
+
+			<parameters txt="当前连接到数据库的应用数目" name="AppsConnToDB" unit="个" scale="0" />
+
+			<parameters txt="数据库表空间所占用的页面数" name="DatabaseSize" unit="个" scale="0" />
+
+			<parameters txt="连接数据库的应用所占百分比" name="PctAppsConnUsed" unit="%" scale="0.00" />
+
+			<parameters txt="同时连库最大数" name="MaxNumConcDBConns" unit="个" scale="0" />
+
+		</element>
+
+		<element classStr="'DB2EEE_BUFFERPOOL'" kmName="DB2EEE_BUFFERPOOL" kmTXT="缓冲池">
+
+			<parameters txt="缓冲区读数据和索引的命中率" name="BufferPoolHitRatio" unit="%" scale="0.00" />
+
+			<parameters txt="读数据命中率" name="DataPgHitRatio" unit="%" scale="0.00" />
+
+			<parameters txt="磁盘读写操作率" name="BPDataWriteReadRatio" unit="%" scale="0.00" />
+
+			<parameters txt="同步和异步读数据的比率" name="DBPrefetchEffRatio" unit="%" scale="0.00" />
+
+			<parameters txt="索引页面写读缓冲区时间率" name="BPIndxWriteReadRatio" unit="%" scale="0.00" />
+
+		</element>
+
+	</group>
+	<!--结束DB2数据库性能-->
+
+	<!--开始INFORMIX数据库性能-->
+	<group name="informix" title="Informix">
+
+		<element classStr="'IFMXDS_AVAILABILITY'" kmName="IFMXDS_AVAILABILITY" kmTXT="INFORMIX数据库可用性性能">
+
+			<parameters txt="数据库检查点频率" name="CheckpointFrequency" unit="分钟" scale="0" />
+
+			<parameters txt="数据空间利用率" name="UsedSpace" unit="%" scale="0.00" />
+
+			<parameters txt="逻辑日志空间利用率" name="LogSpace" unit="%" scale="0.00" />
+
+			<parameters txt="VP(Virtual Processors)总数" name="VPTotal" unit="个" scale="0" />
+
+		</element>
+
+		<element classStr="'IFMXDS_CAPACITY'" kmName="IFMXDS_CAPACITY" kmTXT="INFORMIX数据库资源性能">
+
+			<parameters txt="数据库可用锁百分比" name="ActiveLocks" unit="%" scale="0.00" />
+
+			<parameters txt="数据库死锁的数量" name="Deadlocks" unit="数量" scale="0" />
+
+			<parameters txt="缓冲区溢出数" name="BufferOverflow" unit="数量" scale="0" />
+
+			<parameters txt="超时死锁数" name="Deadlock_Timeout" unit="数量" scale="0" />
+
+			<parameters txt="锁溢出数" name="LockOverflow" unit="数量" scale="0" />
+
+			<parameters txt="用户溢出数" name="UserOverflow" unit="数量" scale="0" />
+
+		</element>
+
+		<element classStr="'IFMXDS_PERFORMANCE'" kmName="IFMXDS_PERFORMANCE" kmTXT="INFORMIX数据库性能">
+
+			<parameters txt="响应时长" name="ResponseTime" unit="秒" scale="0" />
+
+			<parameters txt="表死锁数" name="TblDeadLocks" unit="数量" scale="0" />
+
+			<parameters txt="系统CPU时间使用百分比" name="SysCpu" unit="%" scale="0.00" />
+
+			<parameters txt="用户CPU使用百分比" name="UserCpu" unit="%" scale="0.00" />
+
+			<parameters txt="最大I/O队列长度" name="IOQueue" unit="个" scale="0" />
+
+			<parameters txt="写缓存命中率" name="WriteCache" unit="%" scale="0.00" />
+
+			<parameters txt="读缓存命中率" name="ReadCache" unit="%" scale="0.00" />
+
+		</element>
+
+		<element classStr="'IFMXDS_DBS'" kmName="IFMXDS_DBS" kmTXT="INFORMIX数据库空间性能">
+
+			<parameters txt="数据库空间利用率" name="DBSpaceUsed" unit="%" scale="0.00" />
+
+			<parameters txt="已分配空间比率" name="DBSpaceAllocated" unit="%" scale="0.00" />
+
+		</element>
+
+		<element classStr="'IFMXDS_DBS_CHK'" kmName="IFMXDS_DBS_CHK" kmTXT="INFORMIX数据库通道性能">
+
+			<parameters txt="数据库读" name="Read" unit="次数" scale="0" />
+
+			<parameters txt="数据库写" name="Write" unit="次数" scale="0" />
+
+			<parameters txt="页读" name="PageRead" unit="页数" scale="0" />
+
+			<parameters txt="页写" name="PageWrite" unit="页数" scale="0" />
+
+		</element>
+
+		<element classStr="'IFMXDS_USERS'" kmName="IFMXDS_USERS" kmTXT="INFORMIX数据库用户性能">
+
+			<parameters txt="用户IO百分比" name="ProblemUsers" unit="%" scale="0.00" />
+
+			<parameters txt="会话死锁数" name="SesDeadlocks" unit="次数" scale="0" />
+
+		</element>
+
+	</group>
+	<!--结束INFORMIX数据库性能-->
+
+	<!--开始SYBASE数据库性能-->
+	<group name="sybase" title="Sybase">
+
+		<element classStr="'SYBASE_AVAILABILITY'" kmName="SYBASE_AVAILABILITY" kmTXT="SYBASE数据库可用性性能">
+
+			<parameters txt="阻塞进程数" name="BlockerProcs" unit="个" scale="0" />
+
+			<parameters txt="被阻塞的进程数" name="NumBlockedProcs" unit="个" scale="0" />
+
+			<parameters txt="状态异常数据库数" name="SuspectDatabases" unit="个" scale="0" />
+
+		</element>
+
+		<element classStr="'SYBASE_CAPACITY'" kmName="SYBASE_CAPACITY" kmTXT="SYBASE数据库资源性能">
+
+			<parameters txt="可用的连接数" name="ConnectionsRemaining" unit="个" scale="0" />
+
+			<parameters txt="可用的锁资源" name="LocksRemaining" unit="个" scale="0" />
+
+			<parameters txt="错误日志大小" name="ErrorLogSize" unit="MB" scale="0" />
+
+			<parameters txt="用户连接使用百分比" name="ConnectionsUsedPCT" unit="%" scale="0.00" />
+
+			<parameters txt="空闲的进程数" name="IdleProcs" unit="个" scale="0" />
+
+			<parameters txt="进程数量" name="NumProcesses" unit="个" scale="0" />
+
+			<parameters txt="剩余可打开的数据库数" name="OpenDBRemain" unit="个" scale="0" />
+
+		</element>
+
+		<element classStr="'SYBASE_PERFORMANCE'" kmName="SYBASE_PERFORMANCE" kmTXT="SYBASE数据库性能">
+
+			<parameters txt="CPU繁忙比率" name="CpuBusy" unit="%" scale="0.00" />
+
+			<parameters txt="CPU空闲比率" name="CpuIdle" unit="%" scale="0.00" />
+
+			<parameters txt="长事务数量" name="LongRunningTrans" unit="个" scale="0" />
+
+			<parameters txt="SQL响应时间" name="ResponseSqlTime" unit="ms" scale="0" />
+
+			<parameters txt="执行响应时间" name="ResponseExecTime" unit="ms" scale="0" />
+
+			<parameters txt="使用的内存总数" name="MemoryUsedByProcs" unit="页" scale="0" />
+
+		</element>
+
+		<element classStr="'SYBASE_DATABASE'" kmName="SYBASE_DATABASE" kmTXT="SYBASE数据库空间性能">
+
+			<parameters txt="可用数据库空间" name="DatabaseSpaceFreeMB" unit="MB" scale="0" />
+
+			<parameters txt="已用数据库空间" name="DatabaseSpaceUsedMB" unit="MB" scale="0" />
+
+			<parameters txt="数据库空间利用率" name="DatabaseSpaceUsedPCT" unit="%" scale="0.00" />
+
+			<parameters txt="可用的日志空间" name="LogSpaceFreeMB" unit="MB" scale="0" />
+
+			<parameters txt="已用的日志空间" name="LogSpaceUsedMB" unit="MB" scale="0" />
+
+			<parameters txt="日志空间利用率" name="LogSpaceUsedPCT" unit="%" scale="0.00" />
+
+			<parameters txt="段空间利用率" name="SegSpace" unit="%" scale="0.00" />
+
+		</element>
+
+		<element classStr="'SYBASE_DISK_STD'" kmName="SYBASE_DISK_STD" kmTXT="SYBASE数据库磁盘性能">
+
+			<parameters txt="磁盘IO错误数" name="DiskIoErrs" unit="次数" scale="0" />
+
+			<parameters txt="磁盘IO读数量" name="DiskIoReads" unit="次数" scale="0" />
+
+			<parameters txt="磁盘IO写数量" name="DiskIoWrites" unit="次数" scale="0" />
+
+		</element>
+	</group>
+	<!--结束SYBASE数据库性能-->
+
+	<!--开始WEBLOGIC服务器性能-->
+	<group name="weblogic" title="Weblogic">
+
+		<element classStr="'BEAWLS_SERVER'" kmName="BEAWLS_SERVER" kmTXT="WEBLOGIC服务器性能">
+
+			<parameters txt="打开的端口数" name="NumOpenSockets" unit="个" scale="0" />
+
+			<parameters txt="打开的连接数" name="NumOpenConnections" unit="个" scale="0" />
+
+		</element>
+
+<!--		<element classStr="'BEAWLS_EJB_HOME'" kmName="BEAWLS_EJB_HOME" kmTXT="WEBLOGIC服务器EJB服务性能">
+
+			<parameters txt="访问的容器数" name="BeanAccessCount" unit="个" scale="0" />
+
+			<parameters txt="删除的容器数" name="BeanDestroyedCount" unit="个" scale="0" />
+
+			<parameters txt="空闲的容器数" name="BeansIdle" unit="个" scale="0" />
+
+			<parameters txt="已用的容器数" name="BeansInUse" unit="个" scale="0" />
+
+			<parameters txt="事务提交数/分钟" name="TransactionCommitRate" unit="个" scale="0" />
+
+			<parameters txt="事务回滚数/分钟" name="TransactionRollbackRate" unit="个" scale="0" />
+
+			<parameters txt="事务超时数/分钟" name="TransactionTimeoutRate" unit="个" scale="0" />
+
+		</element>-->
+
+		<element classStr="'BEAWLS_EXEC_QUEUE'" kmName="BEAWLS_EXEC_QUEUE" kmTXT="WEBLOGIC服务器运行队列性能">
+
+			<parameters txt="通过队列的请求数" name="ExecQThroughput" unit="个" scale="0" />
+
+			<parameters txt="队列长度" name="ExecuteQueueLength" unit="个" scale="0" />
+
+			<parameters txt="队列空闲的线程数" name="IdleExecThreadCount" unit="个" scale="0" />
+
+			<parameters txt="队列占用百分比" name="QueueLengthPercent" unit="%" scale="0" />
+
+		</element>
+
+		<element classStr="'BEAWLS_JDBC'" kmName="BEAWLS_JDBC" kmTXT="WEBLOGIC服务器JDBC服务性能">
+
+			<parameters txt="当前连接数" name="ActiveConnect" unit="个" scale="0" />
+
+			<parameters txt="可用的连接数" name="AvilableConnections" unit="个" scale="0" />
+
+			<parameters txt="连接延迟时间" name="ConnectionDelayTime" unit="ms" scale="0" />
+
+			<parameters txt="失败重连数" name="FailuresToReconnectCOunt" unit="个" scale="0" />
+
+			<parameters txt="等待连接数" name="WaitingForConnections" unit="个" scale="0" />
+
+			<parameters txt="不可用的连接数" name="UnavilableConnections" unit="个" scale="0" />
+
+			<parameters txt="指令缓存命中数" name="StatementCacheHitCount" unit="个" scale="0" />
+
+			<parameters txt="预指令缓存未命中数" name="StatementCacheMissCount" unit="个" scale="0" />
+
+		</element>
+
+		<element classStr="'BEAWLS_JMSSERVER'" kmName="BEAWLS_JMSSERVER" kmTXT="WEBLOGIC服务器JMS SERVER性能">
+
+			<parameters txt="当前字节数" name="BytesCurrentCount" unit="字节" scale="0" />
+
+			<parameters txt="字节数峰值" name="BytesHighCount" unit="字节" scale="0" />
+
+			<parameters txt="发出的字节数" name="BytesPendingCount" unit="字节" scale="0" />
+
+			<parameters txt="收到的字节数" name="BytesReceiveCount" unit="字节" scale="0" />
+
+			<parameters txt="当前消息总数" name="MessageCurrentCount" unit="个" scale="0" />
+
+			<parameters txt="当前消息峰值" name="MessageHighCount" unit="个" scale="0" />
+
+			<parameters txt="发出的消息数" name="MessagePendingCount" unit="个" scale="0" />
+
+			<parameters txt="收到的消息数" name="MessageReceiveCount" unit="个" scale="0" />
+
+		</element>
+
+		<element classStr="'BEAWLS_OS'" kmName="BEAWLS_OS" kmTXT="WEBLOGIC服务器系统占用性能">
+
+			<parameters txt="WebLogic服务CPU利用率" name="ServerJVMsCpuUtil" unit="%" scale="0.00" />
+
+			<parameters txt="Weblogic服务内存利用率" name="ServerJVMsMemUsage" unit="%" scale="0.00" />
+
+		</element>
+
+	</group>
+	<!--结束WEBLOGIC服务器性能-->
+
+	<!--开始Tuxdeo服务器性能-->
+	<group name="tuxdeo" title="Tuxedo">
+
+		<element classStr="'BEATUX_SYSTEM'" kmName="BEATUX_SYSTEM" kmTXT="SYSTEM性能">
+
+			<parameters txt="活动客户端数" name="NumActiveClients" unit="个" scale="0" />
+			<parameters txt="服务器数量" name="NumServers" unit="个" scale="0" />
+
+		</element>
+		<element classStr="'APPS_LOG'" kmName="APPS_LOG" kmTXT="LOG性能">
+
+			<parameters txt="日志磁盘可用空间率" name="LogDiskFreeSpace" unit="%" scale="0.00" />
+			<!--<parameters txt="日志事件数量" name="LogEvent" unit="个" scale="0" />-->
+			<parameters txt="日志文件大小" name="LogFileSize" unit="MB" scale="0.00" />
+		</element>
+		<element classStr="'BEATUX_MACHINE'" kmName="BEATUX_MACHINE" kmTXT="MACHINE性能">
+			<parameters txt="出列数" name="NumDequeue" unit="个" scale="0" />
+			<parameters txt="进列数" name="NumEnqueue" unit="个" scale="0" />
+	<!-- 		<parameters txt="Request数目" name="NumRequests" unit="个" scale="0" />-->
+		</element>
+
+		<element classStr="'BEATUX_SERVER'" kmName="BEATUX_SERVER" kmTXT="SERVER性能">
+			<parameters txt="会话数" name="NumConversation" unit="个" scale="0" />
+			<parameters txt="服务器进列数" name="NumDequeue" unit="个" scale="0" />
+			<parameters txt="服务器出列数" name="NumEnqueue" unit="个" scale="0" />
+			<parameters txt="Request数目" name="NumRequest" unit="个" scale="0" />
+		</element>
+		
+		<element classStr="'BEATUX_WSH'" kmName="BEATUX_WSH" kmTXT="WSH性能">
+			<parameters txt="总活动时间" name="TotalActiveTime" unit="个" scale="0" />
+			<parameters txt="总空闲时间" name="TotalIdleTime" unit="个" scale="0" />
+			<parameters txt="接受字节数" name="TotalRcvdBytes" unit="B" scale="0" />
+			<parameters txt="发送字节数" name="TotalSentBytes" unit="B" scale="0" />
+			<parameters txt="接受消息数" name="NumRcvdMessage" unit="个" scale="0" />
+			<parameters txt="每分钟接受消息数" name="NumRcvdMsgPerMin" unit="个" scale="0" />
+			<parameters txt="发送消息数" name="NumSentMessages" unit="个" scale="0" />
+			<parameters txt="每分钟发送消息数" name="NumSentMsgPerMin" unit="个" scale="0" />
+		</element>
+	</group>
+	<!--结束Tuxdeo服务器性能-->
+
+	<!--开始LDAP性能-->
+	<group name="ldap" title="LDAP">
+
+		<element classStr="'INET_Ldap_Server'" kmName="INET_Ldap_Server" kmTXT="服务器性能">
+
+			<parameters txt="ldap宕时间" name="ldapDownTime" unit="s" scale="0" />
+
+			<parameters txt="ldap响应时间" name="ldapResponseTime" unit="ms" scale="0" />
+
+			<parameters txt="ldap响应时间标准方差" name="ldapResponseTimeStdDeviation" unit="" scale="0.00" />
+
+			<parameters txt="ldap状态码" name="ldapStatusCode" unit="" scale="0" />
+		</element>
+
+	</group>
+	<!--结束LDAP性能-->
+
+	<!--开始TOMCAT性能-->
+	<group name="tomcat" title="Tomcat">
+
+		<element classStr="'INET_Web_AccLog'" kmName="INET_Web_AccLog" kmTXT="访问日志性能">
+
+			<parameters txt="访问日志读百分比" name="accLogPctRead" unit="%" scale="0.00" />
+
+			<parameters txt="访问日志大小" name="accessLogSize" unit="MB" scale="0" />
+
+			<parameters txt="访问日志更新时间" name="accessLogUpdateTime" unit="分钟" scale="0" />
+
+		</element>
+
+		<element classStr="'INET_Web_AccLogStat'" kmName="INET_Web_AccLogStat" kmTXT="分析访问日志性能">
+
+			<parameters txt="对所有请求的处理时间总和" name="procTime" unit="ms" scale="0" />
+
+			<parameters txt="处理每个请求的平均值" name="procTimeAverage" unit="ms" scale="0" />
+
+			<parameters txt="处理时间占用的百分比" name="procTimePercent" unit="%" scale="0.00" />
+
+			<parameters txt="每分钟被服务处理的请求数" name="requests" unit="个" scale="0" />
+
+			<parameters txt="每小时收到的请求数量" name="requestRatePerHour" unit="个" scale="0" />
+
+			<parameters txt="每分钟内由服务处理产生的响应长度" name="responseSize" unit="KB/min" scale="0" />
+
+			<parameters txt="响应长度峰值百分比" name="responseSizePeakPercent" unit="%" scale="0" />
+
+		</element>
+
+		<element classStr="'INET_Web_Application'" kmName="INET_Web_Application" kmTXT="应用性能">
+
+			<parameters txt="失效链接" name="badLinks" unit="个" scale="0" />
+
+			<parameters txt="页面应用响应时间" name="pageApplicationsTime" unit="ms" scale="0" />
+
+			<parameters txt="页面图像响应时间" name="pageImagesTime" unit="ms" scale="0" />
+
+			<parameters txt="页面文本响应时间" name="pageTextTime" unit="ms" scale="0" />
+
+			<parameters txt="页面URL响应时间" name="pageResponseTime" unit="ms" scale="0" />
+
+		</element>
+
+		<element classStr="'INET_Process'" kmName="INET_Process" kmTXT="进程性能">
+
+			<parameters txt="子进程数" name="childProcesses" unit="个" scale="0" />
+
+			<parameters txt="cpu利用率" name="cpuUsage" unit="%" scale="0.00" />
+
+			<parameters txt="服务进程闲时间" name="idleTime" unit="分钟" scale="0" />
+
+			<parameters txt="内存利用率" name="memoryUsage" unit="%" scale="0" />
+
+			<parameters txt="进程数量" name="processCount" unit="个" scale="0" />
+
+		</element>
+	</group>
+	<!--结束TOMCAT性能-->
+
+	<!--开始LOTUS性能-->
+	<group name="lotus" title="Notes">
+
+		<element classStr="'NOTES_SR'" kmName="NOTES_SR" kmTXT="服务">
+
+			<parameters txt="数据库数量" name="DBnumberOf" unit="个" scale="0" />
+
+			<parameters txt="数据库总空间" name="DBtotalSize" unit="KB" scale="0" />
+
+			<parameters txt="服务负载" name="ServerLoad" unit="%" scale="0.00" />
+
+			<parameters txt="服务响应" name="ServerResponse" unit="秒" scale="0" />
+
+			<parameters txt="服务器每分钟交易数" name="Transactions" unit="个" scale="0" />
+
+		</element>
+
+		<element classStr="'NOTES_DB'" kmName="NOTES_DB" kmTXT="数据库">
+
+			<parameters txt="数据库负载" name="DBLoad" unit="%" scale="0.00" />
+
+			<parameters txt="数据库响应" name="DBResponse" unit="秒" scale="0" />
+
+			<parameters txt="NSF数据库大小" name="LNDBSize" unit="KB" scale="0" />
+
+			<parameters txt="周访问量" name="WeeklyUse" unit="次" scale="0" />
+
+			<parameters txt="剩余空间百分比" name="WhiteSpace" unit="%" scale="0.00" />
+
+			<parameters txt="剩余空间" name="WhiteSpaceKb" unit="KB" scale="0" />
+
+		</element>
+
+		<element classStr="'NOTES_MAILBOX'" kmName="NOTES_MAILBOX" kmTXT="邮箱">
+
+			<parameters txt="邮箱数据库大小" name="LNDBSize" unit="KB" scale="0" />
+
+			<parameters txt="剩余空间百分比" name="WhiteSpace" unit="%" scale="0.00" />
+
+			<parameters txt="剩余空间" name="WhiteSpaceKb" unit="KB" scale="0" />
+
+			<parameters txt="等待被路由邮件数" name="Activity" unit="个" scale="0" />
+
+		</element>
+
+		<element classStr="'NOTES_DBVIEWS'" kmName="NOTES_DBVIEWS" kmTXT="视图">
+
+			<parameters txt="视图负载" name="ViewLoad" unit="%" scale="0.00" />
+
+			<parameters txt="视图响应" name="ViewResponse" unit="秒" scale="0" />
+
+		</element>
+
+		<element classStr="'NOTESTAT_MAIL'" kmName="NOTESTAT_MAIL" kmTXT="邮件状态">
+
+			<parameters txt="死信数量" name="Dead" unit="个" scale="0" />
+
+			<parameters txt="待传送信件数量" name="Waiting" unit="个" scale="0" />
+
+			<parameters txt="已发送/接受邮件数量" name="Delivered" unit="个" scale="0" />
+
+			<parameters txt="被路由邮件总数" name="TotalRouted" unit="个" scale="0" />
+
+			<parameters txt="平均发送接收时间" name="AverageDeliveryTime" unit="秒" scale="0" />
+
+			<parameters txt="失败邮件总数" name="TotalFailures" unit="个" scale="0" />
+
+		</element>
+
+		<element classStr="'NOTESTAT_SERVER'" kmName="NOTESTAT_SERVER" kmTXT="服务器状态">
+
+			<parameters txt="服务器任务数" name="Tasks" unit="个" scale="0" />
+
+			<parameters txt="服务启动后总交易数" name="Trans.Total" unit="个" scale="0" />
+
+			<parameters txt="在线用户数" name="Users" unit="个" scale="0" />
+
+			<parameters txt="服务启动后在线用户峰值数" name="Users.Peak" unit="个" scale="0" />
+
+		</element>
+	</group>
+	<!--结束LOTUS性能-->
+</root>

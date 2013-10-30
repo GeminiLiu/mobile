@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding='UTF-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+                            "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                            "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<!-- DO NOT EDIT: This is a generated file that is synchronized -->
+<!-- by MyEclipse Hibernate tool integration.                   -->
+<!-- Created Mon Jan 29 10:11:24 CST 2007                         -->
+<hibernate-mapping package="cn.com.ultrapower.eoms.user.config.source.hibernate.po">
+
+    <class name="PortaletSubscibe" table="PORTALET_SUBSCIBE" lazy="false">
+        <id name="portaletId" column="PORTALET_ID" type="java.lang.Long">
+            <generator class="assigned"/>
+        </id>
+ 
+        <property name="portaletParentid" column="PORTALET_PARENTID" type="java.lang.Long" />
+        <property name="portaletUserloginname" column="PORTALET_USERLOGINNAME" type="java.lang.String" />
+        <property name="portaletPortalsourceid" column="PORTALET_PORTALSOURCEID" type="java.lang.Long" />
+        <property name="portaletContentsourceid" column="PORTALET_CONTENTSOURCEID" type="java.lang.Long" />
+        <property name="portaletOrderby" column="PORTALET_ORDERBY" type="java.lang.Long" />
+        <property name="note" column="NOTE" type="java.lang.String" />
+    </class>
+    
+</hibernate-mapping>

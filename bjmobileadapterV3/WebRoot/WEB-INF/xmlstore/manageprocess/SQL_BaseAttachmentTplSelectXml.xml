@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sql-group>
+	<doc>
+		<author>黄维</author> 
+		<date>2008-10-12</date> 
+		<description>对附件的查询</description> 		
+	</doc>
+	<sqlquery name="BaseAttachmentTpl.BaseOn_OneProcessSelect">
+		<select>
+		<![CDATA[ 
+   			  select 
+   			  /*COUNT*/
+				C1	as	attachmentTplID,
+				C650000000	as	BaseName,
+				C650000002	as	BaseSchema,
+				C650000003	as	FileIdentifier,
+				C650000008	as	FileName,
+				C650000009	as	FileDesc
+			/*COUNT*/
+              from {WF:App_Base_Attachment_Tpl} BaseAttachmentTpl
+			  where $BaseOn_OneProcessSelect$ 
+		  ]]> 
+		</select>
+		<customwhere>
+			<parameterMap prepend="" name="BaseOn_OneProcessSelect">
+				<mapingFiled  prepend="" fieldName="is_notnull"  fieldType="4">
+					<mapsql value="isnotnull">
+						<![CDATA[
+							 1=#is_notnull#
+						 ]]>  			
+					</mapsql>
+				</mapingFiled>				
+				<mapingFiled  prepend="AND" fieldName="attachmenttplid"  fieldType="4">
+					<mapsql value="isnotnull">
+						<![CDATA[
+							 C1 = '#attachmenttplid#'
+						 ]]>  			
+					</mapsql>
+				</mapingFiled>
+				<mapingFiled  prepend="AND" fieldName="baseschema"  fieldType="4">
+					<mapsql value="isnotnull">
+						<![CDATA[
+							 C650000002 = '#baseschema#'
+						 ]]>  			
+					</mapsql>
+				</mapingFiled>
+				<mapingFiled  prepend="AND" fieldName="fileidentifier"  fieldType="4">
+					<mapsql value="isnotnull">
+						<![CDATA[
+							 C650000003 = '#fileidentifier#'
+						 ]]>  			
+					</mapsql>
+				</mapingFiled>
+			</parameterMap>		
+		</customwhere>
+	</sqlquery>
+	
+</sql-group>

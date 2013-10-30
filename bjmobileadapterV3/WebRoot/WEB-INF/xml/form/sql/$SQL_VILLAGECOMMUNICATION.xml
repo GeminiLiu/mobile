@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="GB2312"?>
+<sql-group>
+	<doc>
+		<author>shenchuan</author>
+		<date>2008-07-03</date>
+		<description>农村通信能力月报表</description>
+	</doc>
+	<sql name="villagecommunicationpage.group" datasource="Ultranms">
+		<item dbms="All"><![CDATA[
+
+			select t.groupname from (
+			select g.c630000018 groupname  from {100} g where g.c630000021='2' and g.c630000020='000000000600001' and g.c630000027='1'
+			union all 
+			select trim('网管中心') groupname from dual
+			) t 
+		]]></item>
+	</sql>
+	<sql name="villagecommunication.group" datasource="Ultranms">
+		<item dbms="All"><![CDATA[
+
+			select t.groupname from (
+			select g.c630000018 groupname  from {100} g where g.c630000021='2' and g.c630000020='000000000600001' and g.c630000027='1'
+			union all 
+			select trim('网管中心') groupname from dual
+			) t where 1=1 {1}
+		]]></item>
+	</sql>
+	
+
+		<sql name="villagecommunication.left" datasource="Ultranms">
+		<item dbms="All"><![CDATA[
+					select trim('(一)市区区域通信能力') as 指标名称
+					  from dual
+					union all
+					select trim('市区基站数(个)') as 指标名称
+					  from dual
+					union all
+					select trim('市区载频数(个)') as 指标名称
+					  from dual
+					union all
+					select trim('市区话音信道数(个)') as 指标名称
+					  from dual
+				     union all
+					select trim('(二)县城城区区域通信能力') as 指标名称  
+					from dual
+					union all
+					select trim('县城城区基站数(个)') as 指标名称
+					  from dual
+					  union all
+					select trim('县城城区载频数(个)') as 指标名称
+					  from dual
+					  union all
+					select trim('县城城区话音信道数(个)') as 指标名称
+					  from dual
+					  union all
+					select trim('(三)农村区域通信能力') as 指标名称
+					  from dual
+					  union all
+					select trim('农村基站数(个)') as 指标名称
+					  from dual
+					  union all
+					select trim('农村载频数(个)') as 指标名称
+					  from dual
+					  union all
+					select trim('农村话音信道数(个)') as 指标名称
+					  from dual
+					  union all
+					select trim('表间关系验证:') as 指标名称
+					  from dual
+					  union all
+					select trim('基站数合计(个)') as 指标名称
+					  from dual
+					  union all
+					select trim('载频数合计(个)') as 指标名称
+					  from dual
+					  union all
+					select trim('话音信道数合计(个)') as 指标名称
+					  from dual
+					  
+		]]></item>
+	</sql>
+		<sql name="villagecommunication.centervalue" datasource="Ultranms">
+		<item dbms="All"><![CDATA[
+
+				select trim('市区基站数(个)'),t.c802000002 as 所属城市,nvl(sum(t.c802000016),0) as num from {100} t 
+				where 1=1 {5}
+				group by t.c802000002
+				union all
+				select trim('市区载频数(个)'),t.c802000002 as 所属城市,nvl(sum(t.c802000017),0) as num from {100} t 
+				where 1=1 {5}
+				group by t.c802000002
+				union all
+				select trim('市区话音信道数(个)'),t.c802000002 as 所属城市,nvl(sum(t.c802000018),0) as num from {100} t 
+				where 1=1 {5}
+				group by t.c802000002
+				union all
+				select trim('县城城区基站数(个)'),t.c802000002 as 所属城市,nvl(sum(t.c802000019),0) as num from {100} t 
+				where 1=1 {5}
+				group by t.c802000002
+				union all
+				select trim('县城城区载频数(个)'),t.c802000002 as 所属城市,nvl(sum(t.c802000020),0) as num from {100} t 
+				where 1=1 {5}
+				group by t.c802000002
+				union all
+				select trim('县城城区话音信道数(个)'),t.c802000002 as 所属城市,nvl(sum(t.c802000021),0) as num from {100} t 
+				where 1=1 {5}
+				group by t.c802000002
+				union all
+				select trim('农村基站数(个)'),t.c802000002 as 所属城市,nvl(sum(t.c802000022),0) as num from {100} t 
+				where 1=1 {5}
+				group by t.c802000002
+				union all
+				select trim('农村载频数(个)'),t.c802000002 as 所属城市,nvl(sum(t.c802000023),0) as num from {100} t 
+				where 1=1 {5}
+				group by t.c802000002
+				union all
+				select trim('农村话音信道数(个)'),t.c802000002 as 所属城市,nvl(sum(t.c802000024),0) as num from {100} t 
+				where 1=1 {5}
+				group by t.c802000002
+				union all
+				select trim('基站数合计(个)'),t.c802000002 as 所属城市,nvl(sum(t.c802000025),0) as num from {100} t 
+				where 1=1 {5}
+				group by t.c802000002
+				union all
+				select trim('载频数合计(个)'),t.c802000002 as 所属城市,nvl(sum(t.c802000026),0) as num from {100} t 
+				where 1=1 {5}
+				group by t.c802000002
+				union all
+				select trim('话音信道数合计(个)'),t.c802000002 as 所属城市,nvl(sum(t.c802000027),0) as num from {100} t 
+				where 1=1 {5}
+				group by t.c802000002
+				
+		]]></item>
+	</sql>
+</sql-group>
+

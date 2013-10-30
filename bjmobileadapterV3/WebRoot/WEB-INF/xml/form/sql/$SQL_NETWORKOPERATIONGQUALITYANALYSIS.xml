@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="GB2312"?>
+<sql-group>
+	<doc>
+		<author>wangxin</author>
+		<date>2008-07-04</date>
+		<description>网络运行质量分析月报表</description>
+	</doc>
+	<sql name="networkoperatingqualityanalysispage.group" datasource="Ultranms">
+		<item dbms="All"><![CDATA[
+
+			select t.groupname from (
+			select g.c630000018 groupname  from {100} g where g.c630000021='2' and g.c630000020='000000000600001' and g.c630000027='1'
+			union all 
+			select trim('网管中心') groupname from dual
+			) t 
+		]]></item>
+	</sql>
+	<sql name="networkoperatingqualityanalysis.left" datasource="Ultranms">
+		<item dbms="All"><![CDATA[
+			select ' ',t.groupname as 公司 from (
+			select g.c630000018 groupname  from {100} g where g.c630000021='2' and g.c630000020='000000000600001' and g.c630000027='1'
+			union all 
+			select trim('网管中心') groupname from dual
+			) t where 1=1 {1}
+			union all 
+			select  ' ', trim('合计') groupname from dual
+		]]></item>
+	</sql>
+	
+
+		<sql name="networkoperatingqualityanalysis.colTitle" datasource="Ultranms">
+		<item dbms="All"><![CDATA[
+				   select trim('电路可用率一干') 
+					  from dual
+					union all
+					select trim('电路可用率二干')
+					  from dual
+					union all
+					select trim('电路可用率城域核心') 
+					  from dual
+					union all
+					select trim('电路可用率城域接入') 
+					  from dual
+				     union all
+					 select trim('电路不可用时长（分钟）一干') 
+					  from dual
+					union all
+					select trim('电路不可用时长（分钟）二干')
+					  from dual
+					union all
+					select trim('电路不可用时长（分钟）城域核心') 
+					  from dual
+					union all
+					select trim('电路不可用时长（分钟）城域接入') 
+					  from dual
+				     union all
+					 select trim('合计电路可用率') 
+					  from dual
+					union all
+					select trim('合计电路不用时长')
+					  from dual
+
+		]]></item>
+	</sql>
+		<sql name="networkoperatingqualityanalysis.centervalue" datasource="Ultranms">
+		<item dbms="All"><![CDATA[
+		
+		select trim('电路可用率一干'), a.所属城市,
+		round((1-a.故障影响数据/(b.网络维护基础数据*30*24))*100,4)||'%'
+		from 
+		(
+		select t.c802000002 as 所属城市,sum(t.c802000018) as 故障影响数据  from {300} t where 1=1 {5} group by t.c802000002
+		
+		) a,
+		(
+		select t.c802000002 as 所属城市,sum(t.c802000005) as 网络维护基础数据 from {100} t where 1=1 {5} group by t.c802000002
+		) b
+		where a.所属城市=b.所属城市 
+		union all
+		
+	    select trim('电路可用率二干'), a.所属城市,
+		round((1-a.故障影响数据/(b.网络维护基础数据*30*24))*100,4)||'%'
+		from 
+		(
+		select t.c802000002 as 所属城市,sum(t.c802000019) as 故障影响数据  from {300} t where 1=1 {5} group by t.c802000002
+		) a,
+		(
+		select t.c802000002 as 所属城市,sum(t.c802000007) as 网络维护基础数据 from {100} t where 1=1 {5} group by t.c802000002
+		) b
+		where a.所属城市=b.所属城市
+		
+		union all
+	    select trim('电路可用率城域核心'), a.所属城市,
+		round((1-a.故障影响数据/(b.网络维护基础数据*30*24))*100,4)||'%'
+		from 
+		(
+		select t.c802000002 as 所属城市,sum(t.c802000020) as 故障影响数据  from {300} t where 1=1 {5} group by t.c802000002
+		) a,
+		(
+		select t.c802000002 as 所属城市,sum(t.c802000009) as 网络维护基础数据 from {100} t where 1=1 {5} group by t.c802000002
+		) b
+		where a.所属城市=b.所属城市
+		union all
+		
+	    select trim('电路可用率城域接入'), a.所属城市,
+		round((1-a.故障影响数据/(b.网络维护基础数据*30*24))*100,4)||'%'
+		from 
+		(
+		select t.c802000002 as 所属城市,sum(t.c802000021) as 故障影响数据  from {300} t where 1=1 {5} group by t.c802000002
+		) a,
+		(
+		select t.c802000002 as 所属城市,sum(t.c802000011) as 网络维护基础数据 from {100} t where 1=1 {5} group by t.c802000002
+		) b
+		where a.所属城市=b.所属城市
+		union all
+		
+		 select trim('电路不可用时长（分钟）一干'), a.所属城市,
+		round(a.故障影响数据*60/b.网络维护基础数据,2)||''
+		from 
+		(
+		select t.c802000002 as 所属城市,sum(t.c802000018) as 故障影响数据  from {300} t where 1=1 {5} group by t.c802000002
+		) a,
+		(
+		select t.c802000002 as 所属城市,sum(t.c802000005) as 网络维护基础数据 from {100} t where 1=1 {5} group by t.c802000002
+		) b
+		where a.所属城市=b.所属城市 
+		union all
+		
+	    select trim('电路不可用时长（分钟）二干'), a.所属城市,
+		round(a.故障影响数据*60/b.网络维护基础数据,2)||''
+		from 
+		(
+		select t.c802000002 as 所属城市,sum(t.c802000019) as 故障影响数据  from {300} t where 1=1 {5} group by t.c802000002
+		) a,
+		(
+		select t.c802000002 as 所属城市,sum(t.c802000007) as 网络维护基础数据 from {100} t where 1=1 {5} group by t.c802000002
+		) b
+		where a.所属城市=b.所属城市
+		
+		union all
+	     select trim('电路不可用时长（分钟）城域核心'), a.所属城市,
+		round(a.故障影响数据*60/b.网络维护基础数据,2)||''
+		from 
+		(
+		select t.c802000002 as 所属城市,sum(t.c802000020) as 故障影响数据  from {300} t where 1=1 {5} group by t.c802000002
+		) a,
+		(
+		select t.c802000002 as 所属城市,sum(t.c802000009) as 网络维护基础数据 from {100} t where 1=1 {5} group by t.c802000002
+		) b
+		where a.所属城市=b.所属城市
+		union all
+		
+	    select trim('电路不可用时长（分钟）城域接入'), a.所属城市,
+		round(a.故障影响数据*60/b.网络维护基础数据,2)||''
+		from 
+		(
+		select t.c802000002 as 所属城市,sum(t.c802000021) as 故障影响数据  from {300} t where 1=1 {5} group by t.c802000002
+		) a,
+		(
+		select t.c802000002 as 所属城市,sum(t.c802000011) as 网络维护基础数据 from {100} t where 1=1 {5} group by t.c802000002
+		) b
+		where a.所属城市=b.所属城市	
+		
+		union all
+	     select trim('合计电路可用率'), a.所属城市,
+		round((a.故障影响数据/(b.网络维护基础数据*30*24))*100,4)||'%'
+		from 
+		(
+		select t.c802000002 as 所属城市,sum(t.c802000023) as 故障影响数据  from {300} t where 1=1 {5} group by t.c802000002
+		) a,
+		(
+		select t.c802000002 as 所属城市,sum(t.c802000013) as 网络维护基础数据 from {100} t where 1=1 {5} group by t.c802000002
+		) b
+		where a.所属城市=b.所属城市
+		union all
+		
+	    select trim('合计电路不用时长'), a.所属城市,
+		round(a.故障影响数据*60/b.网络维护基础数据,2)||''
+		from 
+		(
+		select t.c802000002 as 所属城市,sum(t.c802000023) as 故障影响数据  from {300} t where 1=1 {5} group by t.c802000002
+		) a,
+		(
+		select t.c802000002 as 所属城市,sum(t.c802000013) as 网络维护基础数据 from {100} t where 1=1 {5} group by t.c802000002
+		) b
+		where a.所属城市=b.所属城市		
+		
+		union all
+
+
+	
+		
+		select trim('电路可用率一干'), a.所属城市,
+		round((1-a.故障影响数据/(b.网络维护基础数据*30*24))*100,4)||'%'
+		from 
+		(
+		select '合计'  as 所属城市, sum(t.c802000018) as 故障影响数据  from {300} t where 1=1 {5} {1} 
+		) a,
+		(
+		select '合计'  as 所属城市, sum(t.c802000005) as 网络维护基础数据 from {100} t where 1=1 {5} {1} 
+		) b
+		where a.所属城市=b.所属城市
+		union all
+		
+	    select trim('电路可用率二干'), a.所属城市,
+		round((1-a.故障影响数据/(b.网络维护基础数据*30*24))*100,4)||'%'
+		from 
+		(
+		select '合计'  as 所属城市, sum(t.c802000019) as 故障影响数据  from {300} t where 1=1 {5} {1} 
+		) a,
+		(
+		select '合计'  as 所属城市, sum(t.c802000007) as 网络维护基础数据 from {100} t where 1=1 {5} {1} 
+		) b
+		
+		where a.所属城市=b.所属城市
+		union all
+	    select trim('电路可用率城域核心'), a.所属城市,
+		round((1-a.故障影响数据/(b.网络维护基础数据*30*24))*100,4)||'%'
+		from 
+		(
+		select '合计'  as 所属城市, sum(t.c802000020) as 故障影响数据  from {300} t where 1=1 {5} {1} 
+		) a,
+		(
+		select '合计'  as 所属城市, sum(t.c802000009) as 网络维护基础数据 from {100} t where 1=1 {5} {1} 
+		) b
+		
+		where a.所属城市=b.所属城市
+		union all
+		
+	    select trim('电路可用率城域接入'), a.所属城市,
+		round((1-a.故障影响数据/(b.网络维护基础数据*30*24))*100,4)||'%'
+		from 
+		(
+		select '合计'  as 所属城市, sum(t.c802000021) as 故障影响数据  from {300} t where 1=1 {5} {1} 
+		) a,
+		(
+		select '合计'  as 所属城市, sum(t.c802000011) as 网络维护基础数据 from {100} t where 1=1 {5} {1} 
+		) b
+		
+	   where a.所属城市=b.所属城市
+		union all
+		
+		 select trim('电路不可用时长（分钟）一干'), a.所属城市,
+		round(a.故障影响数据*60/b.网络维护基础数据,2)||''
+		from 
+		(
+		select '合计'  as 所属城市, sum(t.c802000018) as 故障影响数据  from {300} t where 1=1 {5} {1} 
+		) a,
+		(
+		select '合计'  as 所属城市, sum(t.c802000005) as 网络维护基础数据 from {100} t where 1=1 {5} {1} 
+		) b
+		 
+	  where a.所属城市=b.所属城市
+		union all
+		
+	    select trim('电路不可用时长（分钟）二干'), a.所属城市,
+		round(a.故障影响数据*60/b.网络维护基础数据,2)||''
+		from 
+		(
+		select '合计'  as 所属城市, sum(t.c802000019) as 故障影响数据  from {300} t where 1=1 {5} {1} 
+		) a,
+		(
+		select '合计'  as 所属城市, sum(t.c802000007) as 网络维护基础数据 from {100} t where 1=1 {5} {1} 
+		) b
+		
+	    where a.所属城市=b.所属城市
+		union all
+	     select trim('电路不可用时长（分钟）城域核心'), a.所属城市,
+		round(a.故障影响数据*60/b.网络维护基础数据,2)||''
+		from 
+		(
+		select '合计'  as 所属城市, sum(t.c802000020) as 故障影响数据  from {300} t where 1=1 {5} {1} 
+		) a,
+		(
+		select '合计'  as 所属城市, sum(t.c802000009) as 网络维护基础数据 from {100} t where 1=1 {5} {1} 
+		) b
+		
+		where a.所属城市=b.所属城市
+		union all
+		
+	    select trim('电路不可用时长（分钟）城域接入'), a.所属城市,
+		round(a.故障影响数据*60/b.网络维护基础数据,2)||''
+		from 
+		(
+		select '合计'  as 所属城市, sum(t.c802000021) as 故障影响数据  from {300} t where 1=1 {5} {1} 
+		) a,
+		(
+		select '合计'  as 所属城市, sum(t.c802000011) as 网络维护基础数据 from {100} t where 1=1 {5} {1} 
+		) b
+			
+		
+	    where a.所属城市=b.所属城市
+		union all
+	     select trim('合计电路可用率'), a.所属城市,
+		round((a.故障影响数据/(b.网络维护基础数据*30*24))*100,4)||'%'
+		from 
+		(
+		select '合计'  as 所属城市, sum(t.c802000023) as 故障影响数据  from {300} t where 1=1 {5} {1} 
+		) a,
+		(
+		select '合计'  as 所属城市, sum(t.c802000013) as 网络维护基础数据 from {100} t where 1=1 {5} {1} 
+		) b
+		
+		where a.所属城市=b.所属城市
+		union all
+		
+	    select trim('合计电路不用时长'),a.所属城市,
+		round(a.故障影响数据*60/b.网络维护基础数据,2)||''
+		from 
+		(
+		select '合计'  as 所属城市,  sum(t.c802000023) as 故障影响数据  from {300} t where 1=1 {5}  {1} 
+		) a,
+		(
+		select '合计'  as 所属城市,  sum(t.c802000013) as 网络维护基础数据 from {100} t where 1=1 {5} {1} 
+		) b
+	   where a.所属城市=b.所属城市	
+	   
+				
+		]]></item>
+	</sql>
+</sql-group>
+

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sql-group>
+	<doc>
+		<author>黄维</author> 
+		<date>2008-10-12</date> 
+		<description>对工单公用字段的查询</description> 		
+	</doc>
+	<sqlquery name="BaseInfor.BaseOn_BaseIDSelectBase">
+		<select>
+		<![CDATA[ 
+   			  select 
+				Base.C700000000	as	BaseID,
+				Base.C700000001	as	BaseSchema,
+				Base.C700000002	as	BaseName,
+				Base.C700000003	as	BaseSN,
+				Base.C700000004	as	BaseCreatorFullName,
+				Base.C700000005	as	BaseCreatorLoginName,
+				Base.C700000006	as	BaseCreateDate,
+				Base.C700000007	as	BaseSendDate,
+				Base.C700000008	as	BaseFinishDate,
+				Base.C700000009	as	BaseCloseDate,
+				Base.C700000010	as	BaseStatus,
+				Base.C700000011	as	BaseSummary,
+				Base.C700000014	as	BaseItems,
+				Base.C700000015	as	BasePriority,
+				Base.C700000016	as	BaseIsAllowLogGroup,
+				Base.C700000017	as	BaseAcceptOutTime,
+				Base.C700000018	as	BaseDealOutTime,
+				Base.C700000019	as	BaseDescrption,
+				Base.C700000020	as	BaseResult,
+				Base.C700000021	as	BaseCloseSatisfy,
+				Base.C700000022	as	BaseTplID,
+				Base.C700000023	as	BaseIsArchive,
+				Base.C700000024	as	BaseAuditingLinkName,
+				Base.C700000025	as	BaseAuditingProcessName,
+				Base.C700000026	as	BaseAuditingProcessLogName,
+				Base.C700000027	as	BaseDealLinkName,
+				Base.C700000028	as	BaseDealProcessName,
+				Base.C700000029	as	BaseDealProcessLogName,
+				Base.C700000030	as	BaseIsTrueClose,
+				Base.C700000041	as	BaseWorkFlowFlag,
+				Base.C700000042	as	BaseCategoryClassName,
+				Base.C700000043	as	BaseCategoryClassCode,
+				Base.C700000044	as	BaseFlagCreated,
+				Base.C700000045	as	BaseFlagSended,
+				Base.C700000046	as	BaseFlagFinished,
+				Base.C700000047	as	BaseFlagCloseed,
+				Base.C700000048	as	BaseStatusCode,
+				Base.C700000049	as	BaseAcceptOutFlag,
+				Base.C700000050	as	BaseDealOutFlag,
+				Base.C700000051	as	BaseDealVerdictName,
+				Base.C700000052	as	BaseDealAssistantProcessName,
+				Base.C700000053	as	BaseFieldLogName,
+				Base.C700000054	as	BaseFlagIsMotherCreated,
+				Base.C700000055	as	BaseFlowDrawDesc,
+				Base.C700000056	as	BaseFlagIsCreateChild,
+				Base.C700000057	as	BaseOpenDateTime,
+				Base.C700000100	as	BaseCreatorConnectWay,
+				Base.C700000101	as	BaseCreatorCorp,
+				Base.C700000102	as	BaseCreatorCorpID,
+				Base.C700000103	as	BaseCreatorDep,
+				Base.C700000104	as	BaseCreatorDepID,
+				Base.C700000105	as	BaseCreatorDN,
+				Base.C700000106	as	BaseCreatorDNID
+              from {WF:App_Base_Infor} Base
+			  where $BaseOn_BaseIDSelectBase$
+		  ]]> 
+		</select>
+		<customwhere>
+			<parameterMap prepend="" name="BaseOn_BaseIDSelectBase">
+				<mapingFiled  prepend="" fieldName="is_notnull"  fieldType="4">
+					<mapsql value="isnotnull">
+						<![CDATA[
+							 1=#is_notnull#
+						 ]]>  			
+					</mapsql>
+				</mapingFiled>
+				<mapingFiled  prepend="AND" fieldName="baseid"  fieldType="4">
+					<mapsql value="isnotnull">
+						<![CDATA[
+							 C700000000  ='#baseid#'
+						 ]]>  			
+					</mapsql>
+				</mapingFiled>			
+				<mapingFiled  prepend="AND" fieldName="baseschema"  fieldType="4">
+					<mapsql value="isnotnull">
+						<![CDATA[
+							 C700000001  ='#baseschema#'
+						 ]]>  			
+					</mapsql>
+				</mapingFiled>			
+			</parameterMap>		
+		</customwhere>
+	</sqlquery>	
+</sql-group>

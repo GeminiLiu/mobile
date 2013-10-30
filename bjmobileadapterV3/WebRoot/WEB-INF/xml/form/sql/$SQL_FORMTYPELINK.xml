@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="GB2312"?>
+<sql-group>
+	<doc>
+		<author>lihongbo</author>
+		<date>2007-04-01</date>
+		<description>投工单类型统计工单信息</description>
+	</doc>
+	
+	<sql name="hbeoms.formtypelink" datasource="Ultranms">
+		<item dbms="All"><![CDATA[
+        
+select
+t.c1,
+t.c700000001,
+t.c700000003 as 工单编号,
+t.c700000006 as 建单时间,
+t.c700000004 as 建单人,
+t.c700000011 as 主题,
+t.c700000015 as 紧急程度,
+t.c700000014 as 所属专业,
+t.c700000010 as 工单状态 
+from {1} t 
+where 1=1  
+--and (t.C700000006>=1180627200 and t.C700000006<1183219200)
+{2}
+{5}
+        
+		]]></item>
+	</sql>
+	<sql name="hbeoms.formcategorylink" datasource="Ultranms">
+	    <item dbms="All"><![CDATA[
+	     select 't'||ars.SCHEMAID 
+         from ARSCHEMA ars,{400} t
+         where ars.name=t.C650000002
+         {6}
+         
+        
+	    ]]></item>
+	</sql>
+
+</sql-group>
+

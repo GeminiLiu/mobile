@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<base>
+	<dp_free_finish><!-- 自由流程完成处理动作 -->
+	<action name="Confirm" dispalyname="受理" type="0"></action>
+	<action name="finished" dispalyname="完成" type="0">
+		<input>		
+			 <filed>
+					<fieldid>700038199</fieldid>
+					<fieldname>tmp_BaseUser_P_OpDeal_Desc</fieldname>
+					<fielddisplayname>处理说明</fielddisplayname>
+					<fieldtype>4</fieldtype>
+					<fielddisplaytype>1</fielddisplaytype>
+					<colspan>1</colspan>
+					<rowspan>1</rowspan>
+					<defaultvalue></defaultvalue>
+					<defaultvalue1></defaultvalue1>
+					<defaultvalue2></defaultvalue2>
+					<isnewline></isnewline>
+					<isnotnull>false</isnotnull>
+				</filed>
+	</input>
+	</action>
+</dp_free_finish>
+</base>

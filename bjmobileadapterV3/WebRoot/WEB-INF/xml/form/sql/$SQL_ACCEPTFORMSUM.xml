@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="GB2312"?>
+<sql-group>
+	<doc>
+		<author>duanximeng</author>
+		<date>2006-03-29</date>
+		<description></description>
+	</doc>
+	
+	<sql name="acceptformsum" datasource="Ultranms">
+		<item dbms="All"><![CDATA[
+
+select 
+distinct(define1.受理部门) as 受理部门,
+define1.受理总数量,
+define2.已完成工单数量,
+(define1.受理总数量-define2.已完成工单数量) as 未完成工单数量,
+define3.工单受理超时量,
+define4.未受理工单数量,
+(define1.受理总数量-define4.未受理工单数量) as 受理工单数量,
+define5.驳回数量
+from
+(select
+b.受理部门 as 受理部门,
+nvl(a.受理总数量,0) as 受理总数量
+from
+(select
+g.C630000018 as 受理部门,
+count(distinct(t.C1)) as 受理总数量
+from {100} t,{700} pro,{200} u,{300} g,{400} gu
+where
+t.C1=pro.C700020001
+and pro.c700020002=t.c700000001
+{5} {2}
+and pro.c700020010=u.C630000001
+and u.C1=gu.C620000028
+and g.C1=gu.C620000027
+and (pro.c700020011='处理中' or pro.c700020011='已完成' ) 
+--and g.c630000037 like '%%'
+group by g.C630000018
+union all
+select
+g.C630000018 as 受理部门,
+count(distinct(t.C1)) as 受理总数量
+from {100} t,{800} pro,{200} u,{300} g,{400} gu
+where
+t.C1=pro.C700020001
+and pro.c700020002=t.c700000001
+{5} {2}
+and pro.c700020010=u.C630000001
+and u.C1=gu.C620000028
+and g.C1=gu.C620000027
+and (pro.c700020011='处理中' or pro.c700020011='已完成')
+--and g.c630000037 like '%%'
+group by g.C630000018) a,
+(select g.C630000018 as 受理部门 from {300} g where 1=1 {2}) b
+where a.受理部门(+)=b.受理部门) define1,
+(select
+b.受理部门 as 受理部门,
+nvl(a.已完成工单数量,0) as 已完成工单数量
+from
+(select
+g.C630000018 as 受理部门,
+count(distinct(t.C1)) as 已完成工单数量
+from {100} t,{700} pro,{200} u,{300} g,{400} gu
+where
+t.C1=pro.C700020001
+and pro.c700020002=t.c700000001
+{5} {2}
+and pro.c700020010=u.C630000001
+and u.C1=gu.C620000028
+and g.C1=gu.C620000027
+and (pro.c700020011='已完成' )
+--and g.c630000037 like '%%'
+group by g.C630000018
+union all
+select
+g.C630000018 as 受理部门,
+count(distinct(t.C1)) as 已完成工单数量
+from {100} t,{700} pro,{200} u,{300} g,{400} gu
+where
+t.C1=pro.C700020001
+and pro.c700020002=t.c700000001
+{5} {2}
+and pro.c700020010=u.C630000001
+and u.C1=gu.C620000028
+and g.C1=gu.C620000027
+and (pro.c700020011='已完成')
+--and g.c630000037 like '%%'
+group by g.C630000018) a,
+(select g.C630000018 as 受理部门 from {300} g where 1=1 {2}) b
+where a.受理部门(+)=b.受理部门) define2,
+(select
+b.受理部门 as 受理部门,
+nvl(a.工单受理超时量,0) as 工单受理超时量
+from
+(select
+g.C630000018 as 受理部门,
+count(distinct(t.C1)) as 工单受理超时量
+from {100} t,{700} pro,{200} u,{300} g,{400} gu
+where
+t.C1=pro.C700020001
+and pro.c700020002=t.c700000001
+{5} {2}
+and pro.c700020010=u.C630000001
+and u.C1=gu.C620000028
+and g.C1=gu.C620000027
+and (pro.c700020011='处理中' or pro.c700020011='已完成' )
+and pro.c700020016>pro.c700020013
+and pro.c700020016 is not null
+--and g.c630000037 like '%%'C630000018
+group by g.C630000018
+union all
+select
+g.C630000018 as 受理部门,
+count(distinct(t.C1)) as 工单受理超时量
+from {100} t,{800} pro,{200} u,{300} g,{400} gu
+where
+t.C1=pro.C700020001
+and pro.c700020002=t.c700000001
+{5} {2}
+and pro.c700020010=u.C630000001
+and u.C1=gu.C620000028
+and g.C1=gu.C620000027
+and (pro.c700020011='处理中' or pro.c700020011='已完成' )
+and pro.c700020016>pro.c700020013
+and pro.c700020016 is not null
+--and g.c630000037 like '%%'C630000018
+group by g.C630000018) a,
+(select g.C630000018 as 受理部门 from {300} g where 1=1 {2}) b
+where a.受理部门(+)=b.受理部门) define3,
+(select
+b.受理部门 as 受理部门,
+nvl(a.未受理工单数量,0) as 未受理工单数量
+from
+((select
+g.C630000018 as 受理部门,
+count(distinct(t.C1)) as 未受理工单数量
+from {100} t,{700} pro,{200} u,{300} g,{400} gu
+where
+t.C1=pro.C700020001
+and pro.c700020002=t.c700000001
+{5} {2}
+and pro.c700020006=u.C630000001
+and u.C1=gu.C620000028
+and g.C1=gu.C620000027
+and (pro.c700020011='处理中' or pro.c700020011='已完成' )
+and pro.c700020010 is null
+and pro.c700020006 is not null
+--and g.c630000037 like '%%'C630000018
+group by g.C630000018
+union all
+select
+g.C630000018 as 受理部门,
+count(distinct(t.C1)) as 未受理工单数量
+from {100} t,{800} pro,{200} u,{300} g,{400} gu
+where
+t.C1=pro.C700020001
+and pro.c700020002=t.c700000001
+{5} {2}
+and pro.c700020006=u.C630000001
+and u.C1=gu.C620000028
+and g.C1=gu.C620000027
+and (pro.c700020011='处理中' or pro.c700020011='已完成' )
+and pro.c700020010 is null
+and pro.c700020006 is not null
+--and g.c630000037 like '%%'C630000018
+group by g.C630000018)
+union all
+(select
+g.C630000018 as 受理部门,
+count(distinct(t.C1)) as 未受理工单数量
+from {100} t,{700} pro,{300} g
+where
+t.C1=pro.C700020001
+and pro.c700020002=t.c700000001
+{5} {2}
+and (pro.c700020011='处理中' or pro.c700020011='已完成' )
+and pro.c700020010 is null
+and pro.c700020007 is not null
+and lpad(pro.c700020008,15,'0')=g.C1
+--and g.c630000037 like '%%'C630000018
+group by g.C630000018
+union all
+select
+g.C630000018 as 受理部门,
+count(distinct(t.C1)) as 未受理工单数量
+from {100} t,{800} pro,{300} g
+where
+t.C1=pro.C700020001
+and pro.c700020002=t.c700000001
+{5} {2}
+and (pro.c700020011='处理中' or pro.c700020011='已完成' )
+and pro.c700020010 is null
+and pro.c700020007 is not null
+and lpad(pro.c700020008,15,'0')=g.C1
+--and g.c630000037 like '%%'C630000018
+group by g.C630000018)) a,
+(select g.C630000018 as 受理部门 from {300} g where 1=1 {2}) b
+where a.受理部门(+)=b.受理部门) define4,
+(select
+b.受理部门 as 受理部门,
+nvl(a.驳回数量,0) as 驳回数量
+from
+(select
+g.C630000018 as 受理部门,
+count(distinct(t.C1)) as 驳回数量
+from {100} t,{600} log,{200} u,{300} g,{400} gu
+where
+t.C1=log.c700020407
+and log.c700020408=t.c700000001
+{5} {2}
+and log.c700020402='驳回'
+and log.c700020404=u.C630000001
+and u.C1=gu.C620000028
+and g.C1=gu.C620000027
+--and g.c630000037 like '%%'C630000018
+group by g.C630000018
+union all
+select
+g.C630000018 as 受理部门,
+count(distinct(t.C1)) as 驳回数量
+from {100} t,{500} log,{200} u,{300} g,{400} gu
+where
+t.C1=log.c700020407
+and log.c700020408=t.c700000001
+{5} {2}
+and log.c700020402='驳回'
+and log.c700020404=u.C630000001
+and u.C1=gu.C620000028
+and g.C1=gu.C620000027
+--and g.c630000037 like '%%'C630000018
+group by g.C630000018) a,
+(select g.C630000018 as 受理部门 from {300} g where 1=1 {2}) b
+where a.受理部门(+)=b.受理部门) define5
+
+where define1.受理部门=define2.受理部门
+and define2.受理部门=define3.受理部门
+and define3.受理部门=define4.受理部门
+and define4.受理部门=define5.受理部门
+
+
+
+
+		]]></item>
+	</sql>
+	
+		<sql name="formegname" datasource="Ultranms">
+		<item dbms="All"><![CDATA[
+select ar.name,ar.schemaid from arschema ar where ar.name = {1}
+
+
+
+
+		]]></item>
+	</sql>
+</sql-group>
+

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="GB2312"?>
+<sql-group>
+	<doc>
+		<description>工单员工细项工作量统计表</description>
+	</doc>
+	
+	<!-- 业务类型217-->
+	<sql name="userstat.businesstype" datasource="Ultranms">
+		<item dbms="All">
+		<![CDATA[
+		select distinct ty.c801800001 from {table} ty
+		]]></item>
+	</sql>
+
+<!-- 员工工号UltraProcess:SysUser 380-->
+	<sql name="userstat.user" datasource="Ultranms">
+		<item dbms="All">
+		<![CDATA[
+		select u.c630000001 from {table} u
+		]]></item>
+	</sql>
+	
+
+<sql name="userstat.result" datasource="Ultranms">
+<item dbms="All"><![CDATA[
+		
+select
+b.工号,
+b.姓名,
+nvl(a.受理量,0) as 受理量,
+nvl(a.复核节点,0) as 复核节点,
+nvl(a.派单节点,0) as 派单节点,
+nvl(a.处理节点,0) as 处理节点,
+nvl(a.反馈节点,0) as 反馈节点,
+nvl(a.反馈再处理节点,0) as 反馈再处理节点
+from
+(select 
+pro.C700020010 as 工号,
+pro.C700020009 as 姓名,
+sum(case when pro.C700020004='BEGIN' then 1 else 0 end) as 受理量,
+sum(case when (pro.C801000101=4 or pro.C801000101=5) and pro.C700020019<>1 and pro.C700020019<>2 then 1 else 0 end) as 复核节点,
+sum(case when (pro.C801000101=4 or pro.C801000101=1) and pro.C700020019<>1 and pro.C700020019<>2 then 1 else 0 end) as 派单节点,
+sum(case when pro.C801000101 in (5,6,7,9) and pro.C700020019<>1 and pro.C700020019<>2 then 1 else 0 end) as 处理节点,
+sum(case when pro.C801000101=8 and pro.C700020019<>1 and pro.C700020019<>2 then 1 else 0 end) as 反馈节点,
+sum(case when pro.C801000101=9 and pro.C700020019<>1 and pro.C700020019<>2 then 1 else 0 end) as 反馈再处理节点
+from {table1} comp,{table3} pro,{table2} u
+where comp.C1=pro.C700020001
+and u.C630000001=pro.C700020010
+group by pro.C700020010,pro.C700020009
+union all
+select 
+pro.C700020010 as 工号,
+pro.C700020009 as 姓名,
+sum(case when pro.C700020004='BEGIN' then 1 else 0 end) as 受理量,
+sum(case when (pro.C801000101=4 or pro.C801000101=5) and pro.C700020019<>1 and pro.C700020019<>2 then 1 else 0 end) as 复核节点,
+sum(case when (pro.C801000101=4 or pro.C801000101=1) and pro.C700020019<>1 and pro.C700020019<>2 then 1 else 0 end) as 派单节点,
+sum(case when pro.C801000101 in (5,6,7,9) and pro.C700020019<>1 and pro.C700020019<>2 then 1 else 0 end) as 处理节点,
+sum(case when pro.C801000101=8 and pro.C700020019<>1 and pro.C700020019<>2 then 1 else 0 end) as 反馈节点,
+sum(case when pro.C801000101=9 and pro.C700020019<>1 and pro.C700020019<>2 then 1 else 0 end) as 反馈再处理节点
+from {table1} comp,{table4} pro,{table2} u
+where comp.C1=pro.C700020001
+and u.C630000001=pro.C700020010
+group by pro.C700020010,pro.C700020009
+) a,
+
+(select u.C630000001 as 工号,u.C630000003 as 姓名 from t380 u where u.C630000001<>'Demo') b
+where a.工号(+)=b.工号
+
+
+
+]]></item>
+</sql>
+	
+	
+</sql-group>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="GB2312"?>
+<sql-group>
+	<doc>
+		<author>duanximeng</author>
+		<date>2006-03-14</date>
+		<description>经验库考核</description>
+	</doc>
+	
+	<sql name="experience.pm.check" datasource="Ultranms">
+		<item dbms="All"><![CDATA[
+		select t.experience_id as ID from exp_uniform t
+		]]></item>
+	</sql>
+</sql-group>
+

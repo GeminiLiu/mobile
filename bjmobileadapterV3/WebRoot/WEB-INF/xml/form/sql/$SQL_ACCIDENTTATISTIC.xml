@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="GB2312"?>
+<sql-group>
+	<doc>
+		<author>duanximeng</author>
+		<date>2006-03-29</date>
+		<description></description>
+	</doc>
+	
+	<sql name="accidenttatistic" datasource="Ultranms">
+		<item dbms="All"><![CDATA[
+select
+g.c630000018 as 部门,
+t.c802000018 as 故障原因,
+count(distinct(t.c1)) as 工单数量
+from {100} t,{500} item,{200} u,{300} g,{400} gu
+where
+1=1
+{5}
+{2}
+{3}
+and item.c802800005=t.c802000018
+and u.c1=gu.c620000028
+and g.c1=gu.c620000027
+and t.c700000005=u.c630000001
+
+group by g.c630000018,t.c802000018
+		]]></item>
+	</sql>
+		<sql name="accidenttatistic.causal" datasource="Ultranms">
+		<item dbms="All"><![CDATA[
+select distinct l.c802800005 from {500} l where 1=1 {3}
+		]]></item>
+	</sql>
+		<sql name="accidenttatistic.depertment" datasource="Ultranms">
+		<item dbms="All"><![CDATA[
+         select distinct( g.c630000018) as 派单部门 from {300} g where 1=1 {2}
+       
+		]]></item>
+	</sql>
+</sql-group>
+

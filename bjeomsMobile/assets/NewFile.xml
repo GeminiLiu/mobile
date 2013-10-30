@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tree id="0">
+	<item text="大连" id="ds:10.0:dalian" open="0" im0="" im1="" im2=""
+		child="1" disabled="" checked="" nocheckbox="1">
+		<userdata name="text"><![CDATA[大连]]></userdata>
+		<userdata name="type"><![CDATA[city]]></userdata>
+		<userdata name="id"><![CDATA[dalian]]></userdata>
+		<item text="基站一体化" id="zy:10.0.0:basestation" open="" im0="" im1=""
+			im2="" child="1" disabled="" checked="" nocheckbox="1">
+			<userdata name="text"><![CDATA[基站一体化]]></userdata>
+			<userdata name="type"><![CDATA[specialty]]></userdata>
+			<userdata name="id"><![CDATA[basestation]]></userdata>
+			<item text="大连代维" id="gs:10.0.0.0:90f9f0ebafe0434182df95b3c2f57209"
+				open="" im0="" im1="" im2="" child="1" disabled="" checked=""
+				nocheckbox="1">
+				<userdata name="text"><![CDATA[大连代维]]></userdata>
+				<userdata name="type"><![CDATA[corp]]></userdata>
+				<userdata name="id"><![CDATA[90f9f0ebafe0434182df95b3c2f57209]]></userdata>
+				<item text="大连代维中心-测试" id="zx:10.0.0.0.0:4028e2b93d584f9a013d58f1d2750011"
+					open="" im0="" im1="" im2="" child="1" disabled="" checked=""
+					nocheckbox="1">
+					<userdata name="text"><![CDATA[大连代维中心-测试]]></userdata>
+					<userdata name="type"><![CDATA[center]]></userdata>
+					<userdata name="id"><![CDATA[4028e2b93d584f9a013d58f1d2750011]]></userdata>
+					<item text="大连代维中心驻点02" id="zd:10.0.0.0.0.0:4028e2b93d584f9a013d58f9196f001f"
+						open="" im0="" im1="" im2="" child="1" disabled="" checked=""
+						nocheckbox="1">
+						<userdata name="text"><![CDATA[大连代维中心驻点02]]></userdata>
+						<userdata name="type"><![CDATA[station]]></userdata>
+						<userdata name="id"><![CDATA[4028e2b93d584f9a013d58f9196f001f]]></userdata>
+						<item text="测试组02"
+							id="xz:10.0.0.0.0.0.0:06a361a8d2924b6398b6ce6ecc961d28" open=""
+							im0="" im1="" im2="" child="1" disabled="" checked="" nocheckbox="">
+							<userdata name="text"><![CDATA[测试组02]]></userdata>
+							<userdata name="type"><![CDATA[team]]></userdata>
+							<userdata name="id"><![CDATA[06a361a8d2924b6398b6ce6ecc961d28]]></userdata>
+							<item text="饿 "
+								id="ry:10.0.0.0.0.0.0.0:ed056d85d1544280955ea23aa6a1e768" open=""
+								im0="" im1="" im2="" child="1" disabled="" checked=""
+								nocheckbox="">
+								<userdata name="text"><![CDATA[饿 ]]></userdata>
+								<userdata name="type"><![CDATA[person]]></userdata>
+								<userdata name="loginname"><![CDATA[hq3]]></userdata>
+								<userdata name="id"><![CDATA[ed056d85d1544280955ea23aa6a1e768]]></userdata>
+							</item>
+						</item>
+					</item>
+					<item text="驻点04" id="zd:10.0.0.0.0.1:4028e2b93d596a86013d5c836007000a"
+						open="" im0="" im1="" im2="" child="1" disabled="" checked=""
+						nocheckbox="1">
+						<userdata name="text"><![CDATA[驻点04]]></userdata>
+						<userdata name="type"><![CDATA[station]]></userdata>
+						<userdata name="id"><![CDATA[4028e2b93d596a86013d5c836007000a]]></userdata>
+					</item>
+					<item text="大连代维中心-驻点" id="zd:10.0.0.0.0.2:4028e2b93d584f9a013d58f85ca7001e"
+						open="" im0="" im1="" im2="" child="1" disabled="" checked=""
+						nocheckbox="1">
+						<userdata name="text"><![CDATA[大连代维中心-驻点]]></userdata>
+						<userdata name="type"><![CDATA[station]]></userdata>
+						<userdata name="id"><![CDATA[4028e2b93d584f9a013d58f85ca7001e]]></userdata>
+					</item>
+				</item>
+			</item>
+			<item text="飞毛腿" id="gs:10.0.0.1:3d71755782eb4c9bb4df71f3870286bf"
+				open="" im0="" im1="" im2="" child="1" disabled="" checked=""
+				nocheckbox="1">
+				<userdata name="text"><![CDATA[飞毛腿]]></userdata>
+				<userdata name="type"><![CDATA[corp]]></userdata>
+				<userdata name="id"><![CDATA[3d71755782eb4c9bb4df71f3870286bf]]></userdata>
+				<item text="飞毛腿大连中心2" id="zx:10.0.0.1.0:402862813d23cf04013d23d4f8f60001"
+					open="" im0="" im1="" im2="" child="1" disabled="" checked=""
+					nocheckbox="1">
+					<userdata name="text"><![CDATA[飞毛腿大连中心2]]></userdata>
+					<userdata name="type"><![CDATA[center]]></userdata>
+					<userdata name="id"><![CDATA[402862813d23cf04013d23d4f8f60001]]></userdata>
+				</item>
+			</item>
+		</item>
+	</item>
+</tree>

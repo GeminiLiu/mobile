@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="GB2312"?>
+<sql-group>
+	<doc>
+		<author>lihongbo</author>
+		<date>2007-04-03</date>
+		<description>代维公司工单处理统计</description>
+	</doc>
+	
+	<sql name="hbeoms.dwlink" datasource="Ultranms">
+		<item dbms="All"><![CDATA[
+        
+
+            {8}
+
+        
+		]]></item>
+	</sql>
+
+</sql-group>
+

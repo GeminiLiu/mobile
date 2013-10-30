@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="GB2312"?>
+<sql-group>
+	<doc>
+		<author>duanximeng</author>
+		<date>2007</date>
+		<description></description>
+	</doc>
+	<!-- 受理地市-->
+	<sql name="formwholeovertime_city" datasource="Ultranms">
+		<item dbms="All"><![CDATA[
+select  c801800001 from {100} order by c801842006
+		]]></item>
+	</sql>
+	<!-- 客户级别-->
+	<sql name="formwholeovertime_level" datasource="Ultranms">
+		<item dbms="All"><![CDATA[
+select  usertype.c801800001 from {600} usertype order by usertype.c801842006
+		]]></item>
+	</sql>
+
+</sql-group>
+

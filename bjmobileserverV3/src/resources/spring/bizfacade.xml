@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+<beans default-autowire="byName" default-lazy-init="true">
+	<bean id="bizFacade" class="com.ultrapower.mobile.service.impl.BizFacadeImpl" />
+	
+	<bean id="jspExtendFunction" class="com.ultrapower.mobile.service.impl.JspExtendFunctionImpl"/>
+	
+	<bean id="mobileClient" class="com.ultrapower.eoms.mobile.client.MobileClientManager"/>
+	
+	<bean id="mobileAction" class="com.ultrapower.eoms.mobile.web.MobileAction"/>
+</beans>

@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="GB2312"?>
+<sql-group>
+	<doc>
+		<author>liangwei</author>
+		<date>2008-07-07</date>
+		<description>主要厂家设备故障数据月报</description>
+	</doc>
+	<sql name="factories_device_faultData_monthly_reportpage.group" datasource="Ultranms">
+		<item dbms="All"><![CDATA[
+
+			select t.groupname from (
+			select g.c630000018 groupname  from {100} g where g.c630000021='2' and g.c630000020='000000000600001' and g.c630000027='1'
+			union all 
+			select trim('网管中心') groupname from dual
+			) t 
+		]]></item>
+	</sql>
+	<sql name="factories_device_faultData_monthly_report.group" datasource="Ultranms">
+		<item dbms="All"><![CDATA[
+
+			select ' ',t.groupname as 公司 from (
+			select g.c630000018 groupname  from {100} g where g.c630000021='2' and g.c630000020='000000000600001' and g.c630000027='1'
+			union all 
+			select trim('网管中心') groupname from dual
+			) t where 1=1 {1}
+		]]></item>
+	</sql>
+	
+
+		<sql name="factories_device_faultData_monthly_report.coltitle" datasource="Ultranms">
+		<item dbms="All"><![CDATA[
+					select distinct trim('SDH设备次')||'.'||trim('华为')
+					  from dual
+					  union all
+					select distinct trim('SDH设备次')||'.'||trim('中兴')
+					  from dual
+					  union all
+					select distinct trim('SDH设备次')||'.'||trim('烽火')
+					  from dual
+					  union all
+					select distinct trim('SDH设备次')||'.'||trim('阿贝')
+					  from dual
+					  union all
+					select distinct trim('SDH设备次')||'.'||trim('朗讯')
+					  from dual
+					  union all
+					select distinct trim('SDH设备次')||'.'||trim('北电')
+					  from dual
+					  union all
+					select distinct trim('SDH设备次')||'.'||trim('西门子')
+					  from dual
+					  union all
+					select distinct trim('SDH设备次')||'.'||trim('NEC')
+					  from dual
+					  union all
+					select distinct trim('DWDM设备次')||'.'||trim('华为')
+					  from dual
+					  union all
+					select distinct trim('DWDM设备次')||'.'||trim('中兴')
+					  from dual
+					  union all
+					select distinct trim('DWDM设备次')||'.'||trim('烽火')
+					  from dual
+					  union all
+					select distinct trim('DWDM设备次')||'.'||trim('阿贝')
+					  from dual
+					  union all
+					select distinct trim('DWDM设备次')||'.'||trim('朗讯')
+					  from dual
+					  union all
+					select distinct trim('DWDM设备次')||'.'||trim('北电')
+					  from dual
+					  union all
+					select distinct trim('DWDM设备次')||'.'||trim('西门子')
+					  from dual
+					  union all
+					select distinct trim('DWDM设备次')||'.'||trim('NEC')
+					  from dual
+					  union all
+					select distinct trim('SDH设备套')||'.'||trim('华为')
+					  from dual
+					  union all
+					select distinct trim('SDH设备套')||'.'||trim('中兴')
+					  from dual
+					  union all
+					select distinct trim('SDH设备套')||'.'||trim('烽火')
+					  from dual
+					  union all
+					select distinct trim('SDH设备套')||'.'||trim('阿贝')
+					  from dual
+					  union all
+					select distinct trim('SDH设备套')||'.'||trim('朗讯')
+					  from dual
+					  union all
+					select distinct trim('SDH设备套')||'.'||trim('北电')
+					  from dual
+					  union all
+					select distinct trim('SDH设备套')||'.'||trim('西门子')
+					  from dual
+					  union all
+					select distinct trim('SDH设备套')||'.'||trim('NEC')
+					  from dual
+					  union all
+					select distinct trim('DWDM设备套')||'.'||trim('华为')
+					  from dual
+					  union all
+					select distinct trim('DWDM设备套')||'.'||trim('中兴')
+					  from dual
+					  union all
+					select distinct trim('DWDM设备套')||'.'||trim('烽火')
+					  from dual
+					  union all
+					select distinct trim('DWDM设备套')||'.'||trim('阿贝')
+					  from dual
+					  union all
+					select distinct trim('DWDM设备套')||'.'||trim('朗讯')
+					  from dual
+					  union all
+					select distinct trim('DWDM设备套')||'.'||trim('北电')
+					  from dual
+					  union all
+					select distinct trim('DWDM设备套')||'.'||trim('西门子')
+					  from dual
+					  union all
+					select distinct trim('DWDM设备套')||'.'||trim('NEC')
+					  from dual
+					  
+					
+					
+		]]></item>
+	</sql>
+		<sql name="factories_device_faultData_monthly_report.centervalue" datasource="Ultranms">
+		<item dbms="All"><![CDATA[
+
+				select distinct trim('SDH设备次')||'.'||trim('华为'),t.c802000002 as 所属城市,nvl(sum(t.c802000013),0) as num from {100} t 
+				  where 1=1 {5}
+				  group by t.c802000002
+				  union all
+				select distinct trim('SDH设备次')||'.'||trim('中兴'),t.c802000002 as 所属城市,nvl(sum(t.c802000005),0) as num from {100} t 
+				  where 1=1 {5}
+				  group by t.c802000002				  
+				  union all
+				select distinct trim('SDH设备次')||'.'||trim('烽火'),t.c802000002 as 所属城市,nvl(sum(t.c802000009),0) as num from {100} t 
+				  where 1=1 {5}
+				  group by t.c802000002
+				  union all
+				select distinct trim('SDH设备次')||'.'||trim('阿贝'),t.c802000002 as 所属城市,nvl(sum(t.c802000007),0) as num from {100} t 
+				  where 1=1 {5}
+				  group by t.c802000002
+				  union all
+				select distinct trim('SDH设备次')||'.'||trim('朗讯'),t.c802000002 as 所属城市,nvl(sum(t.c802000011),0) as num from {100} t 
+				  where 1=1 {5}
+				  group by t.c802000002
+				  union all
+				select distinct trim('SDH设备次')||'.'||trim('北电'),t.c802000002 as 所属城市,nvl(sum(t.c802000017),0) as num from {100} t 
+				  where 1=1 {5}
+				  group by t.c802000002
+				  union all
+				select distinct trim('SDH设备次')||'.'||trim('西门子'),t.c802000002 as 所属城市,nvl(sum(t.c802000019),0) as num from {100} t 
+				  where 1=1 {5}
+				  group by t.c802000002
+				  union all
+				select distinct trim('SDH设备次')||'.'||trim('NEC'),t.c802000002 as 所属城市,nvl(sum(t.c802000021),0) as num from {100} t 
+				  where 1=1 {5}
+				  group by t.c802000002
+				  union all
+				select distinct trim('DWDM设备次')||'.'||trim('华为'),t.c802000002 as 所属城市,nvl(sum(t.c802000033),0) as num from {100} t 
+				  where 1=1 {5}
+				  group by t.c802000002
+				  union all
+				select distinct trim('DWDM设备次')||'.'||trim('中兴'),t.c802000002 as 所属城市,nvl(sum(t.c802000035),0) as num from {100} t 
+				  where 1=1 {5}
+				  group by t.c802000002
+				  union all
+				select distinct trim('DWDM设备次')||'.'||trim('烽火'),t.c802000002 as 所属城市,nvl(sum(t.c802000038),0) as num from {100} t 
+				  where 1=1 {5}
+				  group by t.c802000002
+				  union all
+				select distinct trim('DWDM设备次')||'.'||trim('阿贝'),t.c802000002 as 所属城市,nvl(sum(t.c802000036),0) as num from {100} t 
+				  where 1=1 {5}
+				  group by t.c802000002
+				  union all
+				select distinct trim('DWDM设备次')||'.'||trim('朗讯'),t.c802000002 as 所属城市,nvl(sum(t.c802000026),0) as num from {100} t 
+				  where 1=1 {5}
+				  group by t.c802000002
+				  union all
+				select distinct trim('DWDM设备次')||'.'||trim('北电'),t.c802000002 as 所属城市,nvl(sum(t.c802000042),0) as num from {100} t 
+				  where 1=1 {5}
+				  group by t.c802000002
+				  union all
+				select distinct trim('DWDM设备次')||'.'||trim('西门子'),t.c802000002 as 所属城市,nvl(sum(t.c802000044),0) as num from {100} t 
+				  where 1=1 {5}
+				  group by t.c802000002
+				  union all
+				select distinct trim('DWDM设备次')||'.'||trim('NEC'),t.c802000002 as 所属城市,nvl(sum(t.c802000046),0) as num from {100} t 
+				  where 1=1 {5}
+				  group by t.c802000002
+				  union all
+				select distinct trim('SDH设备套')||'.'||trim('华为'),t.c802000002 as 所属城市,nvl(sum(t.c802000048),0) as num from {100} t 
+				  where 1=1 {5}
+				  group by t.c802000002
+				  union all
+				select distinct trim('SDH设备套')||'.'||trim('中兴'),t.c802000002 as 所属城市,nvl(sum(t.c802000054),0) as num from {100} t 
+				  where 1=1 {5}
+				  group by t.c802000002
+				  union all
+				select distinct trim('SDH设备套')||'.'||trim('烽火'),t.c802000002 as 所属城市,nvl(sum(t.c802000056),0) as num from {100} t 
+				  where 1=1 {5}
+				  group by t.c802000002
+				  union all
+				select distinct trim('SDH设备套')||'.'||trim('阿贝'),t.c802000002 as 所属城市,nvl(sum(t.c802000050),0) as num from {100} t 
+				  where 1=1 {5}
+				  group by t.c802000002
+				  union all
+				select distinct trim('SDH设备套')||'.'||trim('朗讯'),t.c802000002 as 所属城市,nvl(sum(t.c802000063),0) as num from {100} t 
+				  where 1=1 {5}
+				  group by t.c802000002
+				  union all
+				select distinct trim('SDH设备套')||'.'||trim('北电'),t.c802000002 as 所属城市,nvl(sum(t.c802000065),0) as num from {100} t 
+				  where 1=1 {5}
+				  group by t.c802000002
+				  union all
+				select distinct trim('SDH设备套')||'.'||trim('西门子'),t.c802000002 as 所属城市,nvl(sum(t.c802000067),0) as num from {100} t 
+				  where 1=1 {5}
+				  group by t.c802000002
+				  union all
+				select distinct trim('SDH设备套')||'.'||trim('NEC'),t.c802000002 as 所属城市,nvl(sum(t.c802000069),0) as num from {100} t 
+				  where 1=1 {5}
+				  group by t.c802000002
+				  union all
+				select distinct trim('DWDM设备套')||'.'||trim('华为'),t.c802000002 as 所属城市,nvl(sum(t.c802000071),0) as num from {100} t 
+				  where 1=1 {5}
+				  group by t.c802000002
+				  union all
+				select distinct trim('DWDM设备套')||'.'||trim('中兴'),t.c802000002 as 所属城市,nvl(sum(t.c802000073),0) as num from {100} t 
+				  where 1=1 {5}
+				  group by t.c802000002
+				  union all
+				select distinct trim('DWDM设备套')||'.'||trim('烽火'),t.c802000002 as 所属城市,nvl(sum(t.c802000075),0) as num from {100} t 
+				  where 1=1 {5}
+				  group by t.c802000002
+				  union all
+				select distinct trim('DWDM设备套')||'.'||trim('阿贝'),t.c802000002 as 所属城市,nvl(sum(t.c802000077),0) as num from {100} t 
+				  where 1=1 {5}
+				  group by t.c802000002
+				  union all
+				select distinct trim('DWDM设备套')||'.'||trim('朗讯'),t.c802000002 as 所属城市,nvl(sum(t.c802000079),0) as num from {100} t 
+				  where 1=1 {5}
+				  group by t.c802000002
+				  union all
+				select distinct trim('DWDM设备套')||'.'||trim('北电'),t.c802000002 as 所属城市,nvl(sum(t.c802000081),0) as num from {100} t 
+				  where 1=1 {5}
+				  group by t.c802000002
+				  union all
+				select distinct trim('DWDM设备套')||'.'||trim('西门子'),t.c802000002 as 所属城市,nvl(sum(t.c802000083),0) as num from {100} t 
+				  where 1=1 {5}
+				  group by t.c802000002
+				  union all
+				select distinct trim('DWDM设备套')||'.'||trim('NEC'),t.c802000002 as 所属城市,nvl(sum(t.c802000085),0) as num from {100} t 
+				  where 1=1 {5}
+				  group by t.c802000002
+				
+		]]></item>
+	</sql>
+</sql-group>
+

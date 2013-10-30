@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sql-group>
+	<doc>
+		<author>作者</author> 
+		<date>时间</date> 
+		<description>Sql 描述</description> 		
+	</doc>
+	<sqlquery name="SQL_Fault_FirstCategory" dbpoolname="">
+		<select>
+		<![CDATA[
+	      select distinct c650000001 clist,substr(c650000005,1,2) ccode from {WF:Config_EL_00_NetType} order by ccode
+		  ]]>
+		</select>
+	</sqlquery>
+	<sqlquery name="SQL_Fault_SecondCategory" dbpoolname="">
+		<select>
+		<![CDATA[
+	      select distinct c650000001||'.'||c650000002 clist,substr(c650000005,1,4) ccode from {WF:Config_EL_00_NetType} 
+	      where 1=1 
+	      #strParent#
+	      $directpar$
+	      order by ccode
+		  ]]>
+		</select>
+		
+		<!--  
+		<customwhere>
+			<parameterMap prepend="AND" name="directpar">
+				<mapingFiled prepend="AND" fieldName="strParent" fieldType="4">
+					<mapsql value="isnotnull">
+						<![CDATA[
+							c650000001 = '#strParent#'
+						 ]]>
+					</mapsql>
+				</mapingFiled>
+			</parameterMap>
+		</customwhere>
+		-->
+		
+	</sqlquery>
+	<sqlquery name="SQL_Fault_ThirdCategory" dbpoolname="">
+		<select>
+		<![CDATA[
+	      select distinct c650000001||'.'||c650000002||'.'||c650000004 clist,c650000005 ccode from {WF:Config_EL_00_NetType}
+	      where 1=1 $directpar$
+	      #strParent#
+	      order by ccode
+		  ]]>
+		</select>
+	</sqlquery>
+	<sqlquery name="SQL_Fault_Province" dbpoolname="">
+		<select>
+		<![CDATA[
+	      select distinct c650000001 clist,c650000002 ccode from {WF:Config_EL_00_Province} order by ccode
+		  
+		  ]]>
+		</select>
+	</sqlquery>
+	<sqlquery name="SQL_Fault_City" dbpoolname="">
+		<select>
+		<![CDATA[
+	      select distinct c.c650000004 clist,c.c650000002 ccode from {WF:Config_EL_00_Province} p, {WF:Config_EL_00_City} c
+	      where 1=1
+	      and p.c650000001=c.c650000001
+	      $directpar$
+	      order by nlssort(clist,'NLS_SORT=SCHINESE_PINYIN_M')
+		  ]]>
+		</select>
+	</sqlquery>
+	<sqlquery name="SQL_Fault_Clientbrand" dbpoolname="">
+		<select>
+		<![CDATA[
+	      select distinct c650000001 clist,c650000002 ccode from {WF:Config_EL_TTM_CCH_UserBrand} order by ccode
+		  
+		  ]]>
+		</select>
+	</sqlquery>
+	<sqlquery name="SQL_Fault_ComplaintCategory" dbpoolname="">
+		<select>
+		<![CDATA[
+	      select distinct c650000002 clist from {WF:Config_EL_TTM_CCH_ComplaintType} 
+		  ]]>
+		</select>
+	</sqlquery>
+	<sqlquery name="SQL_Fault_EquipmentFactory" dbpoolname="">
+		<select>
+		<![CDATA[
+	      select distinct c650000001 clist,c650000002 ccode from {WF:Config_EL_00_EquipmentFactory} order by nlssort (clist,'NLS_SORT=SCHINESE_PINYIN_M')
+		  ]]>
+		</select>
+	</sqlquery>
+	<!-- 
+	c650000012 工单中不存在这个字段
+	由于原ccode在以后的功能中只用于选择显示用，表中没有合适的字段所以改为循环索引，为了功能稳定所有去掉排序。
+	<sqlquery name="SQL_Fault_ComplaintCategory" dbpoolname="">
+		<select>
+		<![CDATA[
+	      select distinct c650000002 clist,nvl(c650000012,0) ccode from {WF:Config_EL_TTM_CCH_ComplaintType} order by ccode 
+		  ]]>
+		</select>
+	</sqlquery>
+	 -->
+</sql-group>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sql-group>
+	<doc>
+		<author>黄维</author> 
+		<date>2008-10-12</date> 
+		<description>对字段生成初始化字段的代码</description> 		
+	</doc>
+	<sqlquery name="BaseField.BaseOn_FormName">
+		<select>
+		<![CDATA[ 
+			select 'Hashtable_BaseAllFields.put("' || t.fieldname ||
+			       '", new BaseFieldInfo("' || t.fieldname || '","' || t.fieldid ||
+			       '",null,' || t.datatype || '));' as strcode,
+			       fieldname,fieldid,datatype
+			  from field t
+			 where $BaseOn_BaseFormName$
+			   and t.datatype < 20
+			   and t.fieldid > 20
+			   and t.fieldid <> '700000001'
+			 order by t.fieldid
+		  ]]> 
+		</select>
+		<customwhere>
+			<parameterMap prepend="" name="BaseOn_BaseFormName">
+				<mapingFiled  prepend="" fieldName="BaseFormName"  fieldType="4">
+					<mapsql value="isnotnull">
+						<![CDATA[
+							 t.schemaid = (select arschema.schemaid from arschema where arschema.name='#BaseFormName#')
+						 ]]>  			
+					</mapsql>
+				</mapingFiled>
+				<mapingFiled  prepend="and" fieldName="BaseOwnFieldsFormName"  fieldType="4">
+					<mapsql value="isnotnull">
+						<![CDATA[
+							 t.fieldid not in (select BaseOwnFields.C650000003 from {#BaseOwnFieldsFormName#} BaseOwnFields where C650000002 = '#BaseFormName#')
+						 ]]>  			
+					</mapsql>
+				</mapingFiled>
+			</parameterMap>			
+		</customwhere>
+	</sqlquery>
+	
+</sql-group>

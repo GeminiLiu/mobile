@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="GB2312"?>
+<sql-group>
+	<doc>
+		<author>duanximeng</author>
+		<date>2007-11-06</date>
+		<description>作业计划</description>
+	</doc>
+	
+	<sql name="hbeoms.planlink" datasource="Ultranms">
+		<item dbms="All"><![CDATA[
+		select
+distinct (define1.值班室) as 值班室,
+define1.值班组 as 值班组,
+define1.执行人 as 执行人,
+define1.年+define2.年+define3.年 as 年,
+define1.半年+define2.半年+define3.半年 as 半年,
+define1.季度+define2.季度+define3.季度 as 季度,
+define1.月+define2.月+define3.月 as 月,
+define1.半月+define2.半月+define3.半月 as 半月,
+define1.周+define2.周+define3.周 as 周,
+define1.日+define2.日+define3.日 as 日,
+define1.自增+define2.自增+define3.自增 as 自增,
+define1.执行总数+define2.执行总数+define3.执行总数 as 执行总数,
+define1.完成总数+define2.完成总数+define3.完成总数 as 完成总数,
+round((define1.完成总数+define2.完成总数+define3.完成总数)/(case when (define1.执行总数+define2.执行总数+define3.执行总数)=0 then 1 else (define1.执行总数+define2.执行总数+define3.执行总数) end),4)*100 || '%' as 完成率,
+define1.未完成总数+define2.未完成总数+define3.未完成总数 as 未完成总数,
+round((define1.未完成总数+define2.未完成总数+define3.未完成总数)/(case when (define1.执行总数+define2.执行总数+define3.执行总数)=0 then 1 else (define1.执行总数+define2.执行总数+define3.执行总数) end),4)*100 || '%' as 未完成比率
+from
+(select
+a.值班室,a.值班组,b.执行人,nvl(a.年,0) as 年,nvl(a.半年,0) as 半年,nvl(a.季度,0) as 季度,nvl(a.月,0) as 月,nvl(a.半月,0) as 半月,nvl(a.周,0) as 周,nvl(a.日,0) as 日,nvl(a.自增,0) as 自增,nvl(a.执行总数,0) as 执行总数,nvl(a.完成总数,0) as 完成总数,nvl(a.未完成总数,0) as 未完成总数
+from (select 
+do.organization_name 值班室,
+g.c630000018 值班组,
+u.c630000003 as 执行人,
+sum(case when exe.cycle=1 then 1 else 0 end) as 年,
+sum(case when exe.cycle=2 then 1 else 0 end) as 半年,
+sum(case when exe.cycle=3 then 1 else 0 end) as 季度,
+sum(case when exe.cycle=4 then 1 else 0 end) as 月,
+sum(case when exe.cycle=5 then 1 else 0 end) as 半月,
+sum(case when exe.cycle=6 then 1 else 0 end) as 周,
+sum(case when exe.cycle=7 then 1 else 0 end) as 日,
+sum(case when exe.month_content_id is null then 1 else 0 end) as 自增,
+count(exe.plan_id) as 执行总数,
+sum(case when exe.complete_flag=1 then 1 else 0 end) as 完成总数,
+sum(case when exe.complete_flag<>1 then 1 else 0 end) as 未完成总数
+from executable_plan exe,actual_executor act,{500} g,{100} u,{600} gu,Duty_Organization do, Organization_Group og
+where 1=1  {5}
+{3} and 
+exe.plan_id=act.plan_id
+and act.EXECUTOR_ID=ltrim(u.C1,0)
+and act.EXECUTOR_TYPE=1
+and do.organization_id = og.organization_id
+and og.group_Id = g.c630000030
+and gu.C620000028=u.C1
+and gu.C620000027=g.C1
+group by u.c630000003,g.C630000018,do.organization_name) a,
+(select u.c630000003  as 执行人 from {500} g,{100} u,{600} gu
+where  gu.C620000028=u.C1
+and gu.C620000027=g.C1
+{3}
+) b
+where a.执行人(+)=b.执行人) define1,
+
+(select
+a.值班室,a.值班组,b.执行人,nvl(a.年,0) as 年,nvl(a.半年,0) as 半年,nvl(a.季度,0) as 季度,nvl(a.月,0) as 月,nvl(a.半月,0) as 半月,nvl(a.周,0) as 周,nvl(a.日,0) as 日,nvl(a.自增,0) as 自增,nvl(a.执行总数,0) as 执行总数,nvl(a.完成总数,0) as 完成总数,nvl(a.未完成总数,0) as 未完成总数
+from
+(select 
+do.organization_name 值班室,
+g.c630000018 值班组,
+u.c630000003 as 执行人,
+sum(case when exe.cycle=1 then 1 else 0 end) as 年,
+sum(case when exe.cycle=2 then 1 else 0 end) as 半年,
+sum(case when exe.cycle=3 then 1 else 0 end) as 季度,
+sum(case when exe.cycle=4 then 1 else 0 end) as 月,
+sum(case when exe.cycle=5 then 1 else 0 end) as 半月,
+sum(case when exe.cycle=6 then 1 else 0 end) as 周,
+sum(case when exe.cycle=7 then 1 else 0 end) as 日,
+sum(case when exe.month_content_id is null then 1 else 0 end) as 自增,
+count(exe.plan_id) as 执行总数,
+sum(case when exe.complete_flag=1 then 1 else 0 end) as 完成总数,
+sum(case when exe.complete_flag<>1 then 1 else 0 end) as 未完成总数
+from executable_plan exe,actual_executor act,{500} g,{100} u,{600} gu,Duty_Organization do, Organization_Group og
+where 1=1  {5}
+{3} and 
+exe.plan_id=act.plan_id
+and act.EXECUTOR_ID=ltrim(g.C1)
+and act.EXECUTOR_TYPE=2
+and do.organization_id = og.organization_id
+and og.group_Id = g.c630000030
+and gu.C620000028=u.C1
+and gu.C620000027=g.C1
+group by u.c630000003,g.C630000018,do.organization_name) a,
+(select u.c630000003 as 执行人 from {500} g,{100} u,{600} gu
+where  gu.C620000028=u.C1
+and gu.C620000027=g.C1
+{3}
+) b
+where a.执行人(+)=b.执行人) define2,
+
+(select
+a.值班室,a.值班组,b.执行人,nvl(a.年,0) as 年,nvl(a.半年,0) as 半年,nvl(a.季度,0) as 季度,nvl(a.月,0) as 月,nvl(a.半月,0) as 半月,nvl(a.周,0) as 周,nvl(a.日,0) as 日,nvl(a.自增,0) as 自增,nvl(a.执行总数,0) as 执行总数,nvl(a.完成总数,0) as 完成总数,nvl(a.未完成总数,0) as 未完成总数
+from
+(select 
+do.organization_name 值班室,
+g.c630000018 值班组,
+u.c630000003 as 执行人,
+sum(case when exe.cycle=1 then 1 else 0 end) as 年,
+sum(case when exe.cycle=2 then 1 else 0 end) as 半年,
+sum(case when exe.cycle=3 then 1 else 0 end) as 季度,
+sum(case when exe.cycle=4 then 1 else 0 end) as 月,
+sum(case when exe.cycle=5 then 1 else 0 end) as 半月,
+sum(case when exe.cycle=6 then 1 else 0 end) as 周,
+sum(case when exe.cycle=7 then 1 else 0 end) as 日,
+sum(case when exe.month_content_id is null then 1 else 0 end) as 自增,
+count(exe.plan_id) as 执行总数,
+sum(case when exe.complete_flag=1 then 1 else 0 end) as 完成总数,
+sum(case when exe.complete_flag<>1 then 1 else 0 end) as 未完成总数
+from executable_plan exe,actual_executor act,{500} g,duty_organization duty,duty_sub sub,{100} u,{600} gu,Duty_Organization do, Organization_Group og
+where 1=1 {5}
+{3} and 
+exe.plan_id=act.plan_id
+and act.EXECUTOR_ID=ltrim(sub.DUTY_SUB_ID,0)
+and act.EXECUTOR_TYPE=3
+and (g.C1=duty.COMPANY_ID or ltrim(g.C1,0)=duty.DEPARTMENT_ID)
+and sub.ORGANIZATION_ID=duty.ORGANIZATION_ID
+and do.organization_id = og.organization_id
+and og.group_Id = g.c630000030
+and gu.C620000028=u.C1
+and gu.C620000027=g.C1
+group by u.c630000003,g.C630000018,do.organization_name) a,
+(select u.c630000003 as 执行人 from {500} g,{100} u,{600} gu
+where  gu.C620000028=u.C1
+and gu.C620000027=g.C1
+{3}
+) b
+where a.执行人(+)=b.执行人) define3
+
+where define1.执行人=define2.执行人
+and   define2.执行人=define3.执行人
+
+		]]></item>
+	</sql>
+</sql-group>
+

@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ll_friends"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#ffffff"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:id="@+id/rl_title"
+        android:layout_width="fill_parent"
+        android:layout_height="50dip"
+        android:layout_weight="0.01"
+        android:background="@drawable/titlebg"
+        android:padding="5dip" >
+
+        <ImageView
+            android:id="@+id/iv_friends"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:src="@drawable/back" />
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="200dip"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:singleLine="true"
+            android:text="线路巡检"
+            android:textColor="#ffffff"
+            android:textSize="20sp" />
+
+        <ImageView
+            android:id="@+id/iv_point"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/icon_map" />
+    </RelativeLayout>
+
+    
+    
+    
+    
+    <LinearLayout
+        android:id="@+id/container"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="100"
+        android:background="#ffffff"
+        android:orientation="vertical" >
+ <FrameLayout
+       android:id="@+id/framelayout"
+     android:layout_width="fill_parent"
+     android:layout_height="fill_parent"
+     android:orientation="vertical" 
+   
+     >
+     
+     
+<!-- 第一个 -->
+        <LinearLayout
+            android:id="@+id/ll_sv"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_below="@id/rl_title"
+            android:layout_weight="100"
+            android:background="#ffffff"
+            android:orientation="vertical"
+            android:visibility="visible"
+             >
+
+            <ScrollView
+                android:id="@+id/scrollview_gd"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="#ffffff"
+                android:scrollbars="none" >
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#ffffff"
+                    android:orientation="vertical" >
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#ffffff"
+                        android:orientation="vertical" >
+
+                        <LinearLayout
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:padding="10dip" >
+
+                            <TextView
+                                android:id="@+id/deal_tv1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:text="故障处理工单："
+                                android:textColor="#005bac"
+                                android:textSize="18dip" >
+                            </TextView>
+
+                            <TextView
+                                android:id="@+id/deal_content"
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:text="ID-051-20110516-003(一级处理中)"
+                                android:textColor="#979797"
+                                android:textSize="15dip" >
+                            </TextView>
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="fill_parent"
+                            android:layout_height="1dip"
+                            android:background="@drawable/line_blue" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/gd_frame_lv1"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical" >
+                    </LinearLayout>
+                </LinearLayout>
+            </ScrollView>
+        </LinearLayout>
+
+        <!-- 第二个 -->
+
+   <LinearLayout
+            android:id="@+id/ll_sv1"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_below="@id/rl_title"
+            android:layout_weight="100"
+            android:background="@drawable/map3"
+            android:orientation="vertical" 
+            android:visibility="gone"
+            >
+  <!--      <ImageView 
+           android:layout_width="fill_parent"
+           android:layout_height="fill_parent"
+           android:src="@drawable/map3"
+           />      -->
+       
+       </LinearLayout>
+
+</FrameLayout>
+ 
+    </LinearLayout>
+    
+       <RelativeLayout
+            android:id="@+id/xj_bottom"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="0dip"
+             >
+
+            <include
+                android:id="@+id/foot11"
+                layout="@layout/footxjline" />
+        </RelativeLayout>
+</LinearLayout>

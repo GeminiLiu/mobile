@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sql-group>
+	<doc>
+		<author>作者</author> 
+		<date>时间</date> 
+		<description>Sql 描述</description> 		
+	</doc>
+	<sqlquery name="test.query.001">
+		<select>
+		<![CDATA[ 
+   			  select 
+   			  /*COUNT*/   
+   			  base.c1 as baseid,
+      		  c700000001      as baseschema,
+      		  c700000002      as basename,
+       		  c700000003      as basesn,
+       		  c700000018      as BaseDealOutTime,
+       	      c700000010      as BaseStatus,
+       	      c700000011      as BaseSummary,
+       	      c700000015      as BasePriority
+       	      ,dp.c1           as processid,
+              c700020020      as FlagActive,
+              c700020019      as FlagType,
+              c700020006      as AssgineeID,
+              c700020010      as DealerID,
+              c700020008      as GroupID
+              /*COUNT*/
+              from {WF:App_Base_bak} base,{WF:App_DealProcess} dp 
+			  where base.c1 = dp.c700020001
+				   and base.c700000001 = dp.c700020002
+				   and c700020020=1 
+				   $no_test$
+				   $waitdeal$ 
+				   $extend$
+				   
+		  ]]> 
+		</select>
+		<customwhere>
+			<parameterMap prepend="AND" name="no_test">
+			
+				<mapingFiled  prepend="AND" fieldName="AssgineeID"  fieldType="4">
+					<mapsql value="isnotnull">
+						<![CDATA[
+							 c700020006  ='#AssgineeID#'
+						 ]]>  			
+					</mapsql>
+				</mapingFiled>			
+				<mapingFiled  prepend="AND" fieldName="basesn"  fieldType="4">
+					<mapsql value="isnotnull">
+						<![CDATA[
+							 c700000003 like '%#basesn#%'
+						 ]]>  			
+					</mapsql>
+				</mapingFiled>
+				<mapingFiled  prepend="AND" fieldName="isovertime"  fieldType="4">
+					<mapsql value="2008">
+						<![CDATA[
+							 c700000008>(c700000008+c801100011*3600) and c700000008 = '#aaa#' 
+						 ]]>  			
+					</mapsql>
+					<mapsql value="n">
+						<![CDATA[
+							 c700000008>0
+						 ]]>  			
+					</mapsql>
+				</mapingFiled>
+			</parameterMap>
+			
+			<parameterMap prepend="AND" name="waitdeal">
+					<mapingFiled  prepend="AND" fieldName="loginname"  fieldType="4">
+						<mapsql value="isnotnull">
+							<![CDATA[
+								 c700020006='#loginname#' or c700020010='#loginname#'
+							 ]]>  			
+						</mapsql>
+					</mapingFiled>
+					<mapingFiled  prepend="or" fieldName="groupid"  fieldType="4">
+						<mapsql value="isnotnull">
+							<![CDATA[
+								 (c700020008='#groupid#' and c700020049=0) or (c700020008='#groupid#' and c700020016 is null)
+							 ]]>  			
+						</mapsql>
+					</mapingFiled>			
+			</parameterMap>	
+			
+			<parameterMap prepend="" name="extend">
+					<mapingFiled  prepend="" fieldName="orderby"  fieldType="4">
+						<mapsql value="isnotnull">
+							<![CDATA[
+								 order by  #orderby#
+							 ]]>  			
+						</mapsql>
+					</mapingFiled>
+			</parameterMap>				
+ 		</customwhere>
+ 
+	</sqlquery>
+	
+</sql-group>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding='UTF-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+                            "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                            "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<!-- DO NOT EDIT: This is a generated file that is synchronized -->
+<!-- by MyEclipse Hibernate tool integration.                   -->
+<!-- Created Mon Jan 15 17:28:54 CST 2007                         -->
+<hibernate-mapping package="cn.com.ultrapower.eoms.user.config.smsorder.hibernate.po">
+
+    <class name="SysSmsOrderpo" table="T170" lazy="false">
+		<id name="c1" column="C1" type="string">
+            <generator class="assigned"/>
+        </id>
+        <property name="c2" column="C2" type="string" />
+        <property name="c3" column="C3" type="long"  not-null="true" />
+        <property name="c4" column="C4" type="string" />
+        <property name="c5" column="C5" type="string"  not-null="true" />
+        <property name="c6" column="C6" type="long"  not-null="true" />
+        <property name="c7" column="C7" type="long"  not-null="true" />
+        <property name="c8" column="C8" type="string"  not-null="true" />
+        <property name="c650000001" column="C650000001" type="string" />
+        <property name="c650000002" column="C650000002" type="string" />
+        <property name="c650000003" column="C650000003" type="string" />
+        <property name="c650000004" column="C650000004" type="string" />
+        <property name="c650000007" column="C650000007" type="string" />
+        <property name="c650000005" column="C650000005" type="long" />
+        <property name="c650000006" column="C650000006" type="long" />
+    </class>
+    
+</hibernate-mapping>

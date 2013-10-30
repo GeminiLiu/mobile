@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<remedy>
+  <!-- 故障工单接口配置信息，本文件是以河北eoms的工单信息进行的配置，注意在其他项目中如果工单schema等发生了变化时，应该修改此文件 -->
+  <!-- 修改时，只能修改FormSchema、processSchema和OwnerFiledValue的value，不可以修改FormName!!! -->
+  <!-- 如果需要增加一种工单类型时，可以仿照故障工单接口配置信息在配置文件中增加一行，并修改相应的属性值，注意FormName不可以重复！ -->
+  <!-- 调用本配置信息的方法可以参考cn.com.ultrapower.eoms.duty.service.ImportFailureManager.getImportFailureForm() -->
+  <!-- 即：通过调用(RemedyForm)Constants.hashmap.get("incident")对象的方法来读取工单类型的各属性值，其中inccident为FormName的值。-->
+  <!-- 关于工单类型的各种参数请咨询工单开发人员或参考相应的项目说明文档，一定要确保各属性值准确，且各属性值均不可缺省或为空！。-->
+  <form FormName="incident" FormSchema="UltraProcess:App_Eoms_Incident" processSchema="UltraProcess:App_Eoms_Incident" OwnerFiledValue="BaseSummary"/>
+</remedy>

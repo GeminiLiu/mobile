@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+	<tablesource>
+		<param Tablename="UltraProcess:SysUser" path="WEB-INF/classes/cn/com/ultrapower/eoms/user/rolemanage/people/hibernate/po/T94.hbm.xml" />
+		<param Tablename="UltraProcess:SysGroup" path="WEB-INF/classes/cn/com/ultrapower/eoms/user/rolemanage/group/hibernate/po/T106.hbm.xml" />
+		<param Tablename="User" path="WEB-INF/classes/cn/com/ultrapower/eoms/user/rolemanage/people/hibernate/po/T20.hbm.xml" />
+		<param Tablename="Group" path="WEB-INF/classes/cn/com/ultrapower/eoms/user/rolemanage/group/hibernate/po/T19.hbm.xml" />
+		<param Tablename="UltraProcess:SysUserLog" path="WEB-INF/classes/cn/com/ultrapower/eoms/user/log/hibernate/po/T135.hbm.xml" />
+		<param Tablename="UltraProcess:SysGroupUser" path="WEB-INF/classes/cn/com/ultrapower/eoms/user/config/groupuser/hibernate/po/T86.hbm.xml" />
+		<param Tablename="UltraProcess:SysGetID" path="WEB-INF/classes/cn/com/ultrapower/eoms/user/config/entryid/hibernate/po/T65.hbm.xml" />
+		<param Tablename="UltraProcess:SysDropDownConfig" path="WEB-INF/classes/cn/com/ultrapower/eoms/user/config/menu/hibernate/po/T74.hbm.xml" />
+		<param Tablename="UltraProcess:GrandActionConfig" path="WEB-INF/classes/cn/com/ultrapower/eoms/user/config/menu/hibernate/po/T139.hbm.xml" />
+		<param Tablename="UltraProcess:SourceManager" path="WEB-INF/classes/cn/com/ultrapower/eoms/user/config/sourcemanager/hibernate/po/T142.hbm.xml" />
+		<param Tablename="UltraProcess:SysSla" path="WEB-INF/classes/cn/com/ultrapower/eoms/user/sla/hibernate/po/T85.hbm.xml" />
+		<param Tablename="UltraProcess:SysSlaSms" path="WEB-INF/classes/cn/com/ultrapower/eoms/user/sla/hibernate/po/T105.hbm.xml" />
+		<param Tablename="UltraProcess:SysSlaMail" path="WEB-INF/classes/cn/com/ultrapower/eoms/user/sla/hibernate/po/T110.hbm.xml" />
+		<param Tablename="UltraProcess:SysSkill" path="WEB-INF/classes/cn/com/ultrapower/eoms/user/authorization/role/hibernate/po/T92.hbm.xml" />
+		<param Tablename="UltraProcess:SysSlaWorkFlowManage" path="WEB-INF/classes/cn/com/ultrapower/eoms/user/sla/hibernate/po/T114.hbm.xml" />
+		<param Tablename="UltraProcess:SmsOrder" path="WEB-INF/classes/cn/com/ultrapower/eoms/user/config/smsorder/hibernate/po/T170.hbm.xml" />
+		<param Tablename="UltraProcess:ManageGroupUser" path="WEB-INF/classes/cn/com/ultrapower/eoms/user/authorization/sendscope/hibernate/po/T97.hbm.xml" />
+		<param Tablename="UltraProcess:SysAction" path="WEB-INF/classes/cn/com/ultrapower/eoms/user/sla/hibernate/po/T93.hbm.xml" />
+		<param Tablename="UltraProcess:RolesManage" path="WEB-INF/classes/cn/com/ultrapower/eoms/user/authorization/templet/hibernate/po/T147.hbm.xml" />
+		<param Tablename="UltraProcess:RolesSkillManage" path="WEB-INF/classes/cn/com/ultrapower/eoms/user/authorization/templet/hibernate/po/T149.hbm.xml" />
+		<param Tablename="UltraProcess:RolesSendManage" path="WEB-INF/classes/cn/com/ultrapower/eoms/user/authorization/templet/hibernate/po/T151.hbm.xml" />
+		<param Tablename="UltraProcess:RolesModuleRel" path="WEB-INF/classes/cn/com/ultrapower/eoms/user/authorization/templet/hibernate/po/T153.hbm.xml" />
+		<param Tablename="UltraProcess:RolesUserGroupRel" path="WEB-INF/classes/cn/com/ultrapower/eoms/user/authorization/templet/hibernate/po/T238.hbm.xml" />
+		<param Tablename="UltraProcess:RolesAccUserBackUp" path="WEB-INF/classes/cn/com/ultrapower/eoms/user/authorization/templet/hibernate/po/T602.hbm.xml" />
+		<param Tablename="UltraProcess:SysSkillConfer" path="WEB-INF/classes/cn/com/ultrapower/eoms/user/authorization/usercommision/hibernate/po/T247.hbm.xml" />
+		<param Tablename="UltraProcess:Config_GroupIsSnatch" path="WEB-INF/classes/cn/com/ultrapower/eoms/user/authorization/sendscope/hibernate/po/T256.hbm.xml" />
+		<param Tablename="WF:Config_BaseCategory" path="WEB-INF/classes/cn/com/ultrapower/eoms/user/authorization/role/hibernate/po/BaseCatagorygrand.hbm.xml" />
+	</tablesource>
+	<modifyhibdatabaseinfo>
+		<param path="classes/hibernate.cfg.xml" />
+		<param path="classes/cn/com/ultrapower/eoms/user/comm/hibernatesession/hibernate.cfg.xml" />
+	</modifyhibdatabaseinfo>
+	<RemedyTable>
+		<!--form对应的T表-->
+		<RemedyTrole>UltraProcess:SysSkill</RemedyTrole>
+		<RemedyTpeople>UltraProcess:SysUser</RemedyTpeople>
+		<RemedyTgroup>UltraProcess:SysGroup</RemedyTgroup>
+		<SysGroup>UltraProcess:SysGroup</SysGroup>
+		<RemedyTgroupuser>UltraProcess:SysGroupUser</RemedyTgroupuser>
+		<RemedyTsourceManager>UltraProcess:SourceManager</RemedyTsourceManager>
+		<RemedyTrolesmanage>UltraProcess:RolesManage</RemedyTrolesmanage>
+		<RemedyTrolesskillmanage>UltraProcess:RolesSkillManage</RemedyTrolesskillmanage>
+		<RemedyTrolessendmanage>UltraProcess:RolesSendManage</RemedyTrolessendmanage>
+		<RemedyTrolesmodulerel>UltraProcess:RolesModuleRel</RemedyTrolesmodulerel>
+		<RemedyTrolesusergrouprel>UltraProcess:RolesUserGroupRel</RemedyTrolesusergrouprel>
+		<RemedyTrolesaccuserbackup>UltraProcess:RolesAccUserBackUp</RemedyTrolesaccuserbackup>
+		<RemedyTsendscope>UltraProcess:ManageGroupUser</RemedyTsendscope>
+		<RemedyTgrandaction>UltraProcess:GrandActionConfig</RemedyTgrandaction>
+		<RemedyTskillconfer>UltraProcess:SysSkillConfer</RemedyTskillconfer>
+		<RemedyTdropdown>UltraProcess:SysDropDownConfig</RemedyTdropdown>
+		<RemedyTSysBaseItems>WF:Config_EL_00_NetType</RemedyTSysBaseItems>
+		<RemedyTSysBTSInfo>UltraProcess:Config_SysBTSInfo</RemedyTSysBTSInfo>
+		<RemedyTHardWare>UltraProcess:Config_HardWare</RemedyTHardWare>
+		<RemedyTSoftWare>UltraProcess:Config_SoftWare</RemedyTSoftWare>
+		<RemedyTNetElement>UltraProcess:Config_NetElement</RemedyTNetElement>
+		<RemedyTSourceType>WF:Config_EL_00_EquipmentFactory</RemedyTSourceType>
+		<RemedyTKPI>UltraProcess:Config_KPI</RemedyTKPI>
+		<RemedyTgroupissnatch>UltraProcess:Config_GroupIsSnatch</RemedyTgroupissnatch>
+		
+		<RemedyTBaseCategory>WF:Config_BaseCategory</RemedyTBaseCategory>
+		<RemedyTAppbase>UltraProcess:App_Base</RemedyTAppbase>
+		<RemedyDealProcess>WF:App_DealProcess</RemedyDealProcess>	
+		<RemedyArchive>UltraProcess:App_DealProcess_Archive</RemedyArchive>
+		
+		<RemedyBaseState>UltraProcess:Config_BaseState</RemedyBaseState>
+		  <!-- 河北eoms新添加2008-07 -->
+		  <RemedyCountySalesCommunicationMonthlyReport>UltraProcess:App_Eoms_CountySalesCommunicationMonthly_Report</RemedyCountySalesCommunicationMonthlyReport>
+		  <RemedyGSMGPRSEGPRSWirelessAccessMonthlyReport>UltraProcess:App_Eoms_GSM_GPRS_EGPRS_WirelessAccessMonthly_Report</RemedyGSMGPRSEGPRSWirelessAccessMonthlyReport>
+		  <RemedyNetworkFaultMonthlyReport>UltraProcess:App_Eoms_Network_Fault_Monthly_Report</RemedyNetworkFaultMonthlyReport>
+		  <RemedyNetworkOperatingQualityAnalysisMonthlyReport>UltraProcess:App_Eoms_Network_OperatingQuality_Analysis_Monthly_Report</RemedyNetworkOperatingQualityAnalysisMonthlyReport>
+		  <RemedyVillageCommunicationMonthlyReport>UltraProcess:App_Eoms_VillageCommunicationMonthly_Report</RemedyVillageCommunicationMonthlyReport>
+		  <RemedyCMCCCommunicationQuartlyReport>UltraProcess:App_Eoms_CMCCCommunicationQuartly_Report</RemedyCMCCCommunicationQuartlyReport>
+		  <RemedyFaultImpactDataMonthlyReport>UltraProcess:App_Eoms_FaultImpactData_Monthly_Report</RemedyFaultImpactDataMonthlyReport>
+		  <RemedyBuildSelfCircuitUsingSituationMonthlyReport>UltraProcess:App_Eoms_Build_Self_CircuitUsing_Situation_MonthlyReport</RemedyBuildSelfCircuitUsingSituationMonthlyReport>
+		  <RemedyMaintenanceOperationsDataMonthlyReport>UltraProcess:App_Eoms_Maintenance_OperationsData_Monthly_Report</RemedyMaintenanceOperationsDataMonthlyReport>
+		  <RemedyGSMCoreInternetMonthlyReport>UltraProcess:App_Eoms_GSMCoreInternet_Monthly_Report</RemedyGSMCoreInternetMonthlyReport>
+		  <RemedyMaintenanceAnalysisMonthlyReport>UltraProcess:App_Eoms_MaintenanceAnalysis_Monthly_Report</RemedyMaintenanceAnalysisMonthlyReport>
+		  <RemedyNetworkMaintenanceBaseDataMonthlyReport>UltraProcess:App_Eoms_NetworkMaintenance_BaseDataMonthly_Report</RemedyNetworkMaintenanceBaseDataMonthlyReport>
+		  <RemedyHireBuildCircuitUsingMonthlyReport>UltraProcess:App_Eoms_Hire_Build_CircuitUsing_MonthlyReport</RemedyHireBuildCircuitUsingMonthlyReport>
+		  <RemedyMixedBuildCircuitUsingMonthlyReport>UltraProcess:App_Eoms_Mixed_Build_CircuitUsing_MonthlyReport</RemedyMixedBuildCircuitUsingMonthlyReport>
+		  <RemedyTransportNetworkInnerProvincialRouteQuartyReport>UltraProcess:App_Eoms_TransportNetwork_InnerProvincial_Route_QuartyReport</RemedyTransportNetworkInnerProvincialRouteQuartyReport>
+		  <RemedyTransportNetworkInterProvincialRouteQuartyReport>UltraProcess:App_Eoms_TransportNetwork_InterProvincial_Route_QuartyReport</RemedyTransportNetworkInterProvincialRouteQuartyReport>
+		  <RemedyEomsTransportNetworkCityAreaRouteQuartyReport>UltraProcess:App_Eoms_TransportNetwork_CityArea_Route_QuartyReport</RemedyEomsTransportNetworkCityAreaRouteQuartyReport>
+		  <RemedyFactoriesDeviceFaultDataMonthlyReport>UltraProcess:App_Eoms_Factories_Device_FaultData_Monthly_Report</RemedyFactoriesDeviceFaultDataMonthlyReport>
+		  <RemedyBuildSelfTransportSysOpenCircuitIndicatorsInputReport>UltraProcess:App_Eoms_BuildSelf_TransportSys_OpenCircuit_IndicatorsInput_Report</RemedyBuildSelfTransportSysOpenCircuitIndicatorsInputReport>
+		  <RemedyBuildTogetherCircuitIndicatorsInputReport>UltraProcess:App_Eoms_BuildTogether_Circuit_IndicatorsInput_Report</RemedyBuildTogetherCircuitIndicatorsInputReport>
+		  <RemedyHireCircuitIndicatorsInputReport>UltraProcess:App_Eoms_Hire_Circuit_IndicatorsInput_Report</RemedyHireCircuitIndicatorsInputReport>
+		  <RemedyTable1PipelineQuarterlyReport>UltraProcess:App_Eoms_Table1_Pipeline_QuarterlyReport</RemedyTable1PipelineQuarterlyReport>
+		  <RemedyTable2CableQuarterlyReport>UltraProcess:App_Eoms_Table2_Cable_QuarterlyReport</RemedyTable2CableQuarterlyReport>
+		  <RemedyTable3CableQuarterlyReport>UltraProcess:App_Eoms_Table3_Cable_QuarterlyReport</RemedyTable3CableQuarterlyReport>
+		  <RemedyTable7FactorySharesQuartyReport>UltraProcess:App_Eoms_Table7_FactoryShares_QuartyReport</RemedyTable7FactorySharesQuartyReport>
+		  <RemedyTable6ResourceUsingQuartyReport>UltraProcess:App_Eoms_Table6_ResourceUsing_QuartyReport</RemedyTable6ResourceUsingQuartyReport>
+		  <RemedyTable5CircuitCategoriesQuartyReport>UltraProcess:App_Eoms_Table5_CircuitCategories_QuartyReport</RemedyTable5CircuitCategoriesQuartyReport>
+		  <RemedyTable4CircuitResourceQuartlyReport>UltraProcess:App_Eoms_Table4_CircuitResource_QuartlyReport</RemedyTable4CircuitResourceQuartlyReport>
+		  <RemedyCooperateBuildCircuitUsingMonthlyReport>UltraProcess:App_Eoms_Cooperate_Build_CircuitUsing_MonthlyReport</RemedyCooperateBuildCircuitUsingMonthlyReport>
+		  <RemedyMixedCircuitIndicatorsInputReport>UltraProcess:App_Eoms_Mixed_Circuit_IndicatorsInput_Report</RemedyMixedCircuitIndicatorsInputReport>
+		  <RemedyConfig_SysIncidentReason>UltraProcess:Config_SysIncidentReason</RemedyConfig_SysIncidentReason>
+		  <RemedyConfig_SysBTSInfo>UltraProcess:Config_SysBTSInfo</RemedyConfig_SysBTSInfo>
+		  <RemedyConfig_SysIncidentLevel>UltraProcess:Config_SysIncidentLevel</RemedyConfig_SysIncidentLevel>
+		  <RemedyConfig_SysIncidentEquipmentInfo>UltraProcess:Config_SysIncidentEquipmentInfo</RemedyConfig_SysIncidentEquipmentInfo>
+		  <RemedyConfig_SysNetComplainReason>UltraProcess:Config_SysNetComplainReason</RemedyConfig_SysNetComplainReason>
+		  <RemedyConfig_SysNetComplainPlace>UltraProcess:Config_SysNetComplainPlace</RemedyConfig_SysNetComplainPlace>
+		  <RemedyConfig_SysComplainType>UltraProcess:Config_SysComplainType</RemedyConfig_SysComplainType>
+		  <RemedyConfig_SysComplainSize>UltraProcess:Config_SysComplainSize</RemedyConfig_SysComplainSize>
+		  <RemedyConfig_SysComplainPlace>UltraProcess:Config_SysComplainPlace</RemedyConfig_SysComplainPlace>
+		  <RemedyConfig_SysComplainMobileType>UltraProcess:Config_SysComplainMobileType</RemedyConfig_SysComplainMobileType>
+		  <RemedyConfig_SysConsumerType>UltraProcess:Config_SysConsumerType</RemedyConfig_SysConsumerType>
+		  <RemedyConfig_SysConsumerLevel>UltraProcess:Config_SysConsumerLevel</RemedyConfig_SysConsumerLevel>
+		  <RemedyConfig_SysComplainDealDesc>UltraProcess:Config_SysComplainDealDesc</RemedyConfig_SysComplainDealDesc>
+		  <RemedyBaseInfor>WF:App_Base_Infor</RemedyBaseInfor>
+		  <RemedyConfigBaseCategory>WF:Config_BaseCategory</RemedyConfigBaseCategory>
+		  <!-- 河北eoms新添加2008-07 -->
+		  <!-- 集团通信录功能 -->
+			<CommunicateRecord>UltraProcess:Cmc_Eoms_CommunicateRecord_Speciality</CommunicateRecord>
+			<CommunicateRecordUser>UltraProcess:Cmc_Eoms_CommunicateRecord_User</CommunicateRecordUser>
+			<CommunicateRecordCp>UltraProcess:Cmc_Eoms_CommunicateRecord_Company</CommunicateRecordCp>
+		  	
+		  <!-- 集团通信录功能 -->
+		<!--form对应的T表 结束-->
+	</RemedyTable>
+	<RemedyParam>
+		<driverurl>nxeoms</driverurl>
+		<user>Demo</user>
+		<password></password>
+		<serverport>3040</serverport>
+		<driverurltwo>nxeoms</driverurltwo>
+		<usertwo>Demo</usertwo>
+		<passwordtwo></passwordtwo>
+		<serverporttwo>3040</serverporttwo>
+		
+		<!--Form 变量 开始-->
+		<syssla>UltraProcess:SysSla</syssla>
+		<sysslasms>UltraProcess:SysSlaSms</sysslasms>
+		<slauser>UltraProcess:SysUser</slauser>
+		<sysslamail>UltraProcess:SysSlaMail</sysslamail>
+		<role>UltraProcess:SysSkill</role>
+		<sendscope>UltraProcess:ManageGroupUser</sendscope>
+		<sysslaworkflowmanage>UltraProcess:SysSlaWorkFlowManage</sysslaworkflowmanage>
+		<people>UltraProcess:SysUser</people>
+		<group>UltraProcess:SysGroup</group>
+		<log>UltraProcess:SysUserLog</log>
+		<groupuser>UltraProcess:SysGroupUser</groupuser>
+		<sysgetid>UltraProcess:SysGetID</sysgetid>
+		<dropdownconfig>UltraProcess:SysDropDownConfig</dropdownconfig>
+		<grandactionconfig>UltraProcess:GrandActionConfig</grandactionconfig>
+		<sourceManager>UltraProcess:SourceManager</sourceManager>
+		<smsorder>UltraProcess:SmsOrder</smsorder>
+		<Remedygroup>Group</Remedygroup>
+		<Remedyuser>User</Remedyuser>
+		<rolesmanage>UltraProcess:RolesManage</rolesmanage>
+		<rolesskillmanage>UltraProcess:RolesSkillManage</rolesskillmanage>
+		<rolessendmanage>UltraProcess:RolesSendManage</rolessendmanage>
+		<rolesmodulerel>UltraProcess:RolesModuleRel</rolesmodulerel>
+		<rolesusergrouprel>UltraProcess:RolesUserGroupRel</rolesusergrouprel>
+		<rolesaccuserbackup>UltraProcess:RolesAccUserBackUp</rolesaccuserbackup>
+		<dutyorgnazition>DUTY_ORGANIZATION</dutyorgnazition>
+		<orgnazitionarranger>ORGANIZATION_ARRANGER</orgnazitionarranger>
+		<skillconfer>UltraProcess:SysSkillConfer</skillconfer>
+		<usersendscope>usersendscope</usersendscope>
+		<usersendscopenamemag>usersendscopenamemag</usersendscopenamemag>
+		<groupissnatch>UltraProcess:Config_GroupIsSnatch</groupissnatch>
+		<userclosebasegroup>WF:Config_UserCloseBaseGroup</userclosebasegroup>
+		<!--Form 变量 结束-->
+		<!--字段 变量 开始-->
+		<skillaction>Skill_Action</skillaction>
+		<skilltmpgrandset>Skill_TmpGrandSet</skilltmpgrandset>
+		<skillstatus>Skill_Status</skillstatus>
+		<skillworkflowtype>Skill_WorkFlowType</skillworkflowtype>
+		<slastate>SLA_Status</slastate>
+		<slaquery>SLA_UserCommQuery</slaquery>
+		<people_userPosition>User_Position</people_userPosition>
+		<people_userIsManager>User_IsManager</people_userIsManager>
+		<people_userType>User_Type</people_userType>
+		<people_userStatus>User_Status</people_userStatus>
+		<people_userCptype>User_CPType</people_userCptype>
+		<people_userLicensetype>User_LicenseType</people_userLicensetype>
+		<group_groupType>Group_Type</group_groupType>
+		<group_groupStatus>Group_Status</group_groupStatus>
+		<group_groupCompanytype>Group_CompanyType</group_groupCompanytype>
+		<duty_organization>duty_organization</duty_organization>
+		<group_flag>group_flag</group_flag>
+		<confirm_flag>confirm_flag</confirm_flag>
+		<weekend_flag>weekend_flag</weekend_flag>
+		<chief_type>chief_type</chief_type>
+		<active_flag>active_flag</active_flag>
+		<type>CompanyType</type>
+		<sendscopetype>ManageGroupUser_Type</sendscopetype>
+		<dutySubActive_flag>1</dutySubActive_flag>
+		<holiday_flag>holiday_flag</holiday_flag>
+		<duty_type>duty_type</duty_type>
+		<plan_subscibe>plan_subscibe</plan_subscibe>
+		<subscibe_flag>subscibe_flag</subscibe_flag>
+		<people_userSmsOrder>User_SmsOrder</people_userSmsOrder>
+		
+		<source_type>source_type</source_type>
+		<sourceconfig>sourceconfig</sourceconfig>
+		<sourceatttype>sourceatt_type</sourceatttype>
+		<sourceconfigatt>sourceconfigattribute</sourceconfigatt>
+		<sourceconfigattribute>sourceconfigattribute</sourceconfigattribute>
+		<Group_Type>2</Group_Type>
+		<sourceattcfg_type>sourceattcfg_type</sourceattcfg_type>
+		<sourceattributeconfig>sourceattributeconfig</sourceattributeconfig>
+		
+		<source_fieldtype>source_fieldtype</source_fieldtype>
+		<sourcecofigtype>4</sourcecofigtype>
+		<sourceattributevalue>sourceattributevalue</sourceattributevalue>
+		<sourceattvalue_belongrow>sourceattvalue_belongrow</sourceattvalue_belongrow>
+		<sourceattvalue_id>sourceattvalue_id</sourceattvalue_id>
+		<smsorder_smsOrderAction>smsorder_action</smsorder_smsOrderAction>
+		<sourcemanager_type>sourcemanager_type</sourcemanager_type>
+		<dutyMainFrame>dutyMainFrame</dutyMainFrame>
+		<systemmanage>systemmanage</systemmanage>
+		<durationlogintime>600</durationlogintime>
+		<setuplastpasswordnum>4</setuplastpasswordnum>
+		<nologintime>1000</nologintime>
+		<connnum>10</connnum>
+		<passwordvalidate>9720000</passwordvalidate>
+		<managergrandaction>1000</managergrandaction>
+		<grandaction>1</grandaction>
+		
+		<skillconferstatus>Skillconfer_Status</skillconferstatus>
+		
+		<rolemodulereltype>RoleModule_Type</rolemodulereltype>
+		<virtual>6;7;8;</virtual>
+		<targetlogin>/arsys/shared/eomslogin.jsp</targetlogin>
+		<snatchtype>GroupIsSnatch</snatchtype>
+		<muluurl>url</muluurl>
+		<ismodifygoup>yes</ismodifygoup>
+		<smstype>0</smstype><!--默认发短信0，默认不发短信1-->
+		<ip>192.168.0.206</ip>
+		<Config_BaseCategory>WF:Config_BaseCategory</Config_BaseCategory>
+		<!--字段 变量 结束-->
+		<firstindex>kpigsm</firstindex>
+		<firstindexname>GSM</firstindexname>
+		<secondindex>kpiintercon#-112895334758</secondindex>
+	  	<secondindexname>INTERCON</secondindexname>
+	  	<specialfield>nename,condir</specialfield>
+	</RemedyParam>
+</root>

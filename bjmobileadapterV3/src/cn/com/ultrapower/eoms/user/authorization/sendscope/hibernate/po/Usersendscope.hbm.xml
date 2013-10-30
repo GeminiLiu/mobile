@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding='UTF-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+                            "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                            "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<!-- DO NOT EDIT: This is a generated file that is synchronized -->
+<!-- by MyEclipse Hibernate tool integration.                   -->
+<!-- Created Tue Jan 16 15:13:38 CST 2007                         -->
+<hibernate-mapping package="cn.com.ultrapower.eoms.user.authorization.sendscope.hibernate.po">
+
+    <class name="UserSendScope" table="USERSENDSCOPE" lazy="false">
+        <id name="id" column="ID" type="java.lang.Long">
+            <generator class="assigned"/>
+        </id>
+ 
+        <property name="groupnameid" column="GROUPNAMEID" type="java.lang.String" />
+        <property name="userid" column="USERID" type="java.lang.String" />
+        <property name="groupid" column="GROUPID" type="java.lang.String" />
+        <property name="grandid" column="GRANDID" type="java.lang.String" />
+        <property name="note" column="NOTE" type="java.lang.String" />
+        <property name="memo" column="MEMO" type="java.lang.String" />
+        <property name="memo1" column="MEMO1" type="java.lang.String" />
+		<property name="sourceid" column="SOURCEID" type="java.lang.String" />
+		<property name="sendscopetype" column="SENDSCOPETYPE" type="java.lang.String" />
+	</class>
+    
+</hibernate-mapping>

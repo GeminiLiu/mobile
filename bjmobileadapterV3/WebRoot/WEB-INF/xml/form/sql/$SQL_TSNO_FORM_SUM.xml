@@ -1,0 +1,687 @@
+<?xml version="1.0" encoding="GB2312"?>
+<sql-group>
+	<doc>
+		<author>duanximeng</author>
+		<date>2006-03-17</date>
+		<description>投诉申告前后台处理统计
+	</description>
+	</doc>
+	
+	<sql name="Tsno_form_sum" datasource="Ultranms">
+		<item dbms="All"><![CDATA[
+
+select distinct fff.流水号,fff.业务类型,fff.受理号码,fff.节点类型,fff.处理员工,fff.处理部门,fff.超时时长,fff.工单当前状态,fff.优先级
+from(
+select rownum row_num,ff.* from(
+select 
+distinct comp.C700000003 as 流水号,
+comp.C801000003 as 业务类型,
+comp.C801000006 as 受理号码,
+case pro.C801000101 when 0 then '建单' when 1 then '派单' when 2 then '外派' when 3 then '销单' when 4 then '复核派单' when 5 then '复核处理' when 6 then '处理' when 7 then '直接处理' when 8 then '反馈' when 9 then '反馈再处理' end as 节点类型,
+pro.C700020009  as 处理员工,
+pro.C700020007  as 处理部门,
+nvl(pro.C700020017,((to_date( to_char(sysdate,'yyyy-mm-dd hh24:mi:ss'), 'yyyy-mm-dd hh24:mi:ss')-to_date('1970-01-01 00:00:00','yyyy-mm-dd hh24:mi:ss')) * 3600 * 24))
+              -pro.c700020012 as 超时时长,
+comp.C700000010 as 工单当前状态,
+comp.C700000015	as 优先级
+
+from {100} comp,(select * from {200} union all select * from {300}) pro, {400} u,{500} g
+where
+comp.C1=pro.C700020001
+
+          and pro.C700020004='BEGIN' 
+          and g.C630000021<>7 
+          
+          and comp.C700000005=u.C630000001
+          and u.c630000013=g.c1
+          and pro.C700020019=0 and  pro.C700020022=0 and pro.c700020011='已提交复核'
+          and nvl(pro.C700020017,((to_date( to_char(sysdate,'yyyy-mm-dd hh24:mi:ss'), 'yyyy-mm-dd hh24:mi:ss')-to_date('1970-01-01 00:00:00','yyyy-mm-dd hh24:mi:ss')) * 3600 * 24))
+              -pro.c700020012>0
+          and pro.C700020009 <>'lipengfei(李鹏飞)'
+          and pro.c700020020<>6
+          and pro.c801000103=0
+          
+          and pro.C700020009 <>'weizhiqiang(韦志强)'
+           and pro.C700020009 <>'wzq(wzq)'
+           and (g.c630000018<>'administrator')
+						  and (g.C630000018 <>'神州泰岳')
+						  and (g.C630000018 <>'河北移动通讯股份有限公司')
+          and comp.c700000010<>'已作废'
+{3}
+{4}
+{5}
+{7}
+{8}
+
+union all
+
+select 
+distinct comp.C700000003 as 流水号,
+comp.C801000003 as 业务类型,
+comp.C801000006 as 受理号码,
+case pro.C801000101 when 0 then '建单' when 1 then '派单' when 2 then '外派' when 3 then '销单' when 4 then '复核派单' when 5 then '复核处理' when 6 then '处理' when 7 then '直接处理' when 8 then '反馈' when 9 then '反馈再处理' end as 节点类型,
+pro.C700020009  as 处理员工,
+pro.C700020007  as 处理部门,
+nvl(pro.C700020017,((to_date( to_char(sysdate,'yyyy-mm-dd hh24:mi:ss'), 'yyyy-mm-dd hh24:mi:ss')-to_date('1970-01-01 00:00:00','yyyy-mm-dd hh24:mi:ss')) * 3600 * 24))
+              -pro.c700020012 as 超时时长,
+comp.C700000010 as 工单当前状态,
+comp.C700000015	as 优先级
+ 
+from {100} comp,(select * from {200} union all select * from {300}) pro,{400} u,{500} g,{600} gu, {400} uu,{500} gg
+where
+        comp.C1=pro.C700020001
+          and comp.C700000005=uu.C630000001
+          and uu.c630000013=gg.c1
+          and pro.C700020004='BEGIN'and pro.C801000101=7 and pro.C700020019=0 and pro.C700020022=0 and g.C630000021<>7
+          and pro.C700020017-pro.C700020014>0
+          and comp.c700000010<>'已作废'
+          and pro.c700020020<>6
+         and pro.C700020009 <>'lipengfei(李鹏飞)'
+          and pro.C700020009 <>'weizhiqiang(韦志强)'
+           and pro.C700020009 <>'wzq(wzq)'
+           and (g.c630000018<>'administrator')
+						  and (g.C630000018 <>'神州泰岳')
+						  and (g.C630000018 <>'河北移动通讯股份有限公司')
+          and pro.C700020010=u.C630000001
+          and u.C1=gu.C620000028
+          and gu.C620000027=g.C1
+         and pro.c801000103=0
+{3}
+{4}
+{5}
+{7}
+{8}
+
+union all
+
+select 
+distinct comp.C700000003 as 流水号,
+comp.C801000003 as 业务类型,
+comp.C801000006 as 受理号码,
+case pro.C801000101 when 0 then '建单' when 1 then '派单' when 2 then '外派' when 3 then '销单' when 4 then '复核派单' when 5 then '复核处理' when 6 then '处理' when 7 then '直接处理' when 8 then '反馈' when 9 then '反馈再处理' end as 节点类型,
+pro.C700020009  as 处理员工,
+pro.C700020007  as 处理部门,
+pro.C700020017-pro.C700020012 as 超时时长,
+comp.C700000010 as 工单当前状态,
+comp.C700000015	as 优先级
+
+from {100} comp,(select * from {200} union all select * from {300}) pro,{400} u,{500} g,{600} gu, {400} uu,{500} gg
+          where
+          comp.C1=pro.C700020001
+          and comp.C700000005=uu.C630000001
+          and uu.c630000013=gg.c1
+          and pro.C700020019=20 and pro.C700020022=0 and pro.C801000101=4 and pro.C700020017-pro.C700020012>0 and g.C630000021=7
+          and comp.c700000010<>'已作废'
+          and pro.C700020009 <>'lipengfei(李鹏飞)'
+          and pro.C700020009 <>'weizhiqiang(韦志强)'
+          and pro.c700020020<>6
+           and pro.C700020009 <>'wzq(wzq)'
+           and (g.c630000018<>'administrator')
+						  and (g.C630000018 <>'神州泰岳')
+						  and (g.C630000018 <>'河北移动通讯股份有限公司')
+          and pro.C700020010=u.C630000001
+          and u.C1=gu.C620000028
+          and gu.C620000027=g.C1
+          and pro.c801000103=0
+          
+          {3}
+{4}
+{5}
+{7}
+{8}
+union all
+
+select 
+distinct comp.C700000003 as 流水号,
+comp.C801000003 as 业务类型,
+comp.C801000006 as 受理号码,
+case pro.C801000101 when 0 then '建单' when 1 then '派单' when 2 then '外派' when 3 then '销单' when 4 then '复核派单' when 5 then '复核处理' when 6 then '处理' when 7 then '直接处理' when 8 then '反馈' when 9 then '反馈再处理' end as 节点类型,
+pro.C700020009  as 处理员工,
+pro.C700020007  as 处理部门,
+pro.C700020017-pro.C700020014 as 超时时长,
+comp.C700000010 as 工单当前状态,
+comp.C700000015	as 优先级
+
+ from {100} comp,(select * from {200} union all select * from {300}) pro,{400} u,{500} g,{600} gu, {400} uu,{500} gg
+          where
+          comp.C1=pro.C700020001
+          and comp.C700000005=uu.C630000001
+          and uu.c630000013=gg.c1
+          and comp.c700000010<>'已作废'
+          and pro.C700020019=20 and pro.C700020022=0 and pro.C801000101=7  and g.C630000021=7
+          and pro.C700020017-pro.C700020014>0
+         and pro.C700020009 <>'lipengfei(李鹏飞)'
+          and pro.C700020009 <>'weizhiqiang(韦志强)'
+          and pro.c700020020<>6
+           and pro.C700020009 <>'wzq(wzq)'
+           and (g.c630000018<>'administrator')
+						  and (g.C630000018 <>'神州泰岳')
+						  and (g.C630000018 <>'河北移动通讯股份有限公司')
+          and pro.C700020010=u.C630000001
+          and u.C1=gu.C620000028
+          and gu.C620000027=g.C1
+          and pro.c801000103=0
+          {3}
+{4}
+{5}
+{7}
+{8}
+
+union all
+
+select 
+distinct comp.C700000003 as 流水号,
+comp.C801000003 as 业务类型,
+comp.C801000006 as 受理号码,
+case pro.C801000101 when 0 then '建单' when 1 then '派单' when 2 then '外派' when 3 then '销单' when 4 then '复核派单' when 5 then '复核处理' when 6 then '处理' when 7 then '直接处理' when 8 then '反馈' when 9 then '反馈再处理' end as 节点类型,
+pro.C700020009  as 处理员工,
+pro.C700020007  as 处理部门,
+nvl(pro.C700020017,0)- nvl(pro.C700020012,0) as 超时时长,
+comp.C700000010 as 工单当前状态,
+comp.C700000015	as 优先级
+
+from {100} comp,(select * from {200} union all select * from {300}) pro, {400} u,{500} g
+         
+          where
+          comp.C1=pro.C700020001
+          and comp.C700000005=u.C630000001
+          and u.c630000013=g.c1
+          and (pro.C801000101=1 or pro.C801000101=2 or pro.C801000101=4 or pro.C801000101=9) 
+          and nvl(pro.C700020017,0)- nvl(pro.C700020012,0)>0
+          and pro.c801000103=0
+          and comp.c700000010<>'已作废'
+          and pro.C700020009 <>'lipengfei(李鹏飞)'
+          and pro.c700020020<>6
+          and pro.C700020009 <>'weizhiqiang(韦志强)'
+           and pro.C700020009 <>'wzq(wzq)'
+           and (g.c630000018<>'administrator')
+						  and (g.C630000018 <>'神州泰岳')
+						  and (g.C630000018 <>'河北移动通讯股份有限公司')
+                   {3}
+{4}
+{5}
+{7}
+{8}
+
+union all
+
+select 
+distinct comp.C700000003 as 流水号,
+comp.C801000003 as 业务类型,
+comp.C801000006 as 受理号码,
+case pro.C801000101 when 0 then '建单' when 1 then '派单' when 2 then '外派' when 3 then '销单' when 4 then '复核派单' when 5 then '复核处理' when 6 then '处理' when 7 then '直接处理' when 8 then '反馈' when 9 then '反馈再处理' end as 节点类型,
+pro.C700020009  as 处理员工,
+pro.C700020007  as 处理部门,
+pro.C700020017-pro.C700020014 as 超时时长,
+comp.C700000010 as 工单当前状态,
+comp.C700000015	as 优先级
+
+
+ from {100} comp,(select * from {200} union all select * from {300}) pro,{400} u,{500} g,{600} gu, {400} uu,{500} gg
+          where
+          comp.C1=pro.C700020001
+          and comp.C700000005=uu.C630000001
+          and uu.c630000013=gg.c1
+          and pro.C801000101 in (5,6,7,9) and pro.C700020017-pro.C700020014>0
+          and comp.c700000010<>'已作废'
+           and pro.C700020009 <>'lipengfei(李鹏飞)'
+           and pro.c700020020<>6
+          and pro.C700020009 <>'weizhiqiang(韦志强)'
+           and pro.C700020009 <>'wzq(wzq)'
+           and pro.c801000103=0
+           and (g.c630000018<>'administrator')
+						  and (g.C630000018 <>'神州泰岳')
+						  and (g.C630000018 <>'河北移动通讯股份有限公司')
+          and pro.C700020010=u.C630000001
+          and u.C1=gu.C620000028
+          and gu.C620000027=g.C1
+                     {3}
+{4}
+{5}
+{7}
+{8}        
+union all
+
+select 
+distinct comp.C700000003 as 流水号,
+comp.C801000003 as 业务类型,
+comp.C801000006 as 受理号码,
+case pro.C801000101 when 0 then '建单' when 1 then '派单' when 2 then '外派' when 3 then '销单' when 4 then '复核派单' when 5 then '复核处理' when 6 then '处理' when 7 then '直接处理' when 8 then '反馈' when 9 then '反馈再处理' end as 节点类型,
+pro.C700020009  as 处理员工,
+pro.C700020007  as 处理部门,
+nvl(pro.C700020017,
+           ((to_date(to_char(sysdate, 'yyyy-mm-dd hh24:mi:ss'),
+                     'yyyy-mm-dd hh24:mi:ss') -
+           to_date('1970-01-01 00:00:00', 'yyyy-mm-dd hh24:mi:ss')) * 3600 * 24)) -
+       pro.c700020014 as 超时时长,
+comp.C700000010 as 工单当前状态,
+comp.C700000015	as 优先级
+
+ from {100} comp,(select * from {200} union all select * from {300}) pro,{500} g ,{400} u,
+          (select * from T94 union all select * from T95) tt
+          where
+          comp.C1=pro.C700020001
+          and comp.C1 = tt.C700020001
+          and comp.C700000005=u.C630000001
+          and u.c630000013=g.c1
+       and pro.C700020009 <>'lipengfei(李鹏飞)'
+          and pro.C700020009 <>'weizhiqiang(韦志强)'
+           and pro.C700020009 <>'wzq(wzq)'
+           and (pro.c700020020 = 1 or pro.c700020020 = 0)
+           and tt.c700020020 = 0
+           and (g.c630000018<>'administrator')
+						  and (g.C630000018 <>'神州泰岳')
+						  and (g.C630000018 <>'河北移动通讯股份有限公司')
+          and pro.C801000101 = 8
+          and pro.C700020019 = 0
+          and pro.C801000103 = 0
+          and pro.c700020003=tt.c700020004
+          and pro.C700020017>tt.C700020017
+          and nvl(pro.C700020017,
+           ((to_date(to_char(sysdate, 'yyyy-mm-dd hh24:mi:ss'),
+                     'yyyy-mm-dd hh24:mi:ss') -
+           to_date('1970-01-01 00:00:00', 'yyyy-mm-dd hh24:mi:ss')) * 3600 * 24)) -
+       pro.c700020014 > 0
+       and comp.c700000010<>'已作废'
+                      {3}
+{4}
+{5}
+{7}
+{8}    
+union all
+
+select 
+distinct comp.C700000003 as 流水号,
+comp.C801000003 as 业务类型,
+comp.C801000006 as 受理号码,
+case pro.C801000101 when 0 then '建单' when 1 then '派单' when 2 then '外派' when 3 then '销单' when 4 then '复核派单' when 5 then '复核处理' when 6 then '处理' when 7 then '直接处理' when 8 then '反馈' when 9 then '反馈再处理' end as 节点类型,
+pro.C700020009  as 处理员工,
+pro.C700020007  as 处理部门,
+nvl(prolog.C700020405,
+           (select (to_date(to_char(sysdate, 'yyyy-mm-dd hh24:mi:ss'),
+                            'yyyy-mm-dd hh24:mi:ss') -
+                   to_date('1970-01-01 00:00:00', 'yyyy-mm-dd hh24:mi:ss')) * 3600 * 24
+              from dual)) - pro.C700020014 as 超时时长,
+comp.C700000010 as 工单当前状态,
+comp.C700000015	as 优先级
+
+ from {100} comp,(select * from {200} union all select * from {300}) pro,{500} g ,{400} u,
+      (select * from t96 union all select * from t97) prolog
+         
+          where
+          comp.C1=pro.C700020001
+           and comp.c1 = prolog.C700020407
+           and prolog.C700020402 = '接受完成'
+           and prolog.C700020401 = pro.c1
+          and comp.C700000005=u.C630000001
+          and u.c630000013=g.c1
+           and comp.c1 = prolog.C700020407
+          and prolog.C700020402 = '接受完成'
+          and prolog.C700020401 = pro.c1
+         and nvl(prolog.C700020405,
+           (select (to_date(to_char(sysdate, 'yyyy-mm-dd hh24:mi:ss'),
+                            'yyyy-mm-dd hh24:mi:ss') -
+                   to_date('1970-01-01 00:00:00', 'yyyy-mm-dd hh24:mi:ss')) * 3600 * 24
+              from dual)) - pro.C700020014 > 0
+         and pro.c801000103=0
+          and comp.c700000010<>'已作废'     
+          
+          and pro.C700020009 <>'lipengfei(李鹏飞)'
+          and pro.C700020009 <>'weizhiqiang(韦志强)'
+           and pro.C700020009 <>'wzq(wzq)'
+           and (g.c630000018<>'administrator')
+						  and (g.C630000018 <>'神州泰岳')
+						  and (g.C630000018 <>'河北移动通讯股份有限公司') 
+                   {3}
+{4}
+{5}
+{7}
+{8}   
+ ) ff ) fff where  {9}
+		]]></item>
+	</sql>
+	<sql name="Tsno_form_sum1" datasource="Ultranms">
+		<item dbms="All"><![CDATA[
+
+select max(rownum)
+from(
+select rownum row_num,ff.* from(
+select 
+distinct comp.C700000003 as 流水号,
+comp.C801000003 as 业务类型,
+comp.C801000006 as 受理号码,
+case pro.C801000101 when 0 then '建单' when 1 then '派单' when 2 then '外派' when 3 then '销单' when 4 then '复核派单' when 5 then '复核处理' when 6 then '处理' when 7 then '直接处理' when 8 then '反馈' when 9 then '反馈再处理' end as 节点类型,
+pro.C700020009  as 处理员工,
+pro.C700020007  as 处理部门,
+nvl(pro.C700020017,((to_date( to_char(sysdate,'yyyy-mm-dd hh24:mi:ss'), 'yyyy-mm-dd hh24:mi:ss')-to_date('1970-01-01 00:00:00','yyyy-mm-dd hh24:mi:ss')) * 3600 * 24))
+              -pro.c700020012 as 超时时长,
+comp.C700000010 as 工单当前状态,
+comp.C700000015	as 优先级
+
+from {100} comp,(select * from {200} union all select * from {300}) pro, {400} u,{500} g
+where
+comp.C1=pro.C700020001
+
+          and pro.C700020004='BEGIN' 
+          and g.C630000021<>7 
+          
+          and comp.C700000005=u.C630000001
+          and u.c630000013=g.c1
+          and pro.C700020019=0 and  pro.C700020022=0 and pro.c700020011='已提交复核'
+          and nvl(pro.C700020017,((to_date( to_char(sysdate,'yyyy-mm-dd hh24:mi:ss'), 'yyyy-mm-dd hh24:mi:ss')-to_date('1970-01-01 00:00:00','yyyy-mm-dd hh24:mi:ss')) * 3600 * 24))
+              -pro.c700020012>0
+          and pro.c801000103=0
+          and pro.C700020009 <>'lipengfei(李鹏飞)'
+          and pro.C700020009 <>'weizhiqiang(韦志强)'
+          and pro.c700020020<>6
+           and pro.C700020009 <>'wzq(wzq)'
+           and (g.c630000018<>'administrator')
+						  and (g.C630000018 <>'神州泰岳')
+						  and (g.C630000018 <>'河北移动通讯股份有限公司')
+          and comp.c700000010<>'已作废'
+{3}
+{4}
+{5}
+{7}
+{8}
+
+union 
+
+select 
+distinct comp.C700000003 as 流水号,
+comp.C801000003 as 业务类型,
+comp.C801000006 as 受理号码,
+case pro.C801000101 when 0 then '建单' when 1 then '派单' when 2 then '外派' when 3 then '销单' when 4 then '复核派单' when 5 then '复核处理' when 6 then '处理' when 7 then '直接处理' when 8 then '反馈' when 9 then '反馈再处理' end as 节点类型,
+pro.C700020009  as 处理员工,
+pro.C700020007  as 处理部门,
+nvl(pro.C700020017,((to_date( to_char(sysdate,'yyyy-mm-dd hh24:mi:ss'), 'yyyy-mm-dd hh24:mi:ss')-to_date('1970-01-01 00:00:00','yyyy-mm-dd hh24:mi:ss')) * 3600 * 24))
+              -pro.c700020012 as 超时时长,
+comp.C700000010 as 工单当前状态,
+comp.C700000015	as 优先级
+ 
+from {100} comp,(select * from {200} union all select * from {300}) pro,{400} u,{500} g,{600} gu, {400} uu,{500} gg
+where
+        comp.C1=pro.C700020001
+          and comp.C700000005=uu.C630000001
+          and uu.c630000013=gg.c1
+          and pro.C700020004='BEGIN'and pro.C801000101=7 and pro.C700020019=0 and pro.C700020022=0 and g.C630000021<>7
+          and pro.C700020017-pro.C700020014>0
+          and comp.c700000010<>'已作废'
+         and pro.C700020009 <>'lipengfei(李鹏飞)'
+          and pro.C700020009 <>'weizhiqiang(韦志强)'
+           and pro.C700020009 <>'wzq(wzq)'
+           and pro.c700020020<>6
+          and pro.c801000103=0
+           and (g.c630000018<>'administrator')
+						  and (g.C630000018 <>'神州泰岳')
+						  and (g.C630000018 <>'河北移动通讯股份有限公司')
+          and pro.C700020010=u.C630000001
+          and u.C1=gu.C620000028
+          and gu.C620000027=g.C1
+{3}
+{4}
+{5}
+{7}
+{8}
+
+union 
+
+select 
+distinct comp.C700000003 as 流水号,
+comp.C801000003 as 业务类型,
+comp.C801000006 as 受理号码,
+case pro.C801000101 when 0 then '建单' when 1 then '派单' when 2 then '外派' when 3 then '销单' when 4 then '复核派单' when 5 then '复核处理' when 6 then '处理' when 7 then '直接处理' when 8 then '反馈' when 9 then '反馈再处理' end as 节点类型,
+pro.C700020009  as 处理员工,
+pro.C700020007  as 处理部门,
+pro.C700020017-pro.C700020012 as 超时时长,
+comp.C700000010 as 工单当前状态,
+comp.C700000015	as 优先级
+
+from {100} comp,(select * from {200} union all select * from {300}) pro,{400} u,{500} g,{600} gu, {400} uu,{500} gg
+          where
+          comp.C1=pro.C700020001
+          and comp.C700000005=uu.C630000001
+          and uu.c630000013=gg.c1
+          and pro.C700020019=20 and pro.C700020022=0 and pro.C801000101=4 and pro.C700020017-pro.C700020012>0 and g.C630000021=7
+          and comp.c700000010<>'已作废'
+          and pro.C700020009 <>'lipengfei(李鹏飞)'
+          and pro.C700020009 <>'weizhiqiang(韦志强)'
+           and pro.C700020009 <>'wzq(wzq)'
+           and pro.c700020020<>6
+          and pro.c801000103=0
+           and (g.c630000018<>'administrator')
+						  and (g.C630000018 <>'神州泰岳')
+						  and (g.C630000018 <>'河北移动通讯股份有限公司')
+          and pro.C700020010=u.C630000001
+          and u.C1=gu.C620000028
+          and gu.C620000027=g.C1
+          
+          {3}
+{4}
+{5}
+{7}
+{8}
+union 
+
+select 
+distinct comp.C700000003 as 流水号,
+comp.C801000003 as 业务类型,
+comp.C801000006 as 受理号码,
+case pro.C801000101 when 0 then '建单' when 1 then '派单' when 2 then '外派' when 3 then '销单' when 4 then '复核派单' when 5 then '复核处理' when 6 then '处理' when 7 then '直接处理' when 8 then '反馈' when 9 then '反馈再处理' end as 节点类型,
+pro.C700020009  as 处理员工,
+pro.C700020007  as 处理部门,
+pro.C700020017-pro.C700020014 as 超时时长,
+comp.C700000010 as 工单当前状态,
+comp.C700000015	as 优先级
+
+ from {100} comp,(select * from {200} union all select * from {300}) pro,{400} u,{500} g,{600} gu, {400} uu,{500} gg
+          where
+          comp.C1=pro.C700020001
+          and comp.C700000005=uu.C630000001
+          and uu.c630000013=gg.c1
+          and comp.c700000010<>'已作废'
+          and pro.C700020019=20 and pro.C700020022=0 and pro.C801000101=7  and g.C630000021=7
+          and pro.C700020017-pro.C700020014>0
+         and pro.C700020009 <>'lipengfei(李鹏飞)'
+          and pro.C700020009 <>'weizhiqiang(韦志强)'
+           and pro.C700020009 <>'wzq(wzq)'
+           and pro.c700020020<>6
+          and pro.c801000103=0
+           and (g.c630000018<>'administrator')
+						  and (g.C630000018 <>'神州泰岳')
+						  and (g.C630000018 <>'河北移动通讯股份有限公司')
+          and pro.C700020010=u.C630000001
+          and u.C1=gu.C620000028
+          and gu.C620000027=g.C1
+          {3}
+{4}
+{5}
+{7}
+{8}
+
+union 
+
+select 
+distinct comp.C700000003 as 流水号,
+comp.C801000003 as 业务类型,
+comp.C801000006 as 受理号码,
+case pro.C801000101 when 0 then '建单' when 1 then '派单' when 2 then '外派' when 3 then '销单' when 4 then '复核派单' when 5 then '复核处理' when 6 then '处理' when 7 then '直接处理' when 8 then '反馈' when 9 then '反馈再处理' end as 节点类型,
+pro.C700020009  as 处理员工,
+pro.C700020007  as 处理部门,
+nvl(pro.C700020017,0)- nvl(pro.C700020012,0) as 超时时长,
+comp.C700000010 as 工单当前状态,
+comp.C700000015	as 优先级
+
+from {100} comp,(select * from {200} union all select * from {300}) pro, {400} u,{500} g
+         
+          where
+          comp.C1=pro.C700020001
+          and comp.C700000005=u.C630000001
+          and u.c630000013=g.c1
+          and (pro.C801000101=1 or pro.C801000101=2 or pro.C801000101=4 or pro.C801000101=9) 
+          and nvl(pro.C700020017,0)- nvl(pro.C700020012,0)>0
+          and comp.c700000010<>'已作废'
+          and pro.C700020009 <>'lipengfei(李鹏飞)'
+          and pro.C700020009 <>'weizhiqiang(韦志强)'
+          and pro.c700020020<>6
+          and pro.c801000103=0
+           and pro.C700020009 <>'wzq(wzq)'
+           and (g.c630000018<>'administrator')
+						  and (g.C630000018 <>'神州泰岳')
+						  and (g.C630000018 <>'河北移动通讯股份有限公司')
+                   {3}
+{4}
+{5}
+{7}
+{8}
+
+union 
+
+select 
+distinct comp.C700000003 as 流水号,
+comp.C801000003 as 业务类型,
+comp.C801000006 as 受理号码,
+case pro.C801000101 when 0 then '建单' when 1 then '派单' when 2 then '外派' when 3 then '销单' when 4 then '复核派单' when 5 then '复核处理' when 6 then '处理' when 7 then '直接处理' when 8 then '反馈' when 9 then '反馈再处理' end as 节点类型,
+pro.C700020009  as 处理员工,
+pro.C700020007  as 处理部门,
+pro.C700020017-pro.C700020014 as 超时时长,
+comp.C700000010 as 工单当前状态,
+comp.C700000015	as 优先级
+
+
+ from {100} comp,(select * from {200} union all select * from {300}) pro,{400} u,{500} g,{600} gu, {400} uu,{500} gg
+          where
+          comp.C1=pro.C700020001
+          and comp.C700000005=uu.C630000001
+          and uu.c630000013=gg.c1
+          and pro.C801000101 in (5,6,7,9) and pro.C700020017-pro.C700020014>0
+          and comp.c700000010<>'已作废'
+           and pro.C700020009 <>'lipengfei(李鹏飞)'
+          and pro.C700020009 <>'weizhiqiang(韦志强)'
+           and pro.C700020009 <>'wzq(wzq)'
+           and (g.c630000018<>'administrator')
+           and pro.c700020020<>6
+          and pro.c801000103=0
+						  and (g.C630000018 <>'神州泰岳')
+						  and (g.C630000018 <>'河北移动通讯股份有限公司')
+          and pro.C700020010=u.C630000001
+          and u.C1=gu.C620000028
+          and gu.C620000027=g.C1
+                     {3}
+{4}
+{5}
+{7}
+{8}        
+union 
+
+select 
+distinct comp.C700000003 as 流水号,
+comp.C801000003 as 业务类型,
+comp.C801000006 as 受理号码,
+case pro.C801000101 when 0 then '建单' when 1 then '派单' when 2 then '外派' when 3 then '销单' when 4 then '复核派单' when 5 then '复核处理' when 6 then '处理' when 7 then '直接处理' when 8 then '反馈' when 9 then '反馈再处理' end as 节点类型,
+pro.C700020009  as 处理员工,
+pro.C700020007  as 处理部门,
+nvl(pro.C700020017,
+           ((to_date(to_char(sysdate, 'yyyy-mm-dd hh24:mi:ss'),
+                     'yyyy-mm-dd hh24:mi:ss') -
+           to_date('1970-01-01 00:00:00', 'yyyy-mm-dd hh24:mi:ss')) * 3600 * 24)) -
+       pro.c700020014 as 超时时长,
+comp.C700000010 as 工单当前状态,
+comp.C700000015	as 优先级
+
+ from {100} comp,(select * from {200} union all select * from {300}) pro,{500} g ,{400} u,
+          (select * from T94 union all select * from T95) tt
+          where
+       comp.C1=pro.C700020001
+          and comp.C1 = tt.C700020001
+          and comp.C700000005=u.C630000001
+          and u.c630000013=g.c1
+       and pro.C700020009 <>'lipengfei(李鹏飞)'
+          and pro.C700020009 <>'weizhiqiang(韦志强)'
+           and pro.C700020009 <>'wzq(wzq)'
+           and (pro.c700020020 = 1 or pro.c700020020 = 0)
+           and tt.c700020020 = 0
+           and (g.c630000018<>'administrator')
+						  and (g.C630000018 <>'神州泰岳')
+						  and (g.C630000018 <>'河北移动通讯股份有限公司')
+          and pro.C801000101 = 8
+          and pro.C700020019 = 0
+         and pro.C801000103 = 0
+          and pro.c700020003=tt.c700020004
+          and pro.C700020017>tt.C700020017
+          and nvl(pro.C700020017,
+           ((to_date(to_char(sysdate, 'yyyy-mm-dd hh24:mi:ss'),
+                     'yyyy-mm-dd hh24:mi:ss') -
+           to_date('1970-01-01 00:00:00', 'yyyy-mm-dd hh24:mi:ss')) * 3600 * 24)) -
+       pro.c700020014 > 0
+       and comp.c700000010<>'已作废'
+                      {3}
+{4}
+{5}
+{7}
+{8}    
+union 
+
+select 
+distinct comp.C700000003 as 流水号,
+comp.C801000003 as 业务类型,
+comp.C801000006 as 受理号码,
+case pro.C801000101 when 0 then '建单' when 1 then '派单' when 2 then '外派' when 3 then '销单' when 4 then '复核派单' when 5 then '复核处理' when 6 then '处理' when 7 then '直接处理' when 8 then '反馈' when 9 then '反馈再处理' end as 节点类型,
+pro.C700020009  as 处理员工,
+pro.C700020007  as 处理部门,
+nvl(prolog.C700020405,
+           (select (to_date(to_char(sysdate, 'yyyy-mm-dd hh24:mi:ss'),
+                            'yyyy-mm-dd hh24:mi:ss') -
+                   to_date('1970-01-01 00:00:00', 'yyyy-mm-dd hh24:mi:ss')) * 3600 * 24
+              from dual)) - pro.C700020014 as 超时时长,
+comp.C700000010 as 工单当前状态,
+comp.C700000015	as 优先级
+ from {100} comp,(select * from {200} union all select * from {300}) pro,{500} g ,{400} u,
+      (select * from t96 union all select * from t97) prolog
+         
+          where
+          comp.C1=pro.C700020001
+           and comp.c1 = prolog.C700020407
+           and prolog.C700020402 = '接受完成'
+           and prolog.C700020401 = pro.c1
+          and comp.C700000005=u.C630000001
+          and u.c630000013=g.c1
+           and comp.c1 = prolog.C700020407
+          and prolog.C700020402 = '接受完成'
+          and prolog.C700020401 = pro.c1
+         and nvl(prolog.C700020405,
+           (select (to_date(to_char(sysdate, 'yyyy-mm-dd hh24:mi:ss'),
+                            'yyyy-mm-dd hh24:mi:ss') -
+                   to_date('1970-01-01 00:00:00', 'yyyy-mm-dd hh24:mi:ss')) * 3600 * 24
+              from dual)) - pro.C700020014 > 0
+         and pro.c801000103=0
+          and comp.c700000010<>'已作废'     
+          
+          and pro.C700020009 <>'lipengfei(李鹏飞)'
+          and pro.C700020009 <>'weizhiqiang(韦志强)'
+           and pro.C700020009 <>'wzq(wzq)'
+           and (g.c630000018<>'administrator')
+						  and (g.C630000018 <>'神州泰岳')
+						  and (g.C630000018 <>'河北移动通讯股份有限公司') 
+                   {3}
+{4}
+{5}
+{7}
+{8}   
+ ) ff ) fff 
+		]]></item>
+	</sql>
+	Tsno_form_sum_groupnumber
+		<sql name="Tsno_form_sum_usernumer" datasource="Ultranms">
+		<item dbms="All"><![CDATA[
+select u.c630000001 from {100} u where 1=1 {7}
+--u.c1 =000000000000004
+		]]></item>
+	</sql>
+	<sql name="Tsno_form_sum_groupnumber" datasource="Ultranms">
+		<item dbms="All"><![CDATA[
+    select g.c630000018 from {100} g where 1=1 {8}
+		]]></item>
+	</sql>
+</sql-group>
+

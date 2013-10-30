@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="GB2312"?>
+<sql-group>
+	<doc>
+		<author>lihongbo</author>
+		<date>2007-03-29</date>
+		<description>按人统计工单派发和归档信息</description>
+	</doc>
+	
+	<sql name="hbeoms.formsendandcloselink" datasource="Ultranms">
+		<item dbms="All"><![CDATA[
+        
+        {2}
+        
+		]]></item>
+	</sql>
+	
+</sql-group>
+

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="GB2312"?>
+<sql-group>
+	<doc>
+		<author>lihongbo</author>
+		<date>2007-03-29</date>
+		<description>投公司统计工单信息</description>
+	</doc>
+	
+	<sql name="hbeoms.formrejected" datasource="Ultranms">
+		<item dbms="All"><![CDATA[
+
+ select
+a.派单人,a.派单总数,b.驳回数量
+from
+(select b.派单人,nvl(a.派单总数,0) as 派单总数 
+  from 
+  (
+  select t.c700000004 as 派单人,count(distinct(t.c1)) as 派单总数 
+  from {1000} t,(select * from {800} union all select * from {900}) pro 
+  where t.C1=pro.C700020001 
+  and t.c700000001=pro.c700020002 
+    {5}
+  group by t.c700000004
+  ) a,
+  (
+    select u.C630000003 as 派单人 from {100} u 
+       where 1=1 and u.C630000001<>'DLWGNMC' and u.C630000001<>'HWWGNMC' 
+                 and u.C630000001<>'SJWGNMC'  
+                  {1}
+  ) b
+  where a.派单人(+)=b.派单人) a,      
+  
+ (select b.派单人,nvl(a.驳回数量,0) as 驳回数量 
+  from 
+  (
+  select t.c700000004 as 派单人,count(distinct(t.c1)) as 驳回数量 
+  from {1000} t,(select * from {800} union all select * from {900}) pro 
+  where t.C1=pro.C700020001 
+  and t.c700000001=pro.c700020002
+   {5}
+   and pro.c700020011='已驳回'
+   and pro.c700020004 in (select p.c700020003 from (select * from {800} union all select * from {900}) p,{100} u where p.c700020010=u.C630000001 and p.c700020004='BEGIN' )
+  group by t.c700000004
+  ) a,
+  (
+    select u.C630000003 as 派单人 from {100} u 
+       where 1=1 and u.C630000001<>'DLWGNMC' and u.C630000001<>'HWWGNMC' 
+                 and u.C630000001<>'SJWGNMC'  
+                   {1}
+  ) b
+  where a.派单人(+)=b.派单人) b
+  where a.派单人=b.派单人
+  
+  
+        
+		]]></item>
+	</sql>
+	<sql name="hbeoms.formrejectttable" datasource="Ultranms">
+		<item dbms="All"><![CDATA[
+   
+       select 't'||ars.SCHEMAID 
+       from ARSCHEMA ars,{400} t
+       where ars.name=t.C650000002
+        
+		]]></item>
+	</sql>
+		<sql name="form.formrejectedtype" datasource="Ultranms">
+		<item dbms="All"><![CDATA[
+   
+      select t.schemaid,BaseCategory.C650000001 as basechname, BaseCategory.C650000002 as basename from {500} BaseCategory,arschema t
+      where  t.name=BaseCategory.C650000002
+        
+		]]></item>
+	</sql>
+	select t.schemaid,BaseCategory.C650000001 as basechname, BaseCategory.C650000002 as basename from {500} BaseCategory,arschema t
+    where  t.name=BaseCategory.C650000002
+	<sql name="hbeoms.formsendandclosestate" datasource="Ultranms">
+		<item dbms="All"><![CDATA[
+
+       select c650000001 from {600}
+        
+		]]></item>
+	</sql>
+	
+</sql-group>
+

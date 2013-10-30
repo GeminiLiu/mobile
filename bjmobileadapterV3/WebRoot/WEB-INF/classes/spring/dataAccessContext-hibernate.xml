@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+<beans default-autowire="byName" default-lazy-init="true">
+
+	<!-- 数据源定义-->
+		<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName">
+			<value>org.logicalcobwebs.proxool.ProxoolDriver</value>
+		</property>
+		<property name="url">
+			<value>proxool.eomsdb</value>
+		</property>
+	</bean>
+
+	<!--Hibernate SessionFatory-->
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="mappingResources">
+			<!-- 映射文件列表 -->
+			<list>
+				<value>cn/com/ultrapower/eoms/common/bean/po/PageSet.hbm.xml</value>
+			
+				<value>cn/com/ultrapower/eoms/user/sla/hibernate/po/T85.hbm.xml</value>
+				<value>cn/com/ultrapower/eoms/user/sla/hibernate/po/T110.hbm.xml</value>
+				<value>cn/com/ultrapower/eoms/user/sla/hibernate/po/T105.hbm.xml</value>
+				<value>cn/com/ultrapower/eoms/user/sla/hibernate/po/T114.hbm.xml</value>
+				<value>cn/com/ultrapower/eoms/user/sla/hibernate/po/T93.hbm.xml</value>
+				<value>cn/com/ultrapower/eoms/user/sla/hibernate/po/T112.hbm.xml</value>
+				<value>cn/com/ultrapower/eoms/user/sla/hibernate/po/T108.hbm.xml</value>
+				<value>cn/com/ultrapower/eoms/user/config/menu/hibernate/po/T74.hbm.xml</value>
+				<value>cn/com/ultrapower/eoms/user/config/groupuser/hibernate/po/T86.hbm.xml</value>
+				<value>cn/com/ultrapower/eoms/user/rolemanage/group/hibernate/po/T106.hbm.xml</value>
+				<value>cn/com/ultrapower/eoms/user/rolemanage/people/hibernate/po/T94.hbm.xml</value>
+				<value>cn/com/ultrapower/eoms/user/authorization/role/hibernate/po/T92.hbm.xml</value>
+				<value>cn/com/ultrapower/eoms/user/authorization/sendscope/hibernate/po/T97.hbm.xml</value>
+				<value>cn/com/ultrapower/eoms/user/log/hibernate/po/T135.hbm.xml</value>
+				<value>cn/com/ultrapower/eoms/user/config/source/hibernate/po/Sourceconfig.hbm.xml</value>
+				<value>cn/com/ultrapower/eoms/user/config/source/hibernate/po/Sourceconfigattribute.hbm.xml</value>
+				<value>cn/com/ultrapower/eoms/user/config/entryid/hibernate/po/T65.hbm.xml</value>
+				<value>cn/com/ultrapower/eoms/user/config/source/hibernate/po/Sourceattributevalue.hbm.xml</value>
+				<value>cn/com/ultrapower/eoms/user/config/menu/hibernate/po/T139.hbm.xml</value>
+				<value>cn/com/ultrapower/eoms/user/config/sourcemanager/hibernate/po/T142.hbm.xml</value>
+				<value>cn/com/ultrapower/eoms/user/rolemanage/people/hibernate/po/T20.hbm.xml</value>
+				<value>cn/com/ultrapower/eoms/user/rolemanage/group/hibernate/po/T19.hbm.xml</value>
+				<value>cn/com/ultrapower/eoms/user/config/source/hibernate/po/Sourceattributeconfig.hbm.xml</value>
+				<value>cn/com/ultrapower/eoms/user/config/smsorder/hibernate/po/T170.hbm.xml</value>
+				<value>cn/com/ultrapower/eoms/user/rolemanage/password/hibernate/po/Passwordmanage.hbm.xml</value>
+				<value>cn/com/ultrapower/eoms/user/authorization/templet/hibernate/po/T147.hbm.xml</value>
+				<value>cn/com/ultrapower/eoms/user/authorization/templet/hibernate/po/T149.hbm.xml</value>
+				<value>cn/com/ultrapower/eoms/user/authorization/templet/hibernate/po/T151.hbm.xml</value>
+				<value>cn/com/ultrapower/eoms/user/authorization/templet/hibernate/po/T153.hbm.xml</value>
+				<value>cn/com/ultrapower/eoms/user/authorization/templet/hibernate/po/T238.hbm.xml</value>
+				<value>cn/com/ultrapower/eoms/user/authorization/templet/hibernate/po/T602.hbm.xml</value>
+				<value>cn/com/ultrapower/eoms/user/authorization/templet/hibernate/po/T606.hbm.xml</value>
+				<value>cn/com/ultrapower/eoms/user/authorization/templet/hibernate/po/T550.hbm.xml</value>
+				<value>cn/com/ultrapower/eoms/user/authorization/role/hibernate/po/T247.hbm.xml</value>
+				<value>cn/com/ultrapower/eoms/user/config/filesubscribe/hibernate/po/FileSubscribe.hbm.xml</value>
+				<value>cn/com/ultrapower/eoms/user/authorization/sendscope/hibernate/po/Usersendscope.hbm.xml</value>
+				<value>cn/com/ultrapower/eoms/user/authorization/sendscope/hibernate/po/Usersendscopenamemag.hbm.xml</value>
+				<value>cn/com/ultrapower/eoms/user/authorization/sendscope/hibernate/po/T256.hbm.xml</value>
+				<value>cn/com/ultrapower/eoms/user/config/source/hibernate/po/Sourceactionconfig.hbm.xml</value>
+				<value>cn/com/ultrapower/eoms/user/config/source/hibernate/po/PortaletSubscibe.hbm.xml</value>
+				<value>cn/com/ultrapower/eoms/user/authorization/usercommision/hibernate/po/T247.hbm.xml</value>
+				<value>cn/com/ultrapower/eoms/user/companyplanauding/hibernate/po/companyplanauding.hbm.xml</value>
+				<value>cn/com/ultrapower/eoms/user/rolemanage/group/hibernate/po/subcompanyrel.hbm.xml</value>
+				<value>cn/com/ultrapower/eoms/user/authorization/role/hibernate/po/Catagorygrand.hbm.xml</value>
+				<value>cn/com/ultrapower/eoms/user/authorization/role/hibernate/po/BaseCatagorygrand.hbm.xml</value>
+	            <value>cn/com/ultrapower/eoms/user/sla/hibernate/po/SlaConfig.hbm.xml</value>
+	            <value>cn/com/ultrapower/eoms/user/sla/hibernate/po/UserSlaConfig.hbm.xml</value>
+				<!-- 日志记录 -->
+				<value>com/ultrapower/eoms/common/model/AppResource.hbm.xml</value>
+				<!-- 设备管理 -->
+				<!-- 新建系统用户信息 -->
+				<value>/com/ultrapower/eoms/system/usermanager/model/UserManagerUserInfor.hbm.xml</value>
+				<!-- 手机运维工单模版 -->
+				<value>/com/ultrapower/eoms/mobile/interfaces/template/model/MobileTemplate.hbm.xml</value>
+				<!-- 手机运维工单附件 -->
+				<value>/com/ultrapower/eoms/mobile/interfaces/syncattach/model/SysAttachModel.hbm.xml</value> 
+			</list>
+		</property>
+		<property name="hibernateProperties">
+			<props merge="default">
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.cache.provider_class">
+					org.hibernate.cache.EhCacheProvider
+				</prop>
+				<prop key="hibernate.cache.use_query_cache">true</prop>
+				<prop key="hibernate.hbm2ddl.auto">none</prop>
+				<prop key="hibernate.dialect">
+					org.hibernate.dialect.Oracle9Dialect
+				</prop>
+			</props>
+		</property>
+	</bean>
+	<!--Hibernate TransactionManager-->
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	<!--Hibernate TransactionManager-->
+	<bean id="appSessionFactory" class="cn.com.ultrapower.eoms.common.basedao.GeneralDAO" lazy-init="false">
+		<property name="hibernateSessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	<bean id="baseSessionFactory" class="cn.com.ultrapower.eoms.user.comm.hibernatesession.HibernateSessionFactory" lazy-init="false">
+		<property name="hibernateSessionFactory" ref="sessionFactory" />
+	</bean> 
+
+</beans>

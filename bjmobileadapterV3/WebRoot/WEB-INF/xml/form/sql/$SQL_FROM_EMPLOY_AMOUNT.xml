@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="gb2312"?>
+<sql-group>
+	<doc>
+		<author>duanximeng from {100} comp,(select * from {300} union all select * from {200}) pro,{500} u
+		{3}
+		{5}
+		</author>
+		<date>2006-03-17</date>
+		<description>工单员工细项工作量统计
+	</description>
+	</doc>
+	
+	<sql name="formemployamount" datasource="Ultranms">
+		<item dbms="All"><![CDATA[
+		
+       select 
+              pro.C700020009 as 姓名,
+              ltrim('新建量') as 新建量,
+              count(distinct(comp.c1)) as 数量
+              from {100} comp,(select * from {200} union all select * from {300}) pro,{500} u
+              where comp.C1=pro.C700020001
+              and pro.C700020019<>1 and pro.C700020019<>2
+              and u.C630000001=pro.C700020010
+              and comp.c700000010<>'已作废'
+              and pro.C700020004='BEGIN'
+               and u.C630000001 <> 'weizhiqiang'
+              and u.C630000001 <> 'wzq'
+               {3}
+		       {6}
+              group by pro.C700020010,pro.C700020009
+union all       
+select 
+              pro.C700020009 as 姓名,
+              ltrim('派单量') as 派单量,
+              count(distinct(comp.c1)) as 数量
+              from {100} comp,(select * from {200} union all select * from {300}) pro,{500} u
+              where comp.C1=pro.C700020001
+              and pro.C801000101=1 and pro.C700020019<>1 and pro.C700020019<>2
+              and u.C630000001=pro.C700020010
+              and comp.c700000010<>'已作废'
+               and u.C630000001 <> 'weizhiqiang'
+              and u.C630000001 <> 'wzq'
+               {3}
+		       {5}
+              group by pro.C700020010,pro.C700020009
+union all       
+select 
+              pro.C700020009 as 姓名,
+              ltrim('外派量') as 外派量,
+              count(distinct(comp.c1)) as 数量
+              from {100} comp,(select * from {200} union all select * from {300}) pro,{500} u
+              where comp.C1=pro.C700020001
+              and pro.C801000101=2 and pro.C700020019<>1 and pro.C700020019<>2
+              and u.C630000001=pro.C700020010
+              and comp.c700000010<>'已作废'
+               and u.C630000001 <> 'weizhiqiang'
+              and u.C630000001 <> 'wzq'
+               {3}
+		       {5}
+              group by pro.C700020010,pro.C700020009
+union all       
+select 
+              pro.C700020009 as 姓名,
+              ltrim('销单量') as 销单量,
+              count(distinct(comp.c1)) as 数量
+              from {100} comp,(select * from {200} union all select * from {300}) pro,{500} u
+               where comp.C1=pro.C700020001
+            
+              and u.C630000001=pro.C700020010
+            
+               and (pro.C700020011='已作废' or pro.C700020011='复核不通过')
+               and u.C630000001 <> 'weizhiqiang'
+              and u.C630000001 <> 'wzq'
+               {3}
+		       {5}
+              group by pro.C700020010,pro.C700020009
+union all                    
+select 
+              pro.C700020009 as 姓名,
+              ltrim('复核派单') as 复核派单,
+              count(distinct(comp.c1)) as 数量
+              from {100} comp,(select * from {200} union all select * from {300}) pro,{500} u
+              where comp.C1=pro.C700020001
+              and (pro.c801000101=4 or pro.c801000101=2)  and pro.C700020019<>1 and pro.C700020019<>2
+              and u.C630000001=pro.C700020010
+              and comp.c700000010<>'已作废'
+               and u.C630000001 <> 'weizhiqiang'
+              and u.C630000001 <> 'wzq'
+               {3}
+		       {5}
+              group by pro.C700020010,pro.C700020009
+union all                    
+select 
+              pro.C700020009 as 姓名,
+              ltrim('复核处理') as 复核处理,
+              count(distinct(comp.c1)) as 数量
+              from {100} comp,(select * from {200} union all select * from {300}) pro,{500} u
+              where comp.C1=pro.C700020001
+              and pro.C801000101=5  and pro.C700020019<>1 and pro.C700020019<>2
+              and u.C630000001=pro.C700020010
+              and comp.c700000010<>'已作废'
+               and u.C630000001 <> 'weizhiqiang'
+              and u.C630000001 <> 'wzq'
+               {3}
+		       {5}
+              group by pro.C700020010,pro.C700020009
+union all                    
+select 
+               prolog.c700020403 as 姓名,
+              ltrim('处理') as 处理,
+               count(distinct(comp.c1)) as 数量
+               --from {100} comp,(select * from {200} union all select * from {300}) pro,{500} u
+               from {100} comp,(select * from T96 union all select * from T97) prolog
+               where comp.C1=prolog.c700020407
+               and prolog.c700020402='完成'
+               and comp.c700000010<>'已作废'
+            
+               {3}
+		       {11}
+              group by prolog.c700020403 
+union all                    
+select 
+              pro.C700020009 as 姓名,
+              ltrim('直接处理') as 直接处理,
+              count(distinct(comp.c1)) as 数量
+              from {100} comp,(select * from {200} union all select * from {300}) pro,{500} u
+              where comp.C1=pro.C700020001
+              and pro.C801000101=7  and pro.C700020019<>1 and pro.C700020019<>2
+              and u.C630000001=pro.C700020010
+              and comp.c700000010<>'已作废'
+               and u.C630000001 <> 'weizhiqiang'
+              and u.C630000001 <> 'wzq'
+               {3}
+		       {5}
+              group by pro.C700020010,pro.C700020009
+union all                    
+select 
+              pro.C700020009 as 姓名,
+              ltrim('反馈') as 反馈,
+              count(comp.c1) as 数量
+              from {100} comp,(select * from {200} union all select * from {300}) pro,{500} u,{400} gg,(select * from {200} union all select * from {300}) tt
+               where  comp.C1=pro.C700020001
+       
+                and comp.C1=tt.C700020001
+                and pro.C700020001=tt.C700020001
+                and comp.C1=tt.C700020001
+                and comp.C700000005=u.C630000001
+                and u.c630000013=gg.c1
+                and pro.C801000101=8 
+                and pro.C700020019<>20 
+                and pro.c700020003=tt.c700020004
+                and pro.C700020017>tt.C700020017
+                and u.C630000001 <> 'weizhiqiang'
+                and u.C630000001 <> 'wzq'
+                and comp.c700000010<>'已作废'
+               {3}
+		       {5}
+              group by pro.C700020010,pro.C700020009
+union all  
+ select 
+              prolog.c700020403 as 姓名,
+              ltrim('接受完成') as 接受完成,
+             
+               count(distinct(comp.c1)) as 数量
+               --from {100} comp,(select * from {200} union all select * from {300}) pro,{500} u
+               from {100} comp,(select * from T96 union all select * from T97) prolog
+               where comp.C1=prolog.c700020407
+               and prolog.c700020402='接受完成'
+               and comp.c700000010<>'已作废'
+            
+               {3}
+		       {11}
+              group by prolog.c700020403 
+union all             
+select 
+              pro.C700020009 as 姓名,
+              ltrim('二次派发') as 二次派发,
+              count( pro.c1) as 数量
+              from {100} comp,(select * from {200} union all select * from {300}) pro,{500} u
+              where comp.C1=pro.C700020001
+              and pro.C801000101=9  and pro.C700020019<>1 and pro.C700020019<>2
+              and u.C630000001=pro.C700020010
+              and pro.c801000103 = 1
+              and comp.c700000010<>'已作废'
+               and u.C630000001 <> 'weizhiqiang'
+              and u.C630000001 <> 'wzq'
+               {3}
+		       {5}
+              group by pro.C700020010,pro.C700020009
+union all                    
+select 
+              prolog.c700020403 as 姓名,
+              ltrim('回访') as 回访,
+             
+              count(distinct(comp.c1)) as 数量
+              --from {100} comp,(select * from {200} union all select * from {300}) pro,{500} u
+              from T179 comp,(select * from T96 union all select * from T97) prolog
+              where comp.C1=prolog.c700020407
+              and prolog.c700020402='回访'
+              and comp.c700000010<>'已作废'
+            
+               {3}
+		       {11}
+              group by prolog.c700020403
+union all                    
+select 
+              prolog.c700020403 as 姓名,
+              ltrim('质检') as 质检,
+              count(distinct(comp.c1)) as 数量
+              --from {100} comp,(select * from {200} union all select * from {300}) pro,{500} u
+              from T179 comp,(select * from T96 union all select * from T97) prolog
+              where comp.C1=prolog.c700020407
+              and prolog.c700020402='质检'
+              and comp.c700000010<>'已作废'
+            
+               {3}
+		       {11}
+              group by prolog.c700020403
+union all                    
+select 
+              prolog.c700020403 as 姓名,
+               ltrim('归档') as 归档,
+              count(distinct(comp.c1)) as 数量
+              --from {100} comp,(select * from {200} union all select * from {300}) pro,{500} u
+              from T179 comp,(select * from T96 union all select * from T97) prolog
+              where comp.C1=prolog.c700020407
+              and prolog.c700020402='关闭'
+              and comp.c700000010<>'已作废'
+            
+               {3}
+		       {11}
+              group by prolog.c700020403
+		]]></item>
+	</sql>
+	<sql name="formemployamount_user" datasource="Ultranms">
+		<item dbms="All"><![CDATA[
+select u.c630000001||'('||u.c630000003||')' as 用户 from {100} u where 1=1 {7} and u.c630000001<>'Demo' order by  u.c630000001
+		]]></item>
+	</sql>
+</sql-group>
+

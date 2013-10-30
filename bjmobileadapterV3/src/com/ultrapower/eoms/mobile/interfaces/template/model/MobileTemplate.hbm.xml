@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding='UTF-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+                            "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                            "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<!-- DO NOT EDIT: This is a generated file that is synchronized -->
+<!-- by MyEclipse Hibernate tool integration.                   -->
+<!-- Created Tue Oct 17 17:04:36 CST 2006                         -->
+<hibernate-mapping package="com.ultrapower.eoms.mobile.interfaces.template.model">
+    <class name="MobileTemplate" table="BS_T_MOBILE_TEMPLATE" lazy="false">
+		<id name="templateId" column="TEMPLATEID" type="string">
+            <generator class="assigned"/>
+        </id>
+        <property name="type" column="type" type="string" />
+        <property name="category" column="category" type="string" />
+        <property name="categoryName" column="categoryName" type="string" />
+        <property name="version" column="version" type="string" />
+        <property name="sort" column="sort" type="long" />
+    </class>
+</hibernate-mapping>

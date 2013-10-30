@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sxml>
+	<scheduler><!--
+		  
+		<job_1 name="故障工单状态同步">
+			<type>simple</type>
+			<frequency>180000</frequency>
+			<classname>
+				cn.com.ultrapower.interfaces.server.thread.AlarmProcessSheetThread
+			</classname>
+		</job_1>
+		
+		<job_2 name="短信下发轮训">
+			<type>simple</type>
+			<frequency>180000</frequency>
+			<classname>
+				cn.com.ultrapower.eoms.smssend.SmsJob
+			</classname>
+		</job_2> 
+		<job_3 name="客服接口">
+			<type>simple</type>
+			<frequency>180000</frequency>
+			<classname>
+				cn.com.ultrapower.interfaces.server.thread.EOMSProcessSheetThread
+			</classname>
+		</job_3>
+		<job_4 name="公告接口">
+			<type>simple</type>
+			<frequency>180000</frequency>
+			<classname>
+				cn.com.ultrapower.interfaces.server.thread.BulletinThread
+			</classname>
+		</job_4>
+		<job_5 name="数据上报定时生成上报数据">
+			<type>cron</type>
+			<frequency>0 0 0 * * ?</frequency>
+			<classname>
+				cn.com.ultrapower.eoms.dateupdate.service.GenerateDataMain
+			</classname>
+		</job_5>
+		
+		<job_6 name="数据上报短信发送程序8:00到19:00执行">
+			<type>cron</type>
+			<frequency>0 10 08-19 * * ?</frequency>
+			<classname>
+				cn.com.ultrapower.eoms.dateupdate.service.DataUpdateSmsSend
+			</classname>
+		</job_6>
+	-->
+	</scheduler>
+</sxml>

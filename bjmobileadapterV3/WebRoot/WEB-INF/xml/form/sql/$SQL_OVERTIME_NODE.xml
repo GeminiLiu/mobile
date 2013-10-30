@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="GB2312"?>
+<sql-group>
+	<doc>
+		<description>超出工单各环节时限统计</description>
+	</doc>
+	
+	<!--客户类型t226 -->
+	<sql name="overtimenode.userlevel" datasource="Ultranms">
+		<item dbms="All">
+		<![CDATA[
+				select distinct usertype.c801800001 from {table} usertype
+		]]>
+		</item>
+	</sql>
+	
+	<!--受理地市 209-->
+	<sql name="overtimenode.acceptcity" datasource="Ultranms">
+		<item dbms="All">
+		<![CDATA[
+				select distinct city.c801800001 from {table} city where city.c801800001!='集团'
+		]]></item>
+	</sql>
+	
+	<!-- 投诉类型217-->
+	<sql name="overtimenode.businesstype" datasource="Ultranms">
+		<item dbms="All">
+		<![CDATA[
+		select distinct ty.c801800001 from {table} ty
+		]]></item>
+	</sql>
+
+<!-- 员工工号UltraProcess:SysUser 380-->
+	<sql name="overtimenode.user" datasource="Ultranms">
+		<item dbms="All">
+		<![CDATA[
+		select u.c630000001 from {table} u
+		]]></item>
+	</sql>
+	
+
+<sql name="overtimenode.result" datasource="Ultranms">
+<item dbms="All"><![CDATA[
+		
+select 
+comp.C700000003 as 流水号,
+comp.C801000003 as 业务类型,
+comp.C801000006 as 受理号码,
+case pro.C801000101 when 0 then '建单' when 1 then '派单' when 2 then '外派' when 3 then '销单' when 4 then '复核派单' when 5 then '复核处理' when 6 then '处理' when 7 then '直接处理' when 8 then '反馈' end as 节点类型,
+pro.C700020010  as 处理员工,
+pro.C700020007  as 处理部门,
+pro.C700020017-pro.C700020014 as 超时时长,
+comp.C700000010 as 工单当前状态,
+comp.C700000015	as 优先级
+from {table1} comp,{table2} pro
+where
+pro.C700020001=comp.C1
+and pro.C700020017>pro.C700020014
+and pro.C700020017>0
+and pro.C700020014>0
+and comp.c700000007 > {start} and comp.c700000007 < {end} 
+{overtimenode.userlevel}
+{overtimenode.acceptcity}
+{overtimenode.businesstype}
+{overtimenode.user}
+
+union all
+
+select 
+comp.C700000003 as 流水号,
+comp.C801000003 as 业务类型,
+comp.C801000006 as 受理号码,
+case pro.C801000101 when 0 then '建单' when 1 then '派单' when 2 then '外派' when 3 then '销单' when 4 then '复核派单' when 5 then '复核处理' when 6 then '处理' when 7 then '直接处理' when 8 then '反馈' end as 节点类型,
+pro.C700020010  as 处理员工,
+pro.C700020007  as 处理部门,
+pro.C700020017-pro.C700020014 as 超时时长,
+comp.C700000010 as 工单当前状态,
+comp.C700000015	as 优先级
+from {table3} comp,{table4} pro
+where
+pro.C700020001=comp.C1
+and pro.C700020017>pro.C700020014
+and pro.C700020017>0
+and pro.C700020014>0
+and comp.c700000007 > {start} and comp.c700000007 < {end} 
+{overtimenode.userlevel}
+{overtimenode.acceptcity}
+{overtimenode.businesstype}
+{overtimenode.user}
+
+]]></item>
+</sql>
+	
+	
+</sql-group>

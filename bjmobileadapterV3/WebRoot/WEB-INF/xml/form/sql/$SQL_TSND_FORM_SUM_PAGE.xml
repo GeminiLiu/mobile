@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="GB2312"?>
+<sql-group>
+	<doc>
+		<author>duanximeng</author>
+		<date>2006-03-26</date>
+		<description>河北EOMS工单统计</description>
+	</doc>
+	<!-- 业务类型217-->
+	<sql name="tsndformsum.yewuleixing" datasource="Ultranms">
+		<item dbms="All"><![CDATA[
+				select  ty.c801800001 from {100} ty order by ty.c801842006
+		]]></item>
+	</sql>
+
+</sql-group>
+

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sql-group>
+	<doc>
+		<author>作者</author> 
+		<date>时间</date> 
+		<description>Sql 描述</description> 		
+	</doc>
+	<sqlquery name="query.design.ChildRole">
+		<select>
+		<![CDATA[ 
+   			  select 
+   			  /*COUNT*/   
+   			  *
+              /*COUNT*/
+              from
+              (
+                select
+				  distinct(cr.C700024001) as RoleID
+				  , cr.C1 as RoleC1
+				  , cr.C700024002 as RoleName
+				  , cr.C700024003 as ParentRoleID
+				  , cr.C700024004 as ParentRoleName
+				  , cr.C700024006 as RoleCondition 
+				  , cr.C700024010 as ChildRoleManager 
+				  , cr.C700024011 as ChildRoleManagerID 
+				from {WF:App_TplDealProcess} dp, {WF:App_TplBase_PerformRole} r, {WF:App_WorkFlowChildRole} cr 
+				where 
+				  r.C700022006 = dp.C700020003 and cr.C700024003 = r.C700022000 
+				  $searchpara$
+              )
+			  $extend$
+				   
+		  ]]> 
+		</select>
+		<customwhere>
+			<parameterMap prepend="AND" name="searchpara">
+				<mapingFiled  prepend="AND" fieldName="baseid"  fieldType="4">
+					<mapsql value="isnotnull">
+						<![CDATA[
+							 dp.C700020001 = '#baseid#'
+						 ]]>  			
+					</mapsql>
+				</mapingFiled>
+				<mapingFiled  prepend="AND" fieldName="roleid"  fieldType="4">
+					<mapsql value="isnotnull">
+						<![CDATA[
+							 r.C700022000 = '#roleid#'
+						 ]]>  			
+					</mapsql>
+				</mapingFiled>
+			</parameterMap>
+			<parameterMap prepend="EXTEND" name="extend">
+					<mapingFiled  prepend="EXTEND" fieldName="orderby"  fieldType="4">
+						<mapsql value="isnotnull">
+							<![CDATA[
+								 order by  #orderby#
+							 ]]>  			
+						</mapsql>
+					</mapingFiled>
+			</parameterMap>				
+ 		</customwhere>
+ 
+	</sqlquery>
+	
+</sql-group>

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sql-group>
+	<doc>
+		<author>黄维</author> 
+		<date>2008-10-12</date> 
+		<description>对工单关联的查询</description> 		
+	</doc>
+	<sqlquery name="BaseConnection.BaseOn_OneProcessSelectBaseConnection">
+		<select>
+		<![CDATA[ 
+   			  select 
+   			  /*COUNT*/   
+				BaseConnection.C700000057	as	BaseOpenDateTime,
+				BaseConnection.C700023101	as	BaseID,
+				BaseConnection.C700023118	as	BaseName,
+				BaseConnection.C700023102	as	BaseSchema,
+				BaseConnection.C700023108	as	BaseProcessID,
+				BaseConnection.C700023109	as	BaseProcessType,
+				BaseConnection.C700023110	as	BaseProcessPhaseNo,
+				BaseConnection.C700023111	as	BaseProcessLogID,
+				BaseConnection.C700023107	as	CreateBaseAftermathType,
+				
+				BaseInfor.C700000000		as	ChildBaseID,
+				BaseInfor.C700000002		as	ChildBaseName,
+				BaseInfor.C700000001		as	ChildBaseSchema,
+				BaseInfor.C700000003		as	ChildBaseSN,
+				BaseInfor.C700000010		as	ChildBaseState,
+				BaseInfor.C700000006		as	ChildBaseCreateDate,
+				BaseInfor.C700000011		as	ChildBaseSummary
+              /*COUNT*/
+              from {WF:App_Base_Connection} BaseConnection,{WF:App_Base_Infor} BaseInfor
+			  where 
+			  	BaseConnection.C700023117 = BaseInfor.C700000000
+			  	AND
+			  	BaseConnection.C700023106 = BaseInfor.C700000001
+			  	AND
+			  	$BaseOn_OneProcessSelectBaseConnection$
+		  ]]> 
+		</select>
+		<customwhere>
+			<parameterMap prepend="" name="BaseOn_OneProcessSelectBaseConnection">
+				<mapingFiled  prepend="" fieldName="is_notnull"  fieldType="4">
+					<mapsql value="isnotnull">
+						<![CDATA[
+							 1=#is_notnull#
+						 ]]>  			
+					</mapsql>
+				</mapingFiled>				
+				<mapingFiled  prepend="AND" fieldName="baseschema"  fieldType="4">
+					<mapsql value="isnotnull">
+						<![CDATA[
+							 BaseConnection.C700023102 = '#baseschema#'
+						 ]]>  			
+					</mapsql>
+				</mapingFiled>
+				<mapingFiled  prepend="AND" fieldName="baseid"  fieldType="4">
+					<mapsql value="isnotnull">
+						<![CDATA[
+							 BaseConnection.C700023101 = '#baseid#'
+						 ]]>  			
+					</mapsql>
+				</mapingFiled>
+				<mapingFiled  prepend="AND" fieldName="processid"  fieldType="4">
+					<mapsql value="isnotnull">
+						<![CDATA[
+							 BaseConnection.C700023108 = '#processid#'
+						 ]]>  			
+					</mapsql>
+				</mapingFiled>
+				<mapingFiled  prepend="AND" fieldName="childbaseschema"  fieldType="4">
+					<mapsql value="isnotnull">
+						<![CDATA[
+							 BaseInfor.C700000001 = '#childbaseschema#'
+						 ]]>  			
+					</mapsql>
+				</mapingFiled>
+				<mapingFiled  prepend="AND" fieldName="childbaseid"  fieldType="4">
+					<mapsql value="isnotnull">
+						<![CDATA[
+							 BaseInfor.C700000000 = '#childbaseid#'
+						 ]]>  			
+					</mapsql>
+				</mapingFiled>
+			</parameterMap>		
+		</customwhere>
+	</sqlquery>
+</sql-group>

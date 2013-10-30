@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="GB2312"?>
+<sql-group>
+	<doc>
+		<author>wangxin</author>
+		<date>2008-07-04</date>
+		<description>网络故障数据月报表 </description>
+	</doc>
+	<sql name="networkfaultpage.group" datasource="Ultranms">
+		<item dbms="All"><![CDATA[
+
+			select t.groupname from (
+			select g.c630000018 groupname  from {100} g where g.c630000021='2' and g.c630000020='000000000600001' and g.c630000027='1'
+			union all 
+			select trim('网管中心') groupname from dual
+			) t 
+		]]></item>
+	</sql>
+	<sql name="networkfault.left" datasource="Ultranms">
+		<item dbms="All"><![CDATA[
+			select ' ',t.groupname as 公司 from (
+			select g.c630000018 groupname  from {100} g where g.c630000021='2' and g.c630000020='000000000600001' and g.c630000027='1'
+			union all 
+			select trim('网管中心') groupname from dual
+			) t where 1=1 {1}
+		]]></item>
+	</sql>
+	
+
+		<sql name="networkfault.colTitle" datasource="Ultranms">
+		<item dbms="All"><![CDATA[
+				  select trim('线路常规') 
+					  from dual
+					union all
+					select trim('线路外力')
+					  from dual
+					union all
+					select trim('线路工程') 
+					  from dual
+					union all
+					select trim('线路人为') 
+					  from dual
+				     union all
+					 select trim('传输设备常规') 
+					  from dual
+					union all
+					select trim('传输设备外力')
+					  from dual
+					union all
+					select trim('传输设备工程') 
+					  from dual
+					union all
+					select trim('传输设备人为') 
+					  from dual
+				     union all
+					 select trim('传输连接件常规') 
+					  from dual
+					union all
+					select trim('传输连接件外力')
+					  from dual
+					union all
+					select trim('传输连接件工程') 
+					  from dual
+					union all
+					select trim('传输连接件人为') 
+					  from dual
+				     union all
+					 select trim('网管系统常规') 
+					  from dual
+					union all
+					select trim('网管系统外力')
+					  from dual
+					union all
+					select trim('网管系统工程') 
+					  from dual
+					union all
+					select trim('网管系统人为') 
+					  from dual
+				     union all
+				     select trim('电源') 
+					  from dual
+				     union all
+					select trim('各项小计线路') 
+					  from dual
+					  union all
+					select trim('各项小计传输设备') 
+					  from dual
+					  union all
+					select trim('各项小计传输连接件') 
+					  from dual
+					  union all
+				   select trim('各项小计网管系统') 
+				    from dual
+				    union all
+				   select trim('各项小计电源') 
+					  from dual
+				     union all
+				   select trim('各项小计合计') 
+					  from dual	 
+					  
+					  
+				
+		]]></item>
+	</sql>
+		<sql name="networkfault.centervalue" datasource="Ultranms">
+		<item dbms="All"><![CDATA[
+
+	      select trim('线路常规'),t.c802000002 as 所属城市,nvl(sum(t.c802000005),0) as num from {100} t 
+				where 1=1 {5}
+				group by t.c802000002
+				union all
+				select trim('线路外力'),t.c802000002 as 所属城市,nvl(sum(t.c802000007),0) as num from {100} t 
+				where 1=1 {5}
+				group by t.c802000002
+				union all
+				select trim('线路工程'),t.c802000002 as 所属城市,nvl(sum(t.c802000009),0) as num from {100} t 
+				where 1=1 {5}
+				group by t.c802000002
+				union all
+				select trim('线路人为'),t.c802000002 as 所属城市,nvl(sum(t.c802000011),0) as num from {100} t 
+				where 1=1 {5}
+				group by t.c802000002
+				union all
+				select trim('传输设备常规'),t.c802000002 as 所属城市,nvl(sum(t.c802000017),0) as num from {100} t 
+				where 1=1 {5}
+				group by t.c802000002
+				union all
+				select trim('传输设备外力'),t.c802000002 as 所属城市,nvl(sum(t.c802000019),0) as num from {100} t 
+				where 1=1 {5}
+				group by t.c802000002
+				union all
+				select trim('传输设备工程'),t.c802000002 as 所属城市,nvl(sum(t.c802000021),0) as num from {100} t 
+				where 1=1 {5}
+				group by t.c802000002
+				union all
+				select trim('传输设备人为'),t.c802000002 as 所属城市,nvl(sum(t.c802000024),0) as num from {100} t 
+				where 1=1 {5}
+				group by t.c802000002
+				union all
+				select trim('传输连接件常规'),t.c802000002 as 所属城市,nvl(sum(t.c802000033),0) as num from {100} t 
+				where 1=1 {5}
+				group by t.c802000002
+				union all
+				select trim('传输连接件外力'),t.c802000002 as 所属城市,nvl(sum(t.c802000035),0) as num from {100} t 
+				where 1=1 {5}
+				group by t.c802000002
+				union all
+				select trim('传输连接件工程'),t.c802000002 as 所属城市,nvl(sum(t.c802000038),0) as num from {100} t 
+				where 1=1 {5}
+				group by t.c802000002
+				union all
+				select trim('传输连接件人为'),t.c802000002 as 所属城市,nvl(sum(t.c802000036),0) as num from {100} t 
+				where 1=1 {5}
+				group by t.c802000002
+				union all
+				select trim('网管系统常规'),t.c802000002 as 所属城市,nvl(sum(t.c802000042),0) as num from {100} t 
+				where 1=1 {5}
+				group by t.c802000002
+				union all
+				select trim('网管系统外力'),t.c802000002 as 所属城市,nvl(sum(t.c802000044),0) as num from {100} t 
+				where 1=1 {5}
+				group by t.c802000002
+				union all
+				select trim('网管系统工程'),t.c802000002 as 所属城市,nvl(sum(t.c802000046),0) as num from {100} t 
+				where 1=1 {5}
+				group by t.c802000002
+				union all
+				select trim('网管系统人为'),t.c802000002 as 所属城市,nvl(sum(t.c802000048),0) as num from {100} t 
+				where 1=1 {5}
+				group by t.c802000002
+				union all
+				select trim('电源'),t.c802000002 as 所属城市,nvl(sum(t.c536870933),0) as num from {100} t 
+				where 1=1 {5}
+				group by t.c802000002
+				union all
+				select trim('各项小计线路'),t.c802000002 as 所属城市,nvl(sum(t.c802000013),0) as num from {100} t 
+				where 1=1 {5}
+				group by t.c802000002
+				union all
+				select trim('各项小计传输设备'),t.c802000002 as 所属城市,nvl(sum(t.c802000015),0) as num from {100} t 
+				where 1=1 {5}
+				group by t.c802000002
+				union all
+				select trim('各项小计传输连接件'),t.c802000002 as 所属城市,nvl(sum(t.c802000026),0) as num from {100} t 
+				where 1=1 {5}
+				group by t.c802000002
+				union all
+				select trim('各项小计网管系统'),t.c802000002 as 所属城市,nvl(sum(t.c802000040),0) as num from {100} t 
+				where 1=1 {5}
+				group by t.c802000002
+				union all
+				select trim('各项小计电源'),t.c802000002 as 所属城市,nvl(sum(t.c536870933),0) as num from {100} t 
+				where 1=1 {5}
+				group by t.c802000002
+				union all
+				select trim('各项小计合计'),t.c802000002 as 所属城市,nvl((sum(t.c802000013)+sum(t.c802000015)+sum(t.c802000026)+sum(t.c802000040)+sum(t.c536870933)),0) as num from {100} t 
+				where 1=1 {5}
+				group by t.c802000002
+	      
+
+		]]></item>
+	</sql>
+</sql-group>
+

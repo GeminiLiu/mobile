@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="GB2312"?>
+<sql-group>
+	<doc>
+		<author>lihongbo</author>
+		<date>2007-04-03</date>
+		<description>代维公司工单处理统计</description>
+	</doc>
+	
+	<sql name="hbeoms.dwcompanydeal" datasource="Ultranms">
+		<item dbms="All"><![CDATA[
+        
+select
+        gg.groupname as 地市,
+        ggg.name || '处理总数' as 地市处理总数,
+        count(distinct t.c1) as 处理总数
+        from {1000} t,(select * from {400} union all select * from {500}) pro,{200} g,{100} u,{300} gu,companyrel c,(select sysgroup.C630000018 as groupname, sysgroup.C1 as groupid
+            from {200} sysgroup
+            where sysgroup.C630000021 = 2
+            and sysgroup.C630000020 <> 0
+            and sysgroup.c630000027 =1) gg,(select g.c1 as id,g.c630000018 as name from {200} g where 1=1 {3}) ggg
+        where
+        t.c700000001=pro.c700020002
+        and t.C1=pro.C700020001
+        and pro.c700020010=u.C630000001
+        and u.C1=gu.C620000028
+        and g.C1=gu.C620000027
+        and g.c1=c.companyrel_depid
+        and c.companyrel_companyid=ggg.id
+        --and gg.groupid=g.c630000020
+        and g.c630000037 like '%'||gg.groupid||'%'
+        and pro.c700020004<>'BEGIN'
+        and (pro.c700020011='已完成' or pro.C700020011='已派发')
+        {5}
+        group by gg.groupname,ggg.name
+        
+        union all
+        select
+        gg.groupname as 地市,
+        ggg.name || '处理超时' as 地市处理超时,
+        count(distinct t.c1) as 处理超时
+        from {1000} t,(select * from {400} union all select * from {500}) pro,{200} g,{100} u,{300} gu,companyrel c,(select sysgroup.C630000018 as groupname, sysgroup.C1 as groupid
+            from {200} sysgroup
+            where sysgroup.C630000021 = 2
+            and sysgroup.C630000020 <> 0
+            and sysgroup.c630000027 =1) gg,(select g.c1 as id,g.c630000018 as name from {200} g where 1=1 {3}) ggg
+        where
+        t.c700000001=pro.c700020002
+        and t.C1=pro.C700020001
+        and pro.c700020010=u.C630000001
+        and u.C1=gu.C620000028
+        and g.C1=gu.C620000027
+        and g.c1=c.companyrel_depid
+        and c.companyrel_companyid=ggg.id
+        --and gg.groupid=g.c630000020
+        and g.c630000037 like '%'||gg.groupid||'%'
+        and pro.c700020004<>'BEGIN'
+        and (pro.c700020011='已完成' or pro.C700020011='已派发')
+        and pro.c700020017-pro.c700020014>0
+        {5}
+        group by gg.groupname,ggg.name
+        
+        union all
+        select
+        gg.groupname as 地市,
+        ggg.name || '平均处理时长' || '(' ||'分' ||')' as 地市平均处理时长,
+        round(sum(pro.c700020017-pro.c700020015)/60,0) as 平均处理时长
+        from {1000} t,(select * from {400} union all select * from {500}) pro,{200} g,{100} u,{300} gu,companyrel c,(select sysgroup.C630000018 as groupname, sysgroup.C1 as groupid
+            from {200} sysgroup
+            where sysgroup.C630000021 = 2
+            and sysgroup.C630000020 <> 0
+            and sysgroup.c630000027 =1) gg,(select g.c1 as id,g.c630000018 as name from {200} g where 1=1 {3}) ggg
+        where
+        t.c700000001=pro.c700020002
+        and t.C1=pro.C700020001
+        and pro.c700020010=u.C630000001
+        and u.C1=gu.C620000028
+        and g.C1=gu.C620000027
+        and g.c1=c.companyrel_depid
+        and c.companyrel_companyid=ggg.id
+        --and gg.groupid=g.c630000020
+        and g.c630000037 like '%'||gg.groupid||'%'
+        and pro.c700020004<>'BEGIN'
+        and (pro.c700020011='已完成' or pro.C700020011='已派发')
+        --and pro.c700020017-pro.c700020014>0
+        {5}
+        group by gg.groupname,ggg.name
+
+
+        
+		]]></item>
+	</sql>
+	
+	<sql name="hbeoms.dwcompanyaccept" datasource="Ultranms">
+		<item dbms="All"><![CDATA[
+        
+select
+        gg.groupname as 地市,
+        ggg.name || '受理总数' as 地市受理总数,
+        count(distinct t.c1) as 受理总数
+        from {1000} t,(select * from {400} union all select * from {500}) pro,{200} g,{100} u,{300} gu,companyrel c,(select sysgroup.C630000018 as groupname, sysgroup.C1 as groupid
+            from {200} sysgroup
+            where sysgroup.C630000021 = 2
+            and sysgroup.C630000020 <> 0
+            and sysgroup.c630000027 =1) gg,(select g.c1 as id,g.c630000018 as name from {200} g where 1=1 {3}) ggg
+        where
+        t.c700000001=pro.c700020002
+        and t.C1=pro.C700020001
+        and pro.c700020010=u.C630000001
+        and u.C1=gu.C620000028
+        and g.C1=gu.C620000027
+        and g.c1=c.companyrel_depid
+        and c.companyrel_companyid=ggg.id
+        --and gg.groupid=g.c630000020
+        and g.c630000037 like '%'||gg.groupid||'%'
+        and (pro.c700020011='已完成' or pro.C700020011='处理中')
+        {5}
+        group by gg.groupname,ggg.name
+        
+        union all
+        select
+        gg.groupname as 地市,
+        ggg.name || '受理超时' as 地市受理超时,
+        count(distinct t.c1) as 受理超时
+        from {1000} t,(select * from {400} union all select * from {500}) pro,{200} g,{100} u,{300} gu,companyrel c,(select sysgroup.C630000018 as groupname, sysgroup.C1 as groupid
+            from {200} sysgroup
+            where sysgroup.C630000021 = 2
+            and sysgroup.C630000020 <> 0
+            and sysgroup.c630000027 =1) gg,(select g.c1 as id,g.c630000018 as name from {200} g where 1=1 {3}) ggg
+        where
+        t.c700000001=pro.c700020002
+        and t.C1=pro.C700020001
+        and pro.c700020010=u.C630000001
+        and u.C1=gu.C620000028
+        and g.C1=gu.C620000027
+        and g.c1=c.companyrel_depid
+        and c.companyrel_companyid=ggg.id
+        --and gg.groupid=g.c630000020
+        and g.c630000037 like '%'||gg.groupid||'%'
+        and (pro.c700020011='已完成' or pro.C700020011='处理中')
+        and pro.c700020016-pro.c700020013>0
+        {5}
+        group by gg.groupname,ggg.name
+        
+        union all
+        select
+        gg.groupname as 地市,
+        ggg.name || '平均受理时长' || '(' ||'分' ||')' as 地市平均受理时长,
+        round(sum(pro.c700020016-pro.c700020015)/60,0) as 平均受理时长
+        from {1000} t,(select * from {400} union all select * from {500}) pro,{200} g,{100} u,{300} gu,companyrel c,(select sysgroup.C630000018 as groupname, sysgroup.C1 as groupid
+            from {200} sysgroup
+            where sysgroup.C630000021 = 2
+            and sysgroup.C630000020 <> 0
+            and sysgroup.c630000027 =1) gg,(select g.c1 as id,g.c630000018 as name from {200} g where 1=1 {3}) ggg
+        where
+        t.c700000001=pro.c700020002
+        and t.C1=pro.C700020001
+        and pro.c700020010=u.C630000001
+        and u.C1=gu.C620000028
+        and g.C1=gu.C620000027
+        and g.c1=c.companyrel_depid
+        and c.companyrel_companyid=ggg.id
+        --and gg.groupid=g.c630000020
+        and g.c630000037 like '%'||gg.groupid||'%'
+        and (pro.c700020011='已完成' or pro.C700020011='处理中')
+        --and pro.c700020017-pro.c700020014>0
+        {5}
+        group by gg.groupname,ggg.name
+
+
+        
+		]]></item>
+	</sql>
+
+</sql-group>
+

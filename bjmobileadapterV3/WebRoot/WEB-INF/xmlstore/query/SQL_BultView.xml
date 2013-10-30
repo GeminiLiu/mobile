@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sql-group>
+	<doc>
+		<author>panguangchao</author> 
+		<date>2009年01月15日</date> 
+		<description>工单查询</description> 		
+	</doc>
+	<sqlquery name="query.BaseView.bultView">
+		<select>
+		<![CDATA[ 
+		select 
+			/*COUNT*/
+			*
+			/*COUNT*/
+			 from(
+		select 
+			bult.C1 as baseid,
+			bult.C700000002      as basename,
+			bult.C700000011      as BaseSummary,
+			bult.C700000006      as BaseCreateDate,
+			bult.C800020001      as EndTime
+		from {WF:EL_UVS_BULT}  bult
+		where
+		$basepara$
+		)
+		  ]]> 
+		</select>
+		<customwhere>
+			<parameterMap prepend="" name="basepara">
+				<mapingFiled  prepend="AND" fieldName="currentTime"  fieldType="2">
+					<mapsql value="isnotnull">
+						<![CDATA[
+							 bult.C800020001 > #currentTime#
+						 ]]>  			
+					</mapsql>
+				</mapingFiled>
+			</parameterMap>
+		</customwhere>
+	</sqlquery>
+</sql-group>

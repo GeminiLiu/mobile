@@ -1,0 +1,676 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sql-group>
+	<doc>
+		<author>作者</author> 
+		<date>时间</date> 
+		<description>Sql 描述</description> 		
+	</doc>
+	<sqlquery name="kpi.surrender.particleOnce" dbpoolname="orapool">
+		<select>
+		<![CDATA[
+				select
+			       #persongroupfieldname# bmName,
+			       #persongroupfieldid# gid,
+			       sum(case when dp1.A=1 then 1 else 0 end) 一次质检通过工单,
+			       sum(case when dp1.A>1 then 1 else 0 end) 一次质检未通过工单,
+			       (sum(case when dp1.A>1 then 1 else 0 end) + sum(case when dp1.A=1 then 1 else 0 end)) 工单总数
+			    from
+			          (
+			            select count(*) A,dp2.c700020001 c700020001,dp2.c700020002 c700020002
+			              from {WF:App_DealProcess} dp2
+			             where dp2.c700020003 = 'dp_7'
+			               and dp2.c700020002 = 'WF:EL_TTM_CCH'
+			             group by dp2.c700020001,c700020002
+			           )dp1,
+			            (
+			              select dp2.c1,
+			                     dp2.c700020001 c700020001,
+			                     #persongroupfieldid#,
+			                     #persongroupfieldname#,
+			                     dp2.c700020017,
+			                     dp2.c700020002
+			                from (select c700020001,
+			                             c700020002,
+			                             max(c700020017) as c700020017
+			                        from {WF:App_DealProcess}
+			                       where c700020002 = 'WF:EL_TTM_CCH'
+			                         and (c700020003 = 'dp_2' or c700020003 = 'dp_5')
+			                       group by c700020001, c700020002) dp1,
+			                     {WF:App_DealProcess} dp2
+			               where dp1.c700020001 = dp2.c700020001
+			                 and dp1.c700020002 = dp2.c700020002
+			                 and dp1.c700020017 = dp2.c700020017
+			                 and dp2.c700020002 = 'WF:EL_TTM_CCH'
+			                 #persongroup#
+			                 and (dp2.c700020003 = 'dp_2' or dp2.c700020003 = 'dp_5')
+			               )dp2,{WF:EL_TTM_CCH} tSurrender
+			      where dp1.c700020001 = dp2.c700020001
+			      and tSurrender.c1 = dp1.c700020001
+			      and tSurrender.c1 = dp2.c700020001
+			      and dp2.c700020002 = tSurrender.c700000001
+			      and dp1.c700020002 = tSurrender.c700000001		
+				  and (tSurrender.c700000010='已归档' or tSurrender.c700000010='处理完成待归档')
+			      #seltime#
+			      group by #persongroupfieldname#,#persongroupfieldid#
+		  ]]> 
+		</select>
+		<rptatribute>
+			<title>
+				<item>
+					<titlecol>
+						<text>名称</text>
+					</titlecol>
+					<titlecol>
+						<isshow>false</isshow>
+					</titlecol>
+					<titlecol>
+						<text>一次质检通过工单</text>						
+						<urltemp><![CDATA[GetDetail.jsp?name=#title#&sql=kpi.surrender.particleOnceDetail&start=#start#&end=#end#&selround=#selround#&gid=$gid$&persongroupfieldname=$bmName$]]> </urltemp>
+					</titlecol>
+					<titlecol>
+						<text>一次质检未通过工单</text>						
+						<urltemp><![CDATA[GetDetail.jsp?name=#titleNoOnce#&sql=kpi.surrender.noparticleOnceDetail&start=#start#&end=#end#&selround=#selround#&gid=$gid$&persongroupfieldname=$bmName$]]> </urltemp>
+					</titlecol>
+					<titlecol>
+						<text>工单总数</text>
+						<urltemp><![CDATA[GetDetail.jsp?name=#titleTotal#&sql=kpi.surrender.particleOnceTotalDetail&start=#start#&end=#end#&selround=#selround#&gid=$gid$&persongroupfieldname=$bmName$]]> </urltemp>
+					</titlecol>
+					<titlecol>
+						<text>一次质检通过率</text>
+					</titlecol>									
+				</item>				
+			</title>
+			<sumitem>
+				<item>				
+					<sum type="ROW">
+						<groupbycol></groupbycol>
+						<sumcol>2,3,4</sumcol>
+						<sumtext>合计</sumtext>
+					</sum>
+				</item>
+			</sumitem>
+			<calcol>
+				<item>
+					<colname1>一次质检通过工单</colname1>
+					<colname2>工单总数</colname2>					
+					<expression>DIV</expression>
+					<percent>100</percent>
+					<scale>2</scale>
+				</item>
+			</calcol>			
+		</rptatribute>
+	</sqlquery>
+	
+	<sqlquery name="kpi.surrender.particleOnceDetail" dbpoolname="orapool">
+		<select>
+		<![CDATA[
+		       select
+			  		/*COUNT*/    
+			  	   tSurrender.c1 baseid,
+			       tSurrender.c700000003 as 工单编号,
+			       to_char(TO_DATE('19700101','yyyymmdd') + tSurrender.c700000006/86400 +8/24,'yyyy-mm-dd hh24:MI:ss') 建单时间,
+			       tSurrender.c700000004 as 建单人,
+			       tSurrender.c700000011 as 主题,
+			       tSurrender.c700000015 as 紧急程度,
+			       tSurrender.c700000014 as 所属专业,
+			       tSurrender.c700000010 as 工单状态
+			        /*COUNT*/
+			    from
+			          (
+			            select count(*) A,dp2.c700020001 c700020001,dp2.c700020002 c700020002
+			              from {WF:App_DealProcess} dp2
+			             where dp2.c700020003 = 'dp_7'
+			               and dp2.c700020002 = 'WF:EL_TTM_CCH'
+			             group by dp2.c700020001,c700020002
+			           )dp1,
+			            (
+			              select dp2.c1,
+			                     dp2.c700020001 c700020001,
+			                     dp2.c700020017,
+			                     dp2.c700020002
+			                from (select c700020001,
+			                             c700020002,
+			                             max(c700020017) as c700020017
+			                        from {WF:App_DealProcess}
+			                       where c700020002 = 'WF:EL_TTM_CCH'
+			                         and (c700020003 = 'dp_2' or c700020003 = 'dp_5')
+			                       group by c700020001, c700020002) dp1,
+			                     {WF:App_DealProcess} dp2
+			               where dp1.c700020001 = dp2.c700020001
+			                 and dp1.c700020002 = dp2.c700020002
+			                 and dp1.c700020017 = dp2.c700020017
+			                 and dp2.c700020002 = 'WF:EL_TTM_CCH'
+			                 #persongroupfieldid#
+			                 and (dp2.c700020003 = 'dp_2' or dp2.c700020003 = 'dp_5')
+			               )dp2,{WF:EL_TTM_CCH} tSurrender
+			      where dp1.c700020001 = dp2.c700020001
+			      and tSurrender.c1 = dp1.c700020001
+			      and tSurrender.c1 = dp2.c700020001
+			      and dp2.c700020002 = tSurrender.c700000001
+			      and dp1.c700020002 = tSurrender.c700000001
+			      and dp1.A = 1
+				  and (tSurrender.c700000010='已归档' or tSurrender.c700000010='处理完成待归档')
+			      #seltime#
+			      order by tSurrender.c700000006 desc
+		  ]]> 
+		</select>
+		<rptatribute>
+			<title>
+				<item>					
+					<titlecol>	
+						<isshow>false</isshow>
+					</titlecol>						
+					<titlecol>
+						<text>流水号</text>
+					</titlecol>
+					<titlecol>
+						<text>建单时间</text>
+					</titlecol>
+					<titlecol>
+						<text>建单人</text>
+					</titlecol>
+					<titlecol>						
+						<urltemp><![CDATA[http://#serveraddress#/arsys/servlet/ViewFormServlet?server=#remedyserver#&form=WF:EL_TTM_CCH&#baseschema#&mode=QUERY&eid=$baseid$&view=&]]></urltemp>
+						<text>主题</text>						
+					</titlecol>					
+				</item>
+			</title>			
+		</rptatribute>
+	</sqlquery>
+	
+	<sqlquery name="kpi.surrender.noparticleOnceDetail" dbpoolname="orapool">
+		<select>
+		<![CDATA[ 
+			   select
+			  		/*COUNT*/    
+			  	   tSurrender.c1 baseid,
+			       tSurrender.c700000003 as 工单编号,
+			       to_char(TO_DATE('19700101','yyyymmdd') + tSurrender.c700000006/86400 +8/24,'yyyy-mm-dd hh24:MI:ss') 建单时间,
+			       tSurrender.c700000004 as 建单人,
+			       tSurrender.c700000011 as 主题,
+			       tSurrender.c700000015 as 紧急程度,
+			       tSurrender.c700000014 as 所属专业,
+			       tSurrender.c700000010 as 工单状态
+			        /*COUNT*/
+			    from
+			          (
+			            select count(*) A,dp2.c700020001 c700020001,dp2.c700020002 c700020002
+			              from {WF:App_DealProcess} dp2
+			             where dp2.c700020003 = 'dp_7'
+			               and dp2.c700020002 = 'WF:EL_TTM_CCH'
+			             group by dp2.c700020001,c700020002
+			           )dp1,
+			            (
+			              select dp2.c1,
+			                     dp2.c700020001 c700020001,
+			                     dp2.c700020017,
+			                     dp2.c700020002
+			                from (select c700020001,
+			                             c700020002,
+			                             max(c700020017) as c700020017
+			                        from {WF:App_DealProcess}
+			                       where c700020002 = 'WF:EL_TTM_CCH'
+			                         and (c700020003 = 'dp_2' or c700020003 = 'dp_5')
+			                       group by c700020001, c700020002) dp1,
+			                     {WF:App_DealProcess} dp2
+			               where dp1.c700020001 = dp2.c700020001
+			                 and dp1.c700020002 = dp2.c700020002
+			                 and dp1.c700020017 = dp2.c700020017
+			                 and dp2.c700020002 = 'WF:EL_TTM_CCH'
+			                 #persongroupfieldid#
+			                 and (dp2.c700020003 = 'dp_2' or dp2.c700020003 = 'dp_5')
+			               )dp2,{WF:EL_TTM_CCH} tSurrender
+			      where dp1.c700020001 = dp2.c700020001
+			      and tSurrender.c1 = dp1.c700020001
+			      and tSurrender.c1 = dp2.c700020001
+			      and dp2.c700020002 = tSurrender.c700000001
+			      and dp1.c700020002 = tSurrender.c700000001
+			      and dp1.A > 1
+				  and (tSurrender.c700000010='已归档' or tSurrender.c700000010='处理完成待归档')
+			      #seltime#
+			      order by tSurrender.c700000006 desc
+		  ]]> 
+		</select>
+		<rptatribute>
+			<title>
+				<item>					
+					<titlecol>	
+						<isshow>false</isshow>
+					</titlecol>						
+					<titlecol>
+						<text>流水号</text>
+					</titlecol>
+					<titlecol>
+						<text>建单时间</text>
+					</titlecol>
+					<titlecol>
+						<text>建单人</text>
+					</titlecol>
+					<titlecol>						
+						<urltemp><![CDATA[http://#serveraddress#/arsys/servlet/ViewFormServlet?server=#remedyserver#&form=WF:EL_TTM_CCH&#baseschema#&mode=QUERY&eid=$baseid$&view=&]]></urltemp>
+						<text>主题</text>						
+					</titlecol>					
+				</item>
+			</title>		
+		</rptatribute>
+	</sqlquery>
+	
+	<sqlquery name="kpi.surrender.particleOnceTotalDetail" dbpoolname="orapool">
+		<select>
+		<![CDATA[ 
+		select
+			  		/*COUNT*/    
+			  	   tSurrender.c1 baseid,
+			       tSurrender.c700000003 as 工单编号,
+			       to_char(TO_DATE('19700101','yyyymmdd') + tSurrender.c700000006/86400 +8/24,'yyyy-mm-dd hh24:MI:ss') 建单时间,
+			       tSurrender.c700000004 as 建单人,
+			       tSurrender.c700000011 as 主题,
+			       tSurrender.c700000015 as 紧急程度,
+			       tSurrender.c700000014 as 所属专业,
+			       tSurrender.c700000010 as 工单状态
+			        /*COUNT*/
+			    from
+			          (
+			            select count(*) A,dp2.c700020001 c700020001,dp2.c700020002 c700020002
+			              from {WF:App_DealProcess} dp2
+			             where dp2.c700020003 = 'dp_7'
+			               and dp2.c700020002 = 'WF:EL_TTM_CCH'
+			             group by dp2.c700020001,c700020002
+			           )dp1,
+			            (
+			              select dp2.c1,
+			                     dp2.c700020001 c700020001,
+			                     dp2.c700020017,
+			                     dp2.c700020002
+			                from (select c700020001,
+			                             c700020002,
+			                             max(c700020017) as c700020017
+			                        from {WF:App_DealProcess}
+			                       where c700020002 = 'WF:EL_TTM_CCH'
+			                         and (c700020003 = 'dp_2' or c700020003 = 'dp_5')
+			                       group by c700020001, c700020002) dp1,
+			                     {WF:App_DealProcess} dp2
+			               where dp1.c700020001 = dp2.c700020001
+			                 and dp1.c700020002 = dp2.c700020002
+			                 and dp1.c700020017 = dp2.c700020017
+			                 and dp2.c700020002 = 'WF:EL_TTM_CCH'
+			                 #persongroupfieldid#
+			                 and (dp2.c700020003 = 'dp_2' or dp2.c700020003 = 'dp_5')
+			               )dp2,{WF:EL_TTM_CCH} tSurrender
+			      where dp1.c700020001 = dp2.c700020001
+			      and tSurrender.c1 = dp1.c700020001
+			      and tSurrender.c1 = dp2.c700020001
+			      and dp2.c700020002 = tSurrender.c700000001
+			      and dp1.c700020002 = tSurrender.c700000001
+				  and (tSurrender.c700000010='已归档' or tSurrender.c700000010='处理完成待归档')
+			      #seltime#
+			      order by tSurrender.c700000006 desc
+		  ]]> 
+		</select>
+		<rptatribute>
+			<title>
+				<item>					
+					<titlecol>	
+						<isshow>false</isshow>
+					</titlecol>						
+					<titlecol>
+						<text>流水号</text>
+					</titlecol>
+					<titlecol>
+						<text>建单时间</text>
+					</titlecol>
+					<titlecol>
+						<text>建单人</text>
+					</titlecol>
+					<titlecol>						
+						<urltemp><![CDATA[http://#serveraddress#/arsys/servlet/ViewFormServlet?server=#remedyserver#&form=WF:EL_TTM_CCH&#baseschema#&mode=QUERY&eid=$baseid$&view=&]]></urltemp>
+						<text>主题</text>						
+					</titlecol>					
+				</item>
+			</title>			
+		</rptatribute>
+	</sqlquery>
+	
+
+
+
+
+
+	<sqlquery name="kpi.surrender.particleOnceWait" dbpoolname="orapool">
+		<select>
+		<![CDATA[
+				select
+			       #persongroupfieldname# bmName,
+			       #persongroupfieldid# gid,
+			       sum(case when dp1.A=1 then 1 else 0 end) 一次质检通过工单,
+			       sum(case when dp1.A>1 then 1 else 0 end) 一次质检未通过工单,
+			       (sum(case when dp1.A>1 then 1 else 0 end) + sum(case when dp1.A=1 then 1 else 0 end)) 工单总数
+			    from
+			          (
+			            select count(*) A,dp2.c700020001 c700020001,dp2.c700020002 c700020002
+			              from {WF:App_DealProcess} dp2
+			             where dp2.c700020003 = 'dp_7'
+			               and dp2.c700020002 = 'WF:EL_TTM_CCH'
+			             group by dp2.c700020001,c700020002
+			           )dp1,
+			            (
+			              select dp2.c1,
+			                     dp2.c700020001 c700020001,
+			                     #persongroupfieldid#,
+			                     #persongroupfieldname#,
+			                     dp2.c700020017,
+			                     dp2.c700020002
+			                from (select c700020001,
+			                             c700020002,
+			                             max(c700020017) as c700020017
+			                        from {WF:App_DealProcess}
+			                       where c700020002 = 'WF:EL_TTM_CCH'
+			                         and (c700020003 = 'dp_2' or c700020003 = 'dp_5')
+			                       group by c700020001, c700020002) dp1,
+			                     {WF:App_DealProcess} dp2
+			               where dp1.c700020001 = dp2.c700020001
+			                 and dp1.c700020002 = dp2.c700020002
+			                 and dp1.c700020017 = dp2.c700020017
+			                 and dp2.c700020002 = 'WF:EL_TTM_CCH'
+			                 #persongroup#
+			                 and (dp2.c700020003 = 'dp_2' or dp2.c700020003 = 'dp_5')
+			               )dp2,{WF:EL_TTM_CCH} tSurrender
+			      where dp1.c700020001 = dp2.c700020001
+			      and tSurrender.c1 = dp1.c700020001
+			      and tSurrender.c1 = dp2.c700020001
+			      and dp2.c700020002 = tSurrender.c700000001
+			      and dp1.c700020002 = tSurrender.c700000001		
+				  and (tSurrender.c700000010='已归档' or tSurrender.c700000010='处理完成待归档'  or tSurrender.c700000010='待归档')
+			      and  tSurrender.C1 in  (select t.c700020001
+								from T331 t
+								where t.c700020003 = 'dp_7'  and t.C700020077 = 1
+								#seltime#)
+			      group by #persongroupfieldname#,#persongroupfieldid#
+		  ]]> 
+		</select>
+		<rptatribute>
+			<title>
+				<item>
+					<titlecol>
+						<text>名称</text>
+					</titlecol>
+					<titlecol>
+						<isshow>false</isshow>
+					</titlecol>
+					<titlecol>
+						<text>一次质检通过工单</text>						
+						<urltemp><![CDATA[GetDetailWait.jsp?name=#title#&sql=kpi.surrender.particleOnceDetailWait&start=#start#&end=#end#&selround=#selround#&gid=$gid$&persongroupfieldname=$bmName$]]> </urltemp>
+					</titlecol>
+					<titlecol>
+						<text>一次质检未通过工单</text>						
+						<urltemp><![CDATA[GetDetailWait.jsp?name=#titleNoOnce#&sql=kpi.surrender.noparticleOnceDetailWait&start=#start#&end=#end#&selround=#selround#&gid=$gid$&persongroupfieldname=$bmName$]]> </urltemp>
+					</titlecol>
+					<titlecol>
+						<text>工单总数</text>
+						<urltemp><![CDATA[GetDetailWait.jsp?name=#titleTotal#&sql=kpi.surrender.particleOnceTotalDetailWait&start=#start#&end=#end#&selround=#selround#&gid=$gid$&persongroupfieldname=$bmName$]]> </urltemp>
+					</titlecol>
+					<titlecol>
+						<text>一次质检通过率</text>
+					</titlecol>									
+				</item>				
+			</title>
+			<sumitem>
+				<item>				
+					<sum type="ROW">
+						<groupbycol></groupbycol>
+						<sumcol>2,3,4</sumcol>
+						<sumtext>合计</sumtext>
+					</sum>
+				</item>
+			</sumitem>
+			<calcol>
+				<item>
+					<colname1>一次质检通过工单</colname1>
+					<colname2>工单总数</colname2>					
+					<expression>DIV</expression>
+					<percent>100</percent>
+					<scale>2</scale>
+				</item>
+			</calcol>			
+		</rptatribute>
+	</sqlquery>
+	
+	<sqlquery name="kpi.surrender.particleOnceDetailWait" dbpoolname="orapool">
+		<select>
+		<![CDATA[
+		       select
+			  		/*COUNT*/    
+			  	   tSurrender.c1 baseid,
+			       tSurrender.c700000003 as 工单编号,
+			       to_char(TO_DATE('19700101','yyyymmdd') + tSurrender.c700000006/86400 +8/24,'yyyy-mm-dd hh24:MI:ss') 建单时间,
+			       tSurrender.c700000004 as 建单人,
+			       tSurrender.c700000011 as 主题,
+			       tSurrender.c700000015 as 紧急程度,
+			       tSurrender.c700000014 as 所属专业,
+			       tSurrender.c700000010 as 工单状态
+			        /*COUNT*/
+			    from
+			          (
+			            select count(*) A,dp2.c700020001 c700020001,dp2.c700020002 c700020002
+			              from {WF:App_DealProcess} dp2
+			             where dp2.c700020003 = 'dp_7'
+			               and dp2.c700020002 = 'WF:EL_TTM_CCH'
+			             group by dp2.c700020001,c700020002
+			           )dp1,
+			            (
+			              select dp2.c1,
+			                     dp2.c700020001 c700020001,
+			                     dp2.c700020017,
+			                     dp2.c700020002
+			                from (select c700020001,
+			                             c700020002,
+			                             max(c700020017) as c700020017
+			                        from {WF:App_DealProcess}
+			                       where c700020002 = 'WF:EL_TTM_CCH'
+			                         and (c700020003 = 'dp_2' or c700020003 = 'dp_5')
+			                       group by c700020001, c700020002) dp1,
+			                     {WF:App_DealProcess} dp2
+			               where dp1.c700020001 = dp2.c700020001
+			                 and dp1.c700020002 = dp2.c700020002
+			                 and dp1.c700020017 = dp2.c700020017
+			                 and dp2.c700020002 = 'WF:EL_TTM_CCH'
+			                 #persongroupfieldid#
+			                 and (dp2.c700020003 = 'dp_2' or dp2.c700020003 = 'dp_5')
+			               )dp2,{WF:EL_TTM_CCH} tSurrender
+			      where dp1.c700020001 = dp2.c700020001
+			      and tSurrender.c1 = dp1.c700020001
+			      and tSurrender.c1 = dp2.c700020001
+			      and dp2.c700020002 = tSurrender.c700000001
+			      and dp1.c700020002 = tSurrender.c700000001
+			      and dp1.A = 1
+				  and (tSurrender.c700000010='已归档' or tSurrender.c700000010='处理完成待归档' or tSurrender.c700000010='待归档')
+			      and  tSurrender.C1 in  (select t.c700020001
+								from T331 t
+								where t.c700020003 = 'dp_7'  and t.C700020077 = 1
+								#seltime#)
+			      order by tSurrender.c700000006 desc
+		  ]]> 
+		</select>
+		<rptatribute>
+			<title>
+				<item>					
+					<titlecol>	
+						<isshow>false</isshow>
+					</titlecol>						
+					<titlecol>
+						<text>流水号</text>
+					</titlecol>
+					<titlecol>
+						<text>建单时间</text>
+					</titlecol>
+					<titlecol>
+						<text>建单人</text>
+					</titlecol>
+					<titlecol>						
+						<urltemp><![CDATA[http://#serveraddress#/arsys/servlet/ViewFormServlet?server=#remedyserver#&form=WF:EL_TTM_CCH&#baseschema#&mode=QUERY&eid=$baseid$&view=&]]></urltemp>
+						<text>主题</text>						
+					</titlecol>					
+				</item>
+			</title>			
+		</rptatribute>
+	</sqlquery>
+	
+	<sqlquery name="kpi.surrender.noparticleOnceDetailWait" dbpoolname="orapool">
+		<select>
+		<![CDATA[ 
+			   select
+			  		/*COUNT*/    
+			  	   tSurrender.c1 baseid,
+			       tSurrender.c700000003 as 工单编号,
+			       to_char(TO_DATE('19700101','yyyymmdd') + tSurrender.c700000006/86400 +8/24,'yyyy-mm-dd hh24:MI:ss') 建单时间,
+			       tSurrender.c700000004 as 建单人,
+			       tSurrender.c700000011 as 主题,
+			       tSurrender.c700000015 as 紧急程度,
+			       tSurrender.c700000014 as 所属专业,
+			       tSurrender.c700000010 as 工单状态
+			        /*COUNT*/
+			    from
+			          (
+			            select count(*) A,dp2.c700020001 c700020001,dp2.c700020002 c700020002
+			              from {WF:App_DealProcess} dp2
+			             where dp2.c700020003 = 'dp_7'
+			               and dp2.c700020002 = 'WF:EL_TTM_CCH'
+			             group by dp2.c700020001,c700020002
+			           )dp1,
+			            (
+			              select dp2.c1,
+			                     dp2.c700020001 c700020001,
+			                     dp2.c700020017,
+			                     dp2.c700020002
+			                from (select c700020001,
+			                             c700020002,
+			                             max(c700020017) as c700020017
+			                        from {WF:App_DealProcess}
+			                       where c700020002 = 'WF:EL_TTM_CCH'
+			                         and (c700020003 = 'dp_2' or c700020003 = 'dp_5')
+			                       group by c700020001, c700020002) dp1,
+			                     {WF:App_DealProcess} dp2
+			               where dp1.c700020001 = dp2.c700020001
+			                 and dp1.c700020002 = dp2.c700020002
+			                 and dp1.c700020017 = dp2.c700020017
+			                 and dp2.c700020002 = 'WF:EL_TTM_CCH'
+			                 #persongroupfieldid#
+			                 and (dp2.c700020003 = 'dp_2' or dp2.c700020003 = 'dp_5')
+			               )dp2,{WF:EL_TTM_CCH} tSurrender
+			      where dp1.c700020001 = dp2.c700020001
+			      and tSurrender.c1 = dp1.c700020001
+			      and tSurrender.c1 = dp2.c700020001
+			      and dp2.c700020002 = tSurrender.c700000001
+			      and dp1.c700020002 = tSurrender.c700000001
+			      and dp1.A > 1
+				  and (tSurrender.c700000010='已归档' or tSurrender.c700000010='处理完成待归档'  or tSurrender.c700000010='待归档')
+			      and  tSurrender.C1 in  (select t.c700020001
+								from T331 t
+								where t.c700020003 = 'dp_7'  and t.C700020077 = 1
+								#seltime#)
+			      order by tSurrender.c700000006 desc
+		  ]]> 
+		</select>
+		<rptatribute>
+			<title>
+				<item>					
+					<titlecol>	
+						<isshow>false</isshow>
+					</titlecol>						
+					<titlecol>
+						<text>流水号</text>
+					</titlecol>
+					<titlecol>
+						<text>建单时间</text>
+					</titlecol>
+					<titlecol>
+						<text>建单人</text>
+					</titlecol>
+					<titlecol>						
+						<urltemp><![CDATA[http://#serveraddress#/arsys/servlet/ViewFormServlet?server=#remedyserver#&form=WF:EL_TTM_CCH&#baseschema#&mode=QUERY&eid=$baseid$&view=&]]></urltemp>
+						<text>主题</text>						
+					</titlecol>					
+				</item>
+			</title>		
+		</rptatribute>
+	</sqlquery>
+	
+	<sqlquery name="kpi.surrender.particleOnceTotalDetailWait" dbpoolname="orapool">
+		<select>
+		<![CDATA[ 
+		select
+			  		/*COUNT*/    
+			  	   tSurrender.c1 baseid,
+			       tSurrender.c700000003 as 工单编号,
+			       to_char(TO_DATE('19700101','yyyymmdd') + tSurrender.c700000006/86400 +8/24,'yyyy-mm-dd hh24:MI:ss') 建单时间,
+			       tSurrender.c700000004 as 建单人,
+			       tSurrender.c700000011 as 主题,
+			       tSurrender.c700000015 as 紧急程度,
+			       tSurrender.c700000014 as 所属专业,
+			       tSurrender.c700000010 as 工单状态
+			        /*COUNT*/
+			    from
+			          (
+			            select count(*) A,dp2.c700020001 c700020001,dp2.c700020002 c700020002
+			              from {WF:App_DealProcess} dp2
+			             where dp2.c700020003 = 'dp_7'
+			               and dp2.c700020002 = 'WF:EL_TTM_CCH'
+			             group by dp2.c700020001,c700020002
+			           )dp1,
+			            (
+			              select dp2.c1,
+			                     dp2.c700020001 c700020001,
+			                     dp2.c700020017,
+			                     dp2.c700020002
+			                from (select c700020001,
+			                             c700020002,
+			                             max(c700020017) as c700020017
+			                        from {WF:App_DealProcess}
+			                       where c700020002 = 'WF:EL_TTM_CCH'
+			                         and (c700020003 = 'dp_2' or c700020003 = 'dp_5')
+			                       group by c700020001, c700020002) dp1,
+			                     {WF:App_DealProcess} dp2
+			               where dp1.c700020001 = dp2.c700020001
+			                 and dp1.c700020002 = dp2.c700020002
+			                 and dp1.c700020017 = dp2.c700020017
+			                 and dp2.c700020002 = 'WF:EL_TTM_CCH'
+			                 #persongroupfieldid#
+			                 and (dp2.c700020003 = 'dp_2' or dp2.c700020003 = 'dp_5')
+			               )dp2,{WF:EL_TTM_CCH} tSurrender
+			      where dp1.c700020001 = dp2.c700020001
+			      and tSurrender.c1 = dp1.c700020001
+			      and tSurrender.c1 = dp2.c700020001
+			      and dp2.c700020002 = tSurrender.c700000001
+			      and dp1.c700020002 = tSurrender.c700000001
+				  and (tSurrender.c700000010='已归档' or tSurrender.c700000010='处理完成待归档'  or tSurrender.c700000010='待归档')
+			      and  tSurrender.C1 in  (select t.c700020001
+								from T331 t
+								where t.c700020003 = 'dp_7'  and t.C700020077 = 1
+								#seltime#)
+			      order by tSurrender.c700000006 desc
+		  ]]> 
+		</select>
+		<rptatribute>
+			<title>
+				<item>					
+					<titlecol>	
+						<isshow>false</isshow>
+					</titlecol>						
+					<titlecol>
+						<text>流水号</text>
+					</titlecol>
+					<titlecol>
+						<text>建单时间</text>
+					</titlecol>
+					<titlecol>
+						<text>建单人</text>
+					</titlecol>
+					<titlecol>						
+						<urltemp><![CDATA[http://#serveraddress#/arsys/servlet/ViewFormServlet?server=#remedyserver#&form=WF:EL_TTM_CCH&#baseschema#&mode=QUERY&eid=$baseid$&view=&]]></urltemp>
+						<text>主题</text>						
+					</titlecol>					
+				</item>
+			</title>			
+		</rptatribute>
+	</sqlquery>
+</sql-group>	

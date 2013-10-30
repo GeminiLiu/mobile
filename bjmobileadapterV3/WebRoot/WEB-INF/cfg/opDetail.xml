@@ -1,0 +1,3 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<opDetail><recordInfo><fieldInfo><fieldChName>网管告警ID</fieldChName><fieldEnName>alarmId</fieldEnName><fieldContent>ID-fu-01</fieldContent></fieldInfo><fieldInfo><fieldChName>EOMS工单ID</fieldChName><fieldEnName>sheetNo</fieldEnName><fieldContent>ID-051-120209-00001</fieldContent></fieldInfo><fieldInfo><fieldChName>工单状态</fieldChName><fieldEnName>sheetStatus</fieldEnName><fieldContent>处理中</fieldContent></fieldInfo><fieldInfo><fieldChName>状态时间</fieldChName><fieldEnName>statusTime</fieldEnName><fieldContent>2012-02-09 10:51:06</fieldContent></fieldInfo></recordInfo></opDetail>
+

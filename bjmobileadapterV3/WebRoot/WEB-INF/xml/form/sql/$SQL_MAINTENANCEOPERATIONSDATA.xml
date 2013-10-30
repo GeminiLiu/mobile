@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="GB2312"?>
+<sql-group>
+	<doc>
+		<author>shenchuan</author>
+		<date>2008-07-04</date>
+		<description>维护操作数据月报</description>
+	</doc>
+	<sql name="maintenanceoperationsdatapage.group" datasource="Ultranms">
+		<item dbms="All"><![CDATA[
+
+			select t.groupname from (
+			select g.c630000018 groupname  from {100} g where g.c630000021='2' and g.c630000020='000000000600001' and g.c630000027='1'
+			union all 
+			select trim('网管中心') groupname from dual
+			) t 
+		]]></item>
+	</sql>
+	<sql name="maintenanceoperationsdata.left" datasource="Ultranms">
+		<item dbms="All"><![CDATA[
+
+			select ' ',t.groupname as 公司 from (
+			select g.c630000018 groupname  from {100} g where g.c630000021='2' and g.c630000020='000000000600001' and g.c630000027='1'
+			union all 
+			select trim('网管中心') groupname from dual
+			) t where 1=1 {1}
+		]]></item>
+	</sql>
+	
+
+		<sql name="maintenanceoperationsdata.colTitle" datasource="Ultranms">
+		<item dbms="All"><![CDATA[
+					select trim('线路') 
+					  from dual
+					union all
+					select trim('传输设备')
+					  from dual
+					union all
+					select trim('传输连接件') 
+					  from dual
+					union all
+					select trim('网管系统') 
+					  from dual
+				     union all
+					select trim('电源')   
+					from dual
+					union all
+					select trim('调度单的数量') 
+					  from dual
+					  union all
+					select trim('需调度的电路数量') 
+					  from dual
+					  union all
+					select trim('超时调度的单数') 
+					  from dual
+					  union all
+					select trim('超时调度的电路数量') 
+					  from dual
+					  union all
+					select trim('重大故障次数') 
+					  from dual
+					  union all
+					select trim('超时处理故障数量') 
+					  from dual
+					  
+		]]></item>
+	</sql>
+		<sql name="maintenanceoperationsdata.centervalue" datasource="Ultranms">
+		<item dbms="All"><![CDATA[
+
+				select trim('线路'),t.c802000002 as 所属城市,nvl(sum(t.c802000013),0) as num from {100} t 
+				where 1=1 {5}
+				group by t.c802000002
+				union all
+				select trim('传输设备'),t.c802000002 as 所属城市,nvl(sum(t.c802000005),0) as num from {100} t 
+				where 1=1 {5}
+				group by t.c802000002
+				union all
+				select trim('传输连接件'),t.c802000002 as 所属城市,nvl(sum(t.c802000007),0) as num from {100} t 
+				where 1=1 {5}
+				group by t.c802000002
+				union all
+				select trim('网管系统'),t.c802000002 as 所属城市,nvl(sum(t.c802000009),0) as num from {100} t 
+				where 1=1 {5}
+				group by t.c802000002
+				union all
+				select trim('电源'),t.c802000002 as 所属城市,nvl(sum(t.c802000011),0) as num from {100} t 
+				where 1=1 {5}
+				group by t.c802000002
+				union all
+				select trim('调度单的数量'),t.c802000002 as 所属城市,nvl(sum(t.c802000017),0) as num from {100} t 
+				where 1=1 {5}
+				group by t.c802000002
+				union all
+				select trim('需调度的电路数量'),t.c802000002 as 所属城市,nvl(sum(t.c802000019),0) as num from {100} t 
+				where 1=1 {5}
+				group by t.c802000002
+				union all
+				select trim('超时调度的单数'),t.c802000002 as 所属城市,nvl(sum(t.c802000021),0) as num from {100} t 
+				where 1=1 {5}
+				group by t.c802000002
+				union all
+				select trim('超时调度的电路数量'),t.c802000002 as 所属城市,nvl(sum(t.c802000024),0) as num from {100} t 
+				where 1=1 {5}
+				group by t.c802000002
+				union all
+				select trim('重大故障次数'),t.c802000002 as 所属城市,nvl(sum(t.c802000033),0) as num from {100} t 
+				where 1=1 {5}
+				group by t.c802000002
+				union all
+				select trim('超时处理故障数量(合计)'),t.c802000002 as 所属城市,nvl(sum(t.c802000035),0) as num from {100} t 
+				where 1=1 {5}
+				group by t.c802000002
+				
+		]]></item>
+	</sql>
+</sql-group>
+

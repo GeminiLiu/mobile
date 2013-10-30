@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding='UTF-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+                            "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                            "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<!-- DO NOT EDIT: This is a generated file that is synchronized -->
+<!-- by MyEclipse Hibernate tool integration.                   -->
+<!-- Created Tue Jan 23 14:56:14 CST 2007                         -->
+<hibernate-mapping package="cn.com.ultrapower.eoms.user.config.source.hibernate.po">
+
+    <class name="Sourceactionconfig" table="SOURCEACTIONCONFIG" lazy="false">
+        <id name="id" column="ID" type="java.lang.Long">
+            <generator class="assigned"/>
+        </id>
+ 
+        <property name="sourceactionTypeflag" column="SOURCEACTION_TYPEFLAG" type="java.lang.String" />
+        <property name="sourceactionFieldvalue" column="SOURCEACTION_FIELDVALUE" type="java.lang.String" />
+        <property name="sourceactionNumvalue" column="SOURCEACTION_NUMVALUE" type="java.lang.String" />
+        <property name="sourceactionOrderby" column="SOURCEACTION_ORDERBY" type="java.lang.Long" />
+    </class>
+    
+</hibernate-mapping>

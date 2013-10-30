@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sql-group>
+	<doc>
+		<author>csl</author> 
+		<date>2010-08-18</date> 
+		<description>工单处理情况显示</description> 		
+	</doc>
+	<sqlquery name="SQL_firstProblemHistory" dbpoolname="">
+		<select>
+		<![CDATA[
+			select 
+				t.PROBLEM_ID  as pId,
+				t.PROBLEM_TYPE as pType,
+				t.PROBLEM_NOTE as pNote,
+				t.CREATE_TIME  as pTime,
+				t.PROBLEM_REASON as pReason,
+				t.PROBLEM_WHETHERCLOSE as pClose
+			 from APP_PROBLEM_HISTORY t  where 1=1
+			    and t.state = 1
+			    and t.PROBLEM_WHETHERCLOSE='1'
+			    #con_group#
+			    order by t.CREATE_TIME desc
+			  ]]>
+		</select>	
+	</sqlquery>
+	<sqlquery name="SQL_firstMonitorBulletin" dbpoolname="">
+		<select>
+		<![CDATA[
+			select 
+				t.MONITOR_BULLETIN_ID as mId,
+				t.TITLE as mTitle,
+				t.CREATE_TIME as mTime,
+				t.CREATE_USER as mUser,
+				t.NOTE as mNote,
+				t.IS_CLOSE  as mClose
+				
+			 from APP_MONITOR_BULLETIN t  where 1=1 
+			  and t.state = 1
+			  and t.IS_CLOSE=1
+			  #con_group#
+			  order by t.CREATE_TIME desc
+			  ]]>
+		</select>	
+	</sqlquery>
+	<sqlquery name="SQL_firstPhoneComplain" dbpoolname="">
+		<select>
+		<![CDATA[
+			select 
+				t.PHONE_COMPLAIN_ID as phId,
+				t.COMPLAIN_OBJ as phObj,
+				t.CREATE_NAME as phName,
+				t.RESULT as phResult,
+				t.CREATE_TIME  as phCreateTime,
+				t.COMPLAIN_NOTE as phNote
+			 from APP_PHONE_COMPLAIN t  where 1=1 and t.state=1
+			 	and t.RESULT=1
+			 	#con_group#
+			    order by t.CREATE_TIME desc
+			  ]]>
+		</select>	
+	</sqlquery>
+	
+	<sqlquery name="SQL_userBelongGroupid" dbpoolname="">
+		<select>
+		<![CDATA[
+			 select g.c1 as groupId from {UltraProcess:SysGroup} g,{UltraProcess:SysGroupUser} gu 
+        	  where g.c1 = gu.c620000027
+        	    and gu.c620000028 = '#userId#'
+        	    and (g.c630000021 = 0 or g.c630000021 = 3 or g.c630000021 = 4)
+			  ]]>
+		</select>	
+	</sqlquery>
+</sql-group>

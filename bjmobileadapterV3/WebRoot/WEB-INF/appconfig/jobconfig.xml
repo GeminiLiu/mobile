@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<config>
+  <!--接口job
+  <param>
+    <param-name>scantime</param-name>
+    <param-value>15</param-value>
+  </param>
+  <param>
+    <param-name>客服接口</param-name>
+    <param-value>EOMSProcess</param-value>
+  </param>
+  <param>
+    <param-name>告警接口</param-name>
+    <param-value>AlarmProcess</param-value>
+  </param>
+   <param>
+    <param-name>公告接口</param-name>
+    <param-value>BulletinProcess</param-value>
+  </param>
+-->
+</config>

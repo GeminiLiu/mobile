@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sql-group>
+	<doc>
+		<author>lihaoyuan</author> 
+		<date>2009年9月22日</date> 
+		<description>用户角色查询</description> 		
+	</doc>
+	<sqlquery name="design.UserRole.list">
+		<select>
+		<![CDATA[
+		select 
+			/*COUNT*/
+			*
+			/*COUNT*/
+			 from(
+		select
+			ri.C1
+			, ru.C650000001
+			, ru.C650000002
+			, ru.C650000005
+			, ru.C650000006
+			, ru.C650000008
+			, ru.C650000009
+			, ri.C700030005
+			, ri.C700030006
+			, ri.C700030007
+			, ri.C700030008
+		from 
+		(
+			select 
+				distinct C650000005
+				, C650000001
+				, C650000002
+				, C650000006
+				, C650000008
+				, C650000009 
+			from {WF:Workflow_RoleUser} 
+			where 
+			1=1 
+				$sch_assginee$
+		) ru
+		, {WF:WorkFlow_RoleInformation} ri 
+		where 
+			ri.C700030003(+)=ru.C650000005 
+			$sch_entry$
+		)
+		$extend$
+		  ]]> 
+		</select>
+		<customwhere>
+			<parameterMap prepend="AND" name="sch_assginee">
+				<mapingFiled  prepend="AND" fieldName="roleusername"  fieldType="4">
+					<mapsql value="isnotnull">
+						<![CDATA[
+							 C650000002='#roleusername#'
+						 ]]>  			
+					</mapsql>
+				</mapingFiled>
+				<mapingFiled  prepend="AND" fieldName="roleloginname"  fieldType="4">
+					<mapsql value="isnotnull">
+						<![CDATA[
+							 C650000001='#roleloginname#'
+						 ]]>  			
+					</mapsql>
+				</mapingFiled>
+			</parameterMap>
+			<parameterMap prepend="AND" name="sch_entry">
+				<mapingFiled  prepend="" fieldName="baseschema"  fieldType="4">
+					<mapsql value="isnotnull">
+						<![CDATA[
+							 C650000008='#baseschema#'
+						 ]]>  			
+					</mapsql>
+				</mapingFiled>
+				<mapingFiled  prepend="AND" fieldName="roleid"  fieldType="4">
+					<mapsql value="isnotnull">
+						<![CDATA[
+							 C650000005='#roleid#'
+						 ]]>  			
+					</mapsql>
+				</mapingFiled>
+			</parameterMap>
+			<parameterMap prepend="EXTEND" name="extend">
+					<mapingFiled  prepend="EXTEND" fieldName="orderby"  fieldType="4">
+						<mapsql value="isnotnull">
+							<![CDATA[
+								   order by #orderby#
+							 ]]>
+						</mapsql>
+					</mapingFiled>
+			</parameterMap>
+		</customwhere>
+		<sqlother>
+			<sqlpagination isavailability="true">
+				<sqlpageSize>20</sqlpageSize>
+			</sqlpagination>
+			<sqldistinct isavailability="false">排重的列1,排重的列2</sqldistinct>
+			<sqlSortFields isavailability="false">排序的列1,排序的列2</sqlSortFields>
+		</sqlother>
+		<PageQueryField>
+			<field name="roleusername">
+				<fieldID>650000001</fieldID><!--查询字段ID-->
+				<fieldEnglishname>roleusername</fieldEnglishname><!--查询字段英文名，该英文名会做为我们查询条件-->
+				<fieldChinesename>人员</fieldChinesename><!--查询字段用于在界面显示的名称-->
+				<fieldType>4</fieldType><!--查询字段的数据类型(4：字符等，与Remedy类型保持一致)-->
+				<fieldDisplaytype>21</fieldDisplaytype><!--查询字段用于在界面显示的类型(4：字符/TEXT等，与Remedy类型保持一致)-->
+				<fieldDisplaytypeValue></fieldDisplaytypeValue><!--查询字段用于在界面显示的值的范围(只有当是Select时有值：格式为"值+冒号+显示值+分号，"如：0:是;1:否;';)-->
+				<fieldDefaultValue></fieldDefaultValue><!--查询字段用于在界面显示时的默认值-->
+			</field>
+			<field name="baseschema">
+				<fieldID>650000009</fieldID><!--查询字段ID-->
+				<fieldEnglishname>baseschema</fieldEnglishname><!--查询字段英文名，该英文名会做为我们查询条件-->
+				<fieldChinesename>工单类别</fieldChinesename><!--查询字段用于在界面显示的名称-->
+				<fieldType>4</fieldType><!--查询字段的数据类型(4：字符等，与Remedy类型保持一致)-->
+				<fieldDisplaytype>46</fieldDisplaytype><!--查询字段用于在界面显示的类型(4：字符/TEXT等，与Remedy类型保持一致)-->
+				<fieldDataValueField>650000002</fieldDataValueField>
+				<fieldDataDisplayField>650000001</fieldDataDisplayField>
+				<fieldDateForm>WF:Config_BaseCategory</fieldDateForm>
+			</field>
+		</PageQueryField>
+	</sqlquery>
+	
+<sqlquery name="design.DepRole.list">
+		<select>
+		<![CDATA[
+		#fulljoin#
+		  ]]> 
+		</select>
+		<customwhere>
+			<parameterMap prepend="AND" name="searchpara">
+				<mapingFiled  prepend="AND" fieldName="userdpid"  fieldType="4">
+					<mapsql value="isnotnull">
+						<![CDATA[
+							 C650000013='#userdpid#'
+						 ]]>  			
+					</mapsql>
+				</mapingFiled>
+				<mapingFiled  prepend="AND" fieldName="userdp"  fieldType="4">
+					<mapsql value="isnotnull">
+						<![CDATA[
+							 C650000012='#userdp#'
+						 ]]>  			
+					</mapsql>
+				</mapingFiled>
+			</parameterMap>
+			
+		</customwhere>
+		<sqlother>
+			<sqlpagination isavailability="true">
+				<sqlpageSize>20</sqlpageSize>
+			</sqlpagination>
+			<sqldistinct isavailability="false">排重的列1,排重的列2</sqldistinct>
+			<sqlSortFields isavailability="false">排序的列1,排序的列2</sqlSortFields>
+		</sqlother>
+		<PageQueryField>
+			<field name="userdp">
+				<fieldID>650000012</fieldID><!--查询字段ID-->
+				<fieldEnglishname>userdp</fieldEnglishname><!--查询字段英文名，该英文名会做为我们查询条件-->
+				<fieldChinesename>部门名称</fieldChinesename><!--查询字段用于在界面显示的名称-->
+				<fieldType>4</fieldType><!--查询字段的数据类型(4：字符等，与Remedy类型保持一致)-->
+				<fieldDisplaytype>22</fieldDisplaytype><!--查询字段用于在界面显示的类型(4：字符/TEXT等，与Remedy类型保持一致)-->
+				<fieldDisplaytypeValue></fieldDisplaytypeValue><!--查询字段用于在界面显示的值的范围(只有当是Select时有值：格式为"值+冒号+显示值+分号，"如：0:是;1:否;';)-->
+				<fieldDefaultValue></fieldDefaultValue><!--查询字段用于在界面显示时的默认值-->
+			</field>
+			<field name="baseschema">
+				<fieldID>650000008</fieldID><!--查询字段ID-->
+				<fieldEnglishname>baseschema</fieldEnglishname><!--查询字段英文名，该英文名会做为我们查询条件-->
+				<fieldChinesename>工单类别</fieldChinesename><!--查询字段用于在界面显示的名称-->
+				<fieldType>4</fieldType><!--查询字段的数据类型(4：字符等，与Remedy类型保持一致)-->
+				<fieldDisplaytype>46</fieldDisplaytype><!--查询字段用于在界面显示的类型(4：字符/TEXT等，与Remedy类型保持一致)-->
+				<fieldDataValueField>650000002</fieldDataValueField>
+				<fieldDataDisplayField>650000001</fieldDataDisplayField>		
+				<fieldDateForm>WF:Config_BaseCategory</fieldDateForm>
+				<fieldDefaultValue></fieldDefaultValue><!--查询字段用于在界面显示时的默认值-->			
+			</field>
+		</PageQueryField>
+		<rptatribute>
+			<title><!-- 标题区 -->
+				<item>
+					<titlecol>
+ 						<isshow>false</isshow>
+					</titlecol>	
+					<titlecol>
+ 						<isshow>false</isshow>
+					</titlecol>	
+					<titlecol>
+ 						<isshow>false</isshow>
+					</titlecol>	
+					<titlecol>
+ 						<isshow>false</isshow>
+					</titlecol>	
+					<titlecol>
+ 						<isshow></isshow>
+ 						<text>公  司</text>
+					</titlecol>	
+					<titlecol>
+ 						<isshow></isshow>
+ 						<text>部  门</text>
+					</titlecol>
+					<titlecol>
+ 						<isshow></isshow>
+ 						<text>人  员</text>
+					</titlecol>					
+ 				</item>
+			</title>		
+			<merger>4,5,6</merger>
+		</rptatribute>
+	</sqlquery>
+</sql-group>

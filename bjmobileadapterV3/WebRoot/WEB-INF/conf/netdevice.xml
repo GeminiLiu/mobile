@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="GB2312"?>
+<!--
+multiply的参数配置:
+系数           相当于
+0.000976563  1/1024
+0.000000954  1/1024/1024
+0.000000001  1/1024/1024/1024
+-->
+<netdevice>
+	<device>
+		<factory key="1116229498386" name="Juniper" desc="厂商">
+			 <default>
+		    	<param type="mem" value="CSPNSMEMUTIL" name="MemoryUtil" desc="内存利用率" unit="%" format="0.00" multiply="1"/>
+				<param type="memused" value="CSPNSMEMAllocate" name="MemoryUsage" desc="内存使用数" unit="%" format="0" multiply="0.000000954"/>
+				<param type="memleft" value="CSPNSMEMLeft" name="MemoryFree" desc="内存剩余量" unit="%" format="0" multiply="0.000000954"/>
+				<param type="memfrag" value="CSPNSMEMFrag" desc="内存碎片数" unit="字节" format="0"/>
+				<param type="cpuavg" value="CSPNSCPUAvg" desc="CPU平均利用率" unit="%" format="0.00"/>
+				<param type="cpulast1min" value="CSPNSCPULast1Min" desc="CPU持续1分钟利用率" unit="%" format="0.00"/>
+				<param type="cpulast5min" value="CSPNSCPULast5Min" desc="CPU持续5分钟利用率" unit="%" format="0.00"/>
+				<param type="cpulast15min" value="CSPNSCPULast15Min" desc="CPU持续15分钟利用率" unit="%" format="0.00"/>
+				<param type="sesutil" value="CSPNSSESUTIL" desc="会话利用率" unit="%" format="0.00"/>
+				<param type="sessionallocate" value="CSPNSSESSIONAllocate" desc="分配会话数" unit="个" format="0"/>
+				<param type="sessionmaxium" value="CSPNSSESSIONMaxium" desc="最大会话数" unit="个" format="0"/>
+				<param type="sessionfailed" value="CSPNSSESSIONFailed" desc="失败会话数" unit="个" format="0"/>
+			</default>
+			<device key="1116229498398" name="netscreenNs500" desc="设备型号">
+				<param type="mem" value="CSPNSMEMUTIL" name="MemoryUtil" desc="内存利用率" unit="%" format="0.00" multiply="1"/>
+				<param type="memused" value="CSPNSMEMAllocate" name="MemoryUsage" desc="内存使用数" unit="%" format="0.00" multiply="0.000000954"/>
+				<param type="memleft" value="CSPNSMEMLeft" name="MemoryFree" desc="内存剩余量" unit="%" format="0.00" multiply="0.000000954"/>
+				<param type="memfrag" value="CSPNSMEMFrag" desc="内存碎片数" unit="字节" format="0"/>
+				<param type="cpuavg" value="CSPNSCPUAvg" desc="CPU平均利用率" unit="%" format="0.00"/>
+				<param type="cpulast1min" value="CSPNSCPULast1Min" desc="CPU持续1分钟利用率" unit="%" format="0.00"/>
+				<param type="cpulast5min" value="CSPNSCPULast5Min" desc="CPU持续5分钟利用率" unit="%" format="0.00"/>
+				<param type="cpulast15min" value="CSPNSCPULast15Min" desc="CPU持续15分钟利用率" unit="%" format="0.00"/>
+				<param type="sesutil" value="CSPNSSESUTIL" desc="会话利用率" unit="%" format="0.00"/>
+				<param type="sessionallocate" value="CSPNSSESSIONAllocate" desc="分配会话数" unit="个" format="0"/>
+				<param type="sessionmaxium" value="CSPNSSESSIONMaxium" desc="最大会话数" unit="个" format="0"/>
+				<param type="sessionfailed" value="CSPNSSESSIONFailed" desc="失败会话数" unit="个" format="0"/>
+			</device>
+		</factory>
+		<factory key="1158646865171" name="F5" desc="厂商">
+			<default>
+				<param type="mem" value="CSPF5CPUUSER"  desc="F5的CPU用户利用率" unit="%" format="0.00"/>
+				<param type="cpu" value="CSPF5CPUSYS" desc="F5的CPU系统利用率"  unit="%" format="0.00"/>
+				<param type="cpu" value="CSPF5MEMAVAIL" name="MemoryFree" desc="内存利用率"  unit="%" format="0.00" multiply="0.000976563"/>
+			</default>
+		</factory>
+		<factory key="1159250451839" name="Ruijie" desc="厂商">
+			<default>
+				<param type="ipForwPkts" value="1957" desc="转包率" unit="%" format="0.00"/>
+				<param type="ipAddrErrorPkts" value="1962" desc="丢包率" unit="%" format="0.00"/>
+				<param type="ipInErrorPkts" value="1958" desc="入错包比率" unit="%" format="0.00"/>
+				<param type="ipOutErrorPkts" value="1961" desc="出错包比率" unit="%" format="0.00"/>
+			</default>
+		</factory>
+		<factory key="1107243315509" name="Brocade" desc="厂商">
+			<default>
+				<param type="mem" value="null1" name="MemoryUsage" desc="内存利用率" unit="%" format="0.00"/>
+				<param type="cpu" value="null2" desc="CPU利用率"  unit="%" format="0.00"/>
+			</default>
+		</factory>
+		<factory key="1106796439172" name="Cisco" desc="厂商">
+			<default>
+				<param type="mem" value="59" name="MemoryFree" desc="内存利用率" unit="%" format="0.00" multiply="1"/>
+				<param type="cpu" value="61" desc="CPU利用率" unit="%" format="0.00"/>
+			</default>
+			<device key="1151043736911" name="ciscoPIXFirewall525" desc="设备型号">
+			    <param type="cpu" value="CSPPIXCPUUSED" desc="CPU利用率" unit="%" format="0.00"/>
+			    <param type="mem" value="CSPPIXMEMFREE" name="MemoryFree" desc="内存可用量" unit="%" format="0.00" multiply="0.000000954"/>				
+<!--				<param type="mem" value="CSPPIXMEMUSED" name="MemoryUsage" desc="内存利用率" unit="MB" format="0.00" multiply="0.000000954"/>-->
+				
+			</device>
+			<device key="1156318664492" name="wsc4503" desc="设备型号">
+			    <param type="cpu" value="488" desc="1分钟的CPU利用率" unit="%" format="0.00"/>
+			    <param type="mem" value="1005" name="MemoryFree" desc="内存利用率" unit="%" format="0.00" multiply="0.000000954"/>
+			</device>
+		</factory>
+		<factory key="1106796535038" name="Huawei" desc="厂商">
+			<default>
+				<param type="mem" value="153" name="MemoryFree" desc="内存利用率" unit="%" format="0"/>
+				<param type="cpu" value="168" desc="CPU利用率" unit="%" format="0.00"/>
+			</default>
+			<device key="1106796535053" name="NetEngine40" desc="设备型号">
+				<param type="mem" value="CSPNE40MEM" name="MemoryUtil" desc="内存利用率" unit="%" format="0.00"  multiply="1"/>
+				<param type="cpu" value="CSPNE40CPU" desc="CPU利用率" unit="%" format="0.00"/>
+				<param type="temp1" value="CSPNE40T1" desc="8240芯片温度" unit="度" format="0"/>
+				<param type="temp2" value="CSPNE40T2" desc="Rainer(NP)温度" unit="度" format="0"/>
+				<param type="temp3" value="CSPNE40T3" desc="电源温度" unit="度" format="0"/>
+			</device>
+			<device key="1110773033243" name="S8016" desc="设备型号">
+				<param type="mem" value="CSP8016MEM" name="MemoryUtil" desc="内存利用率" unit="%" format="0.00" multiply="1"/>
+				<param type="cpu" value="CSP8016CPU" desc="CPU利用率" unit="%" format="0.00"/>
+			</device>
+			<device key="1113908458043" name="ar46-20" desc="设备型号">
+				<param type="mem" value="CSPAR46MEM" name="MemoryUtil" desc="内存利用率" unit="%" format="0.00" multiply="1"/>
+				<param type="cpu" value="CSPAR46CPU" desc="CPU利用率" unit="%" format="0.00"/>
+				<param type="temp" value="CSPAR46TEMP" desc="AR46的温度" unit="度" format="0"/>
+				<param type="vol" value="CSPAR46VOL" desc="AR46的电压" unit="伏" format="0"/>
+			</device>
+			<device key="1150955632260" name="ar46-40" desc="设备型号">
+				<param type="mem" value="CSPAR46MEM" name="MemoryUtil" desc="内存利用率" unit="%" format="0.00" multiply="1"/>
+				<param type="cpu" value="CSPAR46CPU" desc="CPU利用率" unit="%" format="0.00"/>
+				<param type="temp" value="CSPAR46TEMP" desc="AR46的温度" unit="度" format="0"/>
+				<param type="vol" value="CSPAR46VOL" desc="AR46的电压" unit="伏" format="0"/>
+			</device>
+			<device key="1151909715208" name="NE20" desc="设备型号">
+				<param type="mem" value="486" name="MemoryFree" desc="内存利用率" unit="%" format="0"/>
+				<param type="cpu" value="484" desc="CPU利用率" unit="%" format="0.00"/>
+			</device>	
+			<device key="1154069938111" name="E200" desc="设备型号">
+				<param type="mem" value="486" name="MemoryFree" desc="内存利用率" unit="%" format="0"/>
+				<param type="cpu" value="484" desc="CPU利用率" unit="%" format="0.00"/>
+			</device>						
+		</factory>
+		<factory key="1106796463978" name="Enterasys" desc="厂商">
+			<default>
+				<param type="mem" value="CSPCTMEMUTIL" name="MemoryUtil" desc="内存利用率" unit="%" format="0.00" multiply="1"/>
+				<param type="cpu" value="CSPCTCPUUTIL" desc="CPU利用率" unit="%" format="0.00"/>
+			</default>
+		</factory>
+		<factory key="1124268982006" name="AVAYA" desc="厂商">
+			<default>
+				<param type="mem" value="CSPCTMEMUTIL" name="MemoryUtil" desc="内存利用率" unit="%" format="0.00" multiply="1"/>
+				<param type="cpu" value="CSPCTCPUUTIL" desc="CPU利用率" unit="%" format="0.00"/>
+			</default>
+		</factory>
+	</device>
+	<interface>
+		<param type="inter" value="ifInOctets" name="" desc="入字节数" unit="KB" format="0" multiply="0.000976563"/>
+		<param type="inter" value="ifInUcastPkts" name="" desc="入包数" unit="数量" format="0"/>
+		<param type="inter" value="ifInDiscards" name="" desc="入丢包数" unit="数量" format="0"/>
+		<param type="inter" value="ifInErrors" name="" desc="入错包数" unit="数量" format="0"/>
+		<param type="inter" value="1953" name="" desc="输入带宽利用率" unit="%" format="0.00"/>
+		<param type="inter" value="ifOutOctets" name="" desc="出字节数" unit="KB" format="0" multiply="0.000976563"/>
+		<param type="inter" value="ifOutUcastPkts" name="" desc="出包数" unit="数量" format="0"/>
+		<param type="inter" value="ifOutDiscards" name="" desc="出丢包数" unit="数量" format="0"/>
+		<param type="inter" value="ifOutErrors" name="" desc="出错包数" unit="数量" format="0"/>
+		<param type="inter" value="1954" name="" desc="输出带宽利用率" unit="%" format="0.00"/>
+		<param type="inter" value="1959" name="" desc="带宽利用率" unit="%" format="0.00"/>
+		<param type="inter" value="1960" name="" desc="接口流速" unit="KB/s" format="0" multiply="0.000976563"/>
+	</interface>
+</netdevice>

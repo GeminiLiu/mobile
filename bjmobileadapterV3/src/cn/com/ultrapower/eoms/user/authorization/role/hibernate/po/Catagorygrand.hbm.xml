@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding='UTF-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+                            "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                            "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<!-- DO NOT EDIT: This is a generated file that is synchronized -->
+<!-- by MyEclipse Hibernate tool integration.                   -->
+<!-- Created Tue Oct 31 14:41:48 CST 2006                         -->
+<hibernate-mapping package="cn.com.ultrapower.eoms.user.authorization.role.hibernate.po">
+
+    <class name="Catagorygrandpo" table="catagorygrand" lazy="false">
+		<id name="id" column="id" type="java.lang.String"> 
+			<generator class="assigned"/> 
+		</id>
+        <property name="Condition_RoleID" column="Condition_RoleID" type="java.lang.String" />
+        <property name="Condition_sourceid" column="Condition_sourceid" type="java.lang.String" />
+        <property name="Condition_Desc" column="Condition_Desc" type="java.lang.String" />
+    </class>
+    
+</hibernate-mapping>

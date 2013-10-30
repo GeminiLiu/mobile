@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="GB2312"?>
+<sql-group>
+	<doc>
+		<author>duanximeng</author>
+		<date>2008-07-07</date>
+		<description>合建电路使用情况报表</description>
+	</doc>
+	<sql name="cooperatebuildcircuitusingmonthlyreportpage.group" datasource="Ultranms">
+		<item dbms="All"><![CDATA[
+
+			select t.groupname from (
+			select g.c630000018 groupname  from {100} g where g.c630000021='2' and g.c630000020='000000000600001' and g.c630000027='1'
+			union all 
+			select trim('网管中心') groupname from dual
+			) t 
+		]]></item>
+	</sql>
+	<sql name="cooperatebuildcircuitusingmonthlyreport.group" datasource="Ultranms">
+		<item dbms="All"><![CDATA[
+
+			select ' ',t.groupname as 公司 from (
+			select g.c630000018 groupname  from {100} g where g.c630000021='2' and g.c630000020='000000000600001' and g.c630000027='1'
+			union all 
+			select trim('网管中心') groupname from dual
+			) t where 1=1 {1}
+		]]></item>
+	</sql>
+	
+
+		<sql name="cooperatebuildcircuitusingmonthlyreport.left" datasource="Ultranms">
+		<item dbms="All"><![CDATA[
+						select trim('省际电路2M') from dual 
+						union all
+						select trim('省际电路155M') from dual 
+						union all
+						select trim('省际电路2.5G') from dual 
+						union all
+						select trim('省际电路10G') from dual 
+						union all
+						select trim('省内长途电路2M') from dual 
+						union all
+						select trim('省内长途电路155M') from dual 
+						union all
+						select trim('省内长途电路2.5G') from dual 
+						union all
+						select trim('省内长途电路10G') from dual 
+						union all
+						select trim('省内本地/城域网电路2M') from dual 
+						union all
+						select trim('省内本地/城域网电路155M') from dual 
+						union all
+						select trim('省内本地/城域网电路2.5G') from dual 
+						union all
+						select trim('省内本地/城域网电路10G') from dual 
+						union all
+						select trim('合建电路合计2M') from dual 
+						union all
+						select trim('合建电路合计155M') from dual 
+						union all
+						select trim('合建电路合计2.5G') from dual 
+						union all
+						select trim('合建电路合计10G') from dual  
+		]]></item>
+	</sql>
+		<sql name="cooperatebuildcircuitusingmonthlyreport.centervalue" datasource="Ultranms">
+		<item dbms="All"><![CDATA[
+					select trim('省际电路2M'),t.c802000002 as 部门,nvl(sum(t.c802000004),0) as sum  from  {100} t where 1=1 {5} group by t.c802000002 
+					union all
+					select trim('省际电路155M'),t.c802000002 as 部门,nvl(sum(t.c802000005),0) as sum  from  {100} t where 1=1 {5} group by t.c802000002 
+					union all
+					select trim('省际电路2.5G'),t.c802000002 as 部门,nvl(sum(t.c802000006),0) as sum  from  {100} t where 1=1 {5} group by t.c802000002 
+					union all
+					select trim('省际电路10G'),t.c802000002 as 部门,nvl(sum(t.c802000007),0) as sum  from  {100} t where 1=1 {5} group by t.c802000002 
+					union all
+					select trim('省内长途电路2M'),t.c802000002 as 部门,nvl(sum(t.c802000009),0) as sum  from  {100} t where 1=1 {5} group by t.c802000002 
+					union all
+					select trim('省内长途电路155M'),t.c802000002 as 部门,nvl(sum(t.c802000010),0) as sum  from  {100} t where 1=1 {5} group by t.c802000002 
+					union all
+					select trim('省内长途电路2.5G'),t.c802000002 as 部门,nvl(sum(t.c802000011),0) as sum  from  {100} t where 1=1 {5} group by t.c802000002 
+					union all
+					select trim('省内长途电路10G'),t.c802000002 as 部门,nvl(sum(t.c802000012),0) as sum  from  {100} t where 1=1 {5} group by t.c802000002 
+					union all
+					select trim('省内本地/城域网电路2M'),t.c802000002 as 部门,nvl(sum(t.c802000013),0) as sum  from  {100} t where 1=1 {5} group by t.c802000002 
+					union all
+					select trim('省内本地/城域网电路155M'),t.c802000002 as 部门,nvl(sum(t.c802000014),0) as sum  from  {100} t where 1=1 {5} group by t.c802000002 
+					union all
+					select trim('省内本地/城域网电路2.5G'),t.c802000002 as 部门,nvl(sum(t.c802000015),0) as sum  from  {100} t where 1=1 {5} group by t.c802000002 
+					union all
+					select trim('省内本地/城域网电路10G'),t.c802000002 as 部门,nvl(sum(t.c802000016),0) as sum  from  {100} t where 1=1 {5} group by t.c802000002 
+					union all
+					select trim('合建电路合计2M'),t.c802000002 as 部门,nvl(sum(t.c802000019),0) as sum  from  {100} t where 1=1 {5} group by t.c802000002 
+					union all
+					select trim('合建电路合计155M'),t.c802000002 as 部门,nvl(sum(t.c802000020),0) as sum  from  {100} t where 1=1 {5} group by t.c802000002 
+					union all
+					select trim('合建电路合计2.5G'),t.c802000002 as 部门,nvl(sum(t.c802000021),0) as sum  from  {100} t where 1=1 {5} group by t.c802000002 
+					union all
+					select trim('合建电路合计10G'),t.c802000002 as 部门,nvl(sum(t.c802000022),0) as sum  from  {100} t where 1=1 {5} group by t.c802000002 
+		]]></item>
+	</sql>
+</sql-group>
+

@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sql-group>
+	<doc>
+		<author>作者</author> 
+		<date>时间</date> 
+		<description>Sql 描述</description> 		
+	</doc>
+	
+	<sqlquery name="example.query.001" dbpoolname="mypool">
+		<select>
+		<![CDATA[ 
+ 			select c630000001 as User_LoginName
+ 				   ,c630000003 as User_FullName
+ 				   ,c630000008 as 联系电话  
+ 				   ,c630000011 as EMail
+ 				   
+ 			 from {UltraProcess:SysUser}
+ 			 where 1=1 $con_001$  
+ 			 $directpar$
+ 			 order by  c630000001
+		  ]]> 
+		</select>
+		<customwhere>
+			<parameterMap prepend="AND" name="con_001">
+				<mapingFiled  prepend="AND" fieldName="loginname"  fieldType="4">
+					<mapsql value="isnotnull">
+						<![CDATA[
+							 c630000001 like '%#loginname#%'
+						 ]]>  			
+					</mapsql>
+				</mapingFiled>
+				<mapingFiled  prepend="AND" fieldName="loginfullname"  fieldType="4">
+					<mapsql value="isnotnull">
+						<![CDATA[
+							 c630000003 like '%#loginfullname#%'
+						 ]]>  			
+					</mapsql>
+				</mapingFiled>	
+				<mapingFiled  prepend="AND" fieldName="email"  fieldType="4">
+					<mapsql value="isnotnull">
+						<![CDATA[
+							 c630000011 like '%#email#%'
+						 ]]>  			
+					</mapsql>
+				</mapingFiled>	
+			
+				<parameterMap prepend="AND" name="con_001">
+					<mapingFiled  prepend="AND" fieldName="loginname"  fieldType="4">
+						<mapsql value="isnotnull">
+							<![CDATA[
+								 c630000001 like '%#loginname#%'
+							 ]]>  			
+						</mapsql>
+					</mapingFiled>
+					<mapingFiled  prepend="AND" fieldName="loginfullname"  fieldType="4">
+						<mapsql value="isnotnull">
+							<![CDATA[
+								 c630000003 like '%#loginfullname#%'
+							 ]]>  			
+						</mapsql>
+					</mapingFiled>	
+					<mapingFiled  prepend="AND" fieldName="email"  fieldType="4">
+						<mapsql value="isnotnull">
+							<![CDATA[
+								 c630000011 like '%#email#%'
+							 ]]>  			
+						</mapsql>
+					</mapingFiled>	
+				
+				</parameterMap>			
+			</parameterMap>
+		</customwhere>
+		<rptatribute>
+			<title>
+				<item>
+					<titlecol >
+						<align></align>
+						<width></width>
+						<isshow></isshow>
+						<rowspan></rowspan>
+						<colspan></colspan>
+						<urltemp>AA.JSP?aa=$User_LoginName$ add=$EMail$</urltemp>
+						<text>用户登录名</text>
+					</titlecol>
+					<titlecol >
+						<align></align>
+						<width></width>
+						<isshow>false</isshow>
+						<rowspan></rowspan>
+						<colspan></colspan>
+						<urltemp>AA.JSP?aa=$User_LoginName$ add=$EMail$</urltemp>
+						<text>用户登录名</text>
+					</titlecol>					
+				</item>				
+			</title>
+			<merger></merger>
+		</rptatribute>
+	</sqlquery>	
+	
+</sql-group>
+
+

@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sql-group>
+	<doc>
+		<author>lihaoyuan</author> 
+		<date>2008年10月23日</date> 
+		<description>工单查询</description> 		
+	</doc>
+	<sqlquery name="query.NetChangeView.all">
+		<select>
+		<![CDATA[ 
+		select 
+			/*COUNT*/
+			*
+			/*COUNT*/
+			 from(
+		select 
+			cc.C1                as BaseID,
+			'CC'                  as type,
+			C800030002      as Plan_StartTime,
+			C800030003      as Plan_EndTime,
+			'电路调度'          as ChangeType,
+			C700000014      as BaseItems,
+			C800030025      as Relate_Province,
+			C800030026      as Relate_City,
+			''                      as NetName,
+			C800030001      as DealerInfo,
+			C700000011      as BaseSummary,
+			C700000001      as BaseSchema
+		from {WF:EL_CM_NC_CC} cc
+		where C700000010 = '实施中' 
+		and C800030003 > round(to_number(sysdate-to_date('1970-01-01 08:00:00' , 'yyyy-mm-dd hh24:mi:ss'))*1440*60)
+		union all
+		select 
+			du.C1                    as BaseID,
+			'DU'                       as type,
+			C800020064           as Plan_StartTime,
+			C800020065           as Plan_EndTime,
+			'网络数据管理工单'   as ChangeType,
+			C700000014           as BaseItems,
+			C800030001           as Relate_Province,
+			C800030002           as Relate_City,
+			C800020004           as NetName,
+			C800020057           as DealerInfo,
+			C700000011           as BaseSummary,
+			C700000001           as BaseSchema
+		from {WF:EL_CM_NC_DU} du
+		where C700000010 = '实施中' 
+		and C800020065 > round(to_number(sysdate-to_date('1970-01-01 08:00:00' , 'yyyy-mm-dd hh24:mi:ss'))*1440*60)
+		union all
+		select 
+			su.C1                as BaseID,
+			'SU'                  as type,
+			C800030009      as Plan_StartTime,
+			C800030010      as Plan_EndTime,
+			'软件变更工单'    as ChangeType,
+			C700000014      as BaseItems,
+			C800030050      as Relate_Province,
+			C800030051      as Relate_City,
+			C800020008      as NetName,
+			C800030007      as DealerInfo,
+			C700000011      as BaseSummary,
+			C700000001      as BaseSchema
+		from {WF:EL_CM_NC_SU} su
+		where C700000010 = '实施中' 
+		and C800030010 > round(to_number(sysdate-to_date('1970-01-01 08:00:00' , 'yyyy-mm-dd hh24:mi:ss'))*1440*60)
+		) result 
+		$extend$
+		  ]]> 
+		</select>
+		<customwhere>
+		<parameterMap prepend="AND" name="baseparaCC">
+				<mapingFiled  prepend="AND" fieldName="currentTime"  fieldType="2">
+					<mapsql value="isnotnull">
+						<![CDATA[
+							 C800030003 > #currentTime#
+						 ]]>  			
+					</mapsql>
+				</mapingFiled>
+			</parameterMap>
+		<parameterMap prepend="AND" name="baseparaDU">
+				<mapingFiled  prepend="AND" fieldName="currentTime"  fieldType="2">
+					<mapsql value="isnotnull">
+						<![CDATA[
+							 C800020065 > #currentTime#
+						 ]]>  			
+					</mapsql>
+				</mapingFiled>
+			</parameterMap>
+		<parameterMap prepend="AND" name="baseparaSU">
+				<mapingFiled  prepend="AND" fieldName="currentTime"  fieldType="2">
+					<mapsql value="isnotnull">
+						<![CDATA[
+							 C800030010 > #currentTime#
+						 ]]>  			
+					</mapsql>
+				</mapingFiled>
+			</parameterMap>
+			<parameterMap prepend="EXTEND" name="extend">
+					<mapingFiled  prepend="EXTEND" fieldName="orderby"  fieldType="4">
+						<mapsql value="isnotnull">
+							<![CDATA[
+								   order by #orderby#
+							 ]]>
+						</mapsql>
+					</mapingFiled>
+			</parameterMap>
+		</customwhere>
+		<sqlother>
+			<sqlpagination isavailability="true">
+				<sqlpageSize>20</sqlpageSize>
+			</sqlpagination>
+			<sqldistinct isavailability="false">排重的列1,排重的列2</sqldistinct>
+			<sqlSortFields isavailability="false">排序的列1,排序的列2</sqlSortFields>
+		</sqlother>
+	</sqlquery>
+</sql-group>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sql-group>
+	<doc>
+		<author>作者</author> 
+		<date>时间</date> 
+		<description>对流程管理内的查询</description> 		
+	</doc>
+	<sqlquery name="configquery.BaseOwnField.SelectAll">
+		<select>
+		<![CDATA[ 
+			select
+   			  /*COUNT*/  
+			*
+   			  /*COUNT*/  
+			from
+			(
+   			  select  
+   			  	c1 			as BaseOwnFieldInfoID,
+				C650000001	as BaseCategoryName,
+				C650000002	as BaseCategorySchama,
+				C650000003	as Base_field_ID,
+				C650000004  as Base_field_DBName,
+				C650000005  as Base_field_ShowName,
+				C650000006  as Base_field_Type,
+				C650000100  as BaseOwnFieldInfoDesc
+              from {WF:Config_BaseOwnFieldInfo_Mobile} base 
+              where 1=1 $sch_schema$
+              )
+			   $orderby$
+		  ]]> 
+		</select>
+		<customwhere>
+			<parameterMap prepend="AND" name="sch_schema">
+				<mapingFiled  prepend="" fieldName="baseschama"  fieldType="4">
+					<mapsql value="isnotnull">
+						<![CDATA[
+							  C650000002 = '#baseschama#'
+						 ]]>  			
+					</mapsql>
+				</mapingFiled>
+			</parameterMap>		
+			<parameterMap prepend="EXTEND" name="orderby">
+					<mapingFiled  prepend="EXTEND" fieldName="orderby"  fieldType="4">
+						<mapsql value="isnotnull">
+							<![CDATA[
+								 order by  #orderby#
+							 ]]>  			
+						</mapsql>
+					</mapingFiled>
+			</parameterMap>				
+ 		</customwhere>
+	</sqlquery>
+</sql-group>

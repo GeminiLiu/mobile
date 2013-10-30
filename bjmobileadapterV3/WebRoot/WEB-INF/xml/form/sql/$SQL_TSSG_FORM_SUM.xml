@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="GB2312"?>
+<sql-group>
+	<doc>
+		<author>duanximeng</author>
+		<date>2006-03-17</date>
+		<description>超出工单各环节时限情况统计表
+	</description>
+	</doc>
+	
+	<sql name="Tssg_form_sum" datasource="Ultranms">
+		<item dbms="All"><![CDATA[
+		
+   select type.项目1 as 项目,
+         type.项目2 as 项目,
+         type.项目3 as 项目,
+         type.项目4 as 项目,
+         type.具体 as 具体     
+  from 
+  (select distinct  buss.c801800001 as 项目1,buss.c801800002 as 项目2 ,buss.c801800003 as 项目3, 
+buss.c801800004 as 项目4, buss.c801800005 as 项目5,buss.c801800006 as 具体, buss.c801800007 from {100} buss
+where buss.c801800001='投诉' 
+order  by buss.c801800007 desc,buss.c801800001, buss.c801800006  ) type
+		]]></item>
+	</sql>
+		<sql name="Tssg_form_sum_number" datasource="Ultranms">
+		<item dbms="All"><![CDATA[
+		
+select distinct comp.c801000003,city.c801800001,count(distinct(comp.c1)) from {100} comp,{200} city,{300} u,{500} g,{600} gu
+ where city.c801800001=comp.c801000018
+ and comp.c700000010<>'已作废' 
+ and comp.c801000002='投诉'
+ and comp.C700000005=u.C630000001
+ and u.C1=gu.C620000028
+ and gu.C620000027=g.C1
+ {2}
+ {3}
+ {4}
+ {5}
+ {6}
+ group by comp.c801000003 ,city.c801800001
+		]]></item>
+	</sql>
+	<sql name="Tssg_form_sum_groupnumber" datasource="Ultranms">
+		<item dbms="All"><![CDATA[
+    select g.c630000018 from {100} g where 1=1 {8}
+		]]></item>
+	</sql>
+
+</sql-group>
+

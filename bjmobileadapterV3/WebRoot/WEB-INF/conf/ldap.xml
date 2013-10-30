@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2005 rel. 3 U (http://www.altova.com) by  () -->
+<ldap>
+	<authentication>
+		<!--
+	  		不同的ldap的验证方式需要不同的属性值,请参照Ultra NMS 统一认证(ldap)设计文档
+			name   属性名称
+			value  属性值
+		 -->
+		<property name="Context.INITIAL_CONTEXT_FACTORY" value="com.sun.jndi.ldap.LdapCtxFactory"/>
+		<property name="Context.PROVIDER_URL" value="ldap://192.168.0.6:389"/>
+		<property name="Context.SECURITY_AUTHENTICATION" value="simple"/>
+		<property name="inputDN" value="false"/>
+		<property name="parentDN" value="ou=unicom,dc=com"/>
+<!--		<property name="parentDN" value="cn=Manager,dc=com"/>-->
+		<property name="attributeName" value="cn"/>
+		
+		<!--<property name="javax.security.sasl.qop" value="auth"/>-->
+	</authentication>
+	<!--
+			搜索参数
+			searchNode    搜索的启始节点
+			searchFilter  搜索的过滤条件 条件的格式请参照ldap相关文档
+			searchScope   搜索范围  SUBTREE_SCOPE=本身和所有子节点  OBJECT_SCOPE=节点本身  ONELEVEL_SCOPE=本身和下一级子节点
+        -->
+	<collect searchNode="dc=com" searchFilter="(cn=*)" searchScope="SUBTREE_SCOPE" directoryDN="cn=Manager,dc=com" manager="6789:;&lt;=">
+		<!--
+			entry的属性信息和com.ultrapower.ultranms.security.value.User属性的对应关系，用户对象的属性类型只能是字符串
+			name              entry的属性名称
+			userTableField    User属性
+        -->
+		<attribute name="cn" userTableField="userName"/>
+		<attribute name="sn" userTableField="surName"/>
+		<attribute name="userPassword" userTableField="pass"/>
+		<attribute name="provinceCode" userTableField="province"/>
+		<attribute name="DepartmentID" userTableField="depart"/>
+		<attribute name="personType" userTableField="persontype"/>
+		<attribute name="telephoneNumber" userTableField="telephone"/>
+		<attribute name="personmobile" userTableField="mobile"/>
+		<attribute name="personemail" userTableField="mailbox"/>
+		<attribute name="remedyFlag" userTableField="remedy"/>
+		<attribute name="dutyFunc" userTableField="duty"/>
+		<attribute name="responsibility" userTableField="responsibility"/>
+	</collect>
+</ldap>

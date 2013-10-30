@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="GB2312"?>
+<sql-group>
+	<doc>
+		<author>duanximeng</author>
+		<date>2006-03-29</date>
+		<description></description>
+	</doc>
+	
+	<sql name="accidentacceptlink" datasource="Ultranms">
+		<item dbms="All"><![CDATA[
+
+
+select
+distinct(t.c1),t.c700000001,t.c700000003 as 工单编号,
+t.c700000006 as 建单时间,t.c700000004 as 建单人,
+t.c700000011 as 主题,t.c700000015 as 紧急程度,
+t.c700000014 as 所属专业,t.c700000010 as 工单状态
+from {600} t,{500} item,(select * from {700} union all select * from {800}) pro,{200} u,{300} g,{400} gu
+where
+item.c802800005=t.c802000018
+and t.c1=pro.c700020001
+and t.c700000001=pro.c700020002
+and pro.c700020010=u.c630000001
+and pro.C700020011 in ('已完成','处理中')
+and u.c1=gu.c620000028 
+and g.c1=gu.c620000027
+{2}
+{3}
+{4}
+{6}
+
+		]]></item>
+	</sql>
+	
+	<sql name="accidentacceptlink.department" datasource="Ultranms">
+		<item dbms="All"><![CDATA[
+
+select g.c1 from {300} g where 1=1 {3}
+
+		]]></item>
+	</sql>
+</sql-group>
+

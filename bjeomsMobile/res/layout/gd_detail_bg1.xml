@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:id="@+id/ll_friends"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent"
+	android:background="#ffffff"
+	android:orientation="vertical">
+	<RelativeLayout
+		android:id="@+id/rl_title"
+		android:layout_width="fill_parent"
+		android:layout_height="50dip"
+		android:layout_weight="0.01"
+		android:padding="5dip"
+		android:background="@drawable/titlebg">
+		<ImageView
+			android:id="@+id/iv_friends"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_centerVertical="true"
+			android:src="@drawable/back" />	
+		<TextView
+			android:id="@+id/tv_title"
+			android:layout_width="wrap_content"
+			android:layout_height="match_parent"
+			android:layout_centerInParent="true"
+			android:singleLine="true"
+			android:drawablePadding="2dp"
+			android:gravity="center_vertical"
+			android:text="辽宁EOMS"
+			android:textColor="#ffffff"
+			android:textSize="20sp" />
+	</RelativeLayout>
+	<LinearLayout
+		android:layout_weight="100"
+		android:id="@+id/ll_sv"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:layout_below="@id/rl_title"
+		android:background="#ffffff"
+		android:orientation="vertical">
+		<ScrollView
+			android:id="@+id/scrollview_gd"
+			android:layout_width="fill_parent"
+			android:layout_height="wrap_content"
+			android:background="#ffffff"
+			android:scrollbars="vertical">
+			<LinearLayout
+				android:layout_width="fill_parent"
+				android:layout_height="wrap_content"
+				android:background="#ffffff"
+				android:orientation="vertical">
+				<LinearLayout
+					android:layout_width="fill_parent"
+					android:layout_height="wrap_content"
+					android:background="#ffffff"
+					android:orientation="vertical">
+					<LinearLayout
+						android:layout_width="fill_parent"
+						android:layout_height="wrap_content"
+						android:orientation="vertical"
+						android:padding="10dip">
+						<TextView
+							android:id="@+id/deal_tv1"
+							android:layout_width="match_parent"
+							android:layout_height="wrap_content"
+							android:layout_gravity="center_vertical"
+							android:text="故障处理工单："
+							android:textColor="#005bac"
+							android:textSize="16dip" />
+						<TextView
+							android:id="@+id/deal_content"
+							android:layout_width="fill_parent"
+							android:layout_height="wrap_content"
+							android:layout_gravity="center_vertical"
+							android:text="ID-051-20110516-003(一级处理中)"
+							android:textColor="#979797"
+							android:textSize="15dip" />
+					</LinearLayout>
+					<View
+						android:layout_width="fill_parent"
+						android:layout_height="1dip"
+						android:background="@drawable/line_blue" />
+				</LinearLayout>
+				<LinearLayout
+					android:id="@+id/gd_frame_lv1"
+					android:layout_width="fill_parent"
+					android:layout_height="wrap_content"
+					android:orientation="vertical" />
+			</LinearLayout>
+		</ScrollView>
+	</LinearLayout>
+	<RelativeLayout
+		android:id="@+id/gd_bottom"
+		android:layout_width="fill_parent"
+		android:layout_height="50dip"
+		android:orientation="horizontal" />
+</LinearLayout>

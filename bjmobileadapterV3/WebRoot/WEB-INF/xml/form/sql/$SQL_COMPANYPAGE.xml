@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="GB2312"?>
+<sql-group>
+	<doc>
+		<author></author>
+		<date>2006-03-29</date>
+		<description>河北EOMS工单统计</description>
+	</doc>
+	
+	<!--公司-->
+		<sql name="form.group" datasource="Ultranms">
+		<item dbms="All"><![CDATA[
+		select sysgroup.C630000018 as groupname,sysgroup.C1 as groupid from {100} sysgroup where sysgroup.C630000021=2 and sysgroup.C630000020<>0
+		]]></item>
+	</sql>
+　　<!--部门-->
+		<sql name="form.department" datasource="Ultranms">
+		<item dbms="All"><![CDATA[
+		
+        select sysgroup.C630000018 as groupname,sysgroup.C1 as groupid 
+        from {100} sysgroup 
+        where sysgroup.C630000021=3 
+		
+		]]></item>
+	   </sql>
+	<!--工单类型-->
+		<sql name="form.formtype" datasource="Ultranms">
+		<item dbms="All"><![CDATA[
+		select t.C650000001 as groupname,'t'||ars.SCHEMAID as groupid 
+        from ARSCHEMA ars,{100} t
+        where ars.name=t.C650000002
+        
+		]]></item>
+	</sql>
+	<!--对接接口名称-->
+		<sql name="form.interfacetype" datasource="Ultranms">
+		<item dbms="All"><![CDATA[
+		select 
+        case t.C630000003 when 'HWWGNMC' then '话务网管' when 'DLWGNMC' then '动力网管' else '数据网管' end as groupname,
+        t.C1 as groupid from {100} t 
+        where t.C630000003 in ('HWWGNMC','DLWGNMC','SJWGNMC')
+		]]></item>
+	</sql>
+	<!--工单类型-->
+		<sql name="form.formtype1" datasource="Ultranms">
+		<item dbms="All"><![CDATA[
+		select t.C650000001 as groupname,'t'||ars.SCHEMAID as groupid 
+        from ARSCHEMA ars,{100} t
+        where ars.name=t.C650000002
+        
+		]]></item>
+	</sql>
+	
+</sql-group>
+

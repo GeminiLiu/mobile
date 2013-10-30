@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding='UTF-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+                            "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                            "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<!-- DO NOT EDIT: This is a generated file that is synchronized -->
+<!-- by MyEclipse Hibernate tool integration.                   -->
+<!-- Created Mon Oct 16 12:32:17 GMT 2006                         -->
+<hibernate-mapping package="cn.com.ultrapower.eoms.user.sla.hibernate.po">
+
+    <class name="UserSlaConfigPo" table="userslaconfig" lazy="false">
+        <id name="id" column="id" type="string">
+            <generator class="assigned"/>
+        </id>
+        <property name="Userid"      column="Userid"      type="java.lang.String" />
+        <property name="Slaid"       column="Slaid"       type="java.lang.String" />       
+    </class>
+    
+</hibernate-mapping>

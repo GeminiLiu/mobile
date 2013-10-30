@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="GB2312"?>
+<sql-group>
+	<doc>
+		<author>lihongbo</author>
+		<date>2007-04-03</date>
+		<description>投公司统计工单受理信息</description>
+	</doc>
+	
+	<sql name="hbeoms.companyaccept" datasource="Ultranms">
+		<item dbms="All"><![CDATA[
+        
+        select
+        b.company as 公司名称,
+        nvl(a.acceptcount,0) as 本月受理环节数,
+        b.overtime as  受理环节超时个数
+        from 
+        (select 
+        g.C630000018 as company,
+        count(t.C1) as acceptcount
+        from {300} t,{200} g,{100} u
+        where 
+        t.C700020019=0
+        and t.C700020011 in ('已完成','处理中')
+        and t.C700020010=u.C630000001
+        --and u.C630000013=g.C1
+        and (u.C630000013=g.C1 or u.C630000015=g.C1)
+        and g.c630000020='000000000600001'
+        {1}
+        {5}
+        group by g.C630000018) a,
+        (
+        select 
+        d.company,
+        nvl(c.overtime,0) as overtime
+        from
+        (select 
+        g.C630000018 as company,
+        count(t.C1) as overtime
+        from {300} t,{200} g,{100} u
+        where 
+        t.C700020019=0
+        and t.C700020011 in ('已完成','处理中')
+        and t.C700020010=u.C630000001
+        --and u.C630000013=g.C1
+        and (u.C630000013=g.C1 or u.C630000015=g.C1)
+        and g.c630000020='000000000600001'
+        and t.C700020016>t.C700020013
+        and t.C700020016>0
+        and t.C700020013>0
+        {1}
+        {5}
+        group by g.C630000018) c,
+        (select g.C630000018 as company from {200} g
+        where g.c630000020='000000000600001' {1}) d
+        where c.company(+)=d.company) b
+        where a.company(+)=b.company
+
+
+        
+		]]></item>
+	</sql>
+
+</sql-group>
+

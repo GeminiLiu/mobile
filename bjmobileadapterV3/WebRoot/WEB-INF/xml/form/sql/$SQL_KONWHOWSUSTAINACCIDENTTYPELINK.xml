@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="GB2312"?>
+<sql-group>
+	<doc>
+		<author>duanximeng</author>
+		<date>2006-03-29</date>
+		<description></description>
+	</doc>
+	
+	<sql name="knowhowsustainaccidenttypelink" datasource="Ultranms">
+		<item dbms="All"><![CDATA[
+select
+distinct(t.c1),t.c700000001,t.c700000003 as 工单编号,
+t.c700000006 as 建单时间,t.c700000004 as 建单人,
+t.c700000011 as 主题,t.c700000015 as 紧急程度,
+t.c700000014 as 所属专业,t.c700000010 as 工单状态
+from {100} t,{200} u,{300} g,{400} gu
+where
+t.c700000005=u.c630000001
+and t.c700000010='已关闭'
+{2}
+{3}
+{4}
+{6}
+--and g.c630000018='技术支援中心'
+and u.c1=gu.c620000028
+and gu.c620000027=g.c1
+order by t.c700000003
+		]]></item>
+	</sql>
+</sql-group>
+

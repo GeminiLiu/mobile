@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="GB2312"?>
+<sql-group>
+	<doc>
+		<author>duanximeng</author>
+		<date>2008-07-08</date>
+		<description>合建电路指标录入</description>
+	</doc>
+	<sql name="buildtogethercircuitindicatorsinputreportpage.group" datasource="Ultranms">
+		<item dbms="All"><![CDATA[
+
+			select t.groupname from (
+			select g.c630000018 groupname  from {100} g where g.c630000021='2' and g.c630000020='000000000600001' and g.c630000027='1'
+			union all 
+			select trim('网管中心') groupname from dual
+			) t 
+		]]></item>
+	</sql>
+	<sql name="buildtogethercircuitindicatorsinputreport.group" datasource="Ultranms">
+		<item dbms="All"><![CDATA[
+
+			select t.groupname as 公司 from (
+			select g.c630000018 groupname  from {100} g where g.c630000021='2' and g.c630000020='000000000600001' and g.c630000027='1'
+			union all 
+			select trim('网管中心') groupname from dual
+			) t where 1=1 {1}
+		]]></item>
+	</sql>
+	
+
+		<sql name="buildtogethercircuitindicatorsinputreport.left" datasource="Ultranms">
+		<item dbms="All"><![CDATA[
+						select ' ',trim('合建电路合计-2M(条)') as 指标名称 from dual 
+						union all
+						select ' ',trim('合建电路合计-155M(条)') from dual 
+						union all
+						select ' ',trim('合建电路合计-2.5G(条)') from dual 
+						union all
+						select ' ',trim('合建电路合计-10G(条)') from dual 
+		]]></item>
+	</sql>
+		<sql name="buildtogethercircuitindicatorsinputreport.centervalue" datasource="Ultranms">
+		<item dbms="All"><![CDATA[
+						select trim('合建电路合计-2M(条)'),t.c802000002 as 部门,sum(t.c802000004) as num from {100} t where  1=1 {5}  group by t.c802000002 
+						union all
+						select trim('合建电路合计-155M(条)'),t.c802000002 as 部门,sum(t.c802000005) as num from {100} t where  1=1 {5}  group by t.c802000002 
+						union all
+						select trim('合建电路合计-2.5G(条)'),t.c802000002 as 部门,sum(t.c802000006) as num from {100} t where  1=1 {5}  group by t.c802000002 
+						union all
+						select trim('合建电路合计-10G(条)'),t.c802000002 as 部门,sum(t.c802000010) as num from {100} t where  1=1 {5}  group by t.c802000002                       		]]></item>
+	</sql>
+</sql-group>
+

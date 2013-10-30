@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<config>
+	<!-- 我的待办，我部门的待办 XML:SQL_MyWaitingDeal.xml -->
+	<sqls name="query.MyWaitingDeal.user">
+		<sql schema="*">query.MyWaitingDeal.user</sql>
+	</sqls>
+
+	<!-- 我公司的待办 XML:SQL_MyWaitingDeal.xml -->
+	<sqls name="query.MyWaitingDeal.company">
+		<sql schema="*">query.MyWaitingDeal.company</sql>
+	</sqls>
+    <!--2012年5月7日添加	-->
+    <!--我的待阅XML:SQL_MyWaitingDeal.xml-->
+    <sqls name="query.MyWaitingDeal.audit.user">
+		<sql schema="*">query.MyWaitingDeal.audit.user</sql>
+	</sqls>
+    <sqls name="query.MyWaitingDeal.read.user">
+		<sql schema="*">query.MyWaitingDeal.read.user</sql>
+	</sqls>
+	 <sqls name="query.MyWaitingDeal.deal.user">
+		<sql schema="*">query.MyWaitingDeal.deal.user</sql>
+	</sqls>
+    <!--2012年5月7添加结束    -->
+	<!-- 所有的待办 XML:SQL_MyWaitingDeal.xml -->
+	<sqls name="query.MyWaitingDeal.all">
+		<sql schema="*">query.MyWaitingDeal.all</sql>
+	</sqls>
+	<!-- 所有的已办 XML:SQL_MyGroupDealed.xml -->
+	<sqls name="query.MyGroupDealed.all">
+		<sql schema="*">query.MyGroupDealed.all</sql>
+	</sqls>
+	<!-- 我建立的工单 XML:SQL_MyDealed.xml -->
+	<sqls name="query.MyDealed.create">
+		<sql schema="*">query.MyDealed.create</sql>
+	</sqls>
+	<!-- 我处理的工单 XML:SQL_MyDealed.xml -->
+	<sqls name="query.MyDealed.user">
+		<sql schema="*">query.MyDealed.user</sql>
+	</sqls>
+	<!-- 我部门的工单，我公司的工单 XML:SQL_MyDealed.xml -->
+	<sqls name="query.MyDealed.all">
+		<sql schema="*">query.MyDealed.all</sql>
+	</sqls>
+	<!-- =工单查询 XML:SQL_BaseView.xml -->
+	<sqls name="query.BaseView.all">
+	<sql schema="*">query.BaseView.all</sql>
+	<sql schema="WF:EL_TTM_CCH">query.BaseView.Complain</sql>
+	<sql schema="WF:EL_TTM_TTH">query.BaseView.Incident</sql>
+	</sqls>
+</config>

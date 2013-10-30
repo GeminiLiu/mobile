@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding='UTF-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+                            "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                            "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<!-- DO NOT EDIT: This is a generated file that is synchronized -->
+<!-- by MyEclipse Hibernate tool integration.                   -->
+<!-- Created Wed Jan 17 11:09:50 GMT 2007                         -->
+<hibernate-mapping package="cn.com.ultrapower.eoms.user.config.filesubscribe.hibernate.po">
+
+    <class name="FileSubscribe" table="FILE_SUBSCRIBE" lazy="false">
+        <id name="filesmsId" column="FILESMS_ID" type="java.lang.Long">
+            <generator class="assigned"/>
+        </id>
+ 
+        <property name="filesmsUserid" column="FILESMS_USERID" type="java.lang.String" />
+        <property name="filesmsSourceid" column="FILESMS_SOURCEID" type="java.lang.String" />
+        <property name="filesmsFlag" column="FILESMS_FLAG" type="java.lang.Long" />
+        <property name="note" column="NOTE" type="java.lang.String" />
+    </class>
+    
+</hibernate-mapping>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sql-group>
+	<doc>
+		<author>黄维</author> 
+		<date>2008-10-12</date> 
+		<description>对TplDealLink的查询</description> 		
+	</doc>
+	<sqlquery name="TplDealLink.BaseOn_Condition">
+		<select>
+		<![CDATA[ 
+			select 
+			/*COUNT*/
+				C1			as	LinkID,
+				C700000057	as	BaseOpenDateTime,
+				C700020505	as	LinkDesc,
+				C700020504	as	EndPhase,
+				C700020592	as	EndPoint,
+				C700020523	as	EndPort,
+				C700020506	as	Flag00IsAvail,
+				C700020507	as	Flag21Required,
+				C700020501	as	LinkBaseID,
+				C700020502	as	LinkBaseSchema,
+				C700020508	as	LinkFlagDuplicated,
+				C700020525	as	LinkGoLine,
+				C700020526	as	LinkNum,
+				C700020521	as	LinkPhaseNo,
+				C700020044	as	LinkType,
+				C700020524	as	LinkVerdictResult,
+				C700020503	as	StartPhase,
+				C700020591	as	StartPoint,
+				C700020522	as	StartPort
+			/*COUNT*/
+              from {WF:App_TplDealLink} TplDealLink
+			  where $BaseOn_Condition$ 
+		  ]]> 
+		</select>
+		<customwhere>
+			<parameterMap prepend="" name="BaseOn_Condition">
+				<mapingFiled  prepend="" fieldName="is_notnull"  fieldType="4">
+					<mapsql value="isnotnull">
+						<![CDATA[
+							 1=#is_notnull#
+						 ]]>  			
+					</mapsql>
+				</mapingFiled>
+				<mapingFiled  prepend="and" fieldName="baseschema"  fieldType="4">
+					<mapsql value="isnotnull">
+						<![CDATA[
+							 C700020502='#baseschema#'
+						 ]]>  			
+					</mapsql>
+				</mapingFiled>
+				<mapingFiled  prepend="and" fieldName="basesid"  fieldType="4">
+					<mapsql value="isnotnull">
+						<![CDATA[
+							 C700020501='#basesid#'
+						 ]]>  			
+					</mapsql>
+				</mapingFiled>
+				<mapingFiled  prepend="and" fieldName="startphase"  fieldType="4">
+					<mapsql value="isnotnull">
+						<![CDATA[
+							 C700020503='#startphase#'
+						 ]]>  			
+					</mapsql>
+				</mapingFiled>
+			</parameterMap>			
+		</customwhere>
+	</sqlquery>
+	
+</sql-group>

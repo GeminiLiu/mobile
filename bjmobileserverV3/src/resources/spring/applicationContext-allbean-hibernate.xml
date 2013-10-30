@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jee="http://www.springframework.org/schema/jee"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-2.5.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd"
+	default-lazy-init="true" default-autowire="byName">
+	<bean id="dataSource" class="org.logicalcobwebs.proxool.ProxoolDataSource"
+		destroy-method="close">
+		<property name="driver" value="${jdbc.driverClassName}" />
+		<property name="driverUrl" value="${jdbc.url}"></property>
+		<property name="user" value="${jdbc.username}"></property>
+		<property name="password" value="${jdbc.password}"></property>
+		<property name="maximumConnectionCount" value="20"></property>
+		<property name="minimumConnectionCount" value="2"></property>
+		<property name="simultaneousBuildThrottle" value="200"></property>
+		<property name="houseKeepingTestSql" value="select CURRENT_DATE from dual">
+		</property>
+		<property name="prototypeCount" value="5"></property>
+		<property name="trace" value="true"></property>
+		<property name="verbose" value="true"></property>
+		<property name="alias" value="${jdbc.alias}" />
+	</bean>
+	
+	<bean id="oracleLobHandler" class="org.springframework.jdbc.support.lob.DefaultLobHandler"
+		lazy-init="true"></bean>
+		
+	<!--Hibernate SessionFatory-->
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="hibernateProperties">
+			<props merge="default">
+				<prop key="hibernate.dialect">${jdbc.dialect}</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.cache.provider_class">
+					org.hibernate.cache.EhCacheProvider
+				</prop>
+				<prop key="hibernate.cache.use_query_cache">true</prop>
+				<prop key="hibernate.hbm2ddl.auto">none</prop>
+				<prop key="hibernate.connection.SetBigStringTryClob">true</prop> 
+			</props>
+		</property>
+
+		<property name="packagesToScan">
+			<list>
+				<value>com.ultrapower.eoms.mobile.*</value>
+				<value>com.ultrapower.eoms.mobile.*.*</value>
+			</list>
+		</property>
+		<property name="lobHandler" ref="oracleLobHandler" />
+	</bean>
+
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+</beans>

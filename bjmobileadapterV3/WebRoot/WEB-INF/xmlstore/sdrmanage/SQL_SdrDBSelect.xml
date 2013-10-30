@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sql-group>
+	<doc>
+		<author>作者</author> 
+		<date>时间</date> 
+		<description>Sql 描述</description> 		
+	</doc>
+	<sqlquery name="query.sdr.sdrdb">
+		<select>
+		<![CDATA[ 
+   			  select 
+   			  /*COUNT*/
+   			  *
+              /*COUNT*/
+              from
+			  (
+			  	select
+			  		C1         as ProductID,
+			  		C650000001 as Product_Code,
+			  		C650000002 as Product_Name,
+			  		C650000003 as Product_State,
+			  		C650000004 as Product_OPDP,
+			  		C650000005 as Product_OPType,
+			  		C650000006 as Product_KeyWord,
+			  		C650000007 as Product_Desc,
+			  		C650000008 as Product_OtherDesc,
+			  		C650000009 as Product_DSRecordUser,
+			  		C650000010 as Product_DSRecordTime,
+			  		C650000011 as Product_DSRecordDP,
+			  		C650000012 as Product_DSRecordTel,
+			  		C650000013 as Product_TSRecordUser,
+			  		C650000014 as Product_TSRecordTime,
+			  		C650000015 as Product_TSRecordDP,
+			  		C650000016 as Product_TSRecordTel,
+			  		C650000017 as Product_EXRecordUser,
+			  		C650000018 as Product_EXRecordTime,
+			  		C650000019 as Product_EXRecordDP,
+			  		C650000020 as Product_EXRecordTel 
+			  	from {WF:EL_SDR_DI_DB} sdr 
+			  	where C3 > 0
+			  	$basequery$ 
+			  	$paraquery$
+			  ) result 
+			  $extend$ 
+		  ]]> 
+		</select>
+		<customwhere>
+			<parameterMap prepend="AND" name="basequery">
+				<mapingFiled  prepend="AND" fieldName="state"  fieldType="4">
+					<mapsql value="isnotnull">
+						<![CDATA[
+							 C650000003  = '#state#'
+						 ]]>  			
+					</mapsql>
+				</mapingFiled>
+			</parameterMap>
+			<parameterMap prepend="AND" name="paraquery">
+				<mapingFiled  prepend="AND" fieldName="Product_Code"  fieldType="4">
+					<mapsql value="isnotnull">
+						<![CDATA[
+							 C650000001  like '%#Product_Code#%'
+						 ]]>  			
+					</mapsql>
+				</mapingFiled>
+				<mapingFiled  prepend="AND" fieldName="Product_Name"  fieldType="4">
+					<mapsql value="isnotnull">
+						<![CDATA[
+							 C650000002  like '%#Product_Name#%'
+						 ]]>  			
+					</mapsql>
+				</mapingFiled>
+			</parameterMap>
+			<parameterMap prepend="EXTEND" name="extend">
+					<mapingFiled  prepend="EXTEND" fieldName="orderby"  fieldType="4">
+						<mapsql value="isnotnull">
+							<![CDATA[
+								 order by #orderby#
+							 ]]>  			
+						</mapsql>
+					</mapingFiled>
+			</parameterMap>				
+ 		</customwhere>
+ 		<sqlother>
+			<sqlpagination isavailability="true">
+				<sqlpageSize>20</sqlpageSize>
+			</sqlpagination>
+			<sqldistinct isavailability="false">排重的列1,排重的列2</sqldistinct>
+			<sqlSortFields isavailability="false">排序的列1,排序的列2</sqlSortFields>
+		</sqlother>
+		<PageQueryField>
+		</PageQueryField>
+	</sqlquery>
+	<PageQueryField>
+			<field name="ProductCode">
+				<fieldID>650000001</fieldID><!--查询字段ID-->
+				<fieldEnglishname>Product_Code</fieldEnglishname><!--查询字段英文名，该英文名会做为我们查询条件-->
+				<fieldChinesename>产品代码</fieldChinesename><!--查询字段用于在界面显示的名称-->
+				<fieldType>4</fieldType><!--查询字段的数据类型(4：字符等，与Remedy类型保持一致)-->
+				<fieldDisplaytype>4</fieldDisplaytype><!--查询字段用于在界面显示的类型(4：字符/TEXT等，与Remedy类型保持一致)-->
+				<fieldDisplaytypeValue></fieldDisplaytypeValue><!--查询字段用于在界面显示的值的范围(只有当是Select时有值：格式为"值+冒号+显示值+分号，"如：0:是;1:否;';)-->
+				<fieldDefaultValue></fieldDefaultValue><!--查询字段用于在界面显示时的默认值-->
+			</field>
+			<field name="ProductName">
+				<fieldID>650000002</fieldID><!--查询字段ID-->
+				<fieldEnglishname>Product_Name</fieldEnglishname><!--查询字段英文名，该英文名会做为我们查询条件-->
+				<fieldChinesename>产品名称</fieldChinesename><!--查询字段用于在界面显示的名称-->
+				<fieldType>4</fieldType><!--查询字段的数据类型(4：字符等，与Remedy类型保持一致)-->
+				<fieldDisplaytype>4</fieldDisplaytype><!--查询字段用于在界面显示的类型(4：字符/TEXT等，与Remedy类型保持一致)-->
+				<fieldDisplaytypeValue></fieldDisplaytypeValue><!--查询字段用于在界面显示的值的范围(只有当是Select时有值：格式为"值+冒号+显示值+分号，"如：0:是;1:否;';)-->
+				<fieldDefaultValue></fieldDefaultValue><!--查询字段用于在界面显示时的默认值-->
+			</field>
+		</PageQueryField>
+</sql-group>

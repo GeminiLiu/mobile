@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="GB2312"?>
+<sql-group>
+	<doc>
+		<author>duanximeng</author>
+		<date>2008-07-07</date>
+		<description>传送网-省内干线指标录入</description>
+	</doc>
+	<sql name="transportnetworkinnerprovincialroutequartyreportpage.group" datasource="Ultranms">
+		<item dbms="All"><![CDATA[
+
+			select t.groupname from (
+			select g.c630000018 groupname  from {100} g where g.c630000021='2' and g.c630000020='000000000600001' and g.c630000027='1'
+			union all 
+			select trim('网管中心') groupname from dual
+			) t 
+		]]></item>
+	</sql>
+	<sql name="transportnetworkinnerprovincialroutequartyreport.group" datasource="Ultranms">
+		<item dbms="All"><![CDATA[
+
+			select t.groupname as 公司 from (
+			select g.c630000018 groupname  from {100} g where g.c630000021='2' and g.c630000020='000000000600001' and g.c630000027='1'
+			union all 
+			select trim('网管中心') groupname from dual
+			) t where 1=1 {1}
+		]]></item>
+	</sql>
+	
+
+		<sql name="transportnetworkinnerprovincialroutequartyreport.left" datasource="Ultranms">
+		<item dbms="All"><![CDATA[
+						select ' ',trim('省内长途网-管道长度(公里)') as 指标名称 from dual 
+						union all
+						select ' ',trim('省内长途网-光缆长度(皮长公里)') from dual 
+						union all
+						select ' ',trim('其中:管道光缆长度(皮长公里)') from dual 
+						union all
+						select ' ',trim('其中:直埋光缆长度(皮长公里)') from dual 
+						union all
+						select ' ',trim('其中:架空光缆长度(皮长公里)') from dual    
+			            union all
+			            select ' ',trim('省内长途网-光缆纤芯长度 (芯公里)') as 指标名称 from dual 
+						union all
+						select ' ',trim('省内长途网-租用光缆纤芯长度(芯公里)') from dual 
+						union all
+						select ' ',trim('省内长途网-光缆纤芯长度-已占用纤芯长度(芯公里)') from dual 
+						union all
+						select ' ',trim('省内长途网-波分复用系统长度(公里)') from dual 
+						union all
+						select ' ',trim('省内长途网-同步数字系列设备套数-其中：10Gb/s设备(套)') from dual  
+						union all
+						select ' ',trim('省内长途网-同步数字系列设备套数-其中：2.5Gb/s设备(套)') from dual 
+						union all
+						select ' ',trim('省内长途网-同步数字系列设备套数-其中：622Mb/s以下设备(套)') from dual 
+		]]></item>
+	</sql>
+		<sql name="transportnetworkinnerprovincialroutequartyreport.centervalue" datasource="Ultranms">
+		<item dbms="All"><![CDATA[
+						select trim('省内长途网-管道长度(公里)'),t.c802000002 as 部门,sum(t.c802000004)  as num from {100} t  where 1=1 {5}  group by t.c802000002 
+						union all
+						select trim('省内长途网-光缆长度(皮长公里)'),t.c802000002 as 部门,sum(t.c802000005)  as num from {100} t  where 1=1 {5}  group by t.c802000002 
+						union all
+						select trim('其中:管道光缆长度(皮长公里)'),t.c802000002 as 部门,sum(t.c802000006)  as num from {100} t  where 1=1 {5}  group by t.c802000002 
+						union all
+						select trim('其中:直埋光缆长度(皮长公里)'),t.c802000002 as 部门,sum(t.c802000010)  as num from {100} t  where 1=1 {5}  group by t.c802000002 
+						union all
+						select trim('其中:架空光缆长度(皮长公里)'),t.c802000002 as 部门,sum(t.c802000011)  as num from {100} t  where 1=1 {5}  group by t.c802000002    
+			            union all
+			            select trim('省内长途网-光缆纤芯长度 (芯公里)') ,t.c802000002 as 部门,sum(t.c802000012)  as num from {100} t where 1=1 {5}  group by t.c802000002  
+						union all
+						select trim('省内长途网-租用光缆纤芯长度(芯公里)'),t.c802000002 as 部门,sum(t.c802000014)  as num from {100} t  where 1=1 {5}  group by t.c802000002 
+						union all
+						select trim('省内长途网-光缆纤芯长度-已占用纤芯长度(芯公里)'),t.c802000002 as 部门,sum(t.c802000015)  as num from {100} t  where 1=1 {5}  group by t.c802000002 
+						union all
+						select trim('省内长途网-波分复用系统长度(公里)'),t.c802000002 as 部门,sum(t.c802000016)  as num from {100} t  where 1=1 {5}  group by t.c802000002 
+						union all
+						select trim('省内长途网-同步数字系列设备套数-其中：10Gb/s设备(套)'),t.c802000002 as 部门,sum(t.c802000020)  as num from {100} t  where 1=1 {5}  group by t.c802000002  
+						union all
+						select trim('省内长途网-同步数字系列设备套数-其中：2.5Gb/s设备(套)'),t.c802000002 as 部门,sum(t.c802000021)  as num from {100} t  where 1=1 {5}  group by t.c802000002 
+						union all
+						select trim('省内长途网-同步数字系列设备套数-其中：622Mb/s以下设备(套)'),t.c802000002 as 部门,sum(t.c802000022)  as num from {100} t  where 1=1 {5}  group by t.c802000002 
+            
+                 		]]></item>
+	</sql>
+</sql-group>
+

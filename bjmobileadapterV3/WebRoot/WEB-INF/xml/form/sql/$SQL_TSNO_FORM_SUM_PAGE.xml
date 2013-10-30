@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="GB2312"?>
+<sql-group>
+	<doc>
+		<author>duanximeng</author>
+		<date>2006-03-26</date>
+		<description>河北EOMS工单统计</description>
+	</doc>
+	<!-- 业务类型217-->
+	<sql name="tsnoformsum.yewuleixing" datasource="Ultranms">
+		<item dbms="All"><![CDATA[
+		select  ty.c801800001 from {100} ty order by ty.c801842006 
+		]]></item>
+	</sql>
+	<!--受理地市 209-->
+		<sql name="tsnoformsum.shoulidishi" datasource="Ultranms">
+		<item dbms="All"><![CDATA[
+				select city.c801800001 from {400} city where city.c801800001!='集团' order by city.c801842006
+		]]></item>
+	</sql>
+		<!--员工工号 -->
+		<sql name="tsnoformsum.shouliqudao" datasource="Ultranms">
+		<item dbms="All"><![CDATA[
+				select distinct Way.C630000001 from {700} Way
+		]]></item>
+	</sql>
+	<!--客户类型t226 -->
+			<sql name="tsnoformsum.kehuleixing" datasource="Ultranms">
+		<item dbms="All"><![CDATA[
+				select   usertype.c801800001 from {500} usertype order by usertype.c801842006
+		]]></item>
+	</sql>
+	<!--客户类型t226 -->
+			<sql name="tsnoformsum.qudao" datasource="Ultranms">
+		<item dbms="All"><![CDATA[
+				select t.C630000018 as name ,t.C630000030 as id from {100} t where 
+	   	   			      t.C630000021='2' and 
+                          ((t.C630000018 like '%分公司%') 
+	   	   			   	  or (t.C630000018 like '%区客服%')
+						  or (t.C630000018 like '%河北移动%'))
+		]]></item>
+	</sql>
+
+</sql-group>
+

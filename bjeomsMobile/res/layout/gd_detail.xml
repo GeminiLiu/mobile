@@ -1,0 +1,989 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ll_friends"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" 
+    >
+<ScrollView 
+       android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+    >
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/titlebg" >
+
+        <ImageView
+          android:id="@+id/iv_friends"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:background="@drawable/back" 
+            />
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="200dip"
+            android:layout_height="wrap_content"
+         	android:text="辽宁省沈阳市：SYBSCHB上报"
+         	android:textColor="#ffffff"
+       		android:layout_marginLeft="10dip"
+       		android:layout_toRightOf="@id/iv_friends"
+            android:textSize="18sp"
+            android:layout_centerVertical="true"
+                 android:ellipsize="end"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:scrollHorizontally="true"
+        
+             />
+         <ImageView
+             android:id="@+id/iv_yes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/yes" />
+    </RelativeLayout>
+</ScrollView>    <LinearLayout 
+          android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="#ffffff"
+        >
+        <ScrollView
+        android:id="@+id/scrollview_gd"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="#ffffff"
+        android:scrollbars="none" >
+    
+           <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="#ffffff"
+            android:orientation="vertical" >
+            
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="10dip" >
+
+                <TextView
+                    android:id="@+id/deal_tv1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="故障处理工单："
+                    android:textColor="#005bac"
+                    android:textSize="18dip" >
+                </TextView>
+
+                <TextView
+                    android:id="@+id/deal_content"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="ID-051-20110516-003(一级处理中)"
+                    android:textColor="#979797"
+                    android:textSize="15dip" >
+                </TextView>
+            </LinearLayout>
+              <View 
+                    android:layout_width="fill_parent"
+                    android:layout_height="1dip"
+                    android:background="@drawable/line_blue"
+                    />
+     <!-- 常规信息 -->
+
+            <RelativeLayout
+           android:id="@+id/ll_normalMessage1"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="#ffffff"
+                android:padding="10dip" >
+
+                <TextView
+                    android:id="@+id/detail_tv2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="常规信息"
+                   android:textColor="#005bac"
+                    android:textSize="18dip" 
+                    >
+                </TextView>
+                <ImageView 
+                    android:id="@+id/add1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                	android:src="@drawable/decrease"
+				    android:layout_alignParentRight="true"                
+				    android:layout_centerVertical="true"
+                    />
+               
+            </RelativeLayout>
+           
+          <View 
+                    android:layout_width="fill_parent"
+                    android:layout_height="1dip"
+                    android:layout_marginLeft="10dip"
+                   	android:layout_marginRight="10dip"
+                    android:background="#99b8d7"
+                    />
+            
+             
+               <LinearLayout
+                   android:id="@+id/ll_normalMessage"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone" >
+                
+       				  <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="#ffffff"
+                    android:padding="10dip" 
+                    >
+
+                    <TextView
+                       
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="建单人"
+                        android:textColor="#535353"
+                        android:textSize="15dip" 
+                        />
+
+                    <TextView
+                       android:id="@+id/tv_normal_person"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:hint="黄维"
+                        android:textSize="15dip"
+                         />
+                </LinearLayout>
+                    <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dip"
+                   android:layout_marginLeft="10dip"
+                   android:layout_marginRight="10dip"
+                    android:background="@drawable/gd_line" />
+                      
+                            
+         <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="#ffffff"
+                    android:padding="10dip" >
+
+                    <TextView
+                       
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="建单人单位"
+                        android:textColor="#535353"
+                       android:textSize="15dip" />
+
+                    <TextView
+                      		android:id="@+id/tv_normal_person_company"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:hint="中国移动通信集团辽宁分公司" 
+                        android:textSize="15dip"
+                        />
+                </LinearLayout>
+                      <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dip"
+                   android:layout_marginLeft="10dip"
+                   android:layout_marginRight="10dip"
+                    android:background="@drawable/gd_line" />
+                      
+                         <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="#ffffff"
+                    android:padding="10dip" >
+
+                    <TextView
+                       
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="建单人部门"
+                        android:textColor="#535353"
+                       android:textSize="15dip" />
+
+                    <TextView
+                     	android:id="@+id/tv_normal_person_department"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:hint="中国移动通信集团辽宁分公司" 
+                        android:textSize="15dip"
+                        />
+                </LinearLayout>
+                      <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dip"
+                   android:layout_marginLeft="10dip"
+                   android:layout_marginRight="10dip"
+                    android:background="@drawable/gd_line" />
+                       <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                   android:background="#ffffff"
+                    android:padding="10dip" >
+
+                    <TextView
+                       
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="联系方式："
+                        android:textColor="#535353"
+                       android:textSize="15dip" />
+
+                    <TextView
+                      		android:id="@+id/tv_normal_tel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:hint="13437470812" 
+                        android:textSize="15dip"
+                        />
+                </LinearLayout>
+                      <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dip"
+                   android:layout_marginLeft="10dip"
+                   android:layout_marginRight="10dip"
+                    android:background="@drawable/gd_line" />
+                         <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="#ffffff"
+                    android:padding="10dip" >
+
+                    <TextView
+                       
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="建单时间"
+                        android:textColor="#535353"
+                       android:textSize="15dip" />
+
+                    <TextView
+                      		android:id="@+id/tv_normal_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:hint="2012-12-12 12:12:12" 
+                        android:textSize="15dip"
+                        />
+                </LinearLayout>
+                   <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dip"
+                   android:layout_marginLeft="10dip"
+                   android:layout_marginRight="10dip"
+                    android:background="@drawable/gd_line" />
+                           
+                   
+             	</LinearLayout>
+            <RelativeLayout
+           		android:id="@+id/ll_limitMessage1"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="#ffffff"
+                android:padding="10dip" >
+
+                <TextView
+                    android:id="@+id/detail_tv2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="时限信息"
+                   android:textColor="#005bac"
+                    android:textSize="18dip" 
+                    >
+                </TextView>
+                <ImageView 
+                    android:id="@+id/add2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                	android:src="@drawable/decrease"
+				    android:layout_alignParentRight="true"                
+				    android:layout_centerVertical="true"
+                    />
+               
+            </RelativeLayout>
+            
+             <View 
+                    android:layout_width="fill_parent"
+                    android:layout_height="1dip"
+                    android:layout_marginLeft="10dip"
+                   	android:layout_marginRight="10dip"
+                    android:background="#99b8d7"
+                    />
+             
+              <LinearLayout
+                   android:id="@+id/ll_limitMessage"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone" >
+                
+       				  <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="#ffffff"
+                    android:padding="10dip" 
+                    >
+
+                    <TextView
+                       
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="受理时限"
+                        android:textColor="#535353"
+                        android:textSize="15dip" 
+                        />
+
+                    <TextView
+                       android:id="@+id/tv_limit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:hint="2012-12-12 13:13:13"
+                        android:textSize="15dip"
+                         />
+                </LinearLayout>
+                    <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dip"
+                   android:layout_marginLeft="10dip"
+                   android:layout_marginRight="10dip"
+                    android:background="@drawable/gd_line" />
+                    
+                   <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                   android:background="#ffffff"
+                    android:padding="10dip" 
+                    >
+
+                    <TextView
+                       
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="处理时限"
+                        android:textColor="#535353"
+                        android:textSize="15dip" 
+                        />
+
+                    <TextView
+                       android:id="@+id/tv_dealTime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:hint="2012-12-12 14:14:14"
+                        android:textSize="15dip"
+                         />
+                </LinearLayout>
+                    <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dip"
+                   android:layout_marginLeft="10dip"
+                   android:layout_marginRight="10dip"
+                    android:background="@drawable/gd_line" />
+                     <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dip"
+                   android:layout_marginLeft="10dip"
+                   android:layout_marginRight="10dip"
+                    android:background="@drawable/gd_line" />
+                
+        
+                    </LinearLayout>
+                    
+                    <RelativeLayout
+         		 android:id="@+id/ll_bug1"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="#ffffff"
+                android:padding="10dip" >
+
+                <TextView
+                    android:id="@+id/detail_tv2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="故障信息"
+                   android:textColor="#005bac"
+                    android:textSize="18dip" 
+                    >
+                </TextView>
+                <ImageView 
+                    android:id="@+id/add3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                	android:src="@drawable/decrease"
+				    android:layout_alignParentRight="true"                
+				    android:layout_centerVertical="true"
+                    />
+               
+            </RelativeLayout>
+            
+             <View 
+                    android:layout_width="fill_parent"
+                    android:layout_height="1dip"
+                    android:layout_marginLeft="10dip"
+                   	android:layout_marginRight="10dip"
+                    android:background="#99b8d7"
+                    />
+              
+                 <LinearLayout
+                 android:id="@+id/ll_bug"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone" >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                   android:padding="10dip"
+                    android:orientation="vertical" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="网络分类"
+                        android:textColor="#ab000000"
+                        android:textSize="15dip"
+                         />
+
+                    <TextView
+                        android:id="@+id/tv_netClassify"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="XXXXXXXXXXX"
+                        android:textColor="#535353"
+                        android:textSize="15dip"/>
+                </LinearLayout>
+ 				<View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dip"
+                   android:layout_marginLeft="10dip"
+                   android:layout_marginRight="10dip"
+                    android:background="@drawable/gd_line" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+               android:padding="10dip"
+                    android:orientation="vertical" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="是否已预处理"
+                        android:textColor="#ab000000" 
+                        android:textSize="15dip"
+                        />
+
+                    <TextView
+                        android:id="@+id/tv_no"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="否"
+                        android:textColor="#535353"
+                       android:textSize="15dip" />
+                </LinearLayout>
+                 <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dip"
+                   android:layout_marginLeft="10dip"
+                   android:layout_marginRight="10dip"
+                    android:background="@drawable/gd_line" />
+                               <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+              	 android:padding="10dip"
+                    android:orientation="vertical" >
+
+                    <TextView
+                        android:id="@+id/tv_way"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="故障发现方式"
+                        android:textColor="#ab000000" 
+                        android:textSize="15dip"
+                        />
+
+                    <TextView
+                        android:id="@+id/et_no"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="XXXXXXXXXXX"
+                        android:textColor="#535353"
+                       android:textSize="15dip" />
+                </LinearLayout>
+                 <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dip"
+                   android:layout_marginLeft="10dip"
+                   android:layout_marginRight="10dip"
+                    android:background="@drawable/gd_line" />
+                 
+                   <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+	            	android:padding="10dip"
+                    android:orientation="vertical" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="故障发生时间"
+                        android:textColor="#ab000000" 
+                        android:textSize="15dip"
+                        />
+
+                    <TextView
+                        android:id="@+id/tv_happentime"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="2012-12-11 11:11:11"
+                        android:textColor="#535353"
+                       android:textSize="15dip" />
+                </LinearLayout>
+                 <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dip"
+                   android:layout_marginLeft="10dip"
+                   android:layout_marginRight="10dip"
+                    android:background="@drawable/gd_line" />
+                           
+                   <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                  	android:padding="10dip"
+                    android:orientation="vertical" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="是否重大故障"
+                        android:textColor="#ab000000" 
+                        android:textSize="15dip"
+                        />
+
+                    <TextView
+                        android:id="@+id/tv_no1"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="是"
+                        android:textColor="#535353"
+                       android:textSize="15dip" />
+                </LinearLayout>
+                 <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dip"
+                   android:layout_marginLeft="10dip"
+                   android:layout_marginRight="10dip"
+                    android:background="@drawable/gd_line" />
+                 <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dip"
+                    android:orientation="vertical" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="故障设备型号"
+                        android:textColor="#ab000000" 
+                        android:textSize="15dip"
+                        />
+
+                    <TextView
+                        android:id="@+id/tv_number"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Y580XX-232-XX"
+                        android:textColor="#535353"
+                       android:textSize="15dip" />
+                </LinearLayout>
+                  <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dip"
+                   android:layout_marginLeft="10dip"
+                   android:layout_marginRight="10dip"
+                    android:background="@drawable/gd_line" />
+                 <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                 	android:padding="10dip"
+                    android:orientation="vertical" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="故障设备类型"
+                        android:textColor="#ab000000" 
+                        android:textSize="15dip"
+                        />
+
+                    <TextView
+                        android:id="@+id/tv_type"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Y580XX-232-XX"
+                        android:textColor="#535353"
+                       android:textSize="15dip" />
+                </LinearLayout>
+                 <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dip"
+                   android:layout_marginLeft="10dip"
+                   android:layout_marginRight="10dip"
+                    android:background="@drawable/gd_line" />
+                
+                 <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dip"
+                    android:orientation="vertical" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="基站属性"
+                        android:textColor="#ab000000" 
+                        android:textSize="15dip"
+                        />
+
+                    <TextView
+                        android:id="@+id/tv_attribute"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="XXXXXXXXXX"
+                        android:textColor="#535353"
+                       android:textSize="15dip" />
+                </LinearLayout>
+                 <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dip"
+                   android:layout_marginLeft="10dip"
+                   android:layout_marginRight="10dip"
+                    android:background="@drawable/gd_line" />
+                 <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+              		 android:padding="10dip"
+                    android:orientation="vertical" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="故障响应级别"
+                        android:textColor="#ab000000" 
+                        android:textSize="15dip"
+                        />
+
+                    <TextView
+                        android:id="@+id/tv_respondClass"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="一级"
+                        android:textColor="#535353"
+                       android:textSize="15dip" />
+                </LinearLayout>
+                 <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dip"
+                   android:layout_marginLeft="10dip"
+                   android:layout_marginRight="10dip"
+                    android:background="@drawable/gd_line" />
+                 <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dip"
+                    android:orientation="vertical" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="网元名称"
+                        android:textColor="#ab000000" 
+                        android:textSize="15dip"
+                        />
+
+                    <TextView
+                        android:id="@+id/tv_netName"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="XXX"
+                        android:textColor="#535353"
+                       android:textSize="15dip" />
+                </LinearLayout>
+                 <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dip"
+                   android:layout_marginLeft="10dip"
+                   android:layout_marginRight="10dip"
+                    android:background="@drawable/gd_line" />
+              </LinearLayout>
+               <RelativeLayout
+           android:id="@+id/ll_dealMessage1"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="#ffffff"
+                android:padding="10dip" >
+
+                <TextView
+                    android:id="@+id/detail_tv2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="处理信息"
+                   android:textColor="#005bac"
+                    android:textSize="18dip" 
+                    >
+                </TextView>
+                <ImageView 
+                    android:id="@+id/add4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                	android:src="@drawable/decrease"
+				    android:layout_alignParentRight="true"                
+				    android:layout_centerVertical="true"
+                    />
+               
+            </RelativeLayout>
+            
+             <View 
+                    android:layout_width="fill_parent"
+                    android:layout_height="1dip"
+                    android:layout_marginLeft="10dip"
+                   	android:layout_marginRight="10dip"
+                    android:background="#99b8d7"
+                    />
+              
+               <LinearLayout
+                 android:id="@+id/ll_dealMessage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="visible" >
+
+                
+				
+				 <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                        android:paddingTop="5dip"
+                    android:paddingLeft="10dip"
+                    android:paddingRight="10dip"
+                    android:orientation="vertical" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="故障恢复时间"
+                        android:textColor="#ab000000"
+                        android:textSize="15dip"
+                         />
+
+                    <EditText
+                        android:id="@+id/et_recoverTime"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                         android:hint="2012-12-12 17:17:17"
+                        android:textColor="#535353"
+                        android:textSize="15dip"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                       android:paddingTop="5dip"
+                    android:paddingLeft="10dip"
+                    android:paddingRight="10dip"
+                    android:orientation="vertical" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="故障原因分类"
+                        android:textColor="#ab000000"
+                        android:textSize="15dip"
+                         />
+
+                 <Spinner
+                        android:id="@+id/spinner_reason"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="#535353"
+                        android:textSize="15dip"/>                
+                        </LinearLayout>
+                        <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                         android:paddingTop="5dip"
+                    android:paddingLeft="10dip"
+                    android:paddingRight="10dip"
+                    android:orientation="vertical" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="原因描述"
+                        android:textColor="#ab000000" 
+                        android:textSize="15dip"
+                        />
+
+                    <EditText
+                        android:id="@+id/et_reason"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="2012-12-12 17:17:17"
+                        android:textColor="#535353"
+                        android:textSize="15dip" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+             		     android:paddingTop="5dip"
+                    android:paddingLeft="10dip"
+                    android:paddingRight="10dip"
+                    android:orientation="vertical" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="处理过程"
+                        android:textColor="#ab000000" 
+                        android:textSize="15dip"
+                        />
+
+                    <EditText
+                        android:id="@+id/et_program"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="2012-12-12 17:17:17"
+                        android:textColor="#535353"
+                       android:textSize="15dip"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                        android:paddingTop="5dip"
+                    android:paddingLeft="10dip"
+                    android:paddingRight="10dip" 
+                    >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="遗留问题"
+                        android:textColor="#ab000000" 
+                        android:textSize="15dip"
+                        />
+
+                    <EditText
+                        android:id="@+id/et_problem"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="2012-12-12 17:17:17"
+                        android:textColor="#535353"
+                       android:textSize="15dip"/>
+                </LinearLayout>
+ 			</LinearLayout>
+              
+               
+
+              </LinearLayout>
+              
+           
+              </ScrollView>
+              </LinearLayout>
+              
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+         >
+        
+  		<LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.0"
+            android:gravity="center"
+            android:visibility="gone" >
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ic_launcher" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.0"
+            android:gravity="center" >
+	
+            <ImageButton
+                android:id="@+id/imageButton1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/gdclass_normal"  />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.0"
+            android:gravity="center" 
+            
+            >
+
+            <ImageButton
+                android:id="@+id/imageButton2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+               android:background="@drawable/gdclass_elec"  />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.0"
+            android:gravity="center" >
+
+            <ImageButton
+                android:id="@+id/imageButton3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+               android:background="@drawable/gdclass_bug"  />
+        </LinearLayout>
+       
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.0"
+            android:gravity="center" >
+
+            <ImageButton
+                android:id="@+id/imageButton4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+               android:background="@drawable/gdclass_complain"  />
+        </LinearLayout>
+           
+
+    </LinearLayout>
+</LinearLayout>

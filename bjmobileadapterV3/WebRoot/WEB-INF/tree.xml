@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<treeInfo>
+	<group>
+		<property ID="groupid">
+			<groupid>groupid</groupid>
+			<groupname>集团公司</groupname>
+			<grand>
+				<Skill_Action></Skill_Action>
+				<Skill_CategoryQueryID></Skill_CategoryQueryID>
+				<Skill_CommissionGID></Skill_CommissionGID>
+				<Skill_CommissionUID></Skill_CommissionUID>
+				<Skill_CommissionCloseTime></Skill_CommissionCloseTime>
+			</grand>
+		</property>
+		<user ID="userid">
+			<property>
+				<userID>userid</userID>
+				<loginname>userloginname</loginname>
+				<username>集团公司—用户1</username>
+				<grand>
+					<Skill_Action></Skill_Action>
+					<Skill_CategoryQueryID></Skill_CategoryQueryID>
+					<Skill_CommissionGID></Skill_CommissionGID>
+					<Skill_CommissionUID></Skill_CommissionUID>
+					<Skill_CommissionCloseTime></Skill_CommissionCloseTime>
+				</grand>
+			</property>
+		</user>
+		<user ID="userid">
+			<property>
+				<userID>userid</userID>
+				<loginname>userloginname</loginname>
+				<username>集团公司—用户2</username>
+				<grand>
+					<Skill_Action></Skill_Action>
+					<Skill_CategoryQueryID></Skill_CategoryQueryID>
+					<Skill_CommissionGID></Skill_CommissionGID>
+					<Skill_CommissionUID></Skill_CommissionUID>
+					<Skill_CommissionCloseTime></Skill_CommissionCloseTime>
+				</grand>
+			</property>
+		</user>
+		<group>
+        <property ID="groupid">
+			<groupid>groupid</groupid>
+			<groupname>河北省公司</groupname>
+			<grand>
+				<Skill_Action></Skill_Action>
+				<Skill_CategoryQueryID></Skill_CategoryQueryID>
+				<Skill_CommissionGID></Skill_CommissionGID>
+				<Skill_CommissionUID></Skill_CommissionUID>
+				<Skill_CommissionCloseTime></Skill_CommissionCloseTime>
+			</grand>
+		</property>
+		<user ID="userid">
+			<property>
+				<userID>userid</userID>
+				<loginname>userloginname</loginname>
+				<username>河北省公司—用户1</username>
+				<grand>
+					<Skill_Action></Skill_Action>
+					<Skill_CategoryQueryID></Skill_CategoryQueryID>
+					<Skill_CommissionGID></Skill_CommissionGID>
+					<Skill_CommissionUID></Skill_CommissionUID>
+					<Skill_CommissionCloseTime></Skill_CommissionCloseTime>
+				</grand>
+			</property>
+		</user>
+		</group>
+	</group>
+</treeInfo>
+

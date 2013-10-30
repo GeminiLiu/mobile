@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="GB2312"?>
+<sql-group>
+	<doc>
+		<author>lihongbo</author>
+		<date>2007-04-01</date>
+		<description>投工单类型统计工单信息</description>
+	</doc>
+	
+	<sql name="hbeoms.formtype" datasource="Ultranms">
+		<item dbms="All"><![CDATA[
+        
+        {1}
+        
+		]]></item>
+	</sql>
+	<sql name="hbeoms.formcategory" datasource="Ultranms">
+	    <item dbms="All"><![CDATA[
+	     select 't'||ars.SCHEMAID 
+         from ARSCHEMA ars,{400} t
+         where ars.name=t.C650000002
+        
+	    ]]></item>
+	</sql>
+		<sql name="hbeoms.formcategory" datasource="Ultranms">
+	    <item dbms="All"><![CDATA[
+	     select 't'||ars.SCHEMAID 
+         from ARSCHEMA ars,{400} t
+         where ars.name=t.C650000002
+        
+	    ]]></item>
+	</sql>
+</sql-group>
+

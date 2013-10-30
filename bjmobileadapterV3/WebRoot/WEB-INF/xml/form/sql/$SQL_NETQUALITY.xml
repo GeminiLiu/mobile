@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="GB2312"?>
+<sql-group>
+	<doc>
+		<author>lihongbo</author>
+		<date>2007-03-30</date>
+		<description>网络投诉工单质检统计</description>
+	</doc>
+	
+	<sql name="hbeoms.netquality" datasource="Ultranms">
+		<item dbms="All"><![CDATA[
+        select
+'客服系统' as 申告部门,
+a.处理部门,
+a.质检工单总数量,
+b.质检通过数量,
+c.质检未通过数量
+from
+(select
+b.处理部门,
+nvl(a.质检工单总数量,0) as 质检工单总数量
+from
+(select
+g.c630000018 as 处理部门,
+count(distinct t.c1) as 质检工单总数量
+from {900} t,(select * from {700} union all select * from {800}) log,{100} u,{200} g,{600} gu
+where
+log.c700020407=t.c1
+and log.c700020408=t.c700000001
+and log.c700020401=(select max(log.c700020401) from (select * from {700} union all select * from {800}) log where log.c700020402='完成' and log.c700020408=t.c700000001 and log.c700020407=t.c1)
+and log.c700020404=u.c630000001
+and gu.c620000027=g.c1
+and gu.c620000028=u.c1
+and t.c802030511 is not null
+{5}
+group by g.c630000018) a,
+(select distinct g.c630000018 as 处理部门 from  {200} g where 1=1 {1}) b
+where a.处理部门(+)=b.处理部门) a,
+(select
+b.处理部门,
+nvl(a.质检通过数量,0) as 质检通过数量
+from
+(select
+g.c630000018 as 处理部门,
+count(distinct t.c1) as 质检通过数量
+from {900} t,(select * from {700} union all select * from {800}) log,{100} u,{200} g,{600} gu
+where
+log.c700020407=t.c1
+and log.c700020408=t.c700000001
+and log.c700020401=(select max(log.c700020401) from (select * from {700} union all select * from {800}) log where log.c700020402='完成' and log.c700020408=t.c700000001 and log.c700020407=t.c1)
+and log.c700020404=u.c630000001
+and gu.c620000027=g.c1
+and gu.c620000028=u.c1
+and t.c802030511='质检通过'
+{5}
+group by g.c630000018) a,
+(select distinct g.c630000018 as 处理部门 from  {200} g where 1=1 {1}) b
+where a.处理部门(+)=b.处理部门) b,
+(select
+b.处理部门,
+nvl(a.质检未通过数量,0) as 质检未通过数量
+from
+(select
+g.c630000018 as 处理部门,
+count(distinct t.c1) as 质检未通过数量
+from {900} t,(select * from {700} union all select * from {800}) log,{100} u,{200} g,{600} gu
+where
+log.c700020407=t.c1
+and log.c700020408=t.c700000001
+and log.c700020401=(select max(log.c700020401) from (select * from {700} union all select * from {800}) log where log.c700020402='完成' and log.c700020408=t.c700000001 and log.c700020407=t.c1)
+and log.c700020404=u.c630000001
+and gu.c620000027=g.c1
+and gu.c620000028=u.c1
+and t.c802030511='质检不通过'
+{5}
+group by g.c630000018) a,
+(select distinct g.c630000018 as 处理部门 from  {200} g where 1=1 {1}) b
+where a.处理部门(+)=b.处理部门) c
+where a.处理部门=b.处理部门
+and   b.处理部门=c.处理部门
+        
+		]]></item>
+	</sql>
+</sql-group>
+

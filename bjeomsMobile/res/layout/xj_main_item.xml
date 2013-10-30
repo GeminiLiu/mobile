@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:padding="15dip" 
+    android:background="@drawable/xj_main_listview_item_background"
+    >
+
+    <TextView
+        android:id="@+id/xj_list_text"
+        android:layout_toLeftOf ="@+id/img_arrow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft ="true"
+        android:gravity="center_vertical"
+        android:textSize="15sp"
+        android:text="铁岭.昌图.检察院基站"
+        android:textColor="#535353"/>
+	<ImageView 
+	    android:id="@+id/img_arrow"
+	    android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:src="@drawable/arrow"
+        android:layout_alignParentRight="true"
+	    />
+</RelativeLayout>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding='UTF-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+                            "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                            "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<!-- DO NOT EDIT: This is a generated file that is synchronized -->
+<!-- by MyEclipse Hibernate tool integration.                   -->
+<!-- Created Tue Oct 17 07:01:21 GMT 2006                         -->
+<hibernate-mapping package="cn.com.ultrapower.eoms.user.sla.hibernate.po">
+
+    <class name="SysSlaWorkFlowManagepo" table="T114" lazy="false">
+         <id name="c1" column="C1" type="string">
+            <generator class="assigned"/>
+        </id>
+        
+        <property name="c2" column="C2" type="java.lang.String" />
+        <property name="c3" column="C3" type="java.lang.Long"  not-null="true" />
+        <property name="c4" column="C4" type="java.lang.String" />
+        <property name="c5" column="C5" type="java.lang.String"  not-null="true" />
+        <property name="c6" column="C6" type="java.lang.Long"  not-null="true" />
+        <property name="c7" column="C7" type="java.lang.Long"  not-null="true" />
+        <property name="c8" column="C8" type="java.lang.String"  not-null="true" />
+        <property name="c600000031" column="C600000031" type="java.lang.String" />
+        <property name="c600000030" column="C600000030" type="java.lang.String" />
+        <property name="c600000029" column="C600000029" type="java.lang.String" />
+        <property name="c600000037" column="C600000037" type="java.lang.String" />
+    </class>
+    
+</hibernate-mapping>

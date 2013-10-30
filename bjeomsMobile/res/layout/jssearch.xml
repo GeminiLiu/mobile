@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="50dip"
+        android:background="@drawable/titlebg" 
+        android:padding="10dip"
+        >
+
+        <ImageView
+            android:id="@+id/iv_friends"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:src="@drawable/menu1" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/message_title" />
+        
+          <!-- <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/bt_search_bg"/> -->
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_sv"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@id/rl_title"
+        android:background="#ffffff"
+        android:orientation="vertical" >
+
+        <ScrollView
+            android:id="@+id/scrollview_gd"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="#ffffff"
+            android:scrollbars="none" >
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:background="#ffffff"
+                android:orientation="vertical" >
+
+                <LinearLayout
+                    android:id="@+id/gd_frame_lv1"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" >
+				<LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#ffffff"
+                        android:orientation="vertical"
+                        android:paddingLeft="10dip"
+                        android:paddingRight="10dip"
+                        android:paddingTop="5dip" >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="地理信息"
+                            android:textColor="#ab000000"
+                            android:textSize="15dip" />
+
+                        <Spinner
+                            android:id="@+id/Spinner03"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:textColor="#535353"
+                            android:textSize="15dip" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#ffffff"
+                        android:orientation="vertical"
+                        android:paddingLeft="10dip"
+                        android:paddingRight="10dip"
+                        android:paddingTop="5dip" >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="检索类别"
+                            android:textColor="#ab000000"
+                            android:textSize="15dip" />
+
+                        <Spinner
+                            android:id="@+id/Spinner04"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:textColor="#535353"
+                            android:textSize="15dip" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#ffffff"
+                        android:orientation="vertical"
+                        android:paddingLeft="10dip"
+                        android:paddingRight="10dip"
+                        android:paddingTop="5dip" >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="基本分类"
+                            android:textColor="#ab000000"
+                            android:textSize="15dip" />
+
+                        <Spinner
+                            android:id="@+id/Spinner01"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:textColor="#535353"
+                            android:textSize="15dip" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#ffffff"
+                        android:orientation="vertical"
+                        android:paddingLeft="10dip"
+                        android:paddingRight="10dip"
+                        android:paddingTop="5dip" >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="明细分类"
+                            android:textColor="#ab000000"
+                            android:textSize="15dip" />
+
+                        <Spinner
+                            android:id="@+id/Spinner02"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:textColor="#535353"
+                            android:textSize="15dip" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#ffffff"
+                        android:orientation="vertical"
+                        android:paddingLeft="10dip"
+                        android:paddingRight="10dip"
+                        android:paddingTop="5dip" >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="资源名称"
+                            android:textColor="#ab000000"
+                            android:textSize="15dip" />
+
+                        <EditText
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:textColor="#535353"
+                            android:textSize="15dip" />
+                    </LinearLayout>
+                      
+                </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
+              <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="0dip" >
+
+            <include layout="@layout/footsearch2" />
+        </RelativeLayout>
+    </LinearLayout>
+
+</LinearLayout>

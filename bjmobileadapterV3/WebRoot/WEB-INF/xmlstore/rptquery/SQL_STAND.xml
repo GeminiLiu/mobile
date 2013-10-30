@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sql-group>
+	<doc>
+		<author>作者</author> 
+		<date>时间</date> 
+		<description>Sql 描述</description> 		
+	</doc>
+	<sqlquery name="唯一的名字" dbpoolname="数据库连接池名称">
+		<select>
+		<![CDATA[
+		
+			--报表SQL区域 
+			--{}   : 表示Form名，查询时替换成相应的表名
+			--#名称#: 用于替换界面上的参数值 如：#category# 将页面上的名称为"category"的值替换
+			--R名称R: 对应字符的替换，用于手工通过ReBuildSQL类改变SQL时替换用 如：m_ReBuildSQL.setRSQL("optiontype", ",c806001004 as category3"); 
+			--$名称$: 条件变量，名称为parameterMap的名称，将一个parameterMap的逻辑生成的SQL替换对应的名称
+			
+			 select  c1 as baseid
+			,c700000001 as baseschema
+			,c 700000011 as basesummary 
+			 from { UltraProcess:App_Base} base
+			where  c700000008>0
+			 $customwhere$
+		  ]]> 
+		</select>
+		<customwhere>
+			<!-- 
+				parameterMap 相当于括号() parameterMap中可以嵌套parameterMap,表示括号中嵌套括号
+				prepend属性：是和上级联系的关系(and or)，如果等于 EXTEND 则为扩展的SQL只把形成的SQL连接上
+				name属性：parameterMap的名字，如果select区域的SQL中含有$customwhere$则会将parameterMap生成的SQL进行替换.只有一级的parameterMap名字可用
+			 -->
+			<parameterMap prepend="AND" name="customwhere">
+			
+				<mapingFiled  prepend="AND" fieldName="baseid"  fieldType="4">
+					<mapsql value="isnotnull"> 
+					<!-- 
+						mapsql 的value 值分为 isnotnull  isnull 和具体的值
+					    isnotnull: 表示 不为空
+					    isnull: 表示为空
+					    具体的值: 和传入的值做比较，如：如果具体的值为"是" 传入的值为否则不能匹配
+					-->
+						<![CDATA[
+							 c1='#baseid#'
+						 ]]>  			
+					</mapsql>
+				</mapingFiled>
+				<mapingFiled  prepend="AND" fieldName="isovertime"  fieldType="4">
+					<mapsql value="y">
+						<![CDATA[
+							  c700000008>c700000018
+						 ]]>  			
+					</mapsql>
+					<mapsql value="n">
+						<![CDATA[
+							c700000008<=c700000018
+						 ]]>  			
+					</mapsql>					
+				</mapingFiled>				
+			</parameterMap>
+		</customwhere>
+		<rptatribute>
+			<title><!-- 标题区 -->
+				<item>
+					<titlecol>
+						<align></align>
+						<width></width>
+						<isshow></isshow>
+						<rowspan></rowspan>
+						<colspan></colspan>
+						<enable>false</enable>
+						<bgcolor></bgcolor>
+						<urltemp>Example.jsp?baseid=$baseid$#baseschema=$baseschema$</urltemp>
+						<text>标题字段1</text>
+					</titlecol>
+					<titlecol>
+						<text>标题字段2</text>
+					</titlecol>	
+					<titlecol>
+						<align>right</align>
+						<text>变更总数</text>
+					</titlecol>	
+					<titlecol>
+						<align>right</align>
+						<text>系统投运</text>
+					</titlecol>														
+				</item>
+			</title>
+			
+			<sumitem>
+				<item>
+					<sum type="ROW"><!--合计 -->
+						<groupbycol>0</groupbycol><!-- 分组的列 -->
+						<sumcol>2,3,4,5,6,7</sumcol><!-- 合计的列 -->
+						<sumtext>小计</sumtext><!-- 合计名称 -->
+						<scan>0</scan><!--小数精度位数-->
+					</sum>	
+					<sum type="col">
+						<groupbycol>0</groupbycol>
+						<sumcol>2,3,4,5,6,7</sumcol>
+						<sumtext>合计</sumtext>
+						<scan>0</scan>
+					</sum>					
+					<sum type="ROW">
+						<groupbycol></groupbycol>
+						<sumcol>2,3,4,5,6,7</sumcol>
+						<sumtext>合计</sumtext>
+						<scan>0</scan>
+					</sum>								
+				</item>
+			</sumitem>
+			<calcol>
+				<item>
+					<col1></col1>
+					<col2></col2>
+					<colname1></colname1>
+					<colname2></colname2>					
+					<expression>DIV</expression>
+					<scale></scale>
+				</item>
+			</calcol>
+			<merger>0</merger><!-- 合并的单元格列数 -->
+			 
+		</rptatribute>
+	</sqlquery>	
+	
+	<sqlquery name="test.query.006" dbpoolname="mypool">
+		<select>
+		<![CDATA[ 
+		select  c806000001  as OperationType from {UltraProcess:ITIL_Change_OperationType}
+		  ]]> 
+		</select>	
+	</sqlquery>
+	
+</sql-group>
+
+

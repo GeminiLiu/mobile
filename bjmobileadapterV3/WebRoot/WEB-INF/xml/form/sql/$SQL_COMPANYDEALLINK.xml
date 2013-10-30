@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="GB2312"?>
+<sql-group>
+	<doc>
+		<author>lihongbo</author>
+		<date>2007-04-03</date>
+		<description>投公司统计工单处理信息</description>
+	</doc>
+	
+	<sql name="hbeoms.companydeallink" datasource="Ultranms">
+		<item dbms="All"><![CDATA[
+        
+       {1}
+
+
+        ]]></item>
+	</sql>
+    <sql name="hbeoms.companydealselectlink" datasource="Ultranms">
+		<item dbms="All"><![CDATA[
+   
+       select 't'||ars.SCHEMAID 
+       from ARSCHEMA ars,{500} t
+       where ars.name=t.C650000002
+        
+		]]></item>
+	</sql>
+</sql-group>
+

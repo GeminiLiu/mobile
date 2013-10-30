@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding='UTF-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+                            "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                            "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<!-- DO NOT EDIT: This is a generated file that is synchronized -->
+<!-- by MyEclipse Hibernate tool integration.                   -->
+<!-- Created Fri Nov 10 14:24:44 CST 2006                         -->
+<hibernate-mapping package="cn.com.ultrapower.eoms.user.config.source.hibernate.po">
+
+    <class name="Sourceattributeconfig" table="SOURCEATTRIBUTECONFIG" lazy="false">
+        <id name="sourceattcfgId" column="SOURCEATTCFG_ID" type="long">
+            <generator class="assigned"/>
+        </id>
+ 
+        <property name="sourceattcfgTypeflag" column="SOURCEATTCFG_TYPEFLAG" type="string"  not-null="true" />
+        <property name="sourceattcfgCnname" column="SOURCEATTCFG_CNNAME" type="string"  not-null="true" />
+        <property name="sourceattcfgEnname" column="SOURCEATTCFG_ENNAME" type="string" />
+        <property name="sourceattcfgType" column="SOURCEATTCFG_TYPE" type="string" />
+        <property name="sourceattcfgOrderby" column="SOURCEATTCFG_ORDERBY" type="long" />
+        <property name="sourceattcfgDesc" column="SOURCEATTCFG_DESC" type="string" />
+    </class>
+    
+</hibernate-mapping>

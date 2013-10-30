@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding='UTF-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+                            "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                            "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<!-- DO NOT EDIT: This is a generated file that is synchronized -->
+<!-- by MyEclipse Hibernate tool integration.                   -->
+<!-- Created Sat Jan 06 19:43:24 CST 2007                         -->
+<hibernate-mapping package="cn.com.ultrapower.eoms.user.authorization.templet.hibernate.po">
+
+    <class name="RolesUserGroupRelpo" table="T238" lazy="false">
+		<id name="c1" column="C1" type="java.lang.String"> 
+			<generator class="assigned"/> 
+		</id>
+        <property name="c2" column="C2" type="java.lang.String" />
+        <property name="c3" column="C3" type="java.lang.Long"  not-null="true" />
+        <property name="c4" column="C4" type="java.lang.String" />
+        <property name="c5" column="C5" type="java.lang.String"  not-null="true" />
+        <property name="c6" column="C6" type="java.lang.Long"  not-null="true" />
+        <property name="c7" column="C7" type="java.lang.Long"  not-null="true" />
+        <property name="c8" column="C8" type="java.lang.String"  not-null="true" />
+        <property name="c660000026" column="C660000026" type="java.lang.String" />
+        <property name="c660000027" column="C660000027" type="java.lang.String" />
+        <property name="c660000028" column="C660000028" type="java.lang.String" />
+        <property name="c660000031" column="C660000031" type="java.lang.String" />
+        <property name="c660000032" column="C660000032" type="java.lang.String" />
+        <property name="c660000033" column="C660000033" type="java.lang.String" />
+        <property name="c660000030" column="C660000030" type="java.lang.Long" />
+    </class>
+    
+</hibernate-mapping>

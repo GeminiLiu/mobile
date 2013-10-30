@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="GB2312"?>
+<sql-group>
+	<doc>
+		<author>duanximeng</author>
+		<date>2008-07-03</date>
+		<description>县营业部通信能力月报表</description>
+	</doc>
+	<sql name="countycorrespondpage.group" datasource="Ultranms">
+		<item dbms="All"><![CDATA[
+
+			select t.groupname from (
+			select g.c630000018 groupname  from {100} g where g.c630000021='2' and g.c630000020='000000000600001' and g.c630000027='1'
+			union all 
+			select trim('网管中心') groupname from dual
+			) t 
+		]]></item>
+	</sql>
+	<sql name="countycorrespond.group" datasource="Ultranms">
+		<item dbms="All"><![CDATA[
+
+			select t.groupname from (
+			select g.c630000018 groupname  from {100} g where g.c630000021='2' and g.c630000020='000000000600001' and g.c630000027='1'
+			union all 
+			select trim('网管中心') groupname from dual
+			) t where 1=1 {1}
+		]]></item>
+	</sql>
+	
+
+		<sql name="countycorrespond.left" datasource="Ultranms">
+		<item dbms="All"><![CDATA[
+					select trim('县营业部基站数(个)') as 指标名称
+					  from dual
+					union all
+					select trim('县营业部载频数(个)') as 指标名称
+					  from dual
+					union all
+					select trim('县营业部话音信道数(个)') as 指标名称
+					  from dual
+		]]></item>
+	</sql>
+		<sql name="countycorrespond.centervalue" datasource="Ultranms">
+		<item dbms="All"><![CDATA[
+
+				select trim('县营业部基站数(个)'),t.c802000002 as 所属城市,sum(t.c802000019) as num from {100} t 
+				where 1=1 {5}
+				group by t.c802000002
+				union all
+				select trim('县营业部载频数(个)'),t.c802000002 as 所属城市,sum(t.c802000020) as num from {100} t 
+				where 1=1 {5}
+				group by t.c802000002
+				union all
+				select trim('县营业部话音信道数(个)'),t.c802000002 as 所属城市,sum(t.c802000021) as num from {100} t 
+				where 1=1 {5}
+				group by t.c802000002
+		]]></item>
+	</sql>
+</sql-group>
+

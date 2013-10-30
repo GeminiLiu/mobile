@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/rl_title"
+        android:layout_width="fill_parent"
+        android:layout_height="50dip"
+        android:layout_weight="0.01"
+        android:padding="5dip"
+        android:background="@drawable/titlebg" >
+
+        <ImageView
+            android:id="@+id/iv_friends"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:src="@drawable/back" />
+
+
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+              android:layout_centerInParent="true"
+              android:singleLine="true"
+                android:text="123"
+                android:textColor="#ffffff"
+                android:textSize="20sp" />
+            <LinearLayout 
+            android:layout_width="wrap_content"
+        	android:layout_height="wrap_content"
+        	android:layout_alignParentRight="true"
+        	android:orientation="horizontal"
+        	android:layout_centerVertical="true"
+                >
+                <ImageButton 
+               android:id="@+id/photo"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:background="@drawable/resource"
+               android:visibility="gone"
+               />
+             <!--      <ImageButton 
+               android:id="@+id/record"
+               android:layout_marginLeft="10dip"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:background="@drawable/arrow"
+                 android:visibility="gone"
+               /> -->
+                
+            </LinearLayout>
+           
+
+    </RelativeLayout>

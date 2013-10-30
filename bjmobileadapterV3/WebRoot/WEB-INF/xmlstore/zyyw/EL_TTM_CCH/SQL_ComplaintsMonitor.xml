@@ -1,0 +1,799 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sql-group>
+	<doc>
+		<author>zhaomingjin</author> 
+		<date>2010-7-2</date> 
+		<description>卓越运维个人投诉处理工单监控报表</description> 		
+	</doc>
+	<sqlquery name="SQL_ComplaintsMonitor_Item" dbpoolname="">
+		<select>
+			<![CDATA[						 
+	 			select 
+					#sel_fields#
+					sum(rs.noaccept) + sum(rs.accept) + sum(rs.complete) 工单总数,
+					sum(rs.noaccept) 未受理工单数,
+					sum(rs.accept) 处理中工单数,
+					sum(rs.complete) 已回复工单数,
+					sum(rs.outtime) 超时工单数
+				from(
+					select
+						rs2.dep dep,
+						rs2.depid depid,
+						rs2.CCH_ComplainType CCH_ComplainType,
+						rs2.CCH_ClientBrand CCH_ClientBrand,
+						sum(noa) noaccept,
+						sum(acc) accept,
+						0 complete,
+					 	sum(outtime) outtime
+			 		from(
+			 			select 
+							rs1.dep dep,
+							rs1.depid depid,
+							rs1.BaseID BaseID,
+							rs1.CCH_ComplainType CCH_ComplainType,
+							rs1.CCH_ClientBrand CCH_ClientBrand,
+							case when #currentTime# > rs1.BaseDealOutTime then 1 else 0 end outtime,
+							case when sum(rs1.FlagBegin) = 0 then 1 else 0 end noa,
+							case when sum(rs1.FlagBegin) > 0 then 1 else 0 end acc
+			 			from(
+			 				select
+			 					case when  dp.c700020113 > '0' then dp.c700020113 when dp.c700020007 > '0' then dp.c700020007 when dp.c700020103 > '0' then dp.c700020103 end dep,
+			     				case when dp.c700020114 > '0' then dp.c700020114  when dp.c700020008 > '0' then dp.c700020008 when dp.c700020104 > '0' then dp.c700020104 end depid,
+								base.c1 BaseID,
+								base.c800020001 CCH_ComplainType,
+								base.c800020006 CCH_ClientBrand,
+								base.c700000018 BaseDealOutTime,
+								dp.c700020072 FlagBegin     
+						   	from {WF:EL_TTM_CCH} base, {WF:App_DealProcess} dp
+						 	where base.c1=dp.c700020001
+								and base.c700000001 = dp.c700020002
+								and base.c700000009 is null
+								and dp.c700020020 = 1
+								and (dp.c700020003 = 'dp_2' or dp.c700020003 = 'dp_5' or dp.c700020003 = 'dp_7')
+								$con_time$
+			  			) rs1
+			  			where rs1.depid > '0'
+			 			group by  rs1.dep,rs1.depid, rs1.BaseID,rs1.CCH_ComplainType,rs1.CCH_ClientBrand,rs1.BaseDealOutTime
+		 			) rs2
+			 		group by rs2.dep,rs2.depid,rs2.CCH_ComplainType,rs2.CCH_ClientBrand
+			 
+			 		union all
+			 
+			 		select
+						rs3.dep dep,
+						rs3.depid depid,
+						rs3.CCH_ComplainType CCH_ComplainType,
+						rs3.CCH_ClientBrand CCH_ClientBrand,
+						0 noaccept,
+						0 accept,
+						count(rs3.BaseID) complete,
+						sum(rs3.outtime) outtime
+					from(
+						select
+							dp.c700020113 dep,dp.c700020114 depid,
+							base.c1 BaseID,
+							base.c800020001 CCH_ComplainType,
+							base.c800020006 CCH_ClientBrand,
+							case when dp.c700020017 > base.c700000018 then 1 else 0 end outtime
+			  			from {WF:EL_TTM_CCH} base, {WF:App_DealProcess} dp
+			 			where base.c800021006 = dp.c1
+							and dp.c700020002 = 'WF:EL_TTM_CCH'
+							and base.c700000009 is null
+							and (dp.c700020003 = 'dp_2' or dp.c700020003 = 'dp_5' or dp.c700020003 = 'dp_7')
+							and dp.c700020114 > '0'
+							$con_time$ 
+		 			) rs3
+					where rs3.depid > '0'
+					group by rs3.dep,rs3.depid,rs3.CCH_ComplainType,rs3.CCH_ClientBrand
+				) rs,{UltraProcess:SysGroup} g
+				where --g.c630000019 like '%' ||  rs.dep  || '%'         部门下面的组没有参与统计，如果放开这句，注释下面的那句，就会统计到部门下的组，效率会慢。
+			 		ltrim(g.c1,0) = rs.depid
+			 		and g.c630000021 = '3'
+			 		and rs.CCH_ComplainType > '0'
+					and rs.CCH_ClientBrand > '0'
+					#con_class#
+					$directpar$
+				#isGroupBy#
+				order by 工单总数 desc
+		  	]]>
+		</select>
+		<customwhere>
+			<parameterMap prepend="AND" name="con_time">
+				<mapingFiled prepend="AND" fieldName="timeStart" fieldType="7">
+					<mapsql value="isnotnull">
+						<![CDATA[
+							base.c700000006 >= #timeStart#
+						 ]]>
+					</mapsql>
+				</mapingFiled>
+				<mapingFiled prepend="AND" fieldName="timeEnd" fieldType="7">
+					<mapsql value="isnotnull">
+						<![CDATA[
+							base.c700000006 <= #timeEnd#
+						 ]]>
+					</mapsql>
+				</mapingFiled>
+			</parameterMap>
+		</customwhere>
+		<rptatribute>
+			<title><!-- 标题区 -->
+				<item>
+					<titlecol>
+						<urltemp><![CDATA[ComplaintsMonitor_Link.jsp?netClass=$投诉分类$&department=$部门$&depid=$部门ID$&clientbrand=$客户品牌$&timeStart=#timeStart#&timeEnd=#timeEnd#&chooseClass=#chooseClass#&sel_fields=#sel_fields#&flag=total]]></urltemp>
+						<text>工单总数</text>
+						<colname>工单总数</colname>
+					</titlecol>
+					<titlecol>
+						<urltemp><![CDATA[ComplaintsMonitor_Link.jsp?netClass=$投诉分类$&department=$部门$&depid=$部门ID$&clientbrand=$客户品牌$&timeStart=#timeStart#&timeEnd=#timeEnd#&chooseClass=#chooseClass#&sel_fields=#sel_fields#&flag=noacc]]></urltemp>
+						<text>未受理工单数</text>
+						<colname>未受理工单数</colname>
+					</titlecol>
+					<titlecol>
+						<urltemp><![CDATA[ComplaintsMonitor_Link.jsp?netClass=$投诉分类$&department=$部门$&depid=$部门ID$&clientbrand=$客户品牌$&timeStart=#timeStart#&timeEnd=#timeEnd#&chooseClass=#chooseClass#&sel_fields=#sel_fields#&flag=acc]]></urltemp>
+						<text>处理中工单数</text>
+						<colname>处理中工单数</colname>
+					</titlecol>
+					<titlecol>
+						<urltemp><![CDATA[ComplaintsMonitor_Link.jsp?netClass=$投诉分类$&department=$部门$&depid=$部门ID$&clientbrand=$客户品牌$&timeStart=#timeStart#&timeEnd=#timeEnd#&chooseClass=#chooseClass#&sel_fields=#sel_fields#&flag=complete]]></urltemp>
+						<text>已回复工单数</text>
+						<colname>已回复工单数</colname>
+					</titlecol>
+					<titlecol>
+						<urltemp><![CDATA[ComplaintsMonitor_Link.jsp?netClass=$投诉分类$&department=$部门$&depid=$部门ID$&clientbrand=$客户品牌$&timeStart=#timeStart#&timeEnd=#timeEnd#&chooseClass=#chooseClass#&sel_fields=#sel_fields#&flag=outtime]]></urltemp>
+						<text>超时工单数</text>
+						<colname>超时工单数</colname>
+					</titlecol>
+					<titlecol>
+						<colname>部门ID</colname>
+						<isshow>false</isshow>
+					</titlecol>
+				</item>
+			</title>			
+		</rptatribute>
+	</sqlquery>
+	<sqlquery name="SQL_ComplaintsMonitor_Link_Total" dbpoolname="">
+		<select>
+			<![CDATA[      
+	  			select 
+		    		/*COUNT*/
+						rs.BaseID baseid,
+						rs.BaseSN 工单流水号,
+						to_char(to_date('19700101', 'yyyymmdd') +rs.BaseCreateDate / 86400 + 8 / 24,'yyyy-mm-dd hh24:MI:ss')  建单时间,
+						rs.BaseCreatorFullName 建单人,
+						rs.BaseSummary 主题,
+						rs.BasePriority 紧急程度,
+						rs.BaseStatus 工单状态
+						#sel_fields#
+					/*COUNT*/
+				from(					
+	   	   			select 
+	   	   				DISTINCT rs1.BaseID BaseID,
+						rs1.dep dep,
+						rs1.depid depid,
+						rs1.BaseSN BaseSN,
+						rs1.BaseCreateDate BaseCreateDate,
+						rs1.BaseCreatorFullName BaseCreatorFullName,
+						rs1.BaseSummary BaseSummary,
+						rs1.CCH_ComplainType CCH_ComplainType,
+						rs1.BasePriority BasePriority,
+						rs1.BaseStatus BaseStatus,
+						rs1.CCH_ClientBrand CCH_ClientBrand
+		 			from(
+		 				select
+		 					case when  dp.c700020113 > '0' then dp.c700020113 when dp.c700020007 > '0' then dp.c700020007 when dp.c700020103 > '0' then dp.c700020103 end dep,
+							case when dp.c700020114 > '0' then dp.c700020114  when dp.c700020008 > '0' then dp.c700020008 when dp.c700020104 > '0' then dp.c700020104 end depid,
+							base.c1 BaseID,
+							base.c700000003 BaseSN,
+							base.c700000006 BaseCreateDate,
+							base.c700000004 BaseCreatorFullName,
+							base.c700000011 BaseSummary,
+							base.c800020001 CCH_ComplainType,
+							base.c700000015 BasePriority,
+							base.c700000010 BaseStatus,
+							base.c800020006 CCH_ClientBrand,
+							dp.c700020072 FlagBegin     
+					   	from {WF:EL_TTM_CCH} base, {WF:App_DealProcess} dp
+					  	where base.c1=dp.c700020001
+							and base.c700000001=dp.c700020002
+							and base.c700000009 is null
+							and dp.c700020020 = 1
+							and (dp.c700020003 = 'dp_2' or dp.c700020003 = 'dp_5' or dp.c700020003 = 'dp_7') 
+							$con_time$  
+		  			) rs1
+		 			where rs1.depid > '0'
+       
+      				union all
+       
+       				select
+       					base.c1 BaseID,
+						dp.c700020113 dep,
+						dp.c700020114 depid,						
+						base.c700000003 BaseSN,
+						base.c700000006 BaseCreateDate,
+						base.c700000004 BaseCreatorFullName,
+						base.c700000011 BaseSummary,
+						base.c800020001 CCH_ComplainType,
+						base.c700000015 BasePriority,
+						base.c700000010 BaseStatus,
+						base.c800020006 CCH_ClientBrand
+			  		from {WF:EL_TTM_CCH} base, {WF:App_DealProcess} dp
+			 		where base.c800021006 = dp.c1
+						and dp.c700020002 = 'WF:EL_TTM_CCH'
+						and base.c700000009 is null
+						and (dp.c700020003 = 'dp_2' or dp.c700020003 = 'dp_5' or dp.c700020003 = 'dp_7')
+						and dp.c700020114 > '0'
+						$con_time$
+			 	) rs,{UltraProcess:SysGroup} g
+				where ltrim(g.c1,0) = rs.depid
+					and g.c630000021 = '3'
+					and rs.CCH_ClientBrand > '0'
+					and rs.CCH_ComplainType > '0'
+					$sel_fields$
+					$directpar$
+					#con_class#
+					#con_incprovince#
+					#con_city#
+	      		order by rs.BaseCreateDate desc      
+		  	]]>
+		</select>
+		<customwhere>
+			<parameterMap prepend="AND" name="con_time">
+				<mapingFiled prepend="AND" fieldName="timeStart"  fieldType="7">
+					<mapsql value="isnotnull">
+						<![CDATA[
+							base.c700000006 >= #timeStart#
+						 ]]>
+					</mapsql>
+				</mapingFiled>
+				<mapingFiled  prepend="AND" fieldName="timeEnd"  fieldType="7">
+					<mapsql value="isnotnull">
+						<![CDATA[
+							base.c700000006 <= #timeEnd#
+						 ]]>
+					</mapsql>
+				</mapingFiled>
+			</parameterMap>
+			<parameterMap prepend="and" name="sel_fields">
+				<mapingFiled prepend="and" fieldName="netClass" fieldType="4">
+					<mapsql value="isnotnull">
+						<![CDATA[
+							#chooseClass# = '#netClass#'
+						 ]]>
+					</mapsql>
+				</mapingFiled>
+				<mapingFiled prepend="and" fieldName="depid" fieldType="4">
+					<mapsql value="isnotnull">
+						<![CDATA[
+							rs.depid = '#depid#'
+						 ]]>
+					</mapsql>
+				</mapingFiled>
+				<mapingFiled prepend="and" fieldName="inccity" fieldType="4">
+					<mapsql value="isnotnull">
+						<![CDATA[
+							rs.CCH_ClientBrand = '#clientbrand#'
+						 ]]>
+					</mapsql>
+				</mapingFiled>
+			</parameterMap>
+		</customwhere>
+		<rptatribute>
+			<title>
+				<item>					
+					<titlecol>	
+						<isshow>false</isshow>
+					</titlecol>						
+					<titlecol>
+						<urltemp><![CDATA[/arsys/servlet/ViewFormServlet?server=#remedyserver#&form=WF:EL_TTM_CCH&mode=QUERY&eid=$baseid$&view=&]]></urltemp>
+						<text>流水号</text>
+					</titlecol>
+					<titlecol>
+						<colname>部门ID</colname>
+						<isshow>false</isshow>
+					</titlecol>
+				</item>
+			</title>			
+		</rptatribute>
+	</sqlquery>
+	<sqlquery name="SQL_ComplaintsMonitor_Link_Noacc" dbpoolname="">
+		<select>
+			<![CDATA[		       
+	       		select
+	     			/*COUNT*/
+						rs.BaseID baseid,
+						rs.BaseSN 工单流水号,
+						to_char(to_date('19700101', 'yyyymmdd') +rs.BaseCreateDate / 86400 + 8 / 24,'yyyy-mm-dd hh24:MI:ss') 建单时间,
+						rs.BaseCreatorFullName 建单人,
+						rs.BaseSummary  主题,
+						rs.BasePriority 紧急程度,
+						rs.BaseStatus 工单状态
+						#sel_fields#
+					/*COUNT*/
+   		  		from(
+   		  			select 
+						rs1.dep dep,
+						rs1.depid depid,
+						rs1.BaseID BaseID,
+						rs1.BaseSN BaseSN,
+						rs1.BaseCreateDate BaseCreateDate,
+						rs1.BaseCreatorFullName BaseCreatorFullName,
+						rs1.BaseSummary BaseSummary,
+						rs1.CCH_ComplainType CCH_ComplainType,
+						rs1.BasePriority BasePriority,
+						rs1.BaseStatus BaseStatus,
+						rs1.CCH_ClientBrand CCH_ClientBrand,
+						case when sum(rs1.FlagBegin)=0 then 1 else 0 end noa
+			 		from(
+			 			select
+			 				case when  dp.c700020113 > '0' then dp.c700020113 when dp.c700020007 > '0' then dp.c700020007 when dp.c700020103 > '0' then dp.c700020103 end dep,
+			     			case when dp.c700020114 > '0' then dp.c700020114  when dp.c700020008 > '0' then dp.c700020008 when dp.c700020104 > '0' then dp.c700020104 end depid,
+			         		base.c1 BaseID,
+							base.c700000003 BaseSN,
+							base.c700000006 BaseCreateDate,
+							base.c700000004 BaseCreatorFullName,
+							base.c700000011 BaseSummary,
+							base.c800020001 CCH_ComplainType,
+							base.c700000015 BasePriority,
+							base.c700000010 BaseStatus,
+							base.c800020006 CCH_ClientBrand,
+							dp.c700020072 FlagBegin     
+					   	from {WF:EL_TTM_CCH} base, {WF:App_DealProcess} dp
+					 	where base.c1=dp.c700020001
+							and base.c700000001=dp.c700020002
+							and base.c700000009 is null
+							and dp.c700020020 = 1
+							and (dp.c700020003 = 'dp_2' or dp.c700020003 = 'dp_5' or dp.c700020003 = 'dp_7') 
+							$con_time$   
+		  			) rs1
+			 		where rs1.depid > '0'
+			 		group by  rs1.dep,rs1.depid, rs1.BaseID,rs1.BaseSN,rs1.BaseCreateDate,rs1.BaseCreatorFullName,rs1.BaseSummary,rs1.CCH_ComplainType,rs1.BasePriority,rs1.BaseStatus,rs1.CCH_ClientBrand
+		 		) rs,{UltraProcess:SysGroup} g
+			 	where ltrim(g.c1,0) = rs.depid 
+					and rs.noa=1
+					and g.c630000021 = '3'
+					and rs.CCH_ClientBrand > '0'
+					and rs.CCH_ComplainType > '0'
+					$sel_fields$
+					$directpar$
+					#con_class#
+					#con_incprovince#
+					#con_city#
+		       	order by rs.BaseCreateDate desc		   
+		  	]]>
+		</select>
+		<customwhere>
+			<parameterMap prepend="AND" name="con_time">
+				<mapingFiled prepend="AND" fieldName="timeStart"  fieldType="7">
+					<mapsql value="isnotnull">
+						<![CDATA[
+							base.c700000006 >= #timeStart#
+						 ]]>
+					</mapsql>
+				</mapingFiled>
+				<mapingFiled  prepend="AND" fieldName="timeEnd"  fieldType="7">
+					<mapsql value="isnotnull">
+						<![CDATA[
+							base.c700000006 <= #timeEnd#
+						 ]]>
+					</mapsql>
+				</mapingFiled>
+			</parameterMap>
+			<parameterMap prepend="and" name="sel_fields">
+				<mapingFiled prepend="and" fieldName="netClass" fieldType="4">
+					<mapsql value="isnotnull">
+						<![CDATA[
+							#chooseClass# = '#netClass#'
+						 ]]>
+					</mapsql>
+				</mapingFiled>
+				<mapingFiled prepend="and" fieldName="depid" fieldType="4">
+					<mapsql value="isnotnull">
+						<![CDATA[
+							rs.depid = '#depid#'
+						 ]]>
+					</mapsql>
+				</mapingFiled>
+				<mapingFiled prepend="and" fieldName="inccity" fieldType="4">
+					<mapsql value="isnotnull">
+						<![CDATA[
+							rs.CCH_ClientBrand = '#clientbrand#'
+						 ]]>
+					</mapsql>
+				</mapingFiled>
+			</parameterMap>
+		</customwhere>
+		<rptatribute>
+			<title>
+				<item>					
+					<titlecol>	
+						<isshow>false</isshow>
+					</titlecol>						
+					<titlecol>
+						<urltemp><![CDATA[/arsys/servlet/ViewFormServlet?server=#remedyserver#&form=WF:EL_TTM_CCH&mode=QUERY&eid=$baseid$&view=&]]></urltemp>
+						<text>流水号</text>
+					</titlecol>
+					<titlecol>
+						<colname>部门ID</colname>
+						<isshow>false</isshow>
+					</titlecol>
+				</item>
+			</title>			
+		</rptatribute>
+	</sqlquery>
+	<sqlquery name="SQL_ComplaintsMonitor_Link_Acc" dbpoolname="">
+		<select>
+			<![CDATA[		   
+		   		select
+					/*COUNT*/
+						rs.BaseID baseid,
+						rs.BaseSN 工单流水号,
+						to_char(to_date('19700101', 'yyyymmdd') +rs.BaseCreateDate / 86400 + 8 / 24,'yyyy-mm-dd hh24:MI:ss') 建单时间,
+						rs.BaseCreatorFullName 建单人,
+						rs.BaseSummary  主题,
+						rs.BasePriority 紧急程度,
+						rs.BaseStatus 工单状态
+						#sel_fields#
+					/*COUNT*/
+   		  		from(
+   		  			select 
+						rs1.dep dep,
+						rs1.depid depid,
+						rs1.BaseID BaseID,
+						rs1.BaseSN BaseSN,
+						rs1.BaseCreateDate BaseCreateDate,
+						rs1.BaseCreatorFullName BaseCreatorFullName,
+						rs1.BaseSummary BaseSummary,
+						rs1.CCH_ComplainType CCH_ComplainType,
+						rs1.BasePriority BasePriority,
+						rs1.BaseStatus BaseStatus,
+						rs1.CCH_ClientBrand CCH_ClientBrand,
+						case when sum(rs1.FlagBegin)=0 then 1 else 0 end noa
+			 		from(
+				 		select
+				 			case when  dp.c700020113 > '0' then dp.c700020113 when dp.c700020007 > '0' then dp.c700020007 when dp.c700020103 > '0' then dp.c700020103 end dep,
+				     		case when dp.c700020114 > '0' then dp.c700020114  when dp.c700020008 > '0' then dp.c700020008 when dp.c700020104 > '0' then dp.c700020104 end depid,
+				         	base.c1 BaseID,
+							base.c700000003 BaseSN,
+							base.c700000006 BaseCreateDate,
+							base.c700000004 BaseCreatorFullName,
+							base.c700000011 BaseSummary,
+							base.c800020001 CCH_ComplainType,
+							base.c700000015 BasePriority,
+							base.c700000010 BaseStatus,
+							base.c800020006 CCH_ClientBrand,
+							dp.c700020072 FlagBegin     
+			   			from {WF:EL_TTM_CCH} base, {WF:App_DealProcess} dp
+					 	where base.c1=dp.c700020001
+							and base.c700000001=dp.c700020002
+							and base.c700000009 is null
+							and dp.c700020020 = 1
+							and (dp.c700020003 = 'dp_2' or dp.c700020003 = 'dp_5' or dp.c700020003 = 'dp_7') 
+							$con_time$   
+				  	) rs1
+				 	where rs1.depid > '0'
+				 	group by  rs1.dep,rs1.depid, rs1.BaseID,rs1.BaseSN,rs1.BaseCreateDate,rs1.BaseCreatorFullName,rs1.BaseSummary,rs1.CCH_ComplainType,rs1.BasePriority,rs1.BaseStatus,rs1.CCH_ClientBrand ) rs,{UltraProcess:SysGroup} g
+ 				where ltrim(g.c1,0) = rs.depid 
+					and rs.noa=0
+					and g.c630000021 = '3'
+					and rs.CCH_ClientBrand > '0'
+					and rs.CCH_ComplainType > '0'
+					$sel_fields$
+					$directpar$
+					#con_class#
+					#con_incprovince#
+					#con_city#
+		       	order by rs.BaseCreateDate desc
+		  	]]>
+		</select>
+		<customwhere>
+			<parameterMap prepend="AND" name="con_time">
+				<mapingFiled prepend="AND" fieldName="timeStart"  fieldType="7">
+					<mapsql value="isnotnull">
+						<![CDATA[
+							base.c700000006 >= #timeStart#
+						 ]]>
+					</mapsql>
+				</mapingFiled>
+				<mapingFiled  prepend="AND" fieldName="timeEnd"  fieldType="7">
+					<mapsql value="isnotnull">
+						<![CDATA[
+							base.c700000006 <= #timeEnd#
+						 ]]>
+					</mapsql>
+				</mapingFiled>
+			</parameterMap>
+			<parameterMap prepend="and" name="sel_fields">
+				<mapingFiled prepend="and" fieldName="netClass" fieldType="4">
+					<mapsql value="isnotnull">
+						<![CDATA[
+							#chooseClass# = '#netClass#'
+						 ]]>
+					</mapsql>
+				</mapingFiled>
+				<mapingFiled prepend="and" fieldName="depid" fieldType="4">
+					<mapsql value="isnotnull">
+						<![CDATA[
+							rs.depid = '#depid#'
+						 ]]>
+					</mapsql>
+				</mapingFiled>
+				<mapingFiled prepend="and" fieldName="inccity" fieldType="4">
+					<mapsql value="isnotnull">
+						<![CDATA[
+							rs.CCH_ClientBrand = '#clientbrand#'
+						 ]]>
+					</mapsql>
+				</mapingFiled>
+			</parameterMap>
+		</customwhere>
+		<rptatribute>
+			<title>
+				<item>					
+					<titlecol>	
+						<isshow>false</isshow>
+					</titlecol>						
+					<titlecol>
+						<urltemp><![CDATA[/arsys/servlet/ViewFormServlet?server=#remedyserver#&form=WF:EL_TTM_CCH&mode=QUERY&eid=$baseid$&view=&]]></urltemp>
+						<text>流水号</text>
+					</titlecol>
+					<titlecol>
+						<colname>部门ID</colname>
+						<isshow>false</isshow>
+					</titlecol>
+				</item>
+			</title>			
+		</rptatribute>
+	</sqlquery>
+	<sqlquery name="SQL_ComplaintsMonitor_Link_Complete" dbpoolname="">
+		<select>
+			<![CDATA[	        
+	        	select
+					/*COUNT*/
+						rs.BaseID baseid,
+						rs.BaseSN 工单流水号,
+						to_char(to_date('19700101', 'yyyymmdd') +rs.BaseCreateDate / 86400 + 8 / 24,'yyyy-mm-dd hh24:MI:ss') 建单时间,
+						rs.BaseCreatorFullName 建单人,
+						rs.BaseSummary 主题,
+						rs.BasePriority 紧急程度,
+						rs.BaseStatus 工单状态
+						#sel_fields#
+					/*COUNT*/
+				from(
+					select
+						dp.c700020113 dep,
+						dp.c700020114 depid,
+						base.c1 BaseID,
+						base.c700000003 BaseSN,
+						base.c700000006 BaseCreateDate,
+						base.c700000004 BaseCreatorFullName,
+						base.c700000011 BaseSummary,
+						base.c800020001 CCH_ComplainType,
+						base.c700000015 BasePriority,
+						base.c700000010 BaseStatus,
+						base.c800020006 CCH_ClientBrand
+			  		from {WF:EL_TTM_CCH} base, {WF:App_DealProcess} dp
+			 		where base.c800021006 = dp.c1
+						and dp.c700020002 = 'WF:EL_TTM_CCH'
+						and base.c700000009 is null
+						and (dp.c700020003 = 'dp_2' or dp.c700020003 = 'dp_5' or dp.c700020003 = 'dp_7')
+						and dp.c700020114 > '0'
+						$con_time$ 
+			 	) rs,{UltraProcess:SysGroup} g
+				where ltrim(g.c1,0) = rs.depid
+					and g.c630000021 = '3'
+					and rs.CCH_ClientBrand > '0'
+					and rs.CCH_ComplainType > '0'
+					$sel_fields$
+					$directpar$
+					#con_class#
+					#con_incprovince#
+					#con_city#
+	        	order by rs.BaseCreateDate desc		   
+		  	]]>
+		</select>
+		<customwhere>
+			<parameterMap prepend="AND" name="con_time">
+				<mapingFiled prepend="AND" fieldName="timeStart"  fieldType="7">
+					<mapsql value="isnotnull">
+						<![CDATA[
+							base.c700000006 >= #timeStart#
+						 ]]>
+					</mapsql>
+				</mapingFiled>
+				<mapingFiled  prepend="AND" fieldName="timeEnd"  fieldType="7">
+					<mapsql value="isnotnull">
+						<![CDATA[
+							base.c700000006 <= #timeEnd#
+						 ]]>
+					</mapsql>
+				</mapingFiled>
+			</parameterMap>
+			<parameterMap prepend="and" name="sel_fields">
+				<mapingFiled prepend="and" fieldName="netClass" fieldType="4">
+					<mapsql value="isnotnull">
+						<![CDATA[
+							#chooseClass# = '#netClass#'
+						 ]]>
+					</mapsql>
+				</mapingFiled>
+				<mapingFiled prepend="and" fieldName="depid" fieldType="4">
+					<mapsql value="isnotnull">
+						<![CDATA[
+							rs.depid = '#depid#'
+						 ]]>
+					</mapsql>
+				</mapingFiled>
+				<mapingFiled prepend="and" fieldName="inccity" fieldType="4">
+					<mapsql value="isnotnull">
+						<![CDATA[
+							rs.CCH_ClientBrand = '#clientbrand#'
+						 ]]>
+					</mapsql>
+				</mapingFiled>
+			</parameterMap>
+		</customwhere>
+		<rptatribute>
+			<title>
+				<item>					
+					<titlecol>	
+						<isshow>false</isshow>
+					</titlecol>						
+					<titlecol>
+						<urltemp><![CDATA[/arsys/servlet/ViewFormServlet?server=#remedyserver#&form=WF:EL_TTM_CCH&mode=QUERY&eid=$baseid$&view=&]]></urltemp>
+						<text>流水号</text>
+					</titlecol>
+					<titlecol>
+						<colname>部门ID</colname>
+						<isshow>false</isshow>
+					</titlecol>
+				</item>
+			</title>			
+		</rptatribute>
+	</sqlquery>
+	<sqlquery name="SQL_ComplaintsMonitor_Link_Outtime" dbpoolname="">
+		<select>
+			<![CDATA[		      
+		    	select 
+					/*COUNT*/
+						rs.BaseID baseid,
+						rs.BaseSN 工单流水号,
+						to_char(to_date('19700101', 'yyyymmdd') +rs.BaseCreateDate / 86400 + 8 / 24,'yyyy-mm-dd hh24:MI:ss')  建单时间,
+						rs.BaseCreatorFullName 建单人,
+						rs.BaseSummary 主题,
+						rs.BasePriority 紧急程度,
+						rs.BaseStatus 工单状态
+						#sel_fields#
+					/*COUNT*/
+				from(				
+					select
+						DISTINCT rs1.BaseID BaseID,
+						rs1.dep dep,
+						rs1.depid depid,
+						rs1.BaseSN BaseSN,
+						rs1.BaseCreateDate BaseCreateDate,
+						rs1.BaseCreatorFullName BaseCreatorFullName,
+						rs1.BaseSummary BaseSummary,
+						rs1.CCH_ComplainType CCH_ComplainType,
+						rs1.BasePriority BasePriority,
+						rs1.BaseStatus BaseStatus,
+						rs1.CCH_ClientBrand CCH_ClientBrand			    
+					from(
+						select
+							case when  dp.c700020113 > '0' then dp.c700020113 when dp.c700020007 > '0' then dp.c700020007 when dp.c700020103 > '0' then dp.c700020103 end dep,
+			     			case when dp.c700020114 > '0' then dp.c700020114  when dp.c700020008 > '0' then dp.c700020008 when dp.c700020104 > '0' then dp.c700020104 end depid,
+			       			base.c1 BaseID,
+							base.c700000003 BaseSN,
+							base.c700000006 BaseCreateDate,
+							base.c700000004 BaseCreatorFullName,
+							base.c700000011 BaseSummary,
+							base.c800020001 CCH_ComplainType,
+							base.c700000015 BasePriority,
+							base.c700000010 BaseStatus,
+							base.c800020006 CCH_ClientBrand
+			  			from {WF:EL_TTM_CCH} base, {WF:App_DealProcess} dp
+			 			where base.c1 = dp.c700020001
+							and base.c700000001 = dp.c700020002
+							and base.c700000009 is null
+							and (dp.c700020003 = 'dp_2' or dp.c700020003 = 'dp_5' or dp.c700020003 = 'dp_7')
+							and base.c800021006 is null
+							and dp.c700020020 =1
+							and #current# > base.c700000018
+							$con_time$
+			   		) rs1
+			   		where rs1.depid > '0'
+	    	 
+    				union all
+    					    	 		   			
+					select 
+						base.c1 BaseID,
+						dp.c700020113 dep,
+						dp.c700020114 depid,             
+						base.c700000003 BaseSN,
+						base.c700000006 BaseCreateDate,
+						base.c700000004 BaseCreatorFullName,
+						base.c700000011 BaseSummary,
+						base.c800020001 CCH_ComplainType,
+						base.c700000015 BasePriority,
+						base.c700000010 BaseStatus,
+						base.c800020006 CCH_ClientBrand
+			  		from {WF:EL_TTM_CCH} base, {WF:App_DealProcess} dp
+			 		where base.c800021006 = dp.c1
+						and dp.c700020002 = 'WF:EL_TTM_CCH'
+						and base.c700000009 is null
+						and (dp.c700020003 = 'dp_2' or dp.c700020003 = 'dp_5' or dp.c700020003 = 'dp_7')
+						and dp.c700020114 > '0'
+						and dp.c700020017 > base.c700000018
+						$con_time$
+			 	) rs,{UltraProcess:SysGroup} g
+				where ltrim(g.c1,0) = rs.depid
+					and g.c630000021 = '3'
+					and rs.CCH_ClientBrand > '0'
+					and rs.CCH_ComplainType > '0'
+					$sel_fields$
+					$directpar$
+					#con_class#
+					#con_incprovince#
+					#con_city#
+		      	order by rs.BaseCreateDate desc		      
+		  	]]>
+		</select>
+		<customwhere>
+			<parameterMap prepend="AND" name="con_time">
+				<mapingFiled prepend="AND" fieldName="timeStart"  fieldType="7">
+					<mapsql value="isnotnull">
+						<![CDATA[
+							base.c700000006 >= #timeStart#
+						 ]]>
+					</mapsql>
+				</mapingFiled>
+				<mapingFiled  prepend="AND" fieldName="timeEnd"  fieldType="7">
+					<mapsql value="isnotnull">
+						<![CDATA[
+							base.c700000006 <= #timeEnd#
+						 ]]>
+					</mapsql>
+				</mapingFiled>
+			</parameterMap>
+			<parameterMap prepend="and" name="sel_fields">
+				<mapingFiled prepend="and" fieldName="netClass" fieldType="4">
+					<mapsql value="isnotnull">
+						<![CDATA[
+							#chooseClass# = '#netClass#'
+						 ]]>
+					</mapsql>
+				</mapingFiled>
+				<mapingFiled prepend="and" fieldName="depid" fieldType="4">
+					<mapsql value="isnotnull">
+						<![CDATA[
+							rs.depid = '#depid#'
+						 ]]>
+					</mapsql>
+				</mapingFiled>
+				<mapingFiled prepend="and" fieldName="inccity" fieldType="4">
+					<mapsql value="isnotnull">
+						<![CDATA[
+							rs.CCH_ClientBrand = '#clientbrand#'
+						 ]]>
+					</mapsql>
+				</mapingFiled>
+			</parameterMap>
+		</customwhere>
+		<rptatribute>
+			<title>
+				<item>					
+					<titlecol>	
+						<isshow>false</isshow>
+					</titlecol>						
+					<titlecol>
+						<urltemp><![CDATA[/arsys/servlet/ViewFormServlet?server=#remedyserver#&form=WF:EL_TTM_CCH&mode=QUERY&eid=$baseid$&view=&]]></urltemp>
+						<text>流水号</text>
+					</titlecol>
+					<titlecol>
+						<colname>部门ID</colname>
+						<isshow>false</isshow>
+					</titlecol>
+				</item>
+			</title>			
+		</rptatribute>
+	</sqlquery>
+</sql-group>

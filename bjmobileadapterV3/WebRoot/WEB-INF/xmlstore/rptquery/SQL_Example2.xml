@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sql-group>
+	<doc>
+		<author>作者</author> 
+		<date>时间</date> 
+		<description>Sql 描述</description> 		
+	</doc>
+	
+	<sqlquery name="example.query.002" dbpoolname="mypool">
+		<select>
+		<![CDATA[ 
+ 			select  c630000018 as 部门名称 ,count(*) 人数
+ 			 from {UltraProcess:SysUser} su,{UltraProcess:SysGroup} sg
+ 			 where  su.c630000015=sg.c1
+ 			 $directpar$
+ 			 group by c630000018
+ 			  
+		  ]]> 
+		</select>
+		<customwhere>
+			<parameterMap prepend="AND" name="con_001">
+				<mapingFiled  prepend="AND" fieldName="loginname"  fieldType="4">
+					<mapsql value="isnotnull">
+						<![CDATA[
+							 c630000001 like '%#loginname#%'
+						 ]]>  			
+					</mapsql>
+				</mapingFiled>
+				<mapingFiled  prepend="AND" fieldName="loginfullname"  fieldType="4">
+					<mapsql value="isnotnull">
+						<![CDATA[
+							 c630000003 like '%#loginfullname#%'
+						 ]]>  			
+					</mapsql>
+				</mapingFiled>	
+				<mapingFiled  prepend="AND" fieldName="email"  fieldType="4">
+					<mapsql value="isnotnull">
+						<![CDATA[
+							 c630000011 like '%#email#%'
+						 ]]>  			
+					</mapsql>
+				</mapingFiled>	
+			</parameterMap>
+		</customwhere>
+		<rptatribute>
+			<sumitem>
+				<item>
+					<sum type="ROW">
+						<groupbycol></groupbycol>
+						<sumcol>1</sumcol>
+						<sumtext>合计</sumtext>
+					</sum>	
+				</item>
+			</sumitem>
+		</rptatribute>
+	</sqlquery>	
+	
+</sql-group>
+
+

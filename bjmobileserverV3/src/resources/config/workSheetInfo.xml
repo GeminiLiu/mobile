@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<baseSchemas>
+	<baseSchema>
+		<code>WF4_EL_AM_PS</code>
+		<name>发电保障工单</name>
+		<waitDeal></waitDeal>
+		<dealed></dealed>
+	</baseSchema>
+	<baseSchema>
+		<code>WF4:EL_TTM_CCH</code>
+		<name>个人投诉工单</name>
+		<waitDeal>myWaitDeal.jsp</waitDeal>
+		<dealed>myDealed.jsp</dealed>
+	</baseSchema>
+	<baseSchema>
+		<code>WF4:EL_UVS_TSK</code>
+		<name>通用任务工单</name>
+		<waitDeal></waitDeal>
+		<dealed></dealed>
+	</baseSchema>
+</baseSchemas>
