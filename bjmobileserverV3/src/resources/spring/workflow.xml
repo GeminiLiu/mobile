@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
-<beans default-autowire="byName" default-lazy-init="true">
-	<bean id="sheetQueryAction" class="com.ultrapower.mobile.web.SheetQueryAction" />
-	<bean id="sheetQueryService" class="com.ultrapower.mobile.service.impl.SheetQueryManagerImpl" />
-	
-	<bean id="workSheetAction" class="com.ultrapower.mobile.web.WorkSheetAction" />
-	<bean id="portalAction" class="com.ultrapower.mobile.web.PortalAction" />
-</beans>
